@@ -15,6 +15,7 @@ app.use(requestLogger)
 let users = [
   {
     id: 1,
+    createdAt: '',
     type: "client",
     name: "Francisco Zavala",
     height: 169,
@@ -25,6 +26,7 @@ let users = [
   },
   {
     id: 2,
+    createdAt: '',
     type: "admin",
     name: "Jane Pokkinen",
     height: 160,
@@ -35,6 +37,7 @@ let users = [
   },
   {
     id: 3,
+    createdAt: '',
     type: "client",
     name: "Samuel Pokkinen",
     height: 116,
@@ -61,7 +64,11 @@ const generateId = () => {
 }
 
 app.post('/api/users', (request, response) => {
-  const user = request.body
+  const user = {
+    id: generateId(),
+    createdAt: new Date(),
+    ...request.body
+  }
   console.log(user)
   response.json(user)
 })
