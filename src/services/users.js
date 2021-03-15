@@ -2,10 +2,11 @@ import axios from 'axios'
 import localdb from '../utils/localdb'
 const baseUrl = '/api/users'
 
-const getAllUsers = () => {
-  const request = axios.get(baseUrl)
-  return request.then(response => response.data)
+const getAll = async () => {
+  const response = await axios.get(baseUrl)
+  console.log('REQUEST: ', response)
+  return response.data
 }
 
 
-export default { getAllUsers }
+export default { getAll }

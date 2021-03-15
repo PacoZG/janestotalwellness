@@ -1,9 +1,9 @@
-import usersService from '../services/users'
+import userService from '../services/users'
 import localdb from '../utils/localdb'
 
 const userReducer = (state = [], action) => {
-  // console.log('BLOGS STATE IN BLOGREDUCER:', state)
-  // console.log('BLOGS ACTION.TYPE IN BLOGREDUCER:', action)
+  console.log('USERS STATE IN USERREDUCER:', state)
+  console.log('USERS ACTION IN USERREDUCER:', action)
   switch (action.type) {
     case 'INIT_USERS':
       return action.data
@@ -25,7 +25,7 @@ const userReducer = (state = [], action) => {
 
 export const initializeUsers = () => {
   return async (dispatch) => {
-    const users = await usersService.getAllUsers()
+    const users = await userService.getAll()
     dispatch({
       type: 'INIT_USERS',
       data: users,
