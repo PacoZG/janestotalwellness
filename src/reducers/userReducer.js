@@ -1,5 +1,4 @@
 import userService from '../services/users'
-import localdb from '../utils/localdb'
 
 const userReducer = (state = [], action) => {
   console.log('USERS STATE IN USERREDUCER:', state)
@@ -7,8 +6,8 @@ const userReducer = (state = [], action) => {
   switch (action.type) {
     case 'INIT_USERS':
       return action.data
-    // case 'NEW_USER':
-    // return state.concat(action.data)
+    case 'NEW_USER':
+    return state.concat(action.data)
     // case 'DELETE':
     // return state.filter(user => user.id !== action.data)
     // case 'COMMENT': {
@@ -33,16 +32,15 @@ export const initializeUsers = () => {
   }
 }
 
-// export const createUser = (user) => {
-//   return async (dispatch) => {
-//     const newUser = await usersService.createUser(user)
-//     const newBlogwUser = { ...newBlog, user: localdb.loadUser() }
-//     dispatch({
-//       type: 'NEW_USER',
-//       data: newBlogwUser,
-//     })
-//   }
-// }
+export const createUser = (user) => {
+  return async (dispatch) => {
+    const newUser = await usersService.createUser(user)
+    dispatch({
+      type: 'NEW_USER',
+      data: newUser,
+    })
+  }
+}
 
 // export const likeBlog = (blog) => {
 //   const updatedBlog = { ...blog, likes: blog.likes + 1 }

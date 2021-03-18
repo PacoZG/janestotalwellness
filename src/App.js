@@ -13,9 +13,10 @@ const App = () => {
 
   return (
     < div >
-    <p>Hello world</p>
-    <UsersList />
-  </div >
+      <p>Hello world</p>
+      <UsersList />
+
+    </div >
   )
 }
 

@@ -1,0 +1,18 @@
+POST http://localhost:3001/api/users
+Content-Type: application/json
+
+{
+    "createdAt": "",
+    "userType": "admin",
+    "username": "barbarella",
+    "name": "Jane Pokkinen",
+    "password": "123chamaco",
+    "email": "jane.pokkinen@gmail.com",
+    "age": 37,
+    "height": 160,
+    "weight": 28,
+    "hobbies": [
+      "cooking", "movies", "wine"
+    ],
+    "motivation": "Wanna feel stronger"
+}
