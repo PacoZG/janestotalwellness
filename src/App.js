@@ -1,9 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux'
 import UsersList from './components/UserList'
+import SignUpForm from './components/SignUpForm'
 import { initializeUsers } from './reducers/userReducer'
-
-console.log('USEEFFECT: ', useEffect)
 
 const App = () => {
   const dispatch = useDispatch()
@@ -13,10 +12,10 @@ const App = () => {
 
   return (
     < div >
-      <p>Hello world</p>
-      <UsersList />
-
+      <SignUpForm />
+      
     </div >
+    
   )
 }
 

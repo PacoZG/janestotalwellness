@@ -3,14 +3,16 @@ Content-Type: application/json
 
 {
     "createdAt": "",
-    "userType": "admin",
+    "userType": "client",
     "username": "barbarella",
-    "name": "Jane Pokkinen",
+    "firstName": "Jane",
+    "lastName": "Pokkinen",
     "password": "123chamaco",
     "email": "jane.pokkinen@gmail.com",
-    "age": 37,
+    "age": 38,
     "height": 160,
-    "weight": 28,
+    "weight": 61,
+    "country": "Finland",
     "hobbies": [
       "cooking", "movies", "wine"
     ],

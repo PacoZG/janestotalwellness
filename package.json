@@ -4,10 +4,12 @@
   "description": "Project presentation for fullstack 2020 open course",
   "main": "index.js",
   "scripts": {
-    "start": "set PORT=3000 && react-scripts start",
+    "start": "set PORT=3000 && craco start",
+    "build": "craco build",
+    "test": "craco test",
     "start-server": "node index.js",
-    "dev": "nodemon index.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev-server": "nodemon index.js",
+    "eject": "react-scripts eject"
   },
   "repository": {
     "type": "git",
@@ -17,6 +19,7 @@
   "license": "ISC",
   "dependencies": {
     "@craco/craco": "^6.1.1",
+    "@tailwindcss/forms": "^0.2.1",
     "axios": "^0.21.1",
     "bcrypt": "^5.0.1",
     "cors": "^2.8.5",
@@ -39,8 +42,12 @@
   },
   "proxy": "http://localhost:3001",
   "devDependencies": {
+    "@tailwindcss/postcss7-compat": "^2.0.4",
+    "autoprefixer": "^9.8.6",
     "json-server": "^0.16.3",
-    "nodemon": "^2.0.7"
+    "nodemon": "^2.0.7",
+    "postcss": "^7.0.35",
+    "tailwindcss": "npm:@tailwindcss/postcss7-compat@^2.0.4"
   },
   "browserslist": {
     "production": [

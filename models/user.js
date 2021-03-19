@@ -9,16 +9,27 @@ const userSchema = new mongoose.Schema({
     unique: true,
     minlength: [3, 'User has to be at least 4 characters long']
   },
-  name: {
+  firstName: {
     type: String,
-    minlength: [3, 'Name has to be at least 5 characters long']
+    required: [true, 'First name is missing']
+  },
+  lastName: {
+    type: String,
+    required: [true, 'Last name is missing']
   },
   email: {
     type: String,
-    unique: [true, 'email is already register in the data base']
+    unique: [true, 'email is already register in the data base'],
+    required: true
   },
-  passwordHash: String,
-  age: Number,
+  country: {
+    type: String,
+    required: true
+  },
+  age: {
+    type: Number,
+    required: [true, 'Please provide your age']
+  },
   height: {
     type: Number,
     required: [true, 'Please enter your height in cm']
@@ -35,7 +46,8 @@ const userSchema = new mongoose.Schema({
   motivation: {
     type: String,
     required: [true, 'Please write your hobbies to know you better']
-  }
+  },
+  passwordHash: String,
 })
 
 userSchema.plugin(uniqueValidator)

@@ -1,0 +1,34 @@
+{
+    "createdAt": "",
+    "userType": "admin",
+    "username": "barbarella",
+    "name": "Jane Pokkinen",
+    "password": "123chamaco",
+    "email": "jane.pokkinen@gmail.com",
+    "age": 37,
+    "height": 160,
+    "weight": 56,
+    "hobbies": [
+      "cooking", "movies", "wine"
+    ],
+    "motivation": "Wanna feel stronger"
+}
+
+
+{
+    "createdAt": "",
+    "userType": "client",
+    "username": "chamaco",
+    "firstName": "Samuel",
+    "lastName": "Pokkinen",
+    "password": "123chamaco",
+    "email": "samu.pokkinen@gmail.com",
+    "age": 4,
+    "height": 116,
+    "weight": 16,
+    "country": "Finland",
+    "hobbies": [
+      "drawing", "playing", "music"
+    ],
+    "motivation": "Wanna be like my papi"
+}

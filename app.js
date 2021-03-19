@@ -32,7 +32,7 @@ app.use(middleware.requestLogger)
 app.use('/api/users', usersRouter)
 //app.use('/api/login', loginRouter)
 
-app.get('/', (request, response) => {
+app.get('/helloworld', (request, response) => {
   response.send('<h1>Hello World!</h1>')
 })
 

@@ -7,7 +7,7 @@ const UsersList = () => {
   console.log('USERS: ', users)
 
   return (
-    null
+    <div ></div>
   )
 }
 
