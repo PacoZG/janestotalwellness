@@ -1,8 +1,8 @@
 import localDB from '../utils/localdb'
 
 const loginReducer = (state = localDB.loadUser(), action) => {
-  //console.log('ACTION DATA IN userREDUCER:', action.data)
-  //console.log('STATE OF STATE IN userREDUCER:',state)
+  // console.log('ACTION DATA IN LOGINREDUCER:', action.data)
+  // console.log('STATE OF STATE IN LOGINREDUCER:',state)
   switch (action.type) {
   case 'LOGIN':
     return action.data

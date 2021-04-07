@@ -15,6 +15,7 @@ usersRouter.post('/', async (request, response) => {
   const user = new User({
     ...body,
     createdAt: new Date(),
+    userType: 'client',
     passwordHash
   })
 

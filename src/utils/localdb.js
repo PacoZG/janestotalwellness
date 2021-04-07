@@ -1,13 +1,13 @@
 const saveUser = (user) => {
-  localStorage.setItem('loggedBlogUser', JSON.stringify(user))
+  localStorage.setItem('loggedInUser', JSON.stringify(user))
 }
 
 const loadUser = () => {
-  return JSON.parse(localStorage.getItem('loggedBlogUser'))
+  return JSON.parse(localStorage.getItem('loggedInUser'))
 }
 
 const removeUser = () => {
-  localStorage.removeItem('loggedBlogUser')
+  localStorage.removeItem('loggedInUser')
   localStorage.clear()
 }
 

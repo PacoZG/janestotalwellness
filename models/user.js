@@ -26,9 +26,13 @@ const userSchema = new mongoose.Schema({
     type: String,
     required: true
   },
-  age: {
-    type: Number,
-    required: [true, 'Please provide your age']
+  gender: {
+    type: String,
+    required: true
+  },
+  dateOfBirth: {
+    type: Date,
+    required: [true, 'Please provide your date of birth']
   },
   height: {
     type: Number,
@@ -38,14 +42,13 @@ const userSchema = new mongoose.Schema({
     type: Number,
     required: [true, 'Please enter your weight in kg']
   },
-  hobbies: [
-    {
-      type: String,
-    }
-  ],
+  background: String,
   motivation: {
     type: String,
     required: [true, 'Please write your hobbies to know you better']
+  },
+  img: {
+    data: Buffer, contentType: String
   },
   passwordHash: String,
 })

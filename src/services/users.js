@@ -15,5 +15,12 @@ const createUser = async (newUser) => {
   return response.data
 }
 
+const getUser = async (id) => {
+  //console.log('ID: ', id)
+  const response = await axios.get(`${baseUrl}/${id}`)
+  console.log('FOUND USER:', response.data)
+  return response.data
+}
 
-export default { getAll, createUser }
+
+export default { getAll, createUser, getUser }
