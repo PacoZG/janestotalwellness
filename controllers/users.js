@@ -19,21 +19,17 @@ usersRouter.post('/', async (request, response) => {
     passwordHash
   })
 
-  // console.log('USER TO SAVE: ', user)
-  const savedUser = await user.save()
-  const userForToken = {
-    username: user.username,
-    id: user._id,
+  console.log('USER TO SAVE (CONTROLLER): ', user)
+  //
+  try {
+    await user.save()
+    response.status(201).json(savedUser)
+    console.log('Saved user: ', savedUser)
+  } catch (e) {
+    response.status(400).send(e.message)
+    console.log(e.message)
   }
-
-  const token = jwt.sign(userForToken, process.env.SECRET)
-
-  response.status(201).json({
-    token,
-    username: savedUser.username,
-    name: savedUser.name,
-    isRegisteredNew: true,
-  })
+  
 })
 
 usersRouter.get('/:id', async (request, response) => {

@@ -28,47 +28,36 @@ const UserProfile = () => {
   }
 
   return (
-    <div className="bg-white min-h-screen">
-      <h3 className="italic text-3xl text-center font-medium leading-6 text-gray-700 pt-10">Profile</h3>
-      <div className="flex flex-row space-y-2 bg-gray-100 min-h-screen m-4 rounded border-2 border-black border-opacity-10">
-        <div className="md:grid md:grid-cols-2 md:gap-6 pt-10 pl-10">
-          <div className="md:col-span-1">
-            <div className="px-4 sm:px-0">
-              <h1 className="text-xl text-gray-500 pt-8">Personal Information</h1>
-            </div>
-          </div>
+
+    <div className="bg-gray-100 min-h-screen">
+      <h3 className="text-3xl text-center font-medium leading-6 text-gray-700 pt-6">Profile</h3>
+      <div className="bg-white m-8 shadow overflow-hidden rounded-lg">
+        <div className="px-4 py-5 sm:px-6">
+          <h3 className="text-xl leading-6 font-medium text-gray-900 pl-3">Personal details</h3>
         </div>
-        <div className="mt-5 mr-5 md:mt-0 md:col-span-2 w-full">
-          <form >
-            <div className="shadow sm:rounded-md sm:overflow-hidden">
-              <div className="px-4 py-5 bg-white space-y-6 sm:p-6">
-                <div className="grid grid-cols-3 gap-6">
-                  <div className="col-span-3 sm:col-span-3">
-                    <div className="flex flex-row space-x-10 p-3 h-auto bg-gray-50 w-full rounded-t-md" >
-                      <div className="block text-xl font-xl font-semibold text-gray-500 ">Name:</div>
-                      <div className="block text-xl text-right font-semibold text-gray-700" >{user.firstName} {user.lastName}</div>
-                    </div>
-                    <div className="flex flex-row space-x-12 p-3 h-auto bg-gray-100 w-full" >
-                      <div className="block text-xl font-xl font-semibold text-gray-500">Email:</div>
-                      <div className="block text-xl font-xl font-semibold text-gray-700" >{user.email}</div>
-                    </div>
-                    <div className="flex flex-row space-x-16 p-3 h-auto bg-gray-50 w-full" >
-                      <div className="block text-xl font-xl font-semibold text-gray-500">Age:</div>
-                      <div className="block text-xl font-xl font-semibold text-gray-700" >{getAge()} years old</div>
-                    </div>
-                    <div className="flex flex-row space-x-10 p-3 h-auto bg-gray-100 w-full" >
-                      <div className="block text-xl font-xl font-semibold text-gray-500">Height:</div>
-                      <div className="block text-xl font-xl font-semibold text-gray-700" >{user.height} cm</div>
-                    </div>
-                    <div className="flex flex-row space-x-9 p-3 h-auto bg-gray-50 w-full" >
-                      <div className="block text-xl font-xl font-semibold text-gray-500">Weight:</div>
-                      <div className="block text-xl font-xl font-semibold text-gray-700" >{user.weight} kg</div>
-                    </div>
-                  </div>
-                </div>
-              </div>
+        <div className="border-t border-gray-300">
+          <dl>
+            <div className="bg-gray-50 px-3 py-4 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+              <dt className="text-lg font-medium text-gray-500 pl-6">Full name</dt>
+              <dd className="mt-1 text-lg text-gray-900 sm:mt-0 sm:col-span-2">{user.firstName} {user.lastName}</dd>
             </div>
-          </form>
+            <div className="bg-gray-100 px-3 py-4 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+              <dt className="text-lg font-medium text-gray-500 pl-6">Email address</dt>
+              <dd className="mt-1 text-lg text-gray-900 sm:mt-0 sm:col-span-2">{user.email}</dd>
+            </div>
+            <div className="bg-gray-50 px-3 py-4 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+              <dt className="text-lg font-medium text-gray-500 pl-6">Age</dt>
+              <dd className="mt-1 text-lg text-gray-900 sm:mt-0 sm:col-span-2">{getAge()} years old</dd>
+            </div>
+            <div className="bg-gray-100 px-3 py-4 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+              <dt className="text-lg font-medium text-gray-500 pl-6">Height</dt>
+              <dd className="mt-1 text-lg text-gray-900 sm:mt-0 sm:col-span-2">{user.height} cm</dd>
+            </div>
+            <div className="bg-gray-50 px-3 py-4 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+              <dt className="text-lg font-medium text-gray-500 pl-6">Weight</dt>
+              <dd className="mt-1 text-lg text-gray-900 sm:mt-0 sm:col-span-2">{user.weight} kg</dd>
+            </div>
+          </dl>
         </div>
       </div>
     </div>

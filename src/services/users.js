@@ -9,9 +9,9 @@ const getAll = async () => {
 }
 
 const createUser = async (newUser) => {
-  console.log('USER_TO_SAVE: ', newUser)
+  // console.log('USER_TO_SAVE: ', newUser)
   const response = await axios.post(baseUrl, newUser)
-  console.log('RESPONSE: ', response)
+  console.log('RESPONSE: ', response.data)
   return response.data
 }
 
