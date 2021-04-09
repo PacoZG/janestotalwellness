@@ -6,7 +6,7 @@ const userSchema = new mongoose.Schema({
   userType: String,
   username: {
     type: String,
-    unique: true,
+    unique: [true, 'Username has been already used'],
     minlength: [3, 'User has to be at least 4 characters long']
   },
   firstName: {
