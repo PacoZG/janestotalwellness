@@ -56,10 +56,9 @@ const SignUpForm = () => {
 
     //console.log('NEW_USER: ', newUser)
     try {
-    dispatch(createUser(newUser))
-    } catch (e) {
-      console.log('ERROR: ', e.response.data)
-      dispatch(setNotification(error))
+      dispatch(createUser(newUser))
+    } catch (error) {
+      console.log(error)
     }
   }
 
@@ -78,7 +77,7 @@ const SignUpForm = () => {
               <div className="mt-8 relative">
                 <span className="absolute p-0 bottom-12 ml-2 bg-transparent text-gray-500 ">Username</span>
                 <input className="h-12 mt-2 px-2 w-full border-2 border-gray-200 rounded focus:outline-none focus:border-transparent placeholder-gray-200"
-                  pattern="^[a-zA-Z][a-zA-Z0-9-_.]{5,12}$" placeholder="example: jhon_1" {...username.params} required />
+                  placeholder="example: jhon_1" {...username.params} required />
               </div>
               <div className="mt-8 relative">
                 <span className="absolute p-0 bottom-12 ml-2 bg-transparent text-gray-500 ">Email</span>

@@ -6,8 +6,9 @@ const userSchema = new mongoose.Schema({
   userType: String,
   username: {
     type: String,
-    unique: [true, 'Username has been already used'],
-    minlength: [3, 'User has to be at least 4 characters long']
+    required: [true, 'Username is required'],
+    minlength: [3, 'User has to be at least 4 characters long'],
+    unique: [true, 'Username has been already used']
   },
   firstName: {
     type: String,
@@ -19,7 +20,7 @@ const userSchema = new mongoose.Schema({
   },
   email: {
     type: String,
-    unique: [true, 'email is already register in the data base'],
+    unique: [true, 'Email is already register in the data base'],
     required: true
   },
   country: {

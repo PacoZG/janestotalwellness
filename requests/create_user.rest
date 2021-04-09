@@ -12,6 +12,7 @@ Content-Type: application/json
     "dateOfBirth": "1976-10-17",
     "height": 160,
     "weight": 61,
+    "gender": "female",
     "country": "Finland",
     "background": "cooking, movies, wine",
     "motivation": "Wanna feel stronger"

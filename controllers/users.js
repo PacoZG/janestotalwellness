@@ -19,17 +19,14 @@ usersRouter.post('/', async (request, response) => {
     passwordHash
   })
 
-  console.log('USER TO SAVE (CONTROLLER): ', user)
-  //
-  try {
-    await user.save()
-    response.status(201).json(savedUser)
-    console.log('Saved user: ', savedUser)
-  } catch (e) {
-    response.status(400).send(e.message)
-    console.log(e.message)
-  }
-  
+  // console.log('USER TO SAVE: ', user)
+  const savedUser = await user.save()
+
+  response.status(201).json({
+    username: savedUser.username,
+    name: savedUser.name,
+    isRegisteredNew: true,
+  })
 })
 
 usersRouter.get('/:id', async (request, response) => {
