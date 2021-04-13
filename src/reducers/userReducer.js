@@ -55,35 +55,5 @@ export const getUser = (id) => {
   }
 }
 
-// export const likeBlog = (blog) => {
-//   const updatedBlog = { ...blog, likes: blog.likes + 1 }
-//   return async (dispatch) => {
-//     const changedBlog = await blogService.update(updatedBlog)
-//     dispatch({
-//       type: 'LIKE',
-//       data: changedBlog,
-//     })
-//   }
-// }
-
-// export const deleteUser = (blog) => {
-//   return async (dispatch) => {
-//     await blogService.remove(blog.id)
-//     dispatch({
-//       type: 'DELETE',
-//       data: blog.id,
-//     })
-//   }
-// }
-
-// export const commentBlog = (commentedBlog) => {
-//   return async dispatch => {
-//     const updatedBlog = await blogService.addComment(commentedBlog)
-//     dispatch({
-//       type: 'COMMENT',
-//       data: updatedBlog
-//     })
-//   }
-// }
 
 export default userReducer
