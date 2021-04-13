@@ -1,13 +1,21 @@
 import React, { useState } from 'react'
+import { useHistory } from 'react-router-dom'
 import { useField } from '../hooks/index'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import Notification from './Notification'
+import Modal from './Modal'
 
 import { setNotification } from '../reducers/notificationReducer'
 import { createUser } from '../reducers/userReducer'
+import usersService from '../services/users'
 
 const SignUpForm = () => {
   const dispatch = useDispatch()
+  const history = useHistory()
+  const [showModal, setShowModal] = useState(false)
+  const [modalMessage, setModalMessage] = useState('')
+  const [title, setTitle] = useState('')
+
   const firstName = useField('text')
   const lastName = useField('text')
   const email = useField('email')
@@ -22,7 +30,6 @@ const SignUpForm = () => {
   const motivation = useField('text')
   const country = useField('text')
 
-
   const handleSignUp = async (event) => {
     event.preventDefault()
     var genders = document.getElementsByName('gender');
@@ -32,17 +39,11 @@ const SignUpForm = () => {
         selectedGender = genders[i].value;
       }
     }
-    if (password.params.value !== passwordConfirm.params.value ||
-      email.params.value !== emailConfirm.params.value ||
-      selectedGender === undefined
-    ) {
-      dispatch(setNotification('Emails or password don\'t match, please fulfill all the field in the form.'))
-    }
 
     const newUser = {
       firstName: firstName.params.value,
       lastName: lastName.params.value,
-      username: username.params.value,
+      username: username.params.value.toLowerCase(),
       email: email.params.value,
       password: password.params.value,
       background: background.params.value,
@@ -53,17 +54,61 @@ const SignUpForm = () => {
       country: country.params.value,
       motivation: motivation.params.value,
     }
-
     //console.log('NEW_USER: ', newUser)
     try {
-      dispatch(createUser(newUser))
+      if (password.params.value === passwordConfirm.params.value &&
+        email.params.value === emailConfirm.params.value) {
+        const createdUser = await usersService.createUser(newUser)
+        dispatch(createUser(createdUser))
+        setModalMessage(`${username.params.value} has been created successfuly.`)
+        setTitle('Sucess')
+        setShowModal(true)
+        firstName.reset()
+        lastName.reset()
+        username.reset()
+        email.reset()
+        emailConfirm.reset()
+        password.reset()
+        passwordConfirm.reset()
+        background.reset()
+        dateOfBirth.reset()
+        height.reset()
+        weight.reset()
+        country.reset()
+        motivation.reset()
+      } else if (password.params.value !== passwordConfirm.params.value) {
+        setModalMessage('Password fields don\'t match, please check and fulfill all the field in the form.')
+        setTitle('Password error')
+        setShowModal(true)
+      } else if(email.params.value !== emailConfirm.params.value) {
+        setModalMessage('Email fields don\'t match, please check and fulfill all the field in the form.')
+        setTitle('Email error')
+        setShowModal(true)
+      }
     } catch (error) {
-      console.log(error)
+      console.log('ERROR MESSAGE: ', error.response.data)
+      const message = error.response.data
+      if (message.includes('Error') && !message.includes(email.params.value)) {
+        console.log(username.params.value)
+        setModalMessage(`Username \'${username.params.value.toLowerCase()}' has been used, try with a different username.`)
+        //console.log('MODAL MESSAGE: ', modalMessage)
+        setTitle('Username error')
+        setShowModal(true)
+      } else if (message.includes(email.params.value)) {
+        setModalMessage(`\'${email.params.value}' is already in our database, try with a different email.`)
+        setTitle('Email error')
+        setShowModal(true)
+      } else if (message.includes('Username has to')) {
+        setModalMessage(message.substring(34))
+        setTitle('Username error')
+        setShowModal(true)
+      }
     }
   }
 
   return (
     <div className="h-screen pb-6 py-200 px-2 pt-16 bg-gray-200">
+      <Modal showModal={showModal} setShowModal={setShowModal} message={modalMessage} title={title} />
       <form onSubmit={handleSignUp}>
         <div className="max-w-mdz mx-auto overflow-hidden ">
           <h1 className="text-center font-medium font-serif m-2 text-2xl text-gray-500">Sign up form</h1>
@@ -77,12 +122,12 @@ const SignUpForm = () => {
               <div className="mt-8 relative">
                 <span className="absolute p-0 bottom-12 ml-2 bg-transparent text-gray-500 ">Username</span>
                 <input className="h-12 mt-2 px-2 w-full border-2 border-gray-200 rounded focus:outline-none focus:border-transparent placeholder-gray-200"
-                  placeholder="example: jhon_1" {...username.params} required />
+                  placeholder="example: jhon_1" title="User has to be at least 4 characters long" {...username.params} required />
               </div>
               <div className="mt-8 relative">
                 <span className="absolute p-0 bottom-12 ml-2 bg-transparent text-gray-500 ">Email</span>
                 <input className="h-12 mt-2 px-2 w-full border-2 border-gray-200 rounded focus:outline-none focus:border-transparent placeholder-gray-200"
-                  pattern="[a-z0-9._%+-]+@[a-z0-9.-]+.[a-z]{2,4}$" id="email" placeholder="john@hotmail.com" {...email.params} required />
+                  pattern="[a-z0-9._%+-]+@[a-z0-9.-]+.[a-z]{2,4}$" id="email" placeholder="john@example.com" {...email.params} required />
               </div>
               <div className="mt-8 relative">
                 <span className="absolute p-0 bottom-12 ml-2 bg-transparent text-gray-500 ">Password</span>
@@ -120,7 +165,7 @@ const SignUpForm = () => {
               <div className="mt-8 relative">
                 <span className="absolute p-0 bottom-12 ml-2 bg-transparent text-gray-500 ">Re-type email</span>
                 <input className="h-12 mt-2 px-2 w-full border-2 border-gray-200 rounded focus:outline-none focus:border-transparent placeholder-gray-200"
-                  pattern="[a-z0-9._%+-]+@[a-z0-9.-]+.[a-z]{2,4}$" placeholder="john@hotmail.com" {...emailConfirm.params} required />
+                  pattern="[a-z0-9._%+-]+@[a-z0-9.-]+.[a-z]{2,4}$" placeholder="john@example.com" {...emailConfirm.params} required />
               </div>
               <div className="mt-8 relative">
                 <span className="absolute p-0 bottom-12 ml-2 bg-transparent text-gray-500 ">Re-type password</span>

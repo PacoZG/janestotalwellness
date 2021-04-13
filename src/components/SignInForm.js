@@ -23,10 +23,10 @@ const SigninForm = () => {
 
   const handleLogin = async (event) => {
     event.preventDefault()
-    console.log('CREDENTIALS: ', credentials)
+    //console.log('CREDENTIALS: ', credentials)
     try {
       var user = await loginService.login(credentials)
-      console.log('USER: ', user)
+      //console.log('USER: ', user)
       dispatch(userLogin(user))
       history.push('/frontpage')
     } catch (exception) {
@@ -62,20 +62,20 @@ const SigninForm = () => {
           </div>
 
           <div className="flex items-center justify-between">
-            <div className="flex items-center">
-              <input id="remember_me" name="remember_me" type="checkbox" className="h-4 w-4 text-blue-700 focus:ring-indigo-500 border-gray-300 rounded" />
+            <div className="flex items-center pl-2 ">
+              <input id="remember_me" name="remember_me" type="checkbox" className="h-4 w-4 text-red-500 focus:ring-red-500 border-gray-300 rounded" />
               <label className="ml-2 block text-sm text-gray-900">
                 Remember me
           </label>
             </div>
 
-            <div className="text-sm">
+            <div className="text-sm pr-2 ">
               <Link to='' className="font-medium text-indigo-600 hover:text-indigo-500">Forgot your password?</Link>
             </div>
           </div>
 
           <div>
-            <button type="submit" className="mt-1 mb-6 h-12 w-full bg-blue-700 text-white rounded hover:-translate-y-0.5
+            <button type="submit" className="mt-1 mb-6 h-12 w-full bg-red-500 text-white rounded hover:-translate-y-0.5
           focus:ring focus:ring-offset-2 focus:ring-blue-700 transform transition active:bg-blue-900">
               <span className="absolute left-0 inset-y-0 flex items-center pl-3">
                 <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">

@@ -20,13 +20,17 @@ usersRouter.post('/', async (request, response) => {
   })
 
   // console.log('USER TO SAVE: ', user)
-  const savedUser = await user.save()
-
-  response.status(201).json({
-    username: savedUser.username,
-    name: savedUser.name,
-    isRegisteredNew: true,
-  })
+  try {
+    const savedUser = await user.save()
+    response.status(201).json({
+      username: savedUser.username,
+      name: savedUser.name,
+      isRegisteredNew: true,
+    })
+  } catch (error) {
+    response.status(400).send(error.message)
+    //console.log('ERROR IN SERVER:', error.message)
+  }
 })
 
 usersRouter.get('/:id', async (request, response) => {

@@ -1,5 +1,4 @@
 import axios from 'axios'
-import localdb from '../utils/localdb'
 const baseUrl = '/api/users'
 
 const getAll = async () => {
@@ -9,16 +8,15 @@ const getAll = async () => {
 }
 
 const createUser = async (newUser) => {
-  console.log('USER_TO_SAVE: ', newUser)
-  const response = await axios.post(baseUrl, newUser)
-  console.log('RESPONSE: ', response)
-  return response.data
+  //console.log('USER_TO_SAVE: ', newUser)
+    const response = await axios.post(baseUrl, newUser)
+    return response.data
 }
 
 const getUser = async (id) => {
   //console.log('ID: ', id)
   const response = await axios.get(`${baseUrl}/${id}`)
-  console.log('FOUND USER:', response.data)
+  //console.log('FOUND USER:', response.data)
   return response.data
 }
 

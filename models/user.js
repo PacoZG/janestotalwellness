@@ -6,21 +6,21 @@ const userSchema = new mongoose.Schema({
   userType: String,
   username: {
     type: String,
-    required: [true, 'Username is required'],
-    minlength: [3, 'User has to be at least 4 characters long'],
-    unique: [true, 'Username has been already used']
+    required: true,
+    minlength: [4, 'Username has to be at least 4 characters long'],
+    unique: true,
   },
   firstName: {
     type: String,
-    required: [true, 'First name is missing']
+    required: true,
   },
   lastName: {
     type: String,
-    required: [true, 'Last name is missing']
+    required: true,
   },
   email: {
     type: String,
-    unique: [true, 'Email is already register in the data base'],
+    unique: true,
     required: true
   },
   country: {
@@ -33,20 +33,20 @@ const userSchema = new mongoose.Schema({
   },
   dateOfBirth: {
     type: Date,
-    required: [true, 'Please provide your date of birth']
+    required: true,
   },
   height: {
     type: Number,
-    required: [true, 'Please enter your height in cm']
+    required: true,
   },
   weight: {
     type: Number,
-    required: [true, 'Please enter your weight in kg']
+    required: true,
   },
   background: String,
   motivation: {
     type: String,
-    required: [true, 'Please write your hobbies to know you better']
+    required: true,
   },
   img: {
     data: Buffer, contentType: String

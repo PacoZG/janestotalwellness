@@ -4,7 +4,7 @@ import { Link, useHistory } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { userLogout } from '../reducers/loginReducer'
 import me from '../img/me.jpg'
-
+import Modal from './Modal'
 
 const MainMenu = () => {
   const dispatch = useDispatch()
@@ -43,10 +43,12 @@ const MainMenu = () => {
               </div>
               <div className="hidden md:block">
                 <div className="ml-10 flex items-baseline space-x-4">
-                  <i className="text-gray-300">Jane's Total Wellness</i>
+
 
                   {/* <!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" --> */}
-                  <Link to="/frontpage" className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Frontpage</Link>
+                  <Link to="/frontpage" className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">
+                    <i className="text-gray-300">Jane's Total Wellness</i>
+                  </Link>
 
                   <Link to="/programs" className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Programs</Link>
 
@@ -132,6 +134,7 @@ const MainMenu = () => {
           </div>
         </div> */}
       </nav>
+      <Modal />
     </div>
   )
 }
