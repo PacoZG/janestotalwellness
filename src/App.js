@@ -5,7 +5,9 @@ import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 import UserProfile from './components/UserProfile'
 import SignInForm from './components/SignInForm'
 import SignUpForm from './components/SignUpForm'
+import Editform from './components/EditForm'
 import MainMenu from './components/MainMenu'
+import Footer from './components/Footer'
 import { initializeUsers } from './reducers/userReducer'
 
 const App = () => {
@@ -15,7 +17,7 @@ const App = () => {
   // }, [dispatch])
 
   return (
-    < div className="" >
+    <div >
       <Router>
         <MainMenu />
         <Switch>
@@ -28,8 +30,12 @@ const App = () => {
           <Route path="/profile">
             <UserProfile />
           </Route>
+          <Route path="/editForm">
+            <Editform />
+          </Route>
         </Switch>
       </Router>
+      <Footer />
     </div >
   )
 }

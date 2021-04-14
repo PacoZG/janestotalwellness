@@ -1,23 +1,25 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Link, useHistory } from 'react-router-dom'
 import { useField } from '../hooks/index'
 import { useDispatch } from 'react-redux'
 import threes from '../img/threes.png'
 
-import Notification from './Notification'
-import { setNotification } from '../reducers/notificationReducer'
+import Modal from './Modal'
 import { userLogin } from '../reducers/loginReducer'
 import loginService from '../services/login'
 
 const SigninForm = () => {
 
   const dispatch = useDispatch()
+  const [showModal, setShowModal] = useState(false)
+  const [modalMessage, setModalMessage] = useState('')
+  const [title, setTitle] = useState('')
   const history = useHistory()
   const username = useField('text')
   const password = useField('password')
 
   const credentials = {
-    username: username.params.value,
+    username: username.params.value.toLowerCase(),
     password: password.params.value,
   }
 
@@ -29,19 +31,22 @@ const SigninForm = () => {
       //console.log('USER: ', user)
       dispatch(userLogin(user))
       history.push('/frontpage')
-    } catch (exception) {
-      dispatch(setNotification('Wrong username or password'))
+    } catch (error) {
+      console.log('SIGN IN ERROR: ', error.response.data.error)
+      setModalMessage(`${error.response.data.error}`)
+      setTitle('Login error')
+      setShowModal(true)
     }
   }
 
   return (
     <div className="min-h-screen flex justify-center bg-gray-300 pt-40 py-12 px-4 sm:px-6 lg:px-8">
+      <Modal showModal={showModal} setShowModal={setShowModal} message={modalMessage} title={title} />
       <div className="max-w-md w-full space-y-8">
         <div>
           <img className="mx-auto h-12 w-auto rounded" src={threes} />
           <h2 className="mt-6 text-center text-3xl font-extrabold text-gray-700">Sign in to your account</h2>
         </div>
-        <Notification />
         <form className="mt-8 space-y-6" onSubmit={handleLogin}>
           <div className="rounded-md shadow-sm -space-y-px">
             <div>
@@ -49,7 +54,7 @@ const SigninForm = () => {
               <input id="username" name="username" autoComplete="off" pattern="[a-z]{1,15}"
                 {...username.params}
                 className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-300 text-gray-900 rounded-t-md focus:outline-none focus:ring-blue-700 focus:border-blue-700  sm:text-sm"
-                placeholder="Username" required />
+                placeholder="Username" title="Username is required" required />
             </div>
             <div>
               <label className="sr-only">Password</label>
@@ -57,7 +62,7 @@ const SigninForm = () => {
                 {...password.params}
                 className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-300
                 text-gray-900 rounded-b-md focus:outline-none focus:ring-blue-700 focus:border-blue-700  sm:text-sm valid-haspopup"
-                placeholder="Password" required />
+                placeholder="Password" title="Password is required" required />
             </div>
           </div>
 
@@ -68,15 +73,14 @@ const SigninForm = () => {
                 Remember me
           </label>
             </div>
-
             <div className="text-sm pr-2 ">
               <Link to='' className="font-medium text-indigo-600 hover:text-indigo-500">Forgot your password?</Link>
             </div>
           </div>
 
           <div>
-            <button type="submit" className="mt-1 mb-6 h-12 w-full bg-red-500 text-white rounded hover:-translate-y-0.5
-          focus:ring focus:ring-offset-2 focus:ring-blue-700 transform transition active:bg-blue-900">
+            <button type="submit" className="mt-1 mb-6 h-12 w-full bg-red-500 text-white rounded hover:bg-red-600
+          focus:ring focus:ring-offset-2 focus:ring-red-800 transform transition active:bg-red-800">
               <span className="absolute left-0 inset-y-0 flex items-center pl-3">
                 <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
                   <path fillRule="evenodd" d="M3 3a1 1 0 011 1v12a1 1 0 11-2 0V4a1 1 0 011-1zm7.707 3.293a1 1 0 010 1.414L9.414 9H17a1 1 0 110 2H9.414l1.293 1.293a1 1 0 01-1.414 1.414l-3-3a1 1 0 010-1.414l3-3a1 1 0 011.414 0z" clipRule="evenodd" />

@@ -1,20 +1,60 @@
 import React, { useState } from 'react'
-import { useHistory } from 'react-router-dom'
+import Select from 'react-select'
 import { useField } from '../hooks/index'
 import { useDispatch, useSelector } from 'react-redux'
-import Notification from './Notification'
 import Modal from './Modal'
-
-import { setNotification } from '../reducers/notificationReducer'
+import Footer from './Footer'
 import { createUser } from '../reducers/userReducer'
 import usersService from '../services/users'
 
 const SignUpForm = () => {
   const dispatch = useDispatch()
-  const history = useHistory()
   const [showModal, setShowModal] = useState(false)
   const [modalMessage, setModalMessage] = useState('')
   const [title, setTitle] = useState('')
+  const [country, setCountry] = useState('')
+
+  const customStyles = {
+    option: (provided, state) => ({
+      ...provided,
+      borderBottom: '1px dotted pink',
+      color: state.isSelected ? 'white' : 'gray',
+      backgroundColor: state.isSelected ? 'red' : 'white',
+      padding: 10,
+    }),
+    container: base => ({
+      ...base,
+      width: '100%',
+    }),
+    control: base => ({
+      ...base,
+      border: 0,
+      boxShadow: 'none',
+      height: '43px',
+      borderRadius: '2px'
+    }),
+    valueContainer: (base, state) => ({
+      ...base,
+      color: 'gray',
+      fontSize: '16px',
+      top: '0px',
+      marginLeft: '4px',
+      overflow: 'visible',
+    }),
+    placeholder: base => ({
+      ...base,
+      color: 'lightgray'
+    })
+  }
+
+  const countries = [
+    //{ label: "Select a country", value: "placeholder"},
+    { label: "Finland", value: "Finland" },
+    { label: "Sweden", value: "Sweden" },
+    { label: "Norway", value: "Norway" },
+    { label: "Estonia", value: "Estonia" },
+    { label: "Mexico", value: "Mexico" },
+  ]
 
   const firstName = useField('text')
   const lastName = useField('text')
@@ -28,15 +68,15 @@ const SignUpForm = () => {
   const dateOfBirth = useField('date')
   const background = useField('text')
   const motivation = useField('text')
-  const country = useField('text')
 
   const handleSignUp = async (event) => {
     event.preventDefault()
     var genders = document.getElementsByName('gender');
     let selectedGender
+
     for (var i = 0; i < genders.length; i++) {
       if (genders[i].checked) {
-        selectedGender = genders[i].value;
+        selectedGender = genders[i].value
       }
     }
 
@@ -51,13 +91,13 @@ const SignUpForm = () => {
       dateOfBirth: dateOfBirth.params.value,
       height: parseInt(height.params.value),
       weight: parseInt(weight.params.value),
-      country: country.params.value,
+      country: country,
       motivation: motivation.params.value,
     }
-    //console.log('NEW_USER: ', newUser)
+    console.log('NEW_USER: ', newUser)
     try {
       if (password.params.value === passwordConfirm.params.value &&
-        email.params.value === emailConfirm.params.value) {
+        email.params.value === emailConfirm.params.value && country !== null) {
         const createdUser = await usersService.createUser(newUser)
         dispatch(createUser(createdUser))
         setModalMessage(`${username.params.value} has been created successfuly.`)
@@ -76,13 +116,22 @@ const SignUpForm = () => {
         weight.reset()
         country.reset()
         motivation.reset()
+        for (var i = 0; i < genders.length; i++) {
+          if (genders[i].checked) {
+            genders[i].value = false
+          }
+        }
       } else if (password.params.value !== passwordConfirm.params.value) {
         setModalMessage('Password fields don\'t match, please check and fulfill all the field in the form.')
         setTitle('Password error')
         setShowModal(true)
-      } else if(email.params.value !== emailConfirm.params.value) {
+      } else if (email.params.value !== emailConfirm.params.value) {
         setModalMessage('Email fields don\'t match, please check and fulfill all the field in the form.')
         setTitle('Email error')
+        setShowModal(true)
+      } else if (!country) {
+        setModalMessage('Please check and fulfill all the fields in the form.')
+        setTitle('Details missing')
         setShowModal(true)
       }
     } catch (error) {
@@ -131,9 +180,9 @@ const SignUpForm = () => {
               </div>
               <div className="mt-8 relative">
                 <span className="absolute p-0 bottom-12 ml-2 bg-transparent text-gray-500 ">Password</span>
-                <input className="h-12 mt-2 px-2 w-full border-2 border-gray-200 rounded focus:outline-none focus:border-transparent"
+                <input className="h-12 mt-2 px-2 w-full border-2 border-gray-200 rounded focus:outline-none focus:border-transparent placeholder-gray-200"
                   pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" id="password" title="Must contain at least one  number and one uppercase and lowercase letter, and at least 8 or more characters"
-                  {...password.params} required />
+                  {...password.params} placeholder="Combination of at least 8 numeric and alphabetic characters" required />
               </div>
               <div className="mt-8 relative">
                 <span className="absolute p-0 bottom-12 ml-2 bg-transparent text-gray-500 ">Background</span>
@@ -157,15 +206,22 @@ const SignUpForm = () => {
                 <input className="h-12 mt-2 px-2 w-full border-2 border-gray-200 rounded focus:outline-none focus:border-transparent placeholder-gray-200"
                   pattern="[A-Za-z]+" placeholder="Smith" {...lastName.params} required />
               </div>
-              <div className="mt-8 relative">
+              <div className="mt-11 relative">
                 <span className="absolute p-0 bottom-12 ml-2 bg-transparent text-gray-500 ">Country</span>
-                <input className="h-12 mt-2 px-2 w-full border-2 border-gray-200 rounded focus:outline-none focus:border-transparent"
-                  {...country.params} required />
+                <Select options={countries} placeholder="Select a country" isClearable="true" styles={customStyles}
+                  onChange={target => target ? setCountry(target.value) : setCountry(null)}
+                />
+                {/* <select id="country" name="country" autoComplete="country" placeholder="Select a country"
+                  className="h-12 mt-2 px-2 w-full border-2 text-lg border-gray-200 rounded focus:outline-none focus:border-transparent placeholder-gray-200">
+                  {countries.map((country) => (
+                    <option key={country.value} value={country.value}>{country.label}</option>
+                  ))}
+                </select> */}
               </div>
               <div className="mt-8 relative">
                 <span className="absolute p-0 bottom-12 ml-2 bg-transparent text-gray-500 ">Re-type email</span>
                 <input className="h-12 mt-2 px-2 w-full border-2 border-gray-200 rounded focus:outline-none focus:border-transparent placeholder-gray-200"
-                  pattern="[a-z0-9._%+-]+@[a-z0-9.-]+.[a-z]{2,4}$" placeholder="john@example.com" {...emailConfirm.params} required />
+                  pattern="[a-z0-9._%+-]+@[a-z0-9.-]+.[a-z]{2,4}$"  {...emailConfirm.params} required />
               </div>
               <div className="mt-8 relative">
                 <span className="absolute p-0 bottom-12 ml-2 bg-transparent text-gray-500 ">Re-type password</span>
@@ -202,7 +258,6 @@ const SignUpForm = () => {
                   {...weight.params} required />
               </div>
               <div className="mt-12">
-                <Notification />
               </div>
             </div>
           </div>
@@ -213,11 +268,12 @@ const SignUpForm = () => {
             <textarea className="h-40 px-2 w-full border-gray-200 rounded focus:outline-none placeholder-gray-200 placeholder::color:red" placeholder="Tell me why you are seeking for my help"
               {...motivation.params} required />
           </div>
-          <button className="mt-1 mb-6 h-12 w-full bg-red-500 text-white rounded hover:-translate-y-0.5
-          focus:ring focus:ring-offset-2 focus:ring-yellow-700 transform transition active:bg-red-900"
+          <button className="mt-1 mb-6 h-12 w-full bg-red-500 text-white rounded hover:bg-red-600
+          focus:ring focus:ring-offset-2 focus:ring-yellow-700 transform transition active:bg-red-800"
             type="submit">Sign up</button>
         </div>
       </form>
+      <Footer />
     </div>
   )
 }

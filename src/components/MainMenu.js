@@ -32,7 +32,6 @@ const MainMenu = () => {
   }
 
   return (
-    // <!-- This example requires Tailwind CSS v2.0+ -->
     <div>
       <nav className="bg-gray-800">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -43,9 +42,6 @@ const MainMenu = () => {
               </div>
               <div className="hidden md:block">
                 <div className="ml-10 flex items-baseline space-x-4">
-
-
-                  {/* <!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" --> */}
                   <Link to="/frontpage" className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">
                     <i className="text-gray-300">Jane's Total Wellness</i>
                   </Link>
@@ -60,7 +56,6 @@ const MainMenu = () => {
             </div>
             <div className="hidden md:block">
               <div className="ml-4 flex items-center md:ml-6">
-                {/* <!-- Profile dropdown --> */}
                 <div className="ml-3 relative">
                   <div>
                     <button type="button" tabIndex="-1" className="relative z-10 block max-w-xs bg-gray-800 rounded-full flex items-center text-sm focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-gray-300"
@@ -71,14 +66,14 @@ const MainMenu = () => {
                     >
                       <img className="h-8 w-8 rounded-full" src={me} alt="" />
                     </button>
-                    <button style={backgroundVisible} onClick={handleBrackground} className="fixed inset-0 w-full bg-black opacity-50 z-5"></button>
+                    <button style={backgroundVisible} onClick={handleBrackground} className="fixed inset-0 w-full bg-black opacity-25 z-40"></button>
                   </div>
-                  <div style={visibleDrop} className="origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg py-1 bg-white ring-1 ring-black ring-opacity-5 focus:outline-none" role="menu" aria-orientation="vertical" aria-labelledby="user-menu" >
+                  <div style={visibleDrop} className="origin-top-right absolute right-0 z-40 mt-2 w-48 rounded-md shadow-lg py-1 bg-white ring-1 ring-black ring-opacity-5 focus:outline-none" role="menu" aria-orientation="vertical" aria-labelledby="user-menu" >
                     {user ?
                       <div>
                         <Link to="/profile" className="block px-4 py-2 text-sm text-gray-800 hover:bg-gray-100" role="menuitem">Profile</Link>
-                        <Link to="/settings" className="block px-4 py-2 text-sm text-gray-800 hover:bg-gray-100" role="menuitem">Settings</Link>
-                        <button onClick={handleLogout} className="block px-4 py-2 text-sm text-gray-800 hover:bg-gray-100 mr-20" role="menuitem" >Sign out</button>
+                        <Link to="/editForm" className="block px-4 py-2 text-sm text-gray-800 hover:bg-gray-100" role="menuitem">Edit profile</Link>
+                        <Link to="#" onClick={handleLogout} className="block px-4 py-2 text-sm text-gray-800 hover:bg-gray-100" role="menuitem" >Sign out</Link>
                       </div>
                       :
                       <div>

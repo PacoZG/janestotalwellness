@@ -48,8 +48,14 @@ const userSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  mobileNumber: String,
+  address: String,
+  city: String,
+  region: String,
+  zipCode: String,
   img: {
-    data: Buffer, contentType: String
+    data: Buffer,
+    contentType: String
   },
   passwordHash: String,
 })
