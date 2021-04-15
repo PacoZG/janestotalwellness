@@ -53,6 +53,7 @@ const userSchema = new mongoose.Schema({
   city: String,
   region: String,
   zipCode: String,
+  health: String,
   img: {
     data: Buffer,
     contentType: String
