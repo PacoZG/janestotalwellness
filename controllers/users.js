@@ -35,7 +35,8 @@ usersRouter.post('/', async (request, response) => {
 usersRouter.put('/:id', async (request, response) => {
   const body = request.body
   const user = {
-    ...body
+    ...body,
+    updatedAt: new Date()
   }
   
   // console.log('UPDATED USER IN SERVER: ', user)

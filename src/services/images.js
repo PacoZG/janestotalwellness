@@ -8,11 +8,4 @@ const postImage = async (data) => {
   return response.data
 }
 
-const getImage = async () => {
-  const response = await axios.get(baseUrl)
-  //console.log('RESPONSE: ', response)
-  return response.data
-}
-
-
-export default { getImage, postImage }
+export default { postImage }

@@ -8,8 +8,10 @@ import Modal from './Modal'
 
 const EditForm = () => {
   const dispatch = useDispatch()
+  const user = useSelector(state => state.users)
+  //console.log('USER_EDIT_INFO: ', user)
   const loogedUser = localdb.loadUser()
-  //console.log('USER: ', userId)
+
   const [showModal, setShowModal] = useState(false)
   const [modalMessage, setModalMessage] = useState('')
   const [title, setTitle] = useState('')
@@ -19,8 +21,7 @@ const EditForm = () => {
       dispatch(getUser(loogedUser.id))
     }
   }, [dispatch])
-  const user = useSelector(state => state.users)
-  //console.log('USER_EDIT_INFO: ', user)
+
 
   const [imageMessage, setImageMessage] = useState(null)
   const [fileInputState, setFileInputState] = useState('')
@@ -28,15 +29,17 @@ const EditForm = () => {
   const [imagePreview, setImagePreview] = useState()
 
   // data to change
-  const [country, setCountry] = useState('')
   const healthInfo = useField('text')
+
   const firstName = useField('text')
   const lastName = useField('text')
   const email = useField('email')
   const address = useField('text')
+  const mobile = useField('text')
   const city = useField('text')
   const region = useField('text')
   const zipCode = useField('text')
+  const [country, setCountry] = useState(null)
 
   const handleImageInput = (event) => {
     event.preventDefault()
@@ -88,15 +91,83 @@ const EditForm = () => {
     }
   }
 
-  const editPersonalInfo = () => {
-    console.log('COUNTRY: ', country)
-    console.log('NAME:', firstName.params.value)
-    console.log('LAST NAME:', lastName.params.value)
-    console.log('EMAIL:', email.params.value)
-    console.log('address:', address.params.value)
-    console.log('CITY:', city.params.value)
-    console.log('REGION:', region.params.value)
-    console.log('ZIP CODE:', zipCode.params.value)
+  const editPersonalInfo = async () => {
+
+    let userToUpdate = {
+      ...user,
+    }
+    console.log('USER TO UPDATE: ', user)
+    if (firstName.params.value.length > 0) {
+      userToUpdate = {
+        ...userToUpdate,
+        firstName: firstName.params.value,
+      }
+    }
+    if (lastName.params.value.length > 0) {
+      userToUpdate = {
+        ...userToUpdate,
+        lastName: lastName.params.value,
+      }
+    }
+    if (email.params.value) {
+      userToUpdate = {
+        ...userToUpdate,
+        email: email.params.value,
+      }
+    }
+    if (address.params.value.length > 0) {
+      userToUpdate = {
+        ...userToUpdate,
+        address: address.params.value,
+      }
+    }
+    if (city.params.value.length > 0) {
+      userToUpdate = {
+        ...userToUpdate,
+        city: city.params.value,
+      }
+    }
+    if (mobile.params.value.length > 0) {
+      userToUpdate = {
+        ...userToUpdate,
+        mobileNumber: mobile.params.value,
+      }
+    }
+    if (region.params.value.length > 0) {
+      userToUpdate = {
+        ...userToUpdate,
+        region: region.params.value,
+      }
+    }
+    if (zipCode.params.value.length > 0) {
+      userToUpdate = {
+        ...userToUpdate,
+        zipCode: zipCode.params.value,
+      }
+    }
+    if (country) {
+      userToUpdate = {
+        ...userToUpdate,
+        country: country,
+      }
+    }
+    //console.log('USER TO UPDATE: ', userToUpdate)
+
+    if (Object.keys(user).length < Object.keys(userToUpdate).length ||
+      user.country !== userToUpdate.country) {
+      updateSignedInUser(userToUpdate)
+    }
+    setModalMessage('Your profile has been successfuly updated.')
+    setTitle('Sucess')
+    setShowModal(true)
+    firstName.reset()
+    lastName.reset()
+    email.reset()
+    address.reset()
+    mobile.reset()
+    city.reset()
+    region.reset()
+    zipCode.reset()
   }
 
   const updateSignedInUser = (userToUpdate) => {
@@ -203,17 +274,43 @@ const EditForm = () => {
                         <input name="first_name" id="first_name" autoComplete="given-name" {...firstName.params}
                           className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" />
                       </div>
-                      <div className="col-span-6 sm:col-span-3">
+                      <div className="col-span-6 md:col-span-3">
                         <label className="block text-sm font-medium text-gray-700">Last name</label>
                         <input name="last_name" id="last_name" autoComplete="family-name" {...lastName.params}
                           className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" />
                       </div>
-                      <div className="col-span-6 sm:col-span-4">
+                      <div className="col-span-6 md:col-span-6">
                         <label className="block text-sm font-medium text-gray-700">Email address</label>
-                        <input name="email_address" id="email_address" autoComplete="email" {...email.params}
+                        <input name="email_address" id="email_address" autoComplete="email" {...email.params} placeholder="jane@example.com"
+                          pattern="[a-z0-9._%+-]+@[a-z0-9.-]+.[a-z]{2,4}$"
+                          className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md placeholder-gray-200" />
+                      </div>
+                      <div className="col-span-6">
+                        <label className="block text-sm font-medium text-gray-700">Street address</label>
+                        <input name="street_address" id="street_address" autoComplete="street-address" {...address.params}
                           className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" />
                       </div>
-                      <div className="col-span-6 sm:col-span-3">
+                      <div className="col-span-6 md:col-span-2">
+                        <label className="block text-sm font-medium text-gray-700">Mobile number</label>
+                        <input name="city" id="city" {...mobile.params} placeholder="044123456"
+                          className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md placeholder-gray-200" />
+                      </div>
+                      <div className="col-span-6 sm:col-span-6 lg:col-span-2">
+                        <label className="block text-sm font-medium text-gray-700">City</label>
+                        <input name="city" id="city" {...city.params}
+                          className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" />
+                      </div>
+                      <div className="col-span-6 md:col-span-3 lg:col-span-2">
+                        <label className="block text-sm font-medium text-gray-700">Region / Province</label>
+                        <input name="state" id="state" {...region.params}
+                          className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" />
+                      </div>
+                      <div className="col-span-6 md:col-span-3 lg:col-span-2">
+                        <label className="block text-sm font-medium text-gray-700">ZIP / Postal</label>
+                        <input name="postal_code" id="postal_code" autoComplete="postal-code" {...zipCode.params}
+                          className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" />
+                      </div>
+                      <div className="col-span-6 md:col-span-4">
                         <label className="block text-sm font-medium text-gray-700">Country</label>
                         <select id="country" name="country" autoComplete="country" onChange={({ target }) => setCountry(target.value)}
                           className="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
@@ -223,26 +320,6 @@ const EditForm = () => {
                           <option value="Estonia" >Estonia</option>
                           <option value="Mexico" >Mexico</option>
                         </select>
-                      </div>
-                      <div className="col-span-6">
-                        <label className="block text-sm font-medium text-gray-700">Street address</label>
-                        <input name="street_address" id="street_address" autoComplete="street-address" {...address.params}
-                          className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" />
-                      </div>
-                      <div className="col-span-6 sm:col-span-6 lg:col-span-2">
-                        <label className="block text-sm font-medium text-gray-700">City</label>
-                        <input name="city" id="city" {...city.params}
-                          className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" />
-                      </div>
-                      <div className="col-span-6 sm:col-span-3 lg:col-span-2">
-                        <label className="block text-sm font-medium text-gray-700">Region / Province</label>
-                        <input name="state" id="state" {...region.params}
-                          className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" />
-                      </div>
-                      <div className="col-span-6 sm:col-span-3 lg:col-span-2">
-                        <label className="block text-sm font-medium text-gray-700">ZIP / Postal</label>
-                        <input name="postal_code" id="postal_code" autoComplete="postal-code" {...zipCode.params}
-                          className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" />
                       </div>
                     </div>
                   </div>

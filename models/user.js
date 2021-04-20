@@ -3,6 +3,7 @@ const uniqueValidator = require('mongoose-unique-validator')
 
 const userSchema = new mongoose.Schema({
   createdAt: Date,
+  updatedAt: Date,
   userType: String,
   username: {
     type: String,

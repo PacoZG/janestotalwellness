@@ -21,7 +21,7 @@ const MainMenu = () => {
   const backgroundVisible = { display: background ? '' : 'none' }
 
   //console.log('LOGGED USER: ', loggedUser)
-  
+
   const handleDropdown = () => {
     setDropdown(!dropdown)
     setBackground(!background)
@@ -141,7 +141,13 @@ const MainMenu = () => {
                 aria-haspopup="true"
                 onClick={handleDropdown}
               >
-                <img className="ml-0 h-10 w-10 rounded-full" src={me} alt="" />
+                {user && loggedUser.imageURL ?
+                  <img className="ml-0 h-10 w-10 rounded-full" src={loggedUser.imageURL} alt="" /> :
+                  <span className="inline-block rounded-full h-10 w-10 md:h-10 md:w-10 md:rounded-full overflow-hidden bg-gray-100">
+                    <svg className="h-full w-full text-gray-300" fill="currentColor" viewBox="0 0 24 24">
+                      <path d="M24 20.993V24H0v-2.996A14.977 14.977 0 0112.004 15c4.904 0 9.26 2.354 11.996 5.993zM16.002 8.999a4 4 0 11-8 0 4 4 0 018 0z" />
+                    </svg>
+                  </span>}
               </button>
               <button style={backgroundVisible} onClick={handleBrackground} className="fixed inset-0 w-full bg-black opacity-25 z-40"></button>
             </div>
