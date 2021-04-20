@@ -10,6 +10,8 @@ const userReducer = (state = [], action) => {
       return action.data
     case 'GET_USER':
       return action.data
+    case 'UPDATE_USER':
+      return action.data
     default:
       return state
   }
@@ -28,7 +30,6 @@ export const initializeUsers = () => {
 export const createUser = (newUser) => {
   //console.log('USER: ', user)
   return async (dispatch) => {
-    //const newUser = await usersService.createUser(user)
     dispatch({
       type: 'NEW_USER',
       data: newUser,
@@ -42,6 +43,17 @@ export const getUser = (id) => {
     dispatch({
       type: 'GET_USER',
       data: user
+    })
+  }
+}
+
+export const updateUser = (user) => {
+  //console.log('USER IN REDUCER: ', user)
+  return async (dispatch) => {
+    const updatedUser = await usersService.updateUser(user)
+    dispatch({
+      type: 'UPDATE_USER',
+      data: updatedUser
     })
   }
 }

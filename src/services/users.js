@@ -1,6 +1,12 @@
 import axios from 'axios'
 const baseUrl = '/api/users'
 
+const getConfig = () => {
+  return  {
+    headers: { Authorization: `bearer ${localdb.loadUser().token}` }
+  }
+}
+
 const getAll = async () => {
   const response = await axios.get(baseUrl)
   //console.log('RESPONSE: ', response)
@@ -20,5 +26,11 @@ const getUser = async (id) => {
   return response.data
 }
 
+const updateUser = async (user) => {
+  //console.log('USER TO UPDATE: ', user)
+  const response = await axios.put(`${baseUrl}/${user.id}`, user)
+  //console.log('RESPONSE: ', response)
+  return response.data
+} 
 
-export default { getAll, createUser, getUser }
+export default { getAll, createUser, getUser, updateUser }

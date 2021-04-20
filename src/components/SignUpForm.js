@@ -3,7 +3,6 @@ import Select from 'react-select'
 import { useField } from '../hooks/index'
 import { useDispatch, useSelector } from 'react-redux'
 import Modal from './Modal'
-import Footer from './Footer'
 import { createUser } from '../reducers/userReducer'
 import usersService from '../services/users'
 
@@ -106,10 +105,21 @@ const SignUpForm = () => {
       country: country,
       motivation: motivation.params.value,
     }
-    console.log('NEW_USER: ', newUser)
+    //console.log('NEW_USER: ', newUser)
     try {
-      if (password.params.value === passwordConfirm.params.value &&
-        email.params.value === emailConfirm.params.value && country !== null) {
+      if (password.params.value !== passwordConfirm.params.value) {
+        setModalMessage('Password fields don\'t match, please check and fulfill all the field in the form.')
+        setTitle('Password error')
+        setShowModal(true)
+      } else if (email.params.value !== emailConfirm.params.value) {
+        setModalMessage('Email fields don\'t match, please check and fulfill all the field in the form.')
+        setTitle('Email error')
+        setShowModal(true)
+      } else if (!country) {
+        setModalMessage('Please check and fulfill all the fields in the form.')
+        setTitle('Details missing')
+        setShowModal(true)
+      } else {
         const createdUser = await usersService.createUser(newUser)
         dispatch(createUser(createdUser))
         setModalMessage(`${username.params.value} has been created successfuly.`)
@@ -133,24 +143,12 @@ const SignUpForm = () => {
             genders[i].value = false
           }
         }
-      } else if (password.params.value !== passwordConfirm.params.value) {
-        setModalMessage('Password fields don\'t match, please check and fulfill all the field in the form.')
-        setTitle('Password error')
-        setShowModal(true)
-      } else if (email.params.value !== emailConfirm.params.value) {
-        setModalMessage('Email fields don\'t match, please check and fulfill all the field in the form.')
-        setTitle('Email error')
-        setShowModal(true)
-      } else if (!country) {
-        setModalMessage('Please check and fulfill all the fields in the form.')
-        setTitle('Details missing')
-        setShowModal(true)
       }
     } catch (error) {
-      console.log('ERROR MESSAGE: ', error.response.data)
+      //console.log('ERROR MESSAGE: ', error.response.data)
       const message = error.response.data
       if (message.includes('Error') && !message.includes(email.params.value)) {
-        console.log(username.params.value)
+        //console.log(username.params.value)
         setModalMessage(`Username \'${username.params.value.toLowerCase()}' has been used, try with a different username.`)
         //console.log('MODAL MESSAGE: ', modalMessage)
         setTitle('Username error')

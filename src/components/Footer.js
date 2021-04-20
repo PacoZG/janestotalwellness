@@ -5,11 +5,10 @@ const Footer = () => {
 
   return (
     < div className="bottom-0 justify-items-auto md:justify-items-auto">
-      <div className="flex md:flex-wrap items-center justify-items-center px-4 py-5 bg-gray-500">
-        <div className="container px-auto mx-auto flex flex-wrap items-center justify-between">
-          <div className="relative flex justify-between lg:w-auto  px-4 lg:static lg:block lg:justify-start">
-            <a className="text-sm font-bold leading-relaxed inline-block mr-4 py-2 whitespace-nowrap uppercase text-gray-200"
-              href="#" >Website in development</a>
+      <div className="flex items-center justify-items-center px-4 py-5 bg-gray-500">
+        <div className="container px-auto mx-auto flex flex-col md:flex-row items-center justify-between">
+          <div className="relative flex justify-between lg:w-auto lg:static lg:block lg:justify-start">
+            <a className="text-sm font-bold text-gray-200" href="#" >Website in development</a>
           </div>
           <div className="md:flex md:flex-grow items-center" id="example-collapse-navbar">
             <ul className="flex flex-row ml-auto md:flex-row list-none md:ml-auto">

@@ -6,30 +6,32 @@ const app = express()
 
 const config = require('./utils/config')
 const logger = require('./utils/logger')
-const middleware = require ('./utils/middleware')
+const middleware = require('./utils/middleware')
 
 const usersRouter = require('./controllers/users')
 const loginRouter = require('./controllers/login')
+const imageRouter = require('./controllers/images')
 
 const url = config.MONGODB_URI
 console.log('Connected to ', url)
 
 mongoose.connect(url, { useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false, useCreateIndex: true })
-.then(() => {
-  logger.info('Connected to MongoDB')
-})
-.catch(error => {
-  logger.error('error connecting to MongoDB: ', error.message)
-})
+  .then(() => {
+    logger.info('Connected to MongoDB')
+  })
+  .catch(error => {
+    logger.error('error connecting to MongoDB: ', error.message)
+  })
 
 app.use(cors())
-app.use(express.json())
+app.use(express.urlencoded({ limit: '50mb', extended: false }))
+app.use(express.json({ limit: '50mb' }))
 app.use(express.static('build'))
 
 app.use(middleware.tokenExtractor)
 app.use(middleware.requestLogger)
 
-//app.use('/api/blogs', blogsRouter)
+app.use('/api/images', imageRouter)
 app.use('/api/users', usersRouter)
 app.use('/api/login', loginRouter)
 

@@ -18,7 +18,6 @@ usersRouter.post('/', async (request, response) => {
     userType: 'client',
     passwordHash
   })
-
   // console.log('USER TO SAVE: ', user)
   try {
     const savedUser = await user.save()
@@ -31,6 +30,20 @@ usersRouter.post('/', async (request, response) => {
     response.status(400).send(error.message)
     //console.log('ERROR IN SERVER:', error.message)
   }
+})
+
+usersRouter.put('/:id', async (request, response) => {
+  const body = request.body
+  const user = {
+    ...body
+  }
+  
+  // console.log('UPDATED USER IN SERVER: ', user)
+  await User.findByIdAndUpdate(request.params.id, user, { new: true })
+    .then(updatedUser => updatedUser.toJSON())
+    .then(savedAndUpdatedUser => {
+      response.status(201).json(savedAndUpdatedUser)
+    })
 })
 
 usersRouter.get('/:id', async (request, response) => {

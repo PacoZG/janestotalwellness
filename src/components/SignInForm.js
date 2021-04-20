@@ -32,7 +32,7 @@ const SigninForm = () => {
       dispatch(userLogin(user))
       history.push('/frontpage')
     } catch (error) {
-      console.log('SIGN IN ERROR: ', error.response.data.error)
+      //console.log('SIGN IN ERROR: ', error.response.data.error)
       setModalMessage(`${error.response.data.error}`)
       setTitle('Login error')
       setShowModal(true)

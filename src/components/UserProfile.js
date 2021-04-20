@@ -14,7 +14,7 @@ const UserProfile = () => {
     }
   }, [dispatch])
   const user = useSelector(state => state.users)
-  //console.log('USER_INFO: ', user)
+  console.log('USER_INFO: ', user)
 
   const getAge = () => {
     const birthday = new Date(user.dateOfBirth)
@@ -44,65 +44,65 @@ const UserProfile = () => {
       return bmi + ' (Obesity class III)'
     }
   }
-
+  // bg-gray-50 px-3 py-4 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6
   return (
     <div>
-      <div className="bg-gray-100 min-h-screen">
-        <h3 className="text-3xl text-center font-medium leading-6 text-gray-700 pt-6">Profile</h3>
-        <div className="bg-white m-8 mb-1 shadow overflow-hidden rounded-lg">
-          <div className="px-4 py-5 sm:px-6">
-            <h3 className="text-xl leading-6 font-medium text-gray-900 pl-3">Personal details</h3>
+      <div className="bg-gray-100 sm:bg-gray-300 md:bg-gray-600 min-h-screen">
+        <h3 className="p-2 md:p-6 text-2xl text-center md:text-3xl font-medium text-gray-700 ">Profile</h3>
+        <div className="bg-white m-2 mb-1 shadow overflow-hidden rounded-lg">
+          <div className="p-3">
+            <h3 className="text-xl font-medium text-gray-900 pl-4 md:pl-6 md:py-6">Personal details</h3>
           </div>
           <div className="border-t border-gray-300">
-            <dl>
-              <div className="bg-gray-50 px-3 py-4 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-                <dt className="text-lg font-medium text-gray-500 pl-6">Full name</dt>
-                <dd className="mt-1 text-lg text-gray-900 sm:mt-0 sm:col-span-2">{user.firstName} {user.lastName}</dd>
+            <div>
+              <div className=" bg-gray-50 grid grid-flow-row md:grid-cols-2 md:py-2 md:px-6">
+                <div className="pl-10 md:pl-10 pt-3 md:pt-4 text-lg font-medium text-gray-500">Full name</div>
+                <div className="pl-10 md:pl-0 pb-3 md:pt-4 text-lg text-gray-900 capitalize">{user.firstName} {user.lastName}</div>
               </div>
-              <div className="bg-gray-100 px-3 py-4 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-                <dt className="text-lg font-medium text-gray-500 pl-6">Email address</dt>
-                <dd className="mt-1 text-lg text-gray-900 sm:mt-0 sm:col-span-2">{user.email}</dd>
+              <div className="bg-gray-100 grid grid-flow-row md:grid-cols-2 md:py-2 md:px-6">
+                <dt className="pl-10 md:pl-10 pt-3 md:pt-4 text-lg font-medium text-gray-500">Email address</dt>
+                <dd className="pl-10 md:pl-0 pb-3 md:pt-4 text-lg text-gray-900">{user.email}</dd>
               </div>
-              <div className="bg-gray-50 px-3 py-4 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-                <dt className="text-lg font-medium text-gray-500 pl-6">Age</dt>
-                <dd className="mt-1 text-lg text-gray-900 sm:mt-0 sm:col-span-2">{getAge()} years old</dd>
+              <div className="bg-gray-50 grid grid-flow-row md:grid-cols-2 md:py-2 md:px-6">
+                <dt className="pl-10 md:pl-10 pt-3 md:pt-4 text-lg font-medium text-gray-500">Age</dt>
+                <dd className="pl-10 md:pl-0 pb-3 md:pt-4 text-lg text-gray-900">{getAge()} years old</dd>
               </div>
-              <div className="bg-gray-100 px-3 py-4 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-                <dt className="text-lg font-medium text-gray-500 pl-6">Gender</dt>
-                <dd className="mt-1 text-lg text-gray-900 sm:mt-0 sm:col-span-2 capitalize">{user.gender}</dd>
+              <div className="bg-gray-100 grid grid-flow-row md:grid-cols-2 md:py-2 md:px-6">
+                <dt className="pl-10 md:pl-10 pt-3 md:pt-4 text-lg font-medium text-gray-500">Gender</dt>
+                <dd className="pl-10 md:pl-0 pb-3 md:pt-4 text-lg text-gray-900 capitalize">{user.gender}</dd>
               </div>
-              <div className="bg-gray-50 px-3 py-4 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-                <dt className="text-lg font-medium text-gray-500 pl-6">Height</dt>
-                <dd className="mt-1 text-lg text-gray-900 sm:mt-0 sm:col-span-2">{user.height} cm</dd>
+              <div className="bg-gray-50 grid grid-flow-row md:grid-cols-2 md:py-2 md:px-6">
+                <dt className="pl-10 md:pl-10 pt-3 md:pt-4 text-lg font-medium text-gray-500">Height</dt>
+                <dd className="pl-10 md:pl-0 pb-3 md:pt-4 text-lg text-gray-900">{user.height} cm</dd>
               </div>
-              <div className="bg-gray-100 px-3 py-4 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-                <dt className="text-lg font-medium text-gray-500 pl-6">Weight</dt>
-                <dd className="mt-1 text-lg text-gray-900 sm:mt-0 sm:col-span-2">{user.weight} kg</dd>
+              <div className="bg-gray-100 grid grid-flow-row md:grid-cols-2 md:py-2 md:px-6">
+                <dt className="pl-10 md:pl-10 pt-3 md:pt-4 text-lg font-medium text-gray-500">Weight</dt>
+                <dd className="pl-10 md:pl-0 pb-3 md:pt-4 text-lg text-gray-900">{user.weight} kg</dd>
               </div>
-              <div className="bg-gray-50 px-3 py-4 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-                <dt className="text-lg font-medium text-gray-500 pl-6">Country</dt>
-                <dd className="mt-1 text-lg text-gray-900 sm:mt-0 sm:col-span-2 capitalize">{user.country}</dd>
+              <div className="bg-gray-50 grid grid-flow-row md:grid-cols-2 md:py-2 md:px-6">
+                <dt className="pl-10 md:pl-10 pt-3 md:pt-4 text-lg font-medium text-gray-500">Country</dt>
+                <dd className="pl-10 md:pl-0 pb-3 md:pt-4 text-lg text-gray-900 capitalize">{user.country}</dd>
               </div>
-            </dl>
+            </div>
           </div>
         </div>
-        <div className="bg-white m-8 mt-1 shadow overflow-hidden rounded-lg">
-          <div className="px-4 py-5 sm:px-6">
-            <h3 className="text-xl leading-6 font-medium text-gray-900 pl-3">Other information</h3>
+        <div className="bg-white m-2 mb-1 shadow overflow-hidden rounded-lg">
+          <div className="p-3">
+            <h3 className="text-xl font-medium text-gray-900 pl-4 md:pl-6 md:py-6">Other information</h3>
           </div>
           <div className="border-t border-gray-300">
             <dl>
-              <div className="bg-gray-50 px-3 py-4 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-                <dt className="text-lg font-medium text-gray-500 pl-6">{'Approximate BMI\n(Body Mass Index)'}</dt>
-                <dd className="mt-1 text-lg text-gray-900 sm:mt-0 sm:col-span-2">{getBMI()}</dd>
+              <div className="bg-gray-50 grid grid-flow-row md:grid-cols-2 md:py-2 md:px-6">
+                <dt className="pl-10 md:pl-10 pt-3 md:pt-4 text-lg font-medium text-gray-500">{'Approximate BMI\n(Body Mass Index)'}</dt>
+                <dd className="pl-10 md:pl-0 pb-3 md:pt-4 text-lg text-gray-900">{getBMI()}</dd>
               </div>
-              <div className="bg-gray-100 px-3 py-4 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-                <dt className="text-lg font-medium text-gray-500 pl-6">Background</dt>
-                <dd className="mt-1 text-lg text-gray-900 sm:mt-0 sm:col-span-2">{user.background}</dd>
+              <div className="bg-gray-100 grid grid-flow-row md:grid-cols-2 md:py-2 md:px-6">
+                <dt className="pl-10 md:pl-10 pt-3 md:pt-4 text-lg font-medium text-gray-500">Background</dt>
+                <dd className="pl-10 md:pl-0 pb-3 md:pt-4 text-lg text-gray-900 capitalize">{user.background}</dd>
               </div>
-              <div className="bg-gray-50 px-3 py-4 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-                <dt className="text-lg font-medium text-gray-500 pl-6">Motivation</dt>
-                <dd className="mt-1 text-lg text-gray-900 sm:mt-0 sm:col-span-2">{user.motivation}</dd>
+              <div className="bg-gray-50 grid grid-flow-row md:grid-cols-2 md:py-2 md:px-6">
+                <dt className="pl-10 md:pl-10 pt-3 md:pt-4 text-lg font-medium text-gray-500">Motivation</dt>
+                <dd className="pl-10 md:pl-0 pb-3 md:pt-4 text-lg text-gray-900 capitalize">{user.motivation}</dd>
               </div>
             </dl>
           </div>
