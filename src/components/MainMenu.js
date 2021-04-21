@@ -3,12 +3,10 @@ import threes from '../img/threes.png'
 import { Link, useHistory, NavLink } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { userLogout } from '../reducers/loginReducer'
-import me from '../img/me.jpg'
 import localdb from '../utils/localdb'
 import Modal from './Modal'
 
 const MainMenu = () => {
-  const user = useSelector(state => state.loggedUser)
   const dispatch = useDispatch()
   const history = useHistory()
   const loggedUser = localdb.loadUser()
@@ -43,10 +41,11 @@ const MainMenu = () => {
 
   return (
     <div>
-      <nav className="bg-gray-800">
-        <div className="px-3 ">
+      <div className="bg-gray-800 w-full fixed">
+        {/* Desktop menu,. */}
+        <div className="px-4 ">
           <div className="flex items-center justify-between">
-            <div className="flex items-center px-2 py-2">
+            <div className="flex items-center px-2 py-2 md:py-4">
               <div className="hidden md:flex">
                 <div className="flex-shrink-0">
                   <img className="h-10 w-10 rounded-full" src={threes} alt="Workflow" />
@@ -74,7 +73,7 @@ const MainMenu = () => {
                       aria-haspopup="true"
                       onClick={handleDropdown}
                     >
-                      {user && loggedUser.imageURL ?
+                      {loggedUser && loggedUser.imageURL ?
                         <img className="h-8 w-8 md:h-10 md:w-10 rounded-full" src={loggedUser.imageURL} alt="" /> :
                         <span className="inline-block rounded-full h-10 w-10 md:h-10 md:w-10 md:rounded-full overflow-hidden bg-gray-100">
                           <svg className="h-full w-full text-gray-300" fill="currentColor" viewBox="0 0 24 24">
@@ -85,8 +84,9 @@ const MainMenu = () => {
                     </button>
                     <button style={backgroundVisible} onClick={handleBrackground} className="fixed inset-0 w-full bg-black opacity-25 z-40"></button>
                   </div>
-                  <div style={visibleDrop} className="origin-top-right absolute right-0 z-40 mt-2 w-48 rounded-md shadow-lg py-1 bg-white ring-1 ring-black ring-opacity-5 focus:outline-none" role="menu" aria-orientation="vertical" aria-labelledby="user-menu" >
-                    {user ?
+                  <div style={visibleDrop} className="origin-top-right absolute right-0 z-40 mt-2 w-48 rounded-md shadow-lg py-1 bg-white ring-1 ring-black ring-opacity-5 focus:outline-none"
+                    role="menu" aria-orientation="vertical" aria-labelledby="user-menu" >
+                    {loggedUser ?
                       <div>
                         <Link to="/profile" className="block px-4 py-2 text-sm text-gray-800 hover:bg-gray-100" role="menuitem">Profile</Link>
                         <Link to="/editForm" className="block px-4 py-2 text-sm text-gray-800 hover:bg-gray-100" role="menuitem">Edit profile</Link>
@@ -141,7 +141,7 @@ const MainMenu = () => {
                 aria-haspopup="true"
                 onClick={handleDropdown}
               >
-                {user && loggedUser.imageURL ?
+                {loggedUser && loggedUser.imageURL ?
                   <img className="ml-0 h-10 w-10 rounded-full" src={loggedUser.imageURL} alt="" /> :
                   <span className="inline-block rounded-full h-10 w-10 md:h-10 md:w-10 md:rounded-full overflow-hidden bg-gray-100">
                     <svg className="h-full w-full text-gray-300" fill="currentColor" viewBox="0 0 24 24">
@@ -151,8 +151,9 @@ const MainMenu = () => {
               </button>
               <button style={backgroundVisible} onClick={handleBrackground} className="fixed inset-0 w-full bg-black opacity-25 z-40"></button>
             </div>
-            <div style={visibleMobileDrop} className="origin-top-left absolute right-6 z-40 mt-4 w-48 rounded-md shadow-lg py-1 bg-white ring-1 ring-black ring-opacity-5 focus:outline-none" role="menu" aria-orientation="vertical" aria-labelledby="user-menu" >
-              {user ?
+            <div style={visibleMobileDrop} className="origin-top-right absolute right-2 z-40 mt-2 w-48 rounded-md shadow-lg py-1 bg-white ring-1 ring-black ring-opacity-5 focus:outline-none"
+              role="menu" aria-orientation="vertical" aria-labelledby="user-menu" >
+              {loggedUser ?
                 <div>
                   <Link to="/profile" className="block px-4 py-2 text-sm text-gray-800 hover:bg-gray-100" role="menuitem">Profile</Link>
                   <Link to="/editForm" className="block px-4 py-2 text-sm text-gray-800 hover:bg-gray-100" role="menuitem">Edit profile</Link>
@@ -167,7 +168,7 @@ const MainMenu = () => {
             </div>
           </div>
         </div>
-      </nav>
+      </div>
       <Modal />
     </div>
   )

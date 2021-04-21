@@ -23,7 +23,7 @@ usersRouter.post('/', async (request, response) => {
     const savedUser = await user.save()
     response.status(201).json({
       username: savedUser.username,
-      name: savedUser.name,
+      firstName: savedUser.firstName,
       isRegisteredNew: true,
     })
   } catch (error) {
@@ -52,7 +52,7 @@ usersRouter.get('/:id', async (request, response) => {
   if (user) {
     response.json(user.toJSON())
   } else {
-    response.status(404).end()
+    response.status(400).end()
   }
 })
 

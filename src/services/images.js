@@ -1,6 +1,5 @@
 import axios from 'axios'
 const baseUrl = '/api/images'
-//var cloudinary = require('cloudinary').v2
 
 const postImage = async (data) => {
   const response = await axios.post(baseUrl, data)
@@ -8,4 +7,9 @@ const postImage = async (data) => {
   return response.data
 }
 
-export default { postImage }
+const removeImage = async (id) => {
+  const response = await axios.delete(`${baseUrl}/${id}`)
+  return response.data
+}
+
+export default { postImage, removeImage }

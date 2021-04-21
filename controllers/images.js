@@ -22,5 +22,16 @@ imageRouter.post('/', multer.singleUploadControl, async (request, response) => {
   }
 })
 
+imageRouter.delete('/:id', async (request, response) => {
+  const id = request.params.id
+  console.log('IMAGE ID SERVER: ', id)
+  try {
+    const uploadResponse = await cloudinary.cloudinaryDelete(id)
+    return response.status(201).json(uploadResponse)
+  } catch (error) {
+    return response.status(400).send({ message: error.message})
+  }
+})
+
 
 module.exports = imageRouter

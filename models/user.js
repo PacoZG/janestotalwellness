@@ -56,6 +56,7 @@ const userSchema = new mongoose.Schema({
   zipCode: String,
   healthInfo: String,
   imageURL: String,
+  imageID: String,
   passwordHash: String,
 })
 

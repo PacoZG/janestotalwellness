@@ -15,4 +15,8 @@ const cloudinaryUpload = (file) => {
   return cloudinary.uploader.upload(file)
 }
 
-module.exports = { cloudinaryUpload }
+const cloudinaryDelete = (public_id) => {
+  cloudinary.uploader.destroy(public_id)
+}
+
+module.exports = { cloudinaryUpload, cloudinaryDelete }

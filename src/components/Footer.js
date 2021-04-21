@@ -4,7 +4,7 @@ import facebook from '../img/f-icon.jpg'
 const Footer = () => {
 
   return (
-    < div className="bottom-0 justify-items-auto md:justify-items-auto">
+    < div className="inset-x-0 bottom-0 justify-items-auto md:justify-items-auto bg-gray-900">
       <div className="flex items-center justify-items-center px-4 py-5 bg-gray-500">
         <div className="container px-auto mx-auto flex flex-col md:flex-row items-center justify-between">
           <div className="relative flex justify-between lg:w-auto lg:static lg:block lg:justify-start">

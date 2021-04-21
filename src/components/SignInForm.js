@@ -40,7 +40,7 @@ const SigninForm = () => {
   }
 
   return (
-    <div className="min-h-screen flex justify-center bg-gray-300 pt-40 py-12 px-4 sm:px-6 lg:px-8">
+    <div className="static min-h-screen flex justify-center bg-gray-300 pt-40 py-12 px-4 sm:px-6 lg:px-8">
       <Modal showModal={showModal} setShowModal={setShowModal} message={modalMessage} title={title} />
       <div className="max-w-md w-full space-y-8">
         <div>
@@ -53,33 +53,34 @@ const SigninForm = () => {
               <label className="sr-only">Username</label>
               <input id="username" name="username" autoComplete="off" pattern="[a-z]{1,15}"
                 {...username.params}
-                className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-300 text-gray-900 rounded-t-md focus:outline-none focus:ring-blue-700 focus:border-blue-700  sm:text-sm"
+                className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-300
+                text-gray-900 rounded-t-md focus:border-gray-500 shadow-sm sm:text-md"
                 placeholder="Username" title="Username is required" required />
             </div>
             <div>
               <label className="sr-only">Password</label>
               <input id="password" name="password" autoComplete="current-password"
                 {...password.params}
-                className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-300
-                text-gray-900 rounded-b-md focus:outline-none focus:ring-blue-700 focus:border-blue-700  sm:text-sm valid-haspopup"
+                className="z-0 appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-300
+                text-gray-900 rounded-b-md focus:border-gray-500 shadow-sm md:text-md valid-haspopup"
                 placeholder="Password" title="Password is required" required />
             </div>
           </div>
 
           <div className="flex items-center justify-between">
             <div className="flex items-center pl-2 ">
-              <input id="remember_me" name="remember_me" type="checkbox" className="h-4 w-4 text-red-500 focus:ring-red-500 border-gray-300 rounded" />
+              <input id="remember_me" name="remember_me" type="checkbox" className="h-4 w-4 text-gray-500 focus:ring-red-500 border-gray-300 rounded" />
               <label className="ml-2 block text-sm text-gray-900">
                 Remember me
           </label>
             </div>
             <div className="text-sm pr-2 ">
-              <Link to='' className="font-medium text-indigo-600 hover:text-indigo-500">Forgot your password?</Link>
+              <Link to='' className="font-medium text-indigo-700 hover:text-indigo-500">Forgot your password?</Link>
             </div>
           </div>
 
           <div>
-            <button type="submit" className="mt-1 mb-6 h-12 w-full bg-gray-500 text-white rounded hover:bg-red-600
+            <button type="submit" className="mt-1 mb-6 h-12 w-full bg-gray-500 text-white rounded hover:bg-gray-400
           focus:ring focus:ring-offset-1 focus:ring-red-800 transform transition active:bg-red-800">
               <span className="absolute left-0 inset-y-0 flex items-center pl-3">
                 <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
