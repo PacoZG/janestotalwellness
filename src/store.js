@@ -4,11 +4,13 @@ import { composeWithDevTools } from 'redux-devtools-extension'
 
 import notificationReducer from './reducers/notificationReducer'
 import userReducer from './reducers/userReducer'
+import usersReducer from './reducers/usersReducer'
 import loginReducer from './reducers/loginReducer'
 import imageReducer from './reducers/imageReducer'
 
 const reducer = combineReducers({
-  users: userReducer,
+  user: userReducer,
+  users: usersReducer,
   notification: notificationReducer,
   loggedUser: loginReducer,
   image: imageReducer

@@ -25,7 +25,7 @@ const SigninForm = () => {
     //console.log('CREDENTIALS: ', credentials)
     try {
       var user = await loginService.login(credentials)
-      console.log('USER: ', user)
+      //console.log('USER: ', user)
       dispatch(userLogin(user))
       dispatch(setNotification({
         message: `Welcome back ${user.username}`,

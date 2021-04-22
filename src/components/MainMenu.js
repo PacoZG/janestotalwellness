@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import threes from '../img/threes.png'
-import { Link, useHistory, NavLink } from 'react-router-dom'
+import { Link, useHistory } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { userLogout } from '../reducers/loginReducer'
 import localdb from '../utils/localdb'
@@ -18,8 +18,6 @@ const MainMenu = () => {
   const visibleMobileDrop = { display: dropdown ? '' : 'none' }
   const mobileMenu = { display: visibleMenu ? '' : 'none' }
   const backgroundVisible = { display: background ? '' : 'none' }
-
-  //console.log('LOGGED USER: ', loggedUser)
 
   const handleDropdown = () => {
     setDropdown(!dropdown)
@@ -44,14 +42,13 @@ const MainMenu = () => {
     <div>
       <div className="bg-gray-600 w-full fixed">
         {/* Desktop menu,. */}
-        <div className="px-4 ">
-          <div className="flex items-center justify-between">
-            <div className="flex items-center px-2 py-2 md:py-4">
+          <div className="flex items-center justify-between px-2 pl-4 pr-4 pt-3 md:pt-6 md:pb-5">
+            <div className="flex items-center">
               <div className="hidden md:flex">
                 <div className="flex-shrink-0">
-                  <img className="h-10 w-10 rounded-full" src={threes} alt="Workflow" />
+                  <img className="h-12 w-12 rounded-full" src={threes} alt="Workflow" />
                 </div>
-                <div className="ml-10 flex items-baseline space-x-4">
+                <div className="ml-10 flex items-baseline space-x-3 pt-2">
                   <Link to="/frontpage" className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">
                     <i className="text-gray-300">Jane's Total Wellness</i>
                   </Link>
@@ -62,7 +59,7 @@ const MainMenu = () => {
 
                   <Link to="/recipes" className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Recipes</Link>
 
-                  {loggedUser && user.userType === 'admin' ?
+                  {loggedUser && loggedUser.userType === 'admin' ?
                   <Link to="/myclients" className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">My clients</Link> :
                   null
                   }
@@ -80,8 +77,8 @@ const MainMenu = () => {
                       onClick={handleDropdown}
                     >
                       {loggedUser && loggedUser.imageURL ?
-                        <img className="h-8 w-8 md:h-10 md:w-10 rounded-full" src={loggedUser.imageURL} alt="" /> :
-                        <span className="inline-block rounded-full h-10 w-10 md:h-10 md:w-10 md:rounded-full overflow-hidden bg-gray-100">
+                        <img className="h-12 w-12 rounded-full" src={loggedUser.imageURL} alt="" /> :
+                        <span className="inline-block rounded-full h-12 w-12 md:rounded-full overflow-hidden bg-gray-100">
                           <svg className="h-full w-full text-gray-300" fill="currentColor" viewBox="0 0 24 24">
                             <path d="M24 20.993V24H0v-2.996A14.977 14.977 0 0112.004 15c4.904 0 9.26 2.354 11.996 5.993zM16.002 8.999a4 4 0 11-8 0 4 4 0 018 0z" />
                           </svg>
@@ -109,7 +106,7 @@ const MainMenu = () => {
               </div>
             </div>
           </div>
-        </div>
+        
 
         {/* Mobile menu, show/hide based on menu state. */}
         <div className="flex flex-row relative mt-0 md:hidden pb-2 " id="mobile-menu">
@@ -118,10 +115,10 @@ const MainMenu = () => {
               <button onClick={handleVisibility}
                 className="relative z-10 max-w-xs bg-gray-800 flex items-center text-sm">
                 {visibleMenu ?
-                  <svg xmlns="http://www.w3.org/2000/svg" className="h-10 w-10 text-gray-300" viewBox="0 0 20 20" fill="currentColor">
+                  <svg xmlns="http://www.w3.org/2000/svg" className="h-11 w-11 text-gray-300" viewBox="0 0 20 20" fill="currentColor">
                     <path fillRule="evenodd" d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 15a1 1 0 011-1h6a1 1 0 110 2H4a1 1 0 01-1-1z" clipRule="evenodd" />
                   </svg> :
-                  <svg xmlns="http://www.w3.org/2000/svg" className="h-10 w-10 text-gray-300" viewBox="0 0 20 20" fill="currentColor">
+                  <svg xmlns="http://www.w3.org/2000/svg" className="h-11 w-11 text-gray-300" viewBox="0 0 20 20" fill="currentColor">
                     <path fillRule="evenodd" d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 15a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z" clipRule="evenodd" />
                   </svg>}
               </button>
@@ -148,8 +145,8 @@ const MainMenu = () => {
                 onClick={handleDropdown}
               >
                 {loggedUser && loggedUser.imageURL ?
-                  <img className="ml-0 h-10 w-10 rounded-full" src={loggedUser.imageURL} alt="" /> :
-                  <span className="inline-block rounded-full h-10 w-10 md:h-10 md:w-10 md:rounded-full overflow-hidden bg-gray-100">
+                  <img className="ml-0 h-12 w-12 rounded-full" src={loggedUser.imageURL} alt="" /> :
+                  <span className="inline-block rounded-full h-10 w-10 md:rounded-full overflow-hidden bg-gray-100">
                     <svg className="h-full w-full text-gray-300" fill="currentColor" viewBox="0 0 24 24">
                       <path d="M24 20.993V24H0v-2.996A14.977 14.977 0 0112.004 15c4.904 0 9.26 2.354 11.996 5.993zM16.002 8.999a4 4 0 11-8 0 4 4 0 018 0z" />
                     </svg>
@@ -161,14 +158,14 @@ const MainMenu = () => {
               role="menu" aria-orientation="vertical" aria-labelledby="user-menu" >
               {loggedUser ?
                 <div>
-                  <Link to="/profile" className="block px-4 py-2 text-sm text-gray-800 hover:bg-gray-100" role="menuitem">Profile</Link>
-                  <Link to="/editForm" className="block px-4 py-2 text-sm text-gray-800 hover:bg-gray-100" role="menuitem">Edit profile</Link>
-                  <Link to="#" onClick={handleLogout} className="block px-4 py-2 text-sm text-gray-800 hover:bg-gray-100" role="menuitem" >Sign out</Link>
+                  <Link to="/profile" className="block px-4 py-2 text-md text-gray-800 hover:bg-gray-100" role="menuitem">Profile</Link>
+                  <Link to="/editForm" className="block px-4 py-2 text-md text-gray-800 hover:bg-gray-100" role="menuitem">Edit profile</Link>
+                  <Link to="#" onClick={handleLogout} className="block px-4 py-2 text-md text-gray-800 hover:bg-gray-100" role="menuitem" >Sign out</Link>
                 </div>
                 :
                 <div>
-                  <Link to="/signIn" className="block px-4 py-2 text-sm text-gray-800 hover:bg-gray-100" role="menuitem">Sign in</Link>
-                  <Link to="/signUp" className="block px-4 py-2 text-sm text-gray-800 hover:bg-gray-100" role="menuitem">Sign up</Link>
+                  <Link to="/signIn" className="block px-4 py-2 text-md text-gray-800 hover:bg-gray-100" role="menuitem">Sign in</Link>
+                  <Link to="/signUp" className="block px-4 py-2 text-md text-gray-800 hover:bg-gray-100" role="menuitem">Sign up</Link>
                 </div>
               }
             </div>

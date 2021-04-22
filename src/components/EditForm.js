@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import localdb from '../utils/localdb'
 import { updateUser } from '../reducers/userReducer'
 import imageService from '../services/images'
@@ -6,7 +6,6 @@ import loginService from '../services/login'
 import { useDispatch, useSelector } from 'react-redux'
 import { useField } from '../hooks/index'
 import { setNotification } from '../reducers/notificationReducer'
-import Modal from './Modal'
 
 const EditForm = () => {
   const dispatch = useDispatch()
@@ -150,7 +149,6 @@ const EditForm = () => {
       }
     }
 
-
     if (Object.keys(user).length < Object.keys(userToUpdate).length ||
       user.country !== userToUpdate.country) {
       console.log('USER TO UPDATE: ', userToUpdate)
@@ -160,9 +158,6 @@ const EditForm = () => {
         title: 'Sucess',
         show: true
       }))
-      // setModalMessage('Your profile has been successfully updated.')
-      // setTitle('Sucess')
-      // setShowModal(true)
       address.reset()
       mobileNumber.reset()
       city.reset()
@@ -203,24 +198,22 @@ const EditForm = () => {
           title: 'Sucess',
           show: true
         }))
-        // setModalMessage('Your password has been successfully updated, new password will be valid next time you login')
-        // setTitle('Sucess')
-        // setShowModal(true)
         oldPassword.reset()
         oldPasswordConfirm.reset()
         newPassword.reset()
       } catch (error) {
-        //console.log('ERROR: ', error.response.data.error)
-        setModalMessage(error.response.data.error)
-        setTitle('Error')
-        setShowModal(true)
+        dispatch(setNotification({
+          message: error.response.data.error,
+          title: 'Error',
+          show: true
+        }))
       }
     }
   }
 
   return (
     <div>
-      <div className="bg-gray-100 min-h-screen static pt-20">
+      <div className="bg-gray-100 min-h-screen static pt-24">
         <div className="bg-white m-2 md:m-8 mb-1 shadow overflow-hidden rounded-lg" >
           <div >
             <div className="md:grid md:grid-cols-3 md:gap-6">

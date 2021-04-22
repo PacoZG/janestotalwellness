@@ -1,10 +1,9 @@
 import React, { useState } from 'react'
-import Select from 'react-select'
 import { useField } from '../hooks/index'
 import { useDispatch } from 'react-redux'
 import { createUser } from '../reducers/userReducer'
 import { setNotification } from '../reducers/notificationReducer'
-import usersService from '../services/users'
+import userService from '../services/user'
 
 const SignUpForm = () => {
   const dispatch = useDispatch()
@@ -29,8 +28,8 @@ const SignUpForm = () => {
     setCountry(country)
     setDropdown(!dropdown)
   }
-  console.log('DROPDOWN: ', dropdown)
-  console.log('COUNTRY: ', country)
+  //console.log('DROPDOWN: ', dropdown)
+  //console.log('COUNTRY: ', country)
 
   const handleSignUp = async (event) => {
     event.preventDefault()
@@ -78,7 +77,7 @@ const SignUpForm = () => {
           show: true
         }))
       } else {
-        const createdUser = await usersService.createUser(newUser)
+        const createdUser = await userService.createUser(newUser)
         console.log('CREATED USER: ', createdUser)
         dispatch(createUser(createdUser))
         dispatch(setNotification({

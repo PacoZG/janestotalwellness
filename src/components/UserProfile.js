@@ -7,11 +7,12 @@ const UserProfile = () => {
   const dispatch = useDispatch()
   //console.log('USER: ', userId)
 
-  useEffect(() => {
-    if (localdb.loadUser()) {
-      dispatch(getUser(localdb.loadUser().id))
-    }
-  }, [dispatch])
+  // useEffect(() => {
+  //   if (localdb.loadUser()) {
+
+  //     dispatch(getUser(localdb.loadUser().id))
+  //   }
+  // }, [dispatch])
   const user = useSelector(state => state.users)
   //console.log('USER_PROFILE_INFO: ', user)
 
@@ -46,7 +47,7 @@ const UserProfile = () => {
   // bg-gray-50 px-3 py-4 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6
   return (
     <div>
-      <div className="bg-gray-100 min-h-screen pt-20 md:pt-16">
+      <div className="bg-gray-100 min-h-screen pt-20 md:pt-24">
         <h3 className="p-2 md:p-6 text-2xl text-center md:text-3xl font-medium text-gray-700 ">Profile</h3>
         <div className="bg-white pb-2 m-2 mb-1 shadow overflow-hidden rounded-lg">
           <div className="p-3 md:p-1 md:pl-3">

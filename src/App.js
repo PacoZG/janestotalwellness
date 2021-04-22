@@ -1,6 +1,7 @@
-import React, { useEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux'
+import React, { useEffect } from 'react';
+import { useDispatch } from 'react-redux'
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
+import { initializeUsers } from './reducers/usersReducer'
 import { getUser } from './reducers/userReducer'
 import localdb from './utils/localdb'
 
@@ -15,7 +16,6 @@ import Programs from './components/Programs'
 import Exercises from './components/Exercises'
 import Recipes from './components/Recipes'
 import MyClients from './components/MyClients'
-import { initializeUsers } from './reducers/userReducer'
 
 const App = () => {
   const dispatch = useDispatch()
@@ -23,13 +23,15 @@ const App = () => {
 
   useEffect(() => {
     if (localdb.loadUser()) {
-      dispatch(getUser(localdb.loadUser().id))
+      try {
+        dispatch(getUser(localdb.loadUser().id))
+        dispatch(initializeUsers())
+      } catch (error) {
+        console.error(error.response.data)
+      }
     }
-  }, [dispatch])
 
-  // useEffect(() => {
-  //   dispatch(initializeUsers())
-  // }, [dispatch])
+  }, [dispatch])
 
   return (
     <div >

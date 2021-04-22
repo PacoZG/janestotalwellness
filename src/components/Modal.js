@@ -5,7 +5,7 @@ import { setNotification } from '../reducers/notificationReducer'
 const Modal = () => {
   const messageData = useSelector(state => state.notification)
   const dispatch = useDispatch()
-  console.log('MESSAGE DATA IN MODAL: ', messageData)
+  //console.log('MESSAGE DATA IN MODAL: ', messageData)
   const hideModal = () => {
     dispatch(setNotification(({ message: '', title: '', show: false })))
   }
