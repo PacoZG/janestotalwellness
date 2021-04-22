@@ -13,7 +13,7 @@ const UserProfile = () => {
     }
   }, [dispatch])
   const user = useSelector(state => state.users)
-  console.log('USER_PROFILE_INFO: ', user)
+  //console.log('USER_PROFILE_INFO: ', user)
 
   const getAge = () => {
     const birthday = new Date(user.dateOfBirth)

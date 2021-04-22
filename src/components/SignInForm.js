@@ -3,17 +3,14 @@ import { Link, useHistory } from 'react-router-dom'
 import { useField } from '../hooks/index'
 import { useDispatch } from 'react-redux'
 import threes from '../img/threes.png'
+import { setNotification } from '../reducers/notificationReducer'
 
 import Modal from './Modal'
 import { userLogin } from '../reducers/loginReducer'
 import loginService from '../services/login'
 
 const SigninForm = () => {
-
   const dispatch = useDispatch()
-  const [showModal, setShowModal] = useState(false)
-  const [modalMessage, setModalMessage] = useState('')
-  const [title, setTitle] = useState('')
   const history = useHistory()
   const username = useField('text')
   const password = useField('password')
@@ -28,20 +25,26 @@ const SigninForm = () => {
     //console.log('CREDENTIALS: ', credentials)
     try {
       var user = await loginService.login(credentials)
-      //console.log('USER: ', user)
+      console.log('USER: ', user)
       dispatch(userLogin(user))
+      dispatch(setNotification({
+        message: `Welcome back ${user.username}`,
+        title: 'Success',
+        show: true
+      }))
       history.push('/frontpage')
     } catch (error) {
       //console.log('SIGN IN ERROR: ', error.response.data.error)
-      setModalMessage(`${error.response.data.error}`)
-      setTitle('Login error')
-      setShowModal(true)
+      dispatch(setNotification({
+        message: `${error.response.data.error}`,
+        title: 'Login error',
+        show: true
+      }))
     }
   }
 
   return (
     <div className="static min-h-screen flex justify-center bg-gray-300 pt-40 py-12 px-4 sm:px-6 lg:px-8">
-      <Modal showModal={showModal} setShowModal={setShowModal} message={modalMessage} title={title} />
       <div className="max-w-md w-full space-y-8">
         <div>
           <img className="mx-auto h-12 w-auto rounded" src={threes} />

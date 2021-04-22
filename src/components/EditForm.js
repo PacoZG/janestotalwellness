@@ -2,22 +2,24 @@ import React, { useState, useEffect } from 'react'
 import localdb from '../utils/localdb'
 import { updateUser } from '../reducers/userReducer'
 import imageService from '../services/images'
+import loginService from '../services/login'
 import { useDispatch, useSelector } from 'react-redux'
 import { useField } from '../hooks/index'
+import { setNotification } from '../reducers/notificationReducer'
 import Modal from './Modal'
 
 const EditForm = () => {
   const dispatch = useDispatch()
   const user = useSelector(state => state.users)
   //console.log('USER_EDIT_INFO: ', user)
-  const loogedUser = localdb.loadUser()
+  const loggedUser = localdb.loadUser()
 
   const [dropdown, setDropdown] = useState(false)
   const visibleDrop = { display: dropdown ? '' : 'none' }
 
-  const [showModal, setShowModal] = useState(false)
-  const [modalMessage, setModalMessage] = useState('')
-  const [title, setTitle] = useState('')
+  // const [showModal, setShowModal] = useState(false)
+  // const [modalMessage, setModalMessage] = useState('')
+  // const [title, setTitle] = useState('')
 
   const [imageMessage, setImageMessage] = useState(null)
   const [fileInputState, setFileInputState] = useState('')
@@ -26,12 +28,6 @@ const EditForm = () => {
 
   // data to change
   const healthInfo = useField('text')
-
-  const address = useField('text')
-  const mobileNumber = useField('text')
-  const city = useField('text')
-  const zipCode = useField('text')
-  const [country, setCountry] = useState(null)
 
   const handleImageInput = (event) => {
     event.preventDefault()
@@ -78,14 +74,20 @@ const EditForm = () => {
         imageURL: image.url,
         imageID: image.cloudinaryId
       }
-      localdb.saveUser({ ...loogedUser, imageURL: image.url, imageID: image.cloudinaryId })
+      localdb.saveUser({ ...loggedUser, imageURL: image.url, imageID: image.cloudinaryId })
       if (user.imageID) {
         imageService.removeImage(user.imageID)
       }
       updateSignedInUser(updatedUser)
-      setModalMessage('Your profile photo has been successfully updated, please refresh your webpage.')
-      setTitle('Sucess')
-      setShowModal(true)
+      dispatch(setNotification({
+        message: 'Your profile photo has been successfully updated, please refresh your webpage.',
+        title: 'Sucess',
+        show: true
+      }))
+      //location.reload()
+      // setModalMessage('Your profile photo has been successfully updated, please refresh your webpage.')
+      // setTitle('Sucess')
+      // setShowModal(true)
     }
     if (healthInfo.params.value.length > 29 && healthInfo.params.value.length != 0) {
       updatedUser = {
@@ -93,12 +95,23 @@ const EditForm = () => {
         healthInfo: healthInfo.params.value
       }
       updateSignedInUser(updatedUser)
-      setModalMessage('Your health information has been successfully updated.')
-      setTitle('Sucess')
-      setShowModal(true)
+      dispatch(setNotification({
+        message: 'Your health information has been successfully updated.',
+        title: 'Sucess',
+        show: true
+      }))
+      // setModalMessage('Your health information has been successfully updated.')
+      // setTitle('Sucess')
+      // setShowModal(true)
       healthInfo.reset()
     }
   }
+
+  const address = useField('text')
+  const mobileNumber = useField('text')
+  const city = useField('text')
+  const zipCode = useField('text')
+  const [country, setCountry] = useState(null)
 
   const editPersonalInfo = async () => {
     // debugger
@@ -142,9 +155,14 @@ const EditForm = () => {
       user.country !== userToUpdate.country) {
       console.log('USER TO UPDATE: ', userToUpdate)
       updateSignedInUser(userToUpdate)
-      setModalMessage('Your profile has been successfully updated.')
-      setTitle('Sucess')
-      setShowModal(true)
+      dispatch(setNotification({
+        message: 'Your profile has been successfully updated.',
+        title: 'Sucess',
+        show: true
+      }))
+      // setModalMessage('Your profile has been successfully updated.')
+      // setTitle('Sucess')
+      // setShowModal(true)
       address.reset()
       mobileNumber.reset()
       city.reset()
@@ -157,6 +175,46 @@ const EditForm = () => {
       dispatch(updateUser(userToUpdate))
     } catch (error) {
       console.log(error)
+    }
+  }
+
+  // password update
+  const oldPassword = useField('password')
+  const oldPasswordConfirm = useField('password')
+  const newPassword = useField('password')
+
+  // console.log('OLD PASSWORD: ', oldPassword.params.value)
+  // console.log('OLD PASSWORD CONFIRM: ', oldPasswordConfirm.params.value)
+  // console.log('NEW PASSWORD: ', newPassword.params.value)
+
+  const handlePasswordChange = async (event) => {
+    event.preventDefault()
+    const data = {
+      user: user,
+      oldPassword: oldPassword.params.value,
+      newPassword: newPassword.params.value
+    }
+    if (oldPassword.params.value === oldPasswordConfirm.params.value) {
+      try {
+        const userupdate = await loginService.updatePassword(data)
+        //console.log('UPDATED USER EDIT PROFILE:', userupdate)
+        dispatch(setNotification({
+          message: 'Your password has been successfully updated, new password will be valid next time you login',
+          title: 'Sucess',
+          show: true
+        }))
+        // setModalMessage('Your password has been successfully updated, new password will be valid next time you login')
+        // setTitle('Sucess')
+        // setShowModal(true)
+        oldPassword.reset()
+        oldPasswordConfirm.reset()
+        newPassword.reset()
+      } catch (error) {
+        //console.log('ERROR: ', error.response.data.error)
+        setModalMessage(error.response.data.error)
+        setTitle('Error')
+        setShowModal(true)
+      }
     }
   }
 
@@ -300,7 +358,7 @@ const EditForm = () => {
                         </div>
                         <div className="col-span-6 md:col-span-2">
                           <label className="block text-sm font-medium text-gray-700">Mobile number</label>
-                          <input name="city" id="city" {...mobileNumber.params} placeholder="044123456"
+                          <input name="mobile" id="mobile" {...mobileNumber.params} placeholder="044123456"
                             className="mt-1 focus:border-gray-500 block w-full shadow-sm md:text-sm border-gray-300 rounded-md placeholder-gray-200" />
                         </div>
                         <div className="col-span-6">
@@ -345,7 +403,6 @@ const EditForm = () => {
                         </div>
                       </div>
                     </div>
-
                     <div className="px-4 py-3 bg-gray-400 text-right md:px-6">
                       <button type="button" onClick={editPersonalInfo}
                         className="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm font-medium rounded-md
@@ -362,8 +419,59 @@ const EditForm = () => {
               <div className="border-t border-gray-200"></div>
             </div>
           </div>
+          <div className="static mt-10 md:mt-0">
+            <div className="md:grid md:grid-cols-3 md:gap-6">
+              <div className="md:col-span-1">
+                <div className="px-4 sm:px-0">
+                  <h2 className="text-xl font-medium leading-6 text-gray-900">Change password</h2>
+                  <p className="mt-1 text-sm text-gray-600">We recommend you to change your password at least twice a year.</p>
+                </div>
+              </div>
+              <div className="mr-2 ml-2 mt-3 md:mt-5 md:col-span-2">
+                <form >
+                  <div className="shadow overflow-hidden md:rounded-md rounded-b-md">
+                    <div className="px-4 py-5 bg-white md:p-6">
+                      <div className="grid grid-cols-6 gap-6">
+                        <div className="col-span-6 md:col-span-4">
+                          <label className="block text-sm font-medium text-gray-700">Old password</label>
+                          <input name="oldPassword" id="oldPassword" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" {...oldPassword.params}
+                            className="mt-1 focus:border-gray-500 block w-full shadow-sm md:text-sm border-gray-300 rounded-md placeholder-gray-200" />
+                        </div>
+                        <div className="col-span-6 md:col-span-4">
+                          <label className="block text-sm font-medium text-gray-700">
+                            Re-type old password <span className="text-sm text-gray-300 pl-2">{
+                              oldPasswordConfirm.params.value === oldPassword.params.value && oldPasswordConfirm.params.value.length > 7 ? '(passwords matched)' : ''}</span></label>
+                          <input name="oldPasswordConfirm" id="oldPasswordConfirm" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" {...oldPasswordConfirm.params}
+                            className="mt-1 focus:border-gray-500 block w-full shadow-sm md:text-sm border-gray-300 rounded-md placeholder-gray-200" />
+                        </div>
+                        <div className="col-span-6 md:col-span-4">
+                          <label className="block text-sm font-medium text-gray-700">
+                            New password<span className="text-sm text-gray-300 pl-2">{
+                              oldPassword.params.value === newPassword.params.value && newPassword.params.value.length > 7
+                                ? '(New password cannot be the same as the old one)' : ''}</span></label>
+                          <input name="newPassword" id="newPassword" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"  {...newPassword.params}
+                            className="mt-1 focus:border-gray-500 block w-full shadow-sm md:text-sm border-gray-300 rounded-md placeholder-gray-200" />
+                        </div>
+                      </div>
+                    </div>
+                    <div className="px-4 py-3 bg-gray-400 text-right md:px-6">
+                      <button type="button" onClick={handlePasswordChange}
+                        className="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm font-medium rounded-md
+                      bg-gray-500 text-sm text-white hover:bg-gray-300 focus-within:outline-none focus-within:ring-1">
+                        Save</button>
+                    </div>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+          <div className="md:block" aria-hidden="true">
+            <div className="py-4">
+              <div className="border-t border-gray-200"></div>
+            </div>
+          </div>
         </div>
-        <Modal showModal={showModal} setShowModal={setShowModal} message={modalMessage} title={title} />
+        {/* <Modal showModal={showModal} setShowModal={setShowModal} message={modalMessage} title={title} /> */}
       </div>
     </div>
   )

@@ -14,6 +14,7 @@ import Frontpage from './components/Frontpage'
 import Programs from './components/Programs'
 import Exercises from './components/Exercises'
 import Recipes from './components/Recipes'
+import MyClients from './components/MyClients'
 import { initializeUsers } from './reducers/userReducer'
 
 const App = () => {
@@ -59,6 +60,9 @@ const App = () => {
           <Route path="/recipes">
             <Recipes />
           </Route>
+          <Router path="/myclients">
+            <MyClients />
+          </Router>
         </Switch>
       </Router>
       <Footer />

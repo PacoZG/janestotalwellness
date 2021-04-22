@@ -7,6 +7,7 @@ import localdb from '../utils/localdb'
 import Modal from './Modal'
 
 const MainMenu = () => {
+  const user = useSelector(state => state.users)
   const dispatch = useDispatch()
   const history = useHistory()
   const loggedUser = localdb.loadUser()
@@ -36,12 +37,12 @@ const MainMenu = () => {
   const handleLogout = async () => {
     dispatch(userLogout())
     localdb.removeUser()
-    history.push('/signIn')
+    history.push('/frontpage')
   }
 
   return (
     <div>
-      <div className="bg-gray-800 w-full fixed">
+      <div className="bg-gray-600 w-full fixed">
         {/* Desktop menu,. */}
         <div className="px-4 ">
           <div className="flex items-center justify-between">
@@ -60,6 +61,11 @@ const MainMenu = () => {
                   <Link to="/exercises" className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Exercises</Link>
 
                   <Link to="/recipes" className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Recipes</Link>
+
+                  {loggedUser && user.userType === 'admin' ?
+                  <Link to="/myclients" className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">My clients</Link> :
+                  null
+                  }
                 </div>
               </div>
             </div>
