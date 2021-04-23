@@ -7,7 +7,7 @@ import userService from '../services/user'
 
 const SignUpForm = () => {
   const dispatch = useDispatch()
-  const [country, setCountry] = useState(null)
+  
   const [dropdown, setDropdown] = useState(false)
   const visibleDrop = { display: dropdown ? '' : 'none' }
 
@@ -24,6 +24,10 @@ const SignUpForm = () => {
   const background = useField('text')
   const motivation = useField('text')
 
+  const [country, setCountry] = useState(null)
+  const countries = [
+    'Finland', 'Sweden', 'Norway', 'Estonia', 'Germany', 'Spain', 'Italy', 'Netherland', 'Switzerland', 'Mexico'
+  ]
   const handleCountry = (country) => {
     setCountry(country)
     setDropdown(!dropdown)
@@ -135,13 +139,13 @@ const SignUpForm = () => {
     }
   }
   return (
-    <div className="flex flex-col min-h-screen pt-28 py-3 px-2 bg-gray-800 md:flex">
+    <div className="flex flex-col min-h-screen py-3 px-2 bg-gray-800 md:flex">
       <div className="shadow overflow-hidden md:rounded-md">
         <form onSubmit={handleSignUp}>
           <div>
-            <div className="min-w-md mx-auto overflow-hidden pt-24">
+            <div className="min-w-md mx-auto overflow-hidden">
               <h1 className="text-center font-medium font-serif m-2 text-2xl text-gray-300">Sign up form</h1>
-              <div className="px-4 py-4 bg-gray-600 md:p-6">
+              <div className="px-4 py-4 bg-gray-700 md:p-6">
                 <div className="grid grid-cols-6 gap-6">
                   <div className="col-span-6 md:col-span-3">
                     <label className="p-0 bottom-12 ml-2 bg-transparent text-gray-200 ">First name</label>
@@ -177,21 +181,11 @@ const SignUpForm = () => {
                         </span>
                       </div>
                       <div style={visibleDrop} className="absolute border rounded-b-md rounded-sm mt-2 col-span-6 w-full bg-white z-50 ">
-                        <p className="p-1 pl-2 text-gray-500 hover:bg-gray-500 hover:text-white cursor-pointer"
-                          onClick={() => handleCountry('Finland')}
-                        >Finland</p>
-                        <p className="p-1 pl-2 text-gray-500 hover:bg-gray-500 hover:text-white cursor-pointer"
-                          onClick={() => handleCountry('Norway')}
-                        >Sweden</p>
-                        <p className="p-1 pl-2 text-gray-500 hover:bg-gray-500 hover:text-white cursor-pointer"
-                          onClick={() => handleCountry('Sweden')}
-                        >Norway</p>
-                        <p className="p-1 pl-2 text-gray-500 hover:bg-gray-500 hover:text-white cursor-pointer"
-                          onClick={() => handleCountry('Estonia')}
-                        >Estonia</p>
-                        <p className="p-1 pl-2 text-gray-500 hover:bg-gray-500 hover:text-white cursor-pointer"
-                          onClick={() => handleCountry('Mexico')}
-                        >Mexico</p>
+                        {countries.sort().map(country => 
+                          <p className="p-1 pl-2 text-gray-500 hover:bg-gray-500 hover:text-white cursor-pointer"
+                          onClick={() => handleCountry(country)} key={country}
+                        >{country}</p>
+                        )}
                       </div>
                     </div>
                   </div>

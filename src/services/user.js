@@ -7,12 +7,6 @@ const getConfig = () => {
   }
 }
 
-const getAll = async () => {
-  const response = await axios.get(baseUrl)
-  //console.log('RESPONSE: ', response)
-  return response.data
-}
-
 const createUser = async (newUser) => {
   //console.log('USER_TO_SAVE: ', newUser)
     const response = await axios.post(baseUrl, newUser)
@@ -33,4 +27,4 @@ const updateUser = async (user) => {
   return response.data
 } 
 
-export default { getAll, createUser, getUser, updateUser }
+export default { createUser, getUser, updateUser }

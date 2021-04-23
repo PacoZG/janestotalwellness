@@ -1,13 +1,12 @@
 import React, { useState } from 'react'
 import threes from '../img/threes.png'
 import { Link, useHistory } from 'react-router-dom'
-import { useDispatch, useSelector } from 'react-redux'
+import { useDispatch } from 'react-redux'
 import { userLogout } from '../reducers/loginReducer'
 import localdb from '../utils/localdb'
 import Modal from './Modal'
 
 const MainMenu = () => {
-  const user = useSelector(state => state.users)
   const dispatch = useDispatch()
   const history = useHistory()
   const loggedUser = localdb.loadUser()
@@ -40,7 +39,7 @@ const MainMenu = () => {
 
   return (
     <div>
-      <div className="bg-gray-600 w-full fixed">
+      <div className="bg-gray-600 w-full">
         {/* Desktop menu,. */}
           <div className="flex items-center justify-between px-2 pl-4 pr-4 pt-3 md:pt-6 md:pb-5">
             <div className="flex items-center">
@@ -60,7 +59,7 @@ const MainMenu = () => {
                   <Link to="/recipes" className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Recipes</Link>
 
                   {loggedUser && loggedUser.userType === 'admin' ?
-                  <Link to="/myclients" className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">My clients</Link> :
+                  <Link to="/clients" className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">My clients</Link> :
                   null
                   }
                 </div>
@@ -77,7 +76,7 @@ const MainMenu = () => {
                       onClick={handleDropdown}
                     >
                       {loggedUser && loggedUser.imageURL ?
-                        <img className="h-12 w-12 rounded-full" src={loggedUser.imageURL} alt="" /> :
+                        <img className="h-12 w-12 rounded-full p-1 bg-gray-200 transform hover:rotate-6 transition" src={loggedUser.imageURL} alt="" /> :
                         <span className="inline-block rounded-full h-12 w-12 md:rounded-full overflow-hidden bg-gray-100">
                           <svg className="h-full w-full text-gray-300" fill="currentColor" viewBox="0 0 24 24">
                             <path d="M24 20.993V24H0v-2.996A14.977 14.977 0 0112.004 15c4.904 0 9.26 2.354 11.996 5.993zM16.002 8.999a4 4 0 11-8 0 4 4 0 018 0z" />
@@ -132,6 +131,11 @@ const MainMenu = () => {
                 <Link to="/exercises" className="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium">Exercises</Link>
 
                 <Link to="/recipes" className="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium">Recipes</Link>
+
+                {loggedUser && loggedUser.userType === 'admin' ?
+                  <Link to="/clients" className="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium">My clients</Link> :
+                  null
+                  }
               </div>
             </div>
           </div>

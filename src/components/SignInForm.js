@@ -1,11 +1,9 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { Link, useHistory } from 'react-router-dom'
 import { useField } from '../hooks/index'
 import { useDispatch } from 'react-redux'
 import threes from '../img/threes.png'
 import { setNotification } from '../reducers/notificationReducer'
-
-import Modal from './Modal'
 import { userLogin } from '../reducers/loginReducer'
 import loginService from '../services/login'
 
@@ -44,7 +42,7 @@ const SigninForm = () => {
   }
 
   return (
-    <div className="static min-h-screen flex justify-center bg-gray-300 pt-40 py-12 px-4 sm:px-6 lg:px-8">
+    <div className="static min-h-screen flex justify-center bg-gray-300 pt-20 py-12 px-4 sm:px-6 lg:px-8">
       <div className="max-w-md w-full space-y-8">
         <div>
           <img className="mx-auto h-12 w-auto rounded" src={threes} />

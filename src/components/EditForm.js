@@ -9,7 +9,7 @@ import { setNotification } from '../reducers/notificationReducer'
 
 const EditForm = () => {
   const dispatch = useDispatch()
-  const user = useSelector(state => state.users)
+  const user = useSelector(state => state.user)
   //console.log('USER_EDIT_INFO: ', user)
   const loggedUser = localdb.loadUser()
 
@@ -24,6 +24,7 @@ const EditForm = () => {
   const [fileInputState, setFileInputState] = useState('')
   const [selectedFile, setSelecteFile] = useState('')
   const [imagePreview, setImagePreview] = useState()
+  const [userUpdated, setUserUpdated] = useState(false)
 
   // data to change
   const healthInfo = useField('text')
@@ -46,11 +47,6 @@ const EditForm = () => {
     reader.onloadend = () => {
       setImagePreview(reader.result)
     }
-  }
-
-  const handleCountry = (country) => {
-    setCountry(country)
-    setDropdown(!dropdown)
   }
 
   const editProfile = async (event) => {
@@ -83,10 +79,6 @@ const EditForm = () => {
         title: 'Sucess',
         show: true
       }))
-      //location.reload()
-      // setModalMessage('Your profile photo has been successfully updated, please refresh your webpage.')
-      // setTitle('Sucess')
-      // setShowModal(true)
     }
     if (healthInfo.params.value.length > 29 && healthInfo.params.value.length != 0) {
       updatedUser = {
@@ -99,9 +91,6 @@ const EditForm = () => {
         title: 'Sucess',
         show: true
       }))
-      // setModalMessage('Your health information has been successfully updated.')
-      // setTitle('Sucess')
-      // setShowModal(true)
       healthInfo.reset()
     }
   }
@@ -110,7 +99,17 @@ const EditForm = () => {
   const mobileNumber = useField('text')
   const city = useField('text')
   const zipCode = useField('text')
+
+
   const [country, setCountry] = useState(null)
+  const countries = [
+    'Finland', 'Sweden', 'Norway', 'Estonia', 'Germany', 'Spain', 'Italy', 'Netherland', 'Switzerland', 'Mexico'
+  ]
+
+  const handleCountry = (country) => {
+    setCountry(country)
+    setDropdown(!dropdown)
+  }
 
   const editPersonalInfo = async () => {
     // debugger
@@ -123,34 +122,38 @@ const EditForm = () => {
         ...userToUpdate,
         address: address.params.value,
       }
+      setUserUpdated(true)
     }
     if (city.params.value !== user.city && city.params.value.length > 4) {
       userToUpdate = {
         ...userToUpdate,
         city: city.params.value,
       }
+      setUserUpdated(true)
     }
     if (mobileNumber.params.value !== user.mobileNumber && mobileNumber.params.value.length > 7) {
       userToUpdate = {
         ...userToUpdate,
         mobileNumber: mobileNumber.params.value,
       }
+      setUserUpdated(true)
     }
     if (zipCode.params.value !== user.zipCode && zipCode.params.value.length === 5) {
       userToUpdate = {
         ...userToUpdate,
         zipCode: zipCode.params.value,
       }
+      setUserUpdated(true)
     }
     if (country !== user.country && country) {
       userToUpdate = {
         ...userToUpdate,
         country: country,
       }
+      setUserUpdated(true)
     }
 
-    if (Object.keys(user).length < Object.keys(userToUpdate).length ||
-      user.country !== userToUpdate.country) {
+    if (userUpdated) {
       console.log('USER TO UPDATE: ', userToUpdate)
       updateSignedInUser(userToUpdate)
       dispatch(setNotification({
@@ -158,6 +161,7 @@ const EditForm = () => {
         title: 'Sucess',
         show: true
       }))
+      setUserUpdated(false)
       address.reset()
       mobileNumber.reset()
       city.reset()
@@ -213,20 +217,20 @@ const EditForm = () => {
 
   return (
     <div>
-      <div className="bg-gray-100 min-h-screen static pt-24">
+      <div className="bg-gray-100 min-h-screen static">
         <div className="bg-white m-2 md:m-8 mb-1 shadow overflow-hidden rounded-lg" >
           <div >
-            <div className="md:grid md:grid-cols-3 md:gap-6">
-              <div className="pt-3 md:col-span-1">
-                <div className="pt-2 px-4 sm:px-0">
+            <div className="md:grid md:grid-cols-3 md:gap-6 bg-gray-100">
+              <div className="md:pt-3 md:col-span-1">
+                <div className="md:pt-2 px-4 sm:px-0">
                   <h3 className="text-xl font-medium leading-6 pt-3 text-gray-900">Profile</h3>
                   <p className="mt-1 text-sm text-gray-600">This information will be shown only to the admins.</p>
                 </div>
               </div>
-              <div className="mr-2 ml-2 mt-3 md:mt-5 md:col-span-2">
+              <div className="mr-2 ml-2 mt-3 md:mt-5 md:pt-7 md:col-span-2 ">
                 <form onSubmit={editProfile}>
-                  <div className="shadow md:rounded-md md:overflow-hidden rounded-b-md">
-                    <div className="px-4 py-5 bg-white space-y-6 sm:p-6 ">
+                  <div className="shadow md:rounded-md md:overflow-hidden rounded-b-md ">
+                    <div className="px-4 py-5 space-y-6 sm:p-6 bg-gradient-to-br from-gray-300 via-white to-gray-300 ">
                       <div>
                         <label className="block text-sm font-medium text-gray-700">
                           Health information
@@ -289,14 +293,14 @@ const EditForm = () => {
             </div>
           </div>
           <div className="md:block" aria-hidden="true">
-            <div className="py-4">
+            <div className="py-4 bg-gray-100">
               <div className="border-t border-gray-200"></div>
             </div>
           </div>
-          <div className="static mt-10 md:mt-0">
-            <div className="md:grid md:grid-cols-3 md:gap-6">
+          <div className="static">
+            <div className="md:grid md:grid-cols-3 md:gap-6 bg-gray-100">
               <div className="md:col-span-1">
-                <div className="px-4 sm:px-0">
+                <div className="px-4 md:px-0">
                   <h2 className="text-xl font-medium leading-6 text-gray-900">Edit Personal Information</h2>
                   <p className="mt-1 text-sm text-gray-600">Use an address where you live most of the year.</p>
                 </div>
@@ -304,33 +308,33 @@ const EditForm = () => {
               <div className="mr-2 ml-2 mt-3 md:mt-5 md:col-span-2">
                 <form >
                   <div className="shadow overflow-hidden md:rounded-md rounded-b-md">
-                    <div className="px-4 py-5 bg-white md:p-6">
+                    <div className="px-4 py-5 md:p-6 bg-gradient-to-br from-gray-300 via-white to-gray-300 ">
                       <div className="grid grid-cols-6 gap-6">
                         <div className="col-span-6 sm:col-span-3">
                           <label className="block text-sm font-medium text-gray-700">First name</label>
                           <div name="first_name" id="first_name" type="text"
-                            className="w-full shadow-sm sm:text-sm border-gray-300 rounded-md capitalize">
+                            className="w-full shadow-sm sm:text-sm border-gray-300 bg-gradient-to-r from-gray-100 via-white to-gray-100 rounded-md capitalize">
                             {user.firstName}
                           </div>
                         </div>
                         <div className="col-span-6 md:col-span-3">
                           <label className="block text-sm font-medium text-gray-700">Last name</label>
                           <div name="last_name" id="last_name" type="text"
-                            className="w-full shadow-sm sm:text-sm border-gray-300 rounded-md capitalize">
+                            className="w-full shadow-sm sm:text-sm border-gray-300 bg-gradient-to-r from-gray-100 via-white to-gray-100 rounded-md capitalize">
                             {user.lastName}
                           </div>
                         </div>
                         <div className="col-span-6 md:col-span-3">
                           <label className="block text-sm font-medium text-gray-700">Username</label>
                           <div name="username" id="username" type="text"
-                            className="w-full shadow-sm sm:text-sm border-gray-300 rounded-md" >
+                            className="w-full shadow-sm sm:text-sm border-gray-300 bg-gradient-to-r from-gray-100 via-white to-gray-100 rounded-md" >
                             {user.username}
                           </div>
                         </div>
                         <div className="col-span-6 md:col-span-3">
                           <label className="block text-sm font-medium text-gray-700">Email address</label>
                           <div name="email_address" id="email_address" type="text"
-                            className="w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
+                            className="w-full shadow-sm sm:text-sm border-gray-300 bg-gradient-to-r from-gray-100 via-white to-gray-100 rounded-md">
                             {user.email}
                           </div>
                         </div>
@@ -355,43 +359,35 @@ const EditForm = () => {
                             className="mt-1 focus:border-gray-500 block w-full shadow-sm md:text-sm border-gray-300 rounded-md placeholder-gray-200" />
                         </div>
                         <div className="col-span-6">
-                          <div className="relative">
+                          <div className="flex flex-col h-12">
                             <label className="block text-sm font-medium text-gray-700">Country</label>
                             <div id="country" name="country" type="text"
-                              className="relative block h-10 w-full px-3 border border-gray-300
-                              ring-gray-500 bg-white rounded-md shadow-sm md:text-md text-left">
+                              className="flex flex-row justify-between h-10 px-3 border border-gray-300 ring-gray-500 bg-white rounded-md shadow-sm md:text-md">
                               {country ?
-                                <div className="text-gray-500 md:text-md">
-                                  {country}<span onClick={() => setCountry(null)}
-                                    className="absolute opacity-50 inset-y-0 right-11 pt-1 z-50 cursor-pointer ">x</span>
-                                </div > :
+                                <div className="text-gray-500 md:text-md">{country}</div > :
                                 <div className="opacity-25">Select country</div>
                               }
-                              <span className="absolute right-0 inset-y-0 flex items-center pr-2 pl-1 border-l mt-2 mb-2 cursor-pointer"
-                                onClick={() => setDropdown(!dropdown)}>
-                                <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-                                  <path fillRule="evenodd" d="M10 3a1 1 0 01.707.293l3 3a1 1 0 01-1.414 1.414L10 5.414 7.707 7.707a1 1 0 01-1.414-1.414l3-3A1 1 0 0110 3zm-3.707 9.293a1 1 0 011.414 0L10 14.586l2.293-2.293a1 1 0 011.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 010-1.414z" clipRule="evenodd" />
-                                </svg>
-                              </span>
+                              <div className="flex ">
+                                {country ? <span onClick={() => setCountry(null)}
+                                  className="text-md text-gray-300 pr-2 cursor-pointer ">X</span> : null}
+
+                                <span className="inset-y-0 border-l pl-1 cursor-pointer"
+                                  onClick={() => setDropdown(!dropdown)}>
+                                  <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                                    <path fillRule="evenodd" d="M10 3a1 1 0 01.707.293l3 3a1 1 0 01-1.414 1.414L10 5.414 7.707 7.707a1 1 0 01-1.414-1.414l3-3A1 1 0 0110 3zm-3.707 9.293a1 1 0 011.414 0L10 14.586l2.293-2.293a1 1 0 011.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 010-1.414z"
+                                      clipRule="evenodd" />
+                                  </svg>
+                                </span>
+                              </div>
                             </div>
-                            <div style={visibleDrop}
-                              className="absolute border rounded-sm col-span-6 w-full bg-white z-50 inset-x-0 -top-36 ">
+                          </div>
+                          <div style={visibleDrop}
+                            className="border rounded-sm col-span-6 bg-white mt-4">
+                            {countries.sort().map(country =>
                               <p className="p-1 pl-2 text-gray-700 hover:bg-gray-500 hover:text-white cursor-pointer"
-                                onClick={() => handleCountry('Finland')}
-                              >Finland</p>
-                              <p className="p-1 pl-2 text-gray-700 hover:bg-gray-500 hover:text-white cursor-pointer"
-                                onClick={() => handleCountry('Norway')}
-                              >Sweden</p>
-                              <p className="p-1 pl-2 text-gray-700 hover:bg-gray-500 hover:text-white cursor-pointer"
-                                onClick={() => handleCountry('Sweden')}
-                              >Norway</p>
-                              <p className="p-1 pl-2 text-gray-700 hover:bg-gray-500 hover:text-white cursor-pointer"
-                                onClick={() => handleCountry('Estonia')}
-                              >Estonia</p>
-                              <p className="p-1 pl-2 text-gray-700 hover:bg-gray-500 hover:text-white cursor-pointer"
-                                onClick={() => handleCountry('Mexico')}
-                              >Mexico</p>
-                            </div>
+                                onClick={() => handleCountry(country)} key={country}
+                              >{country}</p>
+                            )}
                           </div>
                         </div>
                       </div>
@@ -408,12 +404,12 @@ const EditForm = () => {
             </div>
           </div>
           <div className="md:block" aria-hidden="true">
-            <div className="py-4">
+            <div className="py-4 bg-gray-100">
               <div className="border-t border-gray-200"></div>
             </div>
           </div>
-          <div className="static mt-10 md:mt-0">
-            <div className="md:grid md:grid-cols-3 md:gap-6">
+          <div className="static">
+            <div className="md:grid md:grid-cols-3 md:gap-6 bg-gray-100">
               <div className="md:col-span-1">
                 <div className="px-4 sm:px-0">
                   <h2 className="text-xl font-medium leading-6 text-gray-900">Change password</h2>
@@ -423,7 +419,7 @@ const EditForm = () => {
               <div className="mr-2 ml-2 mt-3 md:mt-5 md:col-span-2">
                 <form >
                   <div className="shadow overflow-hidden md:rounded-md rounded-b-md">
-                    <div className="px-4 py-5 bg-white md:p-6">
+                    <div className="px-4 py-5 md:p-6 bg-gradient-to-br from-gray-300 via-white to-gray-300 ">
                       <div className="grid grid-cols-6 gap-6">
                         <div className="col-span-6 md:col-span-4">
                           <label className="block text-sm font-medium text-gray-700">Old password</label>
@@ -459,12 +455,11 @@ const EditForm = () => {
             </div>
           </div>
           <div className="md:block" aria-hidden="true">
-            <div className="py-4">
+            <div className="py-4 bg-gray-100">
               <div className="border-t border-gray-200"></div>
             </div>
           </div>
         </div>
-        {/* <Modal showModal={showModal} setShowModal={setShowModal} message={modalMessage} title={title} /> */}
       </div>
     </div>
   )

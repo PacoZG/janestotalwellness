@@ -16,6 +16,7 @@ import Programs from './components/Programs'
 import Exercises from './components/Exercises'
 import Recipes from './components/Recipes'
 import MyClients from './components/MyClients'
+import Client from './components/Client'
 
 const App = () => {
   const dispatch = useDispatch()
@@ -30,7 +31,6 @@ const App = () => {
         console.error(error.response.data)
       }
     }
-
   }, [dispatch])
 
   return (
@@ -38,6 +38,9 @@ const App = () => {
       <Router>
         <MainMenu />
         <Switch>
+          <Route path="/clients/:id">
+            <Client />
+          </Route>
           <Route path="/signUp" >
             <SignUpForm />
           </Route>
@@ -62,9 +65,9 @@ const App = () => {
           <Route path="/recipes">
             <Recipes />
           </Route>
-          <Router path="/myclients">
+          <Route path="/clients">
             <MyClients />
-          </Router>
+          </Route>
         </Switch>
       </Router>
       <Footer />
