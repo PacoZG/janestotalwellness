@@ -1,16 +1,18 @@
 import noteService from '../services/notes'
 
 const noteReducer = (state = [], action) => {
-  console.log('NOTES STATE IN NOTEREDUCER:', state)
-  console.log('NOTES ACTION.TYPE IN NOTEREDUCER:', action)
+  // console.log('NOTES STATE IN NOTEREDUCER:', state)
+  // console.log('NOTES ACTION.TYPE IN NOTEREDUCER:', action)
   switch (action.type) {
   case 'GET_NOTES':
     return action.data
   case 'NEW_NOTE':
+    debugger
     console.log(state.concat(action.data))
-    return state.concat(action.data)
+    const updatedList = state.concat(action.data)
+    return updatedList 
   case 'DELETE':
-    return action.data
+    return state.filter(note => note.id !== action.data)
   case 'UPDATE_NOTE':
     return 
   default:
@@ -29,27 +31,26 @@ export const getAllNotes = () => {
 }
 
 export const createNote = (newNote) => {
+  // debugger
   console.log('NEW NOTE IN REDUCER: ', newNote)
   return async (dispatch) => {
-    const newNoteUser = { ...newNote, user: newNote.user }
-    console.log('NEW USER NOTE IN REDUCER: ', newNoteUser)
+    console.log('NEW USER NOTE IN REDUCER: ', newNote)
     dispatch({
       type: 'NEW_NOTE',
-      data: newNoteUser,
+      data: newNote,
     })
   }
 }
 
-// export const updateNote = (note) => {
-//   const updatedBlog = { ...note, content: note.content }
-//   return async (dispatch) => {
-//     const changedNote = await noteService.update(updatedNote)
-//     dispatch({
-//       type: 'UPDATE_NOTE',
-//       data: changedNote,
-//     })
-//   }
-// }
+export const updateNote = (updatedNote) => {
+  return async (dispatch) => {
+    const changedNote = await noteService.update(updatedNote)
+    dispatch({
+      type: 'UPDATE_NOTE',
+      data: changedNote,
+    })
+  }
+}
 
 export const deleteNote = (id) => {
   console.log('ID RECEIVED IN REDUCER: ', id)

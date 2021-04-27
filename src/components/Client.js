@@ -5,8 +5,9 @@ import { useParams } from 'react-router-dom'
 import { useField } from '../hooks/index'
 import { setNotification } from '../reducers/notificationReducer'
 import { updateUser } from '../reducers/userReducer'
-import { createNote, deleteNote } from '../reducers/noteReducer'
+import { createNote, updateNote, deleteNote } from '../reducers/noteReducer'
 import noteService from '../services/notes'
+import bruja from '../img/bruja.jpg'
 
 
 const Client = () => {
@@ -14,17 +15,20 @@ const Client = () => {
   const dispatch = useDispatch()
   //console.log('CLIENT ID: ', paramId)
   const client = useSelector(state => state.users.find(u => u.id === paramId))
-  console.log('CLINET: ', client)
-  const allNotes = useSelector(state => state.notes)
-  const [notes, setNotes] = useState([])
-  
-  useEffect(() => {
-    if (client) {
-      setNotes(allNotes.filter(note => note.user.id === client.id))
-    }
-  }, [])
-  console.log('NOTES: ', allNotes)
+  console.log('CLIENT: ', client)
+//   const allNotes = useSelector(state => state.notes)
+//   const [notes, setNotes] = useState([])
 
+// // useEffect does not render when reloading the page
+//   useEffect(() => {
+//     console.log('useEffect')
+//     if (client) {
+//       // debugger
+//       console.log('------------------', client.id)
+//       setNotes(allNotes.filter(note => note.user.id === client.id))
+//     }
+//   }, [])
+//   console.log('NOTES: ', notes)
 
   const height = useField('text')
   const weight = useField('text')
@@ -109,19 +113,20 @@ const Client = () => {
     }
     //console.log('DATA TO SEND: ', data)
     if (title.params.value.length > 5 && content.params.value.length > 29) {
-      debugger
+      // debugger
       try {
         const newNote = await noteService.create(data)
         console.log('RESPONSE RECEIVED IN CLIENT: ', newNote)
-        setNotes(notes.concat(newNote))
+        // setNotes(notes.concat(newNote)) // this hook does not respond since  
         dispatch(createNote(newNote))
         dispatch(setNotification({
           message: 'Note has been added',
           title: 'Sucess',
           show: true
         }))
-        // title.reset()
-        // content.reset()
+        title.reset()
+        content.reset()
+        location.reload()
       } catch (error) {
         console.log(error.response)
       }
@@ -129,7 +134,13 @@ const Client = () => {
   }
 
   const removeNote = (id) => {
+    setNotes(notes.filter(note => note.id !== id))
     dispatch(deleteNote(id))
+    location.reload()
+  }
+
+  const updateANote = () => {
+    console.log('UPDATED_NOTE: ')
   }
 
   if (!client) {
@@ -154,12 +165,12 @@ const Client = () => {
             <label className="tracking-wide border-b pb-2">{`${client.username}`}</label>
             {client.imageURL ?
               <img src={client.imageURL} className="h-40 w-40 md:h-40 md:w-40 border rounded-full" /> :
-              // <img className="opacity-10 h-32 w-32 rounded-full bg-white p-1 transform hover:rotate-6 transition" src={bruja} />
-              <span className="inline-block rounded-full h-28 w-28 md:h-32 md:w-32 md:rounded-full overflow-hidden bg-gray-100">
-                <svg className="h-full w-full text-gray-300" fill="currentColor" viewBox="0 0 24 24">
-                  <path d="M24 20.993V24H0v-2.996A14.977 14.977 0 0112.004 15c4.904 0 9.26 2.354 11.996 5.993zM16.002 8.999a4 4 0 11-8 0 4 4 0 018 0z" />
-                </svg>
-              </span>
+              <img className="opacity-10 h-32 w-32 rounded-full bg-white p-1 transform hover:rotate-6 transition" src={bruja} />
+              // <span className="inline-block rounded-full h-28 w-28 md:h-32 md:w-32 md:rounded-full overflow-hidden bg-gray-100">
+              //   <svg className="h-full w-full text-gray-300" fill="currentColor" viewBox="0 0 24 24">
+              //     <path d="M24 20.993V24H0v-2.996A14.977 14.977 0 0112.004 15c4.904 0 9.26 2.354 11.996 5.993zM16.002 8.999a4 4 0 11-8 0 4 4 0 018 0z" />
+              //   </svg>
+              // </span> 
             }
             <label className="tracking-wide border-b pt-2 pb-1">{`${client.firstName} ${client.lastName}`}</label>
           </div>
@@ -259,12 +270,12 @@ const Client = () => {
             <div className="px-3 py-2 bg-gray-400 text-right rounded-b-md">
               <button type="button" onClick={saveNote}
                 className="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm font-medium rounded-md
-                      bg-gray-500 text-sm text-white hover:bg-gray-300 focus-within:outline-none focus-within:ring-1">
+                  bg-gray-500 text-sm text-white hover:bg-gray-300 focus-within:outline-none focus-within:ring-1">
                 Save</button>
             </div>
           </div>
           <h2 className="text-lg text-center font-semibold p-2 pt-3">Notes</h2>
-          {notes.map(note =>
+          {client.notes.map(note =>
             <div key={note.id} className="p-2 border rounded-sm shadow-sm mt-2">
               <p className="text-lg font-semibold pl-2">{note.title}</p>
               <p className="text-xs text-gray-400 border-b pb-1 pl-2">{getDate(note.date)}</p>
@@ -274,7 +285,7 @@ const Client = () => {
                   className="inline-flex justify-center py-1 px-3 border border-transparent shadow-sm font-medium rounded-md
                   bg-gray-500 text-sm text-white hover:bg-gray-300 focus-within:outline-none focus-within:ring-1">
                   Delete</button>
-                <button type="button"
+                <button type="button" onClick={() => updateANote()}
                   className="inline-flex justify-center py-1 px-3 border border-transparent shadow-sm font-medium rounded-md
                   bg-gray-500 text-sm text-white hover:bg-gray-300 focus-within:outline-none focus-within:ring-1">
                   Update</button>
@@ -300,12 +311,12 @@ const Client = () => {
                     <label className="tracking-wide border-b pb-2">{`${client.username}`}</label>
                     {client.imageURL ?
                       <img src={client.imageURL} className="h-40 w-40 md:h-40 md:w-40 border rounded-full" /> :
-                      // <img className="opacity-10 h-32 w-32 rounded-full bg-white p-1 transform hover:rotate-6 transition" src={bruja} />
-                      <span className="inline-block rounded-full h-28 w-28 md:h-32 md:w-32 md:rounded-full overflow-hidden bg-gray-100">
-                        <svg className="h-full w-full text-gray-300" fill="currentColor" viewBox="0 0 24 24">
-                          <path d="M24 20.993V24H0v-2.996A14.977 14.977 0 0112.004 15c4.904 0 9.26 2.354 11.996 5.993zM16.002 8.999a4 4 0 11-8 0 4 4 0 018 0z" />
-                        </svg>
-                      </span>
+                      <img className="opacity-10 h-32 w-32 rounded-full bg-white p-1 transform hover:rotate-6 transition" src={bruja} />
+                      // <span className="inline-block rounded-full h-28 w-28 md:h-32 md:w-32 md:rounded-full overflow-hidden bg-gray-100">
+                      //   <svg className="h-full w-full text-gray-300" fill="currentColor" viewBox="0 0 24 24">
+                      //     <path d="M24 20.993V24H0v-2.996A14.977 14.977 0 0112.004 15c4.904 0 9.26 2.354 11.996 5.993zM16.002 8.999a4 4 0 11-8 0 4 4 0 018 0z" />
+                      //   </svg>
+                      // </span>
                     }
                     <label className="tracking-wide border-b md:border-t md:border-b-0 pt-2 ">{`${client.firstName} ${client.lastName}`}</label>
                   </div>

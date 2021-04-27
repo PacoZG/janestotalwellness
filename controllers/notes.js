@@ -3,7 +3,7 @@ const Note = require('../models/note')
 const User = require('../models/user')
 
 notesRouter.get('/', async (request, response) => {
-  const notes = await Note.find({}).populate('user', { username: 1, email: 1 })
+  const notes = await Note.find({}).populate('user', { username: 1 })
   response.status(201).json(notes.map(note => note.toJSON()))
 })
 
@@ -42,17 +42,17 @@ notesRouter.delete('/:id', async (request, response) => {
   }
 })
 
-// notesRouter.put('/:id', (request, response) => {
-//   const body = request.body
-//   const note = {
-//     ...body.note,
-//     date: new Date()
-//   }
-//   Note.findByIdAndUpdate(request.params.id, note, { new: true })
-//     .then(updatedNote => updatedNote.toJSON())
-//     .then(savedAndUpdatedNote => {
-//       response.status(201).json(savedAndUpdatedNote)
-//     })
-// })
+notesRouter.put('/:id', async (request, response) => {
+  const body = request.body
+  const note = {
+    ...body.note,
+    date: new Date()
+  }
+  await Note.findByIdAndUpdate(request.params.id, note, { new: true })
+    .then(updatedNote => updatedNote.toJSON())
+    .then(savedAndUpdatedNote => {
+      response.status(201).json(savedAndUpdatedNote)
+    })
+})
 
 module.exports = notesRouter

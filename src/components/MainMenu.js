@@ -33,7 +33,6 @@ const MainMenu = () => {
 
   const handleLogout = async () => {
     dispatch(userLogout())
-    localdb.removeUser()
     history.push('/frontpage')
   }
 
@@ -54,7 +53,7 @@ const MainMenu = () => {
 
                 <Link to="/programs" className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Programs</Link>
 
-                <Link to="/exercises" className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Exercises</Link>
+                <Link to="/exercises" className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Exercise library</Link>
 
                 <Link to="/recipes" className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Recipes</Link>
 
@@ -130,7 +129,7 @@ const MainMenu = () => {
 
                 <Link to="/programs" className="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium">Programs</Link>
 
-                <Link to="/exercises" className="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium">Exercises</Link>
+                <Link to="/exercises" className="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium">Exercise library</Link>
 
                 <Link to="/recipes" className="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium">Recipes</Link>
 

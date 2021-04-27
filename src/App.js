@@ -23,13 +23,9 @@ const App = () => {
   const dispatch = useDispatch()
   useEffect(() => {
     if (localdb.loadUser()) {
-      try {
-        dispatch(getUser(localdb.loadUser().id))
-        dispatch(initializeUsers())
-        dispatch(getAllNotes())
-      } catch (error) {
-        console.error(error.response.data)
-      }
+      dispatch(getUser(localdb.loadUser().id))
+      dispatch(initializeUsers())
+      dispatch(getAllNotes())
     }
   }, [dispatch])
 

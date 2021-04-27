@@ -4,7 +4,7 @@ import { useField } from '../hooks/index'
 import { useDispatch } from 'react-redux'
 import threes from '../img/threes.png'
 import { setNotification } from '../reducers/notificationReducer'
-import { userLogin } from '../reducers/loginReducer'
+import { userLogin, userLogout } from '../reducers/loginReducer'
 import loginService from '../services/login'
 
 const SigninForm = () => {
@@ -23,7 +23,7 @@ const SigninForm = () => {
     //console.log('CREDENTIALS: ', credentials)
     try {
       var user = await loginService.login(credentials)
-      //console.log('USER: ', user)
+      console.log('USER: ', user)
       dispatch(userLogin(user))
       dispatch(setNotification({
         message: `Welcome back ${user.username}`,
@@ -40,6 +40,52 @@ const SigninForm = () => {
       }))
     }
   }
+
+//   try {
+//     debugger
+//     var user = await loginService.login(credentials)
+//     console.log('USER: ', user)
+//     dispatch(userLogin(user))
+//     if (user.userType === 'client') {
+//       dispatch(setNotification({
+//         message: `Welcome back ${user.username}, your session will automatically expire in 15 minutes`,
+//         title: 'Success',
+//         show: true
+//       }))
+//       setAutoLogout()
+//     } else {
+//       dispatch(setNotification({
+//         message: `Welcome back ${user.username}`,
+//         title: 'Success',
+//         show: true
+//       }))
+//     }
+//     history.push('/frontpage')
+//   } catch (error) {
+//     //console.log('SIGN IN ERROR: ', error.response.data.error)
+//     dispatch(setNotification({
+//       message: `${error.response.data.error}`,
+//       title: 'Login error',
+//       show: true
+//     }))
+//   }
+// }
+
+// const setAutoLogout = () => {
+//   if (timeoutID) {
+//     clearTimeout(timeoutID)
+//   }
+//   timeoutID = setTimeout(() => {
+//     dispatch(userLogout())
+//     dispatch(setNotification({
+//       message: 'Your session has been expire, please log in again.',
+//       title: 'Session expired',
+//       show: true
+//     }))
+//     history.push('/frontpage')
+//   }, 900000)
+//   console.log('timeOut: ', timeoutID)
+// }
 
   return (
     <div className="static min-h-screen flex justify-center bg-gray-300 pt-20 py-12 px-4 sm:px-6 lg:px-8">

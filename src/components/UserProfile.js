@@ -3,7 +3,7 @@ import { useSelector } from 'react-redux'
 
 const UserProfile = () => {
   const user = useSelector(state => state.user)
-  //console.log('USER_PROFILE_INFO: ', user)
+  console.log('USER_PROFILE_INFO: ', user)
 
   const getAge = () => {
     const birthday = new Date(user.dateOfBirth)
@@ -76,7 +76,7 @@ const UserProfile = () => {
                 <dd className="pb-3 md:pt-4 text-lg text-gray-900">{user.background}</dd>
               </div>
               <div className="pl-8 md:pl-10 bg-gray-50 grid grid-flow-row md:grid-cols-2 md:py-2 md:px-6">
-                <dt className="pt-3 md:pt-4 text-lg font-medium text-gray-500">Motivation</dt>
+                <dt className="pt-3 md:pt-4 text-lg font-medium text-gray-500">Goals</dt>
                 <dd className="pb-3 md:pt-4 text-lg text-gray-900">{user.motivation}</dd>
               </div>
             </div>

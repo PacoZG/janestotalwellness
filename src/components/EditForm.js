@@ -10,7 +10,7 @@ import { setNotification } from '../reducers/notificationReducer'
 const EditForm = () => {
   const dispatch = useDispatch()
   const user = useSelector(state => state.user)
-  //console.log('USER_EDIT_INFO: ', user)
+  console.log('USER_EDIT_INFO: ', user)
   const loggedUser = localdb.loadUser()
 
   const [dropdown, setDropdown] = useState(false)
@@ -212,6 +212,10 @@ const EditForm = () => {
         }))
       }
     }
+  }
+
+  const eraseProfile = () => {
+    console.log('profile erase')
   }
 
   return (
@@ -447,6 +451,38 @@ const EditForm = () => {
                         className="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm font-medium rounded-md
                       bg-gray-500 text-sm text-white hover:bg-gray-300 focus-within:outline-none focus-within:ring-1">
                         Save</button>
+                    </div>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+          <div className="md:block" aria-hidden="true">
+            <div className="py-4 bg-gray-100">
+              <div className="border-t border-gray-200"></div>
+            </div>
+          </div>
+          <div className="static">
+            <div className="md:grid md:grid-cols-3 md:gap-6 bg-gray-100">
+              <div className="md:col-span-1">
+                <div className="px-4 sm:px-0">
+                  <h2 className="text-xl font-medium leading-6 text-gray-900">Erase my profile</h2>
+                </div>
+              </div>
+              <div className="mr-2 ml-2 mt-3 md:mt-5 md:col-span-2">
+                <form >
+                  <div className="shadow overflow-hidden md:rounded-md rounded-b-md">
+                    <div className="px-4 py-5 md:p-6 bg-gradient-to-br from-gray-300 via-white to-gray-300 ">
+                      <div className="grid grid-cols-6 gap-6">
+                        <p className="col-span-6 mt-1 p-2 text-lg text-gray-600">
+                          Please make that you really ned or want youre profile, all data will be lost after doing so.</p>
+                      </div>
+                    </div>
+                    <div className="px-4 py-3 bg-gray-400 text-right md:px-6">
+                      <button type="button" onClick={eraseProfile}
+                        className="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm font-medium rounded-md
+                      bg-gray-500 text-sm text-white hover:bg-gray-300 focus-within:outline-none focus-within:ring-1">
+                        Remove</button>
                     </div>
                   </div>
                 </form>

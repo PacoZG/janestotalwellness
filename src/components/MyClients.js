@@ -36,12 +36,12 @@ const MyClients = () => {
                   to={`/clients/${user.id}`}>
                   {user.imageURL ?
                     <img className="h-28 w-28 md:h-32 md:w-32 rounded-full bg-white p-1 transform hover:rotate-6 transition" src={user.imageURL} /> :
-                    // <img className="opacity-10 h-32 w-32 rounded-full bg-white p-1 transform hover:rotate-6 transition" src={bruja} />
-                    <span className="inline-block rounded-full h-28 w-28 md:h-32 md:w-32 transform hover:rotate-12 transition md:rounded-full overflow-hidden bg-gray-100">
-                      <svg className="h-full w-full text-gray-300" fill="currentColor" viewBox="0 0 24 24">
-                        <path d="M24 20.993V24H0v-2.996A14.977 14.977 0 0112.004 15c4.904 0 9.26 2.354 11.996 5.993zM16.002 8.999a4 4 0 11-8 0 4 4 0 018 0z" />
-                      </svg>
-                    </span>
+                    <img className="opacity-10 h-32 w-32 rounded-full bg-white p-1 transform hover:rotate-6 transition" src={bruja} />
+                    // <span className="inline-block rounded-full h-28 w-28 md:h-32 md:w-32 transform hover:rotate-12 transition md:rounded-full overflow-hidden bg-gray-100">
+                    //   <svg className="h-full w-full text-gray-300" fill="currentColor" viewBox="0 0 24 24">
+                    //     <path d="M24 20.993V24H0v-2.996A14.977 14.977 0 0112.004 15c4.904 0 9.26 2.354 11.996 5.993zM16.002 8.999a4 4 0 11-8 0 4 4 0 018 0z" />
+                    //   </svg>
+                    // </span>
                   }
                 </Link>
                 <span className="text-xs">{`${user.firstName}`}</span>
