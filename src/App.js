@@ -20,8 +20,6 @@ import Client from './components/Client'
 
 const App = () => {
   const dispatch = useDispatch()
-  //console.log('USER: ', userId)
-
   useEffect(() => {
     if (localdb.loadUser()) {
       try {

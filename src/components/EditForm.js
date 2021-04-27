@@ -24,7 +24,6 @@ const EditForm = () => {
   const [fileInputState, setFileInputState] = useState('')
   const [selectedFile, setSelecteFile] = useState('')
   const [imagePreview, setImagePreview] = useState()
-  const [userUpdated, setUserUpdated] = useState(false)
 
   // data to change
   const healthInfo = useField('text')
@@ -59,8 +58,10 @@ const EditForm = () => {
     if (imagePreview && selectedFile.size < 3000000) {
       const data = new FormData()
       data.append('image', selectedFile)
+      // debugger
       try {
         image = await imageService.postImage(data)
+        console.log('IMAGE: ', image)
       } catch (error) {
         console.log('ERROR: ', error.response.data)
       }
@@ -99,7 +100,7 @@ const EditForm = () => {
   const mobileNumber = useField('text')
   const city = useField('text')
   const zipCode = useField('text')
-
+  let userUpdated = false
 
   const [country, setCountry] = useState(null)
   const countries = [
@@ -111,7 +112,7 @@ const EditForm = () => {
     setDropdown(!dropdown)
   }
 
-  const editPersonalInfo = async () => {
+  const editPersonalInfo = () => {
     // debugger
     let userToUpdate = {
       ...user,
@@ -122,35 +123,32 @@ const EditForm = () => {
         ...userToUpdate,
         address: address.params.value,
       }
-      setUserUpdated(true)
+      userUpdated = true
     }
     if (city.params.value !== user.city && city.params.value.length > 4) {
       userToUpdate = {
         ...userToUpdate,
         city: city.params.value,
       }
-      setUserUpdated(true)
+      userUpdated = true
     }
     if (mobileNumber.params.value !== user.mobileNumber && mobileNumber.params.value.length > 7) {
       userToUpdate = {
         ...userToUpdate,
         mobileNumber: mobileNumber.params.value,
       }
-      setUserUpdated(true)
+      userUpdated = true
     }
     if (zipCode.params.value !== user.zipCode && zipCode.params.value.length === 5) {
       userToUpdate = {
         ...userToUpdate,
         zipCode: zipCode.params.value,
       }
-      setUserUpdated(true)
+      userUpdated = true
     }
     if (country !== user.country && country) {
-      userToUpdate = {
-        ...userToUpdate,
-        country: country,
-      }
-      setUserUpdated(true)
+      userToUpdate = { ...userToUpdate, country: country }
+      userUpdated = true
     }
 
     if (userUpdated) {
@@ -161,11 +159,12 @@ const EditForm = () => {
         title: 'Sucess',
         show: true
       }))
-      setUserUpdated(false)
+      userUpdated = false
       address.reset()
       mobileNumber.reset()
       city.reset()
       zipCode.reset()
+      setCountry(null)
     }
   }
 
@@ -173,7 +172,7 @@ const EditForm = () => {
     try {
       dispatch(updateUser(userToUpdate))
     } catch (error) {
-      console.log(error)
+      console.log(error.response.data.error)
     }
   }
 

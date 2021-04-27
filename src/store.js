@@ -6,14 +6,15 @@ import notificationReducer from './reducers/notificationReducer'
 import userReducer from './reducers/userReducer'
 import usersReducer from './reducers/usersReducer'
 import loginReducer from './reducers/loginReducer'
-import imageReducer from './reducers/imageReducer'
+import noteReducer from './reducers/noteReducer'
+
 
 const reducer = combineReducers({
   user: userReducer,
   users: usersReducer,
   notification: notificationReducer,
   loggedUser: loginReducer,
-  image: imageReducer
+  notes: noteReducer
 })
 
 const store = createStore(reducer, composeWithDevTools(applyMiddleware(thunk)))

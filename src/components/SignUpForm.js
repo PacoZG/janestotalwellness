@@ -206,7 +206,9 @@ const SignUpForm = () => {
                       {...password.params} required />
                   </div>
                   <div className="col-span-6 md:col-span-3">
-                    <label className="p-0 bottom-12 ml-2 bg-transparent text-gray-200 ">Re-type password</label>
+                    <label className="p-0 bottom-12 ml-2 bg-transparent text-gray-200 ">Re-type password<span className="text-sm text-gray-300 pl-2">{
+                              passwordConfirm.params.value === password.params.value && passwordConfirm.params.value.length > 7 ? '(passwords matched)' : ''}</span>
+                    </label>
                     <input className="focus:border-gray-500 block h-12 w-full shadow-sm md:text-sm border-gray-300 rounded-md placeholder-gray-200"
                       pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters"
                       {...passwordConfirm.params} required />

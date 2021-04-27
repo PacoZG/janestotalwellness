@@ -4,7 +4,7 @@ const User = require('../models/user')
 const jwt = require('jsonwebtoken')
 
 usersRouter.get('/', async (request, response) => {
-  const users = await User.find({})
+  const users = await User.find({}).populate('notes', { title: 1, content: 1, date: 1 })
   response.status(201).json(users.map(user => user.toJSON()))
 })
 
@@ -34,12 +34,13 @@ usersRouter.post('/', async (request, response) => {
 
 usersRouter.put('/:id', async (request, response) => {
   const body = request.body
+  console.log('ID: ', request.params.id)
   const user = {
     ...body,
     updatedAt: new Date()
   }
-  
-  //console.log('UPDATED USER IN SERVER: ', user)
+
+  console.log('UPDATED USER IN SERVER: ', user)
   await User.findByIdAndUpdate(request.params.id, user, { new: true })
     .then(updatedUser => updatedUser.toJSON())
     .then(savedAndUpdatedUser => {

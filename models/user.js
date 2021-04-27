@@ -2,6 +2,18 @@ const mongoose = require('mongoose')
 const uniqueValidator = require('mongoose-unique-validator')
 
 const userSchema = new mongoose.Schema({
+  notes: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'Note'
+    }
+  ],
+  feedback: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'Feedback'
+    }
+  ],  
   createdAt: Date,
   updatedAt: Date,
   userType: String,

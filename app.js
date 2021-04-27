@@ -11,6 +11,7 @@ const middleware = require('./utils/middleware')
 const usersRouter = require('./controllers/users')
 const loginRouter = require('./controllers/login')
 const imageRouter = require('./controllers/images')
+const notesRouter = require('./controllers/notes')
 
 const url = config.MONGODB_URI
 console.log('Connected to ', url)
@@ -34,6 +35,7 @@ app.use(middleware.requestLogger)
 app.use('/api/images', imageRouter)
 app.use('/api/users', usersRouter)
 app.use('/api/login', loginRouter)
+app.use('/api/notes', notesRouter)
 
 app.get('/helloworld', (request, response) => {
   response.send('<h1>Hello World!</h1>')

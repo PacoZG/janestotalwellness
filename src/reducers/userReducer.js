@@ -36,7 +36,7 @@ export const getUser = (id) => {
 }
 
 export const updateUser = (user) => {
-  //console.log('USER IN REDUCER: ', user)
+  console.log('USER IN REDUCER: ', user)
   return async (dispatch) => {
     const updatedUser = await userService.updateUser(user)
     dispatch({

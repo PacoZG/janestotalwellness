@@ -12,8 +12,7 @@ loginRouter.post('/', async (request, response) => {
     ? false
     : await bcrypt.compare(body.password, user.passwordHash)
 
-  console.log()
-  console.log('PASSWORD: ', passwordCorrect)
+  //console.log('PASSWORD: ', passwordCorrect)
 
   if (!(user && passwordCorrect)) {
     return response.status(401).json({
@@ -35,7 +34,7 @@ loginRouter.post('/', async (request, response) => {
 loginRouter.put('/', async (request, response) => {
   const body = request.body
   //console.log('BODY: ', body)
-  const decodedToken = jwt.verify(request.token, process.env.SECRET)
+  const decodedToken = jwt.verify(body.token, process.env.SECRET)
   //console.log('DECODED TOKEN: ', decodedToken.id)
   const user = await User.findById(decodedToken.id)
   //console.log('USER_FOUND: ', user)
