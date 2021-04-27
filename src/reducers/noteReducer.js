@@ -1,11 +1,14 @@
 import noteService from '../services/notes'
 
 const noteReducer = (state = [], action) => {
-  console.log('NOTES STATE IN BLOGREDUCER:', state)
-  console.log('NOTES ACTION.TYPE IN BLOGREDUCER:', action)
+  console.log('NOTES STATE IN NOTEREDUCER:', state)
+  console.log('NOTES ACTION.TYPE IN NOTEREDUCER:', action)
   switch (action.type) {
-  case 'NEW_NOTE':
+  case 'GET_NOTES':
     return action.data
+  case 'NEW_NOTE':
+    console.log(state.concat(action.data))
+    return state.concat(action.data)
   case 'DELETE':
     return action.data
   case 'UPDATE_NOTE':
@@ -15,12 +18,21 @@ const noteReducer = (state = [], action) => {
   }
 }
 
-export const createNote = (data) => {
+export const getAllNotes = () => {
   return async (dispatch) => {
-    const newNote = await noteService.create(data)
-    const newNoteUser = { ...newNote, user: data.clientId }
-    console.log('NEW NOTE IN REDUCER: ', newNote)
-    console.log('NEW NOTE IN REDUCER: ', newNoteUser)
+    const notes = await noteService.getAll()
+    dispatch({
+      type: 'GET_NOTES',
+      data: notes
+    })
+  }
+}
+
+export const createNote = (newNote) => {
+  console.log('NEW NOTE IN REDUCER: ', newNote)
+  return async (dispatch) => {
+    const newNoteUser = { ...newNote, user: newNote.user }
+    console.log('NEW USER NOTE IN REDUCER: ', newNoteUser)
     dispatch({
       type: 'NEW_NOTE',
       data: newNoteUser,
@@ -39,14 +51,15 @@ export const createNote = (data) => {
 //   }
 // }
 
-// export const deleteNote = (blog) => {
-//   return async (dispatch) => {
-//     await blogService.remove(blog.id)
-//     dispatch({
-//       type: 'DELETE',
-//       data: blog.id,
-//     })
-//   }
-// }
+export const deleteNote = (id) => {
+  console.log('ID RECEIVED IN REDUCER: ', id)
+  return async (dispatch) => {
+    await noteService.remove(id)
+    dispatch({
+      type: 'DELETE',
+      data: id,
+    })
+  }
+}
 
 export default noteReducer

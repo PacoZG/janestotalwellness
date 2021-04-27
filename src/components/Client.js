@@ -5,7 +5,8 @@ import { useParams } from 'react-router-dom'
 import { useField } from '../hooks/index'
 import { setNotification } from '../reducers/notificationReducer'
 import { updateUser } from '../reducers/userReducer'
-import { createNote } from '../reducers/noteReducer'
+import { createNote, deleteNote } from '../reducers/noteReducer'
+import noteService from '../services/notes'
 
 
 const Client = () => {
@@ -13,15 +14,17 @@ const Client = () => {
   const dispatch = useDispatch()
   //console.log('CLIENT ID: ', paramId)
   const client = useSelector(state => state.users.find(u => u.id === paramId))
-  const newNote = useSelector(state => state.notes)
-  //console.log('CLIENT FOUND: ', client)
-  console.log('NEW NOTE: ', newNote)
-  // useEffect(() => {
-  //   if (newNote) {
-  //     client.notes.concat(newNote)
-  //   }
-  // }, [newNote])
+  console.log('CLINET: ', client)
+  const allNotes = useSelector(state => state.notes)
+  const [notes, setNotes] = useState([])
   
+  useEffect(() => {
+    if (client) {
+      setNotes(allNotes.filter(note => note.user.id === client.id))
+    }
+  }, [])
+  console.log('NOTES: ', allNotes)
+
 
   const height = useField('text')
   const weight = useField('text')
@@ -39,10 +42,10 @@ const Client = () => {
     return age
   }
 
-  const getDate = (userDate) => {
+  const getDate = (objectDate) => {
     const months = ["Jan", "Fab", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
     const weekDays = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
-    const date = new Date(userDate)
+    const date = new Date(objectDate)
     const day = date.getDate() < 10 ? '0' + date.getDate() : date.getDate()
     const hours = date.getHours() < 10 ? '0' + date.getHours() : date.getHours()
     const minutes = date.getMinutes() < 10 ? '0' + date.getMinutes() : date.getMinutes()
@@ -90,7 +93,7 @@ const Client = () => {
     try {
       dispatch(updateUser(userToUpdate))
     } catch (error) {
-      console.log(error.response.data.error)
+      console.log(error)
     }
   }
 
@@ -102,27 +105,32 @@ const Client = () => {
         title: title.params.value,
         content: content.params.value
       },
-      userType: localdb.loadUser().userType
+      loggedUserType: localdb.loadUser().userType
     }
     //console.log('DATA TO SEND: ', data)
     if (title.params.value.length > 5 && content.params.value.length > 29) {
+      debugger
       try {
-        dispatch(createNote(data))
+        const newNote = await noteService.create(data)
+        console.log('RESPONSE RECEIVED IN CLIENT: ', newNote)
+        setNotes(notes.concat(newNote))
+        dispatch(createNote(newNote))
         dispatch(setNotification({
           message: 'Note has been added',
           title: 'Sucess',
           show: true
         }))
-        client.notes.concat(newNote)
-        console.log('CLIENTS NOTES: ', client.notes)
         // title.reset()
         // content.reset()
       } catch (error) {
-        console.log(error.response.data.error)
+        console.log(error.response)
       }
     }
   }
 
+  const removeNote = (id) => {
+    dispatch(deleteNote(id))
+  }
 
   if (!client) {
     return (
@@ -256,13 +264,13 @@ const Client = () => {
             </div>
           </div>
           <h2 className="text-lg text-center font-semibold p-2 pt-3">Notes</h2>
-          {client.notes.map(note =>
+          {notes.map(note =>
             <div key={note.id} className="p-2 border rounded-sm shadow-sm mt-2">
               <p className="text-lg font-semibold pl-2">{note.title}</p>
               <p className="text-xs text-gray-400 border-b pb-1 pl-2">{getDate(note.date)}</p>
               <p className="p-2">{note.content}</p>
               <div className="px-3 py-2 bg-gray-400 text-right rounded-b-md space-x-2">
-                <button type="button"
+                <button type="button" onClick={() => removeNote(note.id)}
                   className="inline-flex justify-center py-1 px-3 border border-transparent shadow-sm font-medium rounded-md
                   bg-gray-500 text-sm text-white hover:bg-gray-300 focus-within:outline-none focus-within:ring-1">
                   Delete</button>

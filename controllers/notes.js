@@ -22,7 +22,7 @@ notesRouter.post('/', async (request, response) => {
   const savedNote = await note.save()
   //console.log('SAVED NOTE: ', savedNote)
   user.notes = user.notes.concat(savedNote._id)
-  if (body.userType === 'admin') {
+  if (body.loggedUserType === 'admin') {
     await user.save()
     response.status(201).json(savedNote.toJSON())
   } else {
@@ -30,23 +30,17 @@ notesRouter.post('/', async (request, response) => {
   }
 })
 
-// notesRouter.delete('/:id', async (request, response) => {
-//   const body = request.body
-//   const decodedToken = jwt.verify(body.token, process.env.SECRET)
-//   if (!request.token || !decodedToken.id) {
-//     return response.status(401).json({ error: 'token missing or invalid' })
-//   }
-
-//   const note = await Note.findById(request.params.id)
-//   const userId = decodedToken.id
-//   if (note.user.toString() === userId.toString()) {
-//     await Blog.findByIdAndRemove(request.params.id)
-//     response.status(204).json().end()
-//   }
-//   else {
-//     return response.status(401).json({ error: 'Only the admins can delete the note' })
-//   }
-// })
+notesRouter.delete('/:id', async (request, response) => {
+  const note = await Note.findById(request.params.id)
+  console.log('NOTE TO DELETE: ', note)
+  if (note) {
+    await Note.findByIdAndRemove(request.params.id)
+    response.status(204).json().end()
+  }
+  else {
+    return response.status(401).json({ error: 'Note no longer in the db' })
+  }
+})
 
 // notesRouter.put('/:id', (request, response) => {
 //   const body = request.body
