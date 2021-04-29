@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { useField } from '../hooks/index'
 import { useDispatch } from 'react-redux'
-import { createUser } from '../reducers/userReducer'
+import { createUser } from '../reducers/usersReducer'
 import { setNotification } from '../reducers/notificationReducer'
 import userService from '../services/user'
 
@@ -125,9 +125,6 @@ const SignUpForm = () => {
             title: 'Email error',
             show: true
           }))
-          setModalMessage(`\'${email.params.value}' is already in our database, try with a different email.`)
-          setTitle('Email error')
-          setShowModal(true)
         } else if (message.includes('Username has to')) {
           dispatch(setNotification({
             message: message.substring(34),

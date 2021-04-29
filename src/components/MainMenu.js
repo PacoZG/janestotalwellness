@@ -1,15 +1,14 @@
 import React, { useState } from 'react'
 import threes from '../img/threes.png'
 import { Link, useHistory } from 'react-router-dom'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { userLogout } from '../reducers/loginReducer'
-import localdb from '../utils/localdb'
 import Modal from './Modal'
 
 const MainMenu = () => {
-  const dispatch = useDispatch()
   const history = useHistory()
-  const loggedUser = localdb.loadUser()
+  const dispatch = useDispatch()
+  const loggedUser = useSelector(state => state.loggedUser)
   const [dropdown, setDropdown] = useState(false)
   const [background, setBackground] = useState(false)
   const [visibleMenu, setVisibleMenu] = useState(false)
@@ -31,7 +30,7 @@ const MainMenu = () => {
     setVisibleMenu(!visibleMenu)
   }
 
-  const handleLogout = async () => {
+  const handleLogout = () => {
     dispatch(userLogout())
     history.push('/frontpage')
   }

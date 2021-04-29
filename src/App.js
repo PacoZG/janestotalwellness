@@ -2,9 +2,7 @@ import React, { useEffect } from 'react';
 import { useDispatch } from 'react-redux'
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 import { initializeUsers } from './reducers/usersReducer'
-import { getUser } from './reducers/userReducer'
 import { getAllNotes } from './reducers/noteReducer'
-import localdb from './utils/localdb'
 
 import UserProfile from './components/UserProfile'
 import SignInForm from './components/SignInForm'
@@ -22,11 +20,8 @@ import Client from './components/Client'
 const App = () => {
   const dispatch = useDispatch()
   useEffect(() => {
-    if (localdb.loadUser()) {
-      dispatch(getUser(localdb.loadUser().id))
-      dispatch(initializeUsers())
-      dispatch(getAllNotes())
-    }
+    dispatch(initializeUsers())
+    dispatch(getAllNotes())
   }, [dispatch])
 
   return (

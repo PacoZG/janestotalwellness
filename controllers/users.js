@@ -57,8 +57,8 @@ usersRouter.get('/:id', async (request, response) => {
   }
 })
 
-usersRouter.delete('/:id', async (request, response) => {
-  await User.findByIdAndDelete(reques.params.id)
+usersRouter.delete('/:id', async (request, _response) => {
+  await User.findByIdAndDelete(request.params.id)
   response.status(204).end()
 })
 

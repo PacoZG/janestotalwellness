@@ -7,6 +7,12 @@ const getConfig = () => {
   }
 }
 
+const getAll = async () => {
+  const response = await axios.get(baseUrl)
+  //console.log('RESPONSE: ', response)
+  return response.data
+}
+
 const createUser = async (newUser) => {
   //console.log('USER_TO_SAVE: ', newUser)
     const response = await axios.post(baseUrl, newUser)
@@ -21,10 +27,16 @@ const getUser = async (id) => {
 }
 
 const updateUser = async (user) => {
-  console.log('USER TO UPDATE ID: ', user.id)
+  // console.log('USER TO UPDATE ID: ', user.id)
   const response = await axios.put(`${baseUrl}/${user.id}`, user)
   console.log('RESPONSE: ', response)
   return response.data
-} 
+}
 
-export default { createUser, getUser, updateUser }
+const removeUser = async (user) => {
+  console.log('USER TO DELETE IN SERVICE: ', user)
+  const response = await axios.delete(`${baseUrl}/${user.id}`)
+  return response.data
+}
+
+export default { getAll, createUser, getUser, updateUser, removeUser }

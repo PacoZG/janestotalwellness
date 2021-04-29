@@ -7,14 +7,12 @@ const noteReducer = (state = [], action) => {
   case 'GET_NOTES':
     return action.data
   case 'NEW_NOTE':
-    debugger
-    console.log(state.concat(action.data))
-    const updatedList = state.concat(action.data)
-    return updatedList 
+    return state.concat(action.data)
   case 'DELETE':
     return state.filter(note => note.id !== action.data)
   case 'UPDATE_NOTE':
-    return 
+    const id = action.data.id
+    return state.map(note => note.id !== id ? note : action.data)
   default:
     return state
   }
@@ -43,6 +41,7 @@ export const createNote = (newNote) => {
 }
 
 export const updateNote = (updatedNote) => {
+  console.log('NOTE TO UPDATE: ', updatedNote)
   return async (dispatch) => {
     const changedNote = await noteService.update(updatedNote)
     dispatch({

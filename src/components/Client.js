@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { useParams } from 'react-router-dom'
 import { useField } from '../hooks/index'
 import { setNotification } from '../reducers/notificationReducer'
-import { updateUser } from '../reducers/userReducer'
+import { updateUser } from '../reducers/usersReducer'
 import { createNote, updateNote, deleteNote } from '../reducers/noteReducer'
 import noteService from '../services/notes'
 import bruja from '../img/bruja.jpg'
@@ -15,20 +15,9 @@ const Client = () => {
   const dispatch = useDispatch()
   //console.log('CLIENT ID: ', paramId)
   const client = useSelector(state => state.users.find(u => u.id === paramId))
+  const notes = useSelector(state => state.notes)
   console.log('CLIENT: ', client)
-//   const allNotes = useSelector(state => state.notes)
-//   const [notes, setNotes] = useState([])
-
-// // useEffect does not render when reloading the page
-//   useEffect(() => {
-//     console.log('useEffect')
-//     if (client) {
-//       // debugger
-//       console.log('------------------', client.id)
-//       setNotes(allNotes.filter(note => note.user.id === client.id))
-//     }
-//   }, [])
-//   console.log('NOTES: ', notes)
+  console.log('NOTES: ', notes)
 
   const height = useField('text')
   const weight = useField('text')
@@ -60,7 +49,7 @@ const Client = () => {
     return creationDate
   }
 
-  const editClientsInfo = (event) => {
+  const handleClientsInfo = (event) => {
     event.preventDefault()
     let clientToUpdate = { ...client }
     let userUpdated = false
@@ -81,7 +70,7 @@ const Client = () => {
     }
     console.log('USER TO UPDATED: ', clientToUpdate)
     if (userUpdated) {
-      updateClient(clientToUpdate)
+      handleUpdateClient(clientToUpdate)
       dispatch(setNotification({
         message: 'Your profile has been successfully updated.',
         title: 'Sucess',
@@ -93,7 +82,7 @@ const Client = () => {
     }
   }
 
-  const updateClient = (userToUpdate) => {
+  const handleUpdateClient = (userToUpdate) => {
     try {
       dispatch(updateUser(userToUpdate))
     } catch (error) {
@@ -101,7 +90,7 @@ const Client = () => {
     }
   }
 
-  const saveNote = async (event) => {
+  const handleSaveNote = async (event) => {
     event.preventDefault()
     const data = {
       clientId: client.id,
@@ -117,6 +106,7 @@ const Client = () => {
       try {
         const newNote = await noteService.create(data)
         console.log('RESPONSE RECEIVED IN CLIENT: ', newNote)
+        client.notes = client.notes.concat(newNote)
         // setNotes(notes.concat(newNote)) // this hook does not respond since  
         dispatch(createNote(newNote))
         dispatch(setNotification({
@@ -126,21 +116,42 @@ const Client = () => {
         }))
         title.reset()
         content.reset()
-        location.reload()
+        // location.reload()
       } catch (error) {
         console.log(error.response)
       }
     }
   }
 
-  const removeNote = (id) => {
-    setNotes(notes.filter(note => note.id !== id))
+  const handleRemoveNote = (id) => {
+    // setNotes(notes.filter(note => note.id !== id))
+    // const data = { noteId: id, userId: client.id }
+    client.notes = client.notes.filter(note => note.id !== id)
     dispatch(deleteNote(id))
-    location.reload()
+    // location.reload()
   }
 
-  const updateANote = () => {
-    console.log('UPDATED_NOTE: ')
+  const handleUpdateNote = async (id) => {
+    const noteToUpdate = notes.find(note => note.id === id)
+    if (title.params.value.length > 5 && content.params.value.length > 29) {
+      const updatedNote = {
+        ...noteToUpdate, title: title.params.value, content: content.params.value
+      }
+      try {
+        console.log('CHANGED NOTE:', updatedNote)
+        dispatch(updateNote(updatedNote))
+        client.notes = client.notes.map(note => note.id !== updatedNote.id ? note : updatedNote)
+        dispatch(setNotification({
+          message: 'Note has been updated',
+          title: 'Sucess',
+          show: true
+        }))
+        title.reset()
+        content.reset()
+      } catch (error) {
+        console.log(error.message)
+      }
+    }
   }
 
   if (!client) {
@@ -239,7 +250,7 @@ const Client = () => {
               </div>
             </div>
             <div className="px-3 py-2 bg-gray-400 text-right rounded-b-md">
-              <button type="button" onClick={editClientsInfo}
+              <button type="button" onClick={handleClientsInfo}
                 className="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm font-medium rounded-md
                       bg-gray-500 text-sm text-white hover:bg-gray-300 focus-within:outline-none focus-within:ring-1">
                 Save</button>
@@ -268,7 +279,7 @@ const Client = () => {
               </div>
             </div>
             <div className="px-3 py-2 bg-gray-400 text-right rounded-b-md">
-              <button type="button" onClick={saveNote}
+              <button type="button" onClick={handleSaveNote}
                 className="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm font-medium rounded-md
                   bg-gray-500 text-sm text-white hover:bg-gray-300 focus-within:outline-none focus-within:ring-1">
                 Save</button>
@@ -281,11 +292,11 @@ const Client = () => {
               <p className="text-xs text-gray-400 border-b pb-1 pl-2">{getDate(note.date)}</p>
               <p className="p-2">{note.content}</p>
               <div className="px-3 py-2 bg-gray-400 text-right rounded-b-md space-x-2">
-                <button type="button" onClick={() => removeNote(note.id)}
+                <button type="button" onClick={() => handleRemoveNote(note.id)}
                   className="inline-flex justify-center py-1 px-3 border border-transparent shadow-sm font-medium rounded-md
                   bg-gray-500 text-sm text-white hover:bg-gray-300 focus-within:outline-none focus-within:ring-1">
                   Delete</button>
-                <button type="button" onClick={() => updateANote()}
+                <button type="button" onClick={() => handleUpdateNote(note.id)}
                   className="inline-flex justify-center py-1 px-3 border border-transparent shadow-sm font-medium rounded-md
                   bg-gray-500 text-sm text-white hover:bg-gray-300 focus-within:outline-none focus-within:ring-1">
                   Update</button>

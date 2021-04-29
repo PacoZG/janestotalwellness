@@ -7,7 +7,7 @@ const MyClients = () => {
   const dispatch = useDispatch()
   const history = useHistory()
   const users = useSelector(state => state.users).filter(user => user.userType === 'client')
-  console.log('USERS: ', users)
+  //console.log('USERS: ', users)
 
 
   if (!users) {
