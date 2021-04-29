@@ -67,7 +67,7 @@ const SigninForm = () => {
           show: true
         }))
       }
-      // history.push('/frontpage')
+      history.push('/frontpage')
     } catch (error) {
       //console.log('SIGN IN ERROR: ', error.response.data.error)
       dispatch(setNotification({
@@ -88,7 +88,7 @@ const SigninForm = () => {
       console.log(showModal)
       setShowModal(!showModal)
       console.log(showModal)
-    }, 10000)
+    }, 1800000)
   }
 
   const handleResetTimers = () => {
@@ -102,7 +102,7 @@ const SigninForm = () => {
         show: true
       }))
       history.push('/frontpage')
-    }, 10000)
+    }, 1800000)
     setShowModal(!showModal)
   }
 
@@ -185,7 +185,7 @@ const SigninForm = () => {
                 </svg>
               </div>
               <p className="my-4 text-blueGray-500 text-lg leading-relaxed">
-                You have been logeed in for 30 minutes, would you like to stay for 30 more minutes or logout now?
+                You have been logged in for 30 minutes, would you like to stay for 30 more minutes or logout now?
                   </p>
             </div>
             <div className="flex items-center justify-end p-3 pr-4 border-t border-solid border-blueGray-200 rounded-b">
@@ -194,7 +194,7 @@ const SigninForm = () => {
                 type="button" onClick={() => handleLogout()} >Logout now</button>
               <button className="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 text-base font-medium 
                     text-white focus:outline-none bg-gray-500 hover:bg-gray-400 focus:ring focus:ring-offset-1 focus:ring-gray-800 transform transition active:bg-gray-800 md:ml-3 md:w-auto md:text-md"
-                type="button" onClick={() => handleResetTimers()} >Stay loggedin</button>
+                type="button" onClick={() => handleResetTimers()} >Stay logged in</button>
             </div>
           </div>
         </div>

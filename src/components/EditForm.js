@@ -349,28 +349,28 @@ const EditForm = () => {
                         <div className="col-span-6 sm:col-span-3">
                           <label className="block text-sm font-medium text-gray-700">First name</label>
                           <div name="first_name" id="first_name" type="text"
-                            className="w-full shadow-sm sm:text-sm border-gray-300 bg-gradient-to-r from-gray-100 via-white to-gray-100 rounded-md capitalize">
+                            className="w-full w-full shadow-sm md:text-sm border-gray-200 bg-transparent rounded-md capitalize">
                             {user.firstName}
                           </div>
                         </div>
                         <div className="col-span-6 md:col-span-3">
                           <label className="block text-sm font-medium text-gray-700">Last name</label>
                           <div name="last_name" id="last_name" type="text"
-                            className="w-full shadow-sm sm:text-sm border-gray-300 bg-gradient-to-r from-gray-100 via-white to-gray-100 rounded-md capitalize">
+                            className="w-full shadow-sm md:text-sm border-gray-200 bg-transparent rounded-md capitalize">
                             {user.lastName}
                           </div>
                         </div>
                         <div className="col-span-6 md:col-span-3">
                           <label className="block text-sm font-medium text-gray-700">Username</label>
                           <div name="username" id="username" type="text"
-                            className="w-full shadow-sm sm:text-sm border-gray-300 bg-gradient-to-r from-gray-100 via-white to-gray-100 rounded-md" >
+                            className="w-full shadow-sm md:text-sm border-gray-200 bg-transparent rounded-md" >
                             {user.username}
                           </div>
                         </div>
                         <div className="col-span-6 md:col-span-3">
                           <label className="block text-sm font-medium text-gray-700">Email address</label>
                           <div name="email_address" id="email_address" type="text"
-                            className="w-full shadow-sm sm:text-sm border-gray-300 bg-gradient-to-r from-gray-100 via-white to-gray-100 rounded-md">
+                            className="w-full shadow-sm md:text-sm border-gray-200 bg-transparent rounded-md">
                             {user.email}
                           </div>
                         </div>
