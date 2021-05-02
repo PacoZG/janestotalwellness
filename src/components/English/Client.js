@@ -1,13 +1,13 @@
-import React, { useEffect, useState } from 'react'
-import localdb from '../utils/localdb'
+import React from 'react'
+import localdb from '../../utils/localdb'
 import { useDispatch, useSelector } from 'react-redux'
 import { useParams } from 'react-router-dom'
-import { useField } from '../hooks/index'
-import { setNotification } from '../reducers/notificationReducer'
-import { updateUser } from '../reducers/usersReducer'
-import { createNote, updateNote, deleteNote } from '../reducers/noteReducer'
-import noteService from '../services/notes'
-import bruja from '../img/bruja.jpg'
+import { useField } from '../../hooks/index'
+import { setNotification } from '../../reducers/notificationReducer'
+import { updateUser } from '../../reducers/usersReducer'
+import { createNote, updateNote, deleteNote } from '../../reducers/noteReducer'
+import noteService from '../../services/notes'
+import bruja from '../../img/bruja.jpg'
 
 
 const Client = () => {
@@ -54,7 +54,7 @@ const Client = () => {
   }
 
   const getDate = (objectDate) => {
-    const months = ["Jan", "Fab", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
+    const months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
     const weekDays = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
     const date = new Date(objectDate)
     const day = date.getDate() < 10 ? '0' + date.getDate() : date.getDate()
@@ -72,21 +72,21 @@ const Client = () => {
     let clientToUpdate = { ...client }
     let userUpdated = false
     //debugger
-    console.log('USER TO UPDATE: ', height.params.value.length)
-    console.log(parseInt(height.params.value) === client.height)
+    // console.log('USER TO UPDATE: ', height.params.value.length)
+    // console.log(parseInt(height.params.value) === client.height)
     if (parseInt(height.params.value) !== client.height && height.params.value.length > 1) {
       clientToUpdate = { ...clientToUpdate, height: parseInt(height.params.value) }
-      console.log(clientToUpdate)
+      // console.log(clientToUpdate)
       userUpdated = true
-      console.log('USER UPDATE: ', userUpdated)
+      // console.log('USER UPDATE: ', userUpdated)
     }
     if (parseInt(weight.params.value) !== client.weight && weight.params.value.length > 0) {
       clientToUpdate = { ...clientToUpdate, weight: parseInt(weight.params.value) }
-      console.log(clientToUpdate)
+      // console.log(clientToUpdate)
       userUpdated = true
-      console.log('USER UPDATED: ', userUpdated)
+      // console.log('USER UPDATED: ', userUpdated)
     }
-    console.log('USER TO UPDATED: ', clientToUpdate)
+    // console.log('USER TO UPDATED: ', clientToUpdate)
     if (userUpdated) {
       handleUpdateClient(clientToUpdate)
       dispatch(setNotification({
@@ -123,7 +123,7 @@ const Client = () => {
       // debugger
       try {
         const newNote = await noteService.create(data)
-        console.log('RESPONSE RECEIVED IN CLIENT: ', newNote)
+        // console.log('RESPONSE RECEIVED IN CLIENT: ', newNote)
         client.notes = client.notes.concat(newNote)
         // setNotes(notes.concat(newNote)) // this hook does not respond since  
         dispatch(createNote(newNote))
@@ -156,7 +156,7 @@ const Client = () => {
         ...noteToUpdate, title: title.params.value, content: content.params.value
       }
       try {
-        console.log('CHANGED NOTE:', updatedNote)
+        // console.log('CHANGED NOTE:', updatedNote)
         dispatch(updateNote(updatedNote))
         client.notes = client.notes.map(note => note.id !== updatedNote.id ? note : updatedNote)
         dispatch(setNotification({
@@ -224,14 +224,16 @@ const Client = () => {
                 {client.gender}</p>
             </div>
             <div className="block col-span-3">
-              <p className="text-md"><span className="font-semibold">Age: </span>
-                {getAge()} years old</p>
+              <p className="text-md"><span className="font-semibold">Age: </span>{getAge()} years old</p>
             </div>
             <div className="block col-span-3">
-              <p className="text-md"><span className="font-semibold">Height: </span>{client.height}  cm</p>
+              <p className="text-md"><span className="font-semibold">Height: </span>{client.height}cm</p>
             </div>
             <div className="block col-span-3">
-              <p className="text-md"><span className="font-semibold">Weight: </span>{client.weight} kg</p>
+              <p className="text-md"><span className="font-semibold">Weight: </span>{client.weight}kg</p>
+            </div>
+            <div className="block col-span-6">
+              <p className="text-md"><span className="font-semibold">Approximate BMI: </span>{getBMI()}</p>
             </div>
             <div className="block col-span-6">
               <p className="text-md"><span className="font-semibold">Member since: </span>{getDate(client.createdAt)}</p>
@@ -247,28 +249,29 @@ const Client = () => {
               <p className="text-md w-full overflow-ellipsis">{client.motivation}</p>
             </div>
             <div className="block col-span-6">
-              <label className="text-left font-semibold">Health information</label>
+              <label className="text-left font-semibold">Health report</label>
               <p className="text-md w-full overflow-ellipsis">{client.healthInfo ? client.healthInfo : <span className="text-red-400">Not yet provided</span>}</p>
             </div>
           </div>
           <div className="border-b-2 pb-3">
             <div className="p-3">
               <h2 className="font-semibold text-center">Update biometrics</h2>
+              <p className="mt-1 text-xs text-center text-gray-600">Approximate BMI will be automatically calculated.</p>
             </div>
             <div className="grid grid-cols-6 gap-1 place-items-start border-b ">
               <div className="col-span-3">
                 <label className="text-sm font-medium text-gray-700 pl-1">Height</label>
-                <input name="height" id="height" {...height.params}
+                <input name="height" id="mobile-height" {...height.params}
                   className="focus:border-gray-500 block w-full shadow-sm border-gray-300 rounded-t-md" />
               </div>
               <div className="col-span-3">
                 <label className="text-sm font-medium text-gray-700 pl-1">Weight</label>
-                <input name="weight" id="weight" {...weight.params}
+                <input name="weight" id="mobile-weight" {...weight.params}
                   className="focus:border-gray-500 block w-full shadow-sm border-gray-300 rounded-t-md" />
               </div>
             </div>
             <div className="px-3 py-2 bg-gray-400 text-right rounded-b-md">
-              <button type="button" onClick={handleClientsInfo}
+              <button type="button" id="mobile-saveInfo" onClick={handleClientsInfo}
                 className="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm font-medium rounded-md
                       bg-gray-500 text-sm text-white hover:bg-gray-300 focus-within:outline-none focus-within:ring-1">
                 Save</button>
@@ -282,7 +285,7 @@ const Client = () => {
               <div className="">
                 <div className="">
                   <label className="block text-sm font-medium text-gray-700 pl-1">Title</label>
-                  <input name="title" id="title" minLength="5" maxLength="30" {...title.params}
+                  <input name="title" id="mobile-title" minLength="5" maxLength="30" {...title.params}
                     className="mt-1 focus:border-gray-500 block w-full shadow-sm md:text-sm border-gray-300 rounded-md" />
                 </div>
                 <label className="text-sm font-medium text-gray-700 pl-2 pt-2"> Note content
@@ -292,35 +295,38 @@ const Client = () => {
                     <span className="pl-1 text-xs font-normal">{`(${content.params.value.length}/30 characters minimum)`}</span>
                   }
                 </label>
-                <textarea name="height" id="height" rows="10" minLength="30" maxLength="500" placeholder="30 characters minimum" {...content.params}
+                <textarea name="height" id="mobile-content" rows="10" minLength="30" maxLength="500" placeholder="30 characters minimum" {...content.params}
                   className="focus:border-gray-500 block w-full shadow-sm border-gray-300 rounded-t-md h-32 placeholder-gray-200" />
               </div>
             </div>
             <div className="px-3 py-2 bg-gray-400 text-right rounded-b-md">
-              <button type="button" onClick={handleSaveNote}
+              <button type="button" id="mobile-saveNote" onClick={handleSaveNote}
                 className="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm font-medium rounded-md
                   bg-gray-500 text-sm text-white hover:bg-gray-300 focus-within:outline-none focus-within:ring-1">
                 Save</button>
             </div>
           </div>
-          <h2 className="text-lg text-center font-semibold p-2 pt-3">Notes</h2>
-          {client.notes.map(note =>
-            <div key={note.id} className="p-2 border rounded-sm shadow-sm mt-2">
-              <p className="text-lg font-semibold pl-2">{note.title}</p>
-              <p className="text-xs text-gray-400 border-b pb-1 pl-2">{getDate(note.date)}</p>
-              <p className="p-2">{note.content}</p>
-              <div className="px-3 py-2 bg-gray-400 text-right rounded-b-md space-x-2">
-                <button type="button" onClick={() => handleRemoveNote(note.id)}
-                  className="inline-flex justify-center py-1 px-3 border border-transparent shadow-sm font-medium rounded-md
+          <h3 className="text-lg text-center font-semibold p-2 pt-3">Notes</h3>
+          <p className="text-justify text-gray-400 text-md pb-2 pr-3 pl-3 border-b">
+            To update a note, type in the fields above (note title and content) and click the Update button on the note you wish to update</p>
+          {client.notes.length > 0 ?
+            client.notes.map(note =>
+              <div key={note.id} className="p-2 border rounded-sm shadow-sm mt-2">
+                <p className="text-lg font-semibold pl-2">{note.title}</p>
+                <p className="text-xs text-gray-400 border-b pb-1 pl-2">{getDate(note.date)}</p>
+                <p className="p-2">{note.content}</p>
+                <div className="px-3 py-2 bg-gray-400 text-right rounded-b-md space-x-2">
+                  <button type="button" id="mobile-removeNote" onClick={() => handleRemoveNote(note.id)}
+                    className="inline-flex justify-center py-1 px-3 border border-transparent shadow-sm font-medium rounded-md
                   bg-gray-500 text-sm text-white hover:bg-gray-300 focus-within:outline-none focus-within:ring-1">
-                  Delete</button>
-                <button type="button" onClick={() => handleUpdateNote(note.id)}
-                  className="inline-flex justify-center py-1 px-3 border border-transparent shadow-sm font-medium rounded-md
+                    Delete</button>
+                  <button type="button" id="mobile-updateNote" onClick={() => handleUpdateNote(note.id)}
+                    className="inline-flex justify-center py-1 px-3 border border-transparent shadow-sm font-medium rounded-md
                   bg-gray-500 text-sm text-white hover:bg-gray-300 focus-within:outline-none focus-within:ring-1">
-                  Update</button>
+                    Update</button>
+                </div>
               </div>
-            </div>
-          )}
+            ) : <h3 className="text-center text-xl font-semibold p-4">There are no notes posted in this clients history</h3>}
         </div>
       </div>
 
@@ -378,7 +384,7 @@ const Client = () => {
                       <p className="border-transparent text-left"><span className="text-left font-semibold pr-2">Height: </span>{client.height}cm</p>
                     </div>
                     <div className=" col-span-3">
-                      <p className="border-transparent text-left"><span className="text-left font-semibold pr-2">Wegiht: </span>{client.weight}</p>
+                      <p className="border-transparent text-left"><span className="text-left font-semibold pr-2">Weight: </span>{client.weight}kg</p>
                     </div>
                     <div className=" col-span-6">
                       <p className="border-transparent text-left"><span className="text-left font-semibold pr-8">Approximate BMI: </span>{getBMI()}</p>
@@ -398,7 +404,7 @@ const Client = () => {
                 <p className="border-transparent text-left">{client.motivation}</p>
               </div>
               <div className="pr-16 pl-16 pt-4 pb-4 border-b">
-                <label className="text-left font-semibold pr-8">Background</label>
+                <label className="text-left font-semibold pr-8">Health report</label>
                 <p className="border-transparent text-left">{client.healthInfo ? client.healthInfo : <span className="text-red-400">Not yet provided</span>}</p>
               </div>
             </div>
@@ -418,18 +424,18 @@ const Client = () => {
                       <div className="grid grid-cols-6 gap-6">
                         <div className="col-span-4">
                           <label className="block text-sm font-medium text-gray-700 pl-2">Height</label>
-                          <input name="newHeight" id="newHeight" {...height.params}
+                          <input name="wem-height" id="web-height" {...height.params}
                             className="mt-1 focus:border-gray-500 block w-full shadow-sm md:text-sm border-gray-300 rounded-md placeholder-gray-200" />
                         </div>
                         <div className="col-span-4">
                           <label className="block text-sm font-medium text-gray-700 pl-2">Weight</label>
-                          <input name="newWeight" id="newWeight" {...weight.params}
+                          <input name="web-weight" id="web-weight" {...weight.params}
                             className="mt-1 focus:border-gray-500 block w-full shadow-sm md:text-sm border-gray-300 rounded-md placeholder-gray-200" />
                         </div>
                       </div>
                     </div>
                     <div className="px-4 py-3 bg-gray-400 text-right md:px-6">
-                      <button type="button" onClick={handleClientsInfo}
+                      <button type="button" id="web-saveInfo" onClick={handleClientsInfo}
                         className="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm font-medium rounded-md
                       bg-gray-500 text-sm text-white hover:bg-gray-300 focus-within:outline-none focus-within:ring-1">
                         Save</button>
@@ -438,14 +444,14 @@ const Client = () => {
                 </div>
               </div>
             </div>
-
-
             <div className="grid grid-cols-3 gap-6 m-4 shadow-2xl bg-gradient-to-br from-gray-300 via-white to-gray-300
               border-double border rounded-md">
               <div className="col-span-1">
                 <div className="p-5">
-                  <h2 className="text-xl font-medium text-gray-900">Update biometrics</h2>
-                  <p className="mt-1 text-sm text-gray-600">Approximate BMI will be automatically calculated.</p>
+                  <h2 className="text-xl font-medium text-gray-900">Make a new note</h2>
+                  <p className="mt-1 text-sm text-gray-600">
+                    Express your feelings and reactions about the interaction, performance or general thoughts about my sessions with this client.
+                    </p>
                 </div>
               </div>
               <div className="m-4 col-span-2 ">
@@ -454,24 +460,24 @@ const Client = () => {
                     <div className="grid grid-cols-6 gap-6">
                       <div className="col-span-6">
                         <label className="block text-sm font-medium text-gray-700 pl-2">Title</label>
-                        <input name="newHeight" id="newHeight" {...title.params}
+                        <input name="title" id="web-title" {...title.params}
                           className="mt-1 focus:border-gray-500 block w-full shadow-sm text-sm border-gray-300 rounded-md placeholder-gray-200" />
                       </div>
                       <div className="col-span-6">
-                        <label className="text-sm font-medium text-gray-700 pl-2 pt-2"> Note content
+                        <label className="text-sm font-medium text-gray-700 pl-2 pt-2">Note content
                           {content.params.value.length > 29 ?
                             <span className="pl-1 text-xs font-normal">{`(${content.params.value.length}/500)`}</span>
                             :
                             <span className="pl-1 text-xs font-normal">{`(${content.params.value.length}/30 characters minimum)`}</span>
                           }
                         </label>
-                        <textarea name="height" id="height" rows="10" minLength="30" maxLength="500" placeholder="30 characters minimum" {...content.params}
+                        <textarea name="height" id="web-content" rows="10" minLength="30" maxLength="500" placeholder="30 characters minimum" {...content.params}
                           className="focus:border-gray-500 block w-full shadow-sm border-gray-300 rounded-md h-28 placeholder-gray-200" />
                       </div>
                     </div>
                   </div>
                   <div className="px-4 py-3 bg-gray-400 text-right md:px-6">
-                    <button type="button" onClick={handleSaveNote}
+                    <button type="button" id="web-saveNote" onClick={handleSaveNote}
                       className="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm font-medium rounded-md
                       bg-gray-500 text-sm text-white hover:bg-gray-300 focus-within:outline-none focus-within:ring-1">
                       Save</button>
@@ -479,7 +485,9 @@ const Client = () => {
                 </div>
               </div>
               <div className="col-span-3">
-                <h3 className="text-center text-xl font-semibold p-4 border-t border-b">Notes</h3>
+                <h3 className="text-center text-xl font-semibold pt-4 pb-2 border-t ">Notes</h3>
+                <p className="text-center text-gray-400 text-md pb-2 pl-24 pr-24 border-b">
+                  To update a note type in the fields above (Title and Note content) then click the Update button on the note you wish to update</p>
                 <div className="pl-32 pr-32 pt-4 pb-4">
                   {client.notes.length > 0 ?
                     client.notes.map(note =>
@@ -488,17 +496,17 @@ const Client = () => {
                         <p className="text-xs text-gray-400 border-b pb-1 pl-3">{getDate(note.date)}</p>
                         <p className="p-2 pl-3">{note.content}</p>
                         <div className="px-3 py-2 bg-gray-400 text-right rounded-b-md space-x-2">
-                          <button type="button" onClick={() => handleRemoveNote(note.id)}
+                          <button type="button0" id="web-removeNote" onClick={() => handleRemoveNote(note.id)}
                             className="inline-flex justify-center py-1 px-3 border border-transparent shadow-sm font-medium rounded-md
                           bg-gray-500 text-sm text-white hover:bg-gray-300 focus-within:outline-none focus-within:ring-1">
                             Delete</button>
-                          <button type="button" onClick={() => handleUpdateNote(note.id)}
+                          <button type="button" id="web-updateNote" onClick={() => handleUpdateNote(note.id)}
                             className="inline-flex justify-center py-1 px-3 border border-transparent shadow-sm font-medium rounded-md
                           bg-gray-500 text-sm text-white hover:bg-gray-300 focus-within:outline-none focus-within:ring-1">
                             Update</button>
                         </div>
                       </div>)
-                      : <h3 className="text-center text-xl font-semibold p-4">There are no notes posted in this clients history</h3>}
+                    : <h3 className="text-center text-xl font-semibold p-4">There are no notes posted in this clients history</h3>}
                 </div>
               </div>
             </div>

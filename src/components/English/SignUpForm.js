@@ -1,9 +1,9 @@
 import React, { useState } from 'react'
-import { useField } from '../hooks/index'
 import { useDispatch } from 'react-redux'
-import { createUser } from '../reducers/usersReducer'
-import { setNotification } from '../reducers/notificationReducer'
-import userService from '../services/user'
+import { useField } from '../../hooks/index'
+import { createUser } from '../../reducers/usersReducer'
+import { setNotification } from '../../reducers/notificationReducer'
+import userService from '../../services/user'
 
 const SignUpForm = () => {
   const dispatch = useDispatch()
@@ -76,13 +76,13 @@ const SignUpForm = () => {
         }))
       } else if (!country) {
         dispatch(setNotification({
-          message: 'Please check and fulfill all the fields in the form.',
+          message: 'Select a country.',
           title: 'Details missing',
           show: true
         }))
       } else {
         const createdUser = await userService.createUser(newUser)
-        console.log('CREATED USER: ', createdUser)
+        // console.log('CREATED USER: ', createdUser)
         dispatch(createUser(createdUser))
         dispatch(setNotification({
           message: `User ${username.params.value} has been successfully created.`,
@@ -244,7 +244,7 @@ const SignUpForm = () => {
                     <input className="focus:border-gray-500 block h-12 w-full shadow-sm md:text-sm border-gray-300 rounded-md placeholder-gray-200"
                       {...weight.params} required />
                   </div><div className="col-span-6 md:col-span-6">
-                    <label className="p-0 bottom-12 ml-2 bg-transparent text-gray-200 ">Background</label>
+                    <label className="p-0 bottom-12 ml-2 bg-transparent text-gray-200 ">Background<span className="text-gray-400 text-sm pl-2">(What kind of physical activity have you done before?)</span></label>
                     <input className="focus:border-gray-500 block h-12 w-full shadow-sm md:text-sm border-gray-300 rounded-md placeholder-gray-200"
                       {...background.params} required />
                   </div>

@@ -1,14 +1,14 @@
 import React, { useState } from 'react'
-import facebook from '../img/f-icon.jpg'
+import facebook from '../../img/f-icon.jpg'
 
-const Footer = () => {
+const FooterFin = () => {
 
   return (
     < div className="relative inset-x-0 bottom-0 justify-items-auto md:justify-items-auto bg-gray-900">
       <div className="flex items-center justify-items-center px-4 py-5 bg-gray-500">
         <div className="container px-auto mx-auto flex flex-col md:flex-row items-center justify-between">
           <div className="relative flex justify-between lg:w-auto lg:static lg:block lg:justify-start">
-            <a className="text-sm font-bold text-gray-200" href="#" >Website in development</a>
+            <a className="text-sm font-bold text-gray-200" href="#" >Verkkosivusto rakenteilla</a>
           </div>
           <div className="md:flex md:flex-grow items-center" id="example-collapse-navbar">
             <ul className="flex flex-row ml-auto md:flex-row list-none md:ml-auto">
@@ -24,7 +24,7 @@ const Footer = () => {
                   href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fwww.facebook.com%2Fjanestotalwellness%2F&amp;src=sdkpreparse"
                   target="_blank" data-layout="button_count" >
                   <img className="relative h-5 w-5 rounded-full" src={facebook} alt="Workflow" />
-                  <i className="fb-share-button text-lg leading-lg text-gray-200 opacity-75"></i><span className="ml-1">SHARE</span>
+                  <i className="fb-share-button text-lg leading-lg text-gray-200 opacity-75"></i><span className="ml-1">JAA</span>
                 </a>
               </li>
               {/* <li className="nav-item">
@@ -40,4 +40,4 @@ const Footer = () => {
   )
 }
 
-export default Footer
+export default FooterFin

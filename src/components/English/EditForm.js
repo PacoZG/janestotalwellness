@@ -1,12 +1,12 @@
 import React, { useState } from 'react'
 import { useHistory } from 'react-router-dom'
-import { updateUser, deleteUser } from '../reducers/usersReducer'
-import imageService from '../services/images'
-import loginService from '../services/login'
-import { userLogin, userLogout } from '../reducers/loginReducer'
 import { useDispatch, useSelector } from 'react-redux'
-import { useField } from '../hooks/index'
-import { setNotification } from '../reducers/notificationReducer'
+import { updateUser, deleteUser } from '../../reducers/usersReducer'
+import imageService from '../../services/images'
+import loginService from '../../services/login'
+import { userLogin, userLogout } from '../../reducers/loginReducer'
+import { useField } from '../../hooks/index'
+import { setNotification } from '../../reducers/notificationReducer'
 
 const EditForm = () => {
   const dispatch = useDispatch()
@@ -59,7 +59,7 @@ const EditForm = () => {
     let updatedUser = {
       ...user
     }
-    console.log('USER TO UPDATE: ', updatedUser)
+    // console.log('USER TO UPDATE: ', updatedUser)
     if (imagePreview && selectedFile.size < 3000000) {
       const data = new FormData()
       data.append('image', selectedFile)
@@ -124,7 +124,7 @@ const EditForm = () => {
     let userToUpdate = {
       ...user,
     }
-    console.log('USER TO UPDATE: ', user)
+    // console.log('USER TO UPDATE: ', user)
     if (address.params.value !== user.address && address.params.value.length > 9) {
       userToUpdate = {
         ...userToUpdate,
@@ -159,7 +159,7 @@ const EditForm = () => {
     }
 
     if (userUpdated) {
-      console.log('USER TO UPDATE: ', userToUpdate)
+      // console.log('USER TO UPDATE: ', userToUpdate)
       handleUpdateLoggedUser(userToUpdate)
       dispatch(setNotification({
         message: 'Your profile has been successfully updated.',
@@ -225,7 +225,7 @@ const EditForm = () => {
   // handle profile removal
   const handleProfileRemoval = () => {
     console.log('profile erased')
-    history.push('/frontpage')
+    history.push('/eng/frontpage')
     setShowModal(!showModal)
     dispatch(deleteUser(user))
     dispatch(setNotification({
@@ -268,8 +268,7 @@ const EditForm = () => {
                   <div className="shadow md:rounded-md md:overflow-hidden rounded-b-md ">
                     <div className="px-4 py-5 space-y-6 sm:p-6 bg-gradient-to-br from-gray-300 via-white to-gray-300 ">
                       <div>
-                        <label className="block text-sm font-medium text-gray-700">
-                          Health information
+                        <label className="block text-sm font-medium text-gray-700 pl-2">Health report
                         {healthInfo.params.value.length > 29 ?
                             <span className="pl-1 text-xs font-normal">{`(${healthInfo.params.value.length}/500)`}</span>
                             :
@@ -282,8 +281,7 @@ const EditForm = () => {
                           />
                         </div>
                         <p className="mt-2 text-sm text-gray-500">
-                          Medical background, chronical health issues, treatments, etc. If you have
-                          any doctor's certificate please share it with me in person.
+                          Medical background, chronic health issues, treatments, etc. If you have any doctor's certificate please share it with me in person.
                         </p>
                       </div>
                       <div className="ml-6 md:ml-28">
@@ -307,7 +305,7 @@ const EditForm = () => {
                             </div>
                           }
                           <div className="grid grid-row-3">
-                            <label className="cursor-pointer bg-gray-500 hover:bg-gray-400 px-3 py-2 h-30 w-32 rounded-md
+                            <label className="cursor-pointer bg-gray-500 hover:bg-gray-400 px-3 py-2 h-30 w-auto rounded-md
                             text-xs text-white md:w-auto md:text-base md:hover:bg-gray-300 focus-within:ring-offset-2 focus-within:ring-red-600">
                               <span>{selectedFile ? 'Change image' : 'Upload a picture'}</span>
                               <input type="file" name="image" accept="image/*" onChange={handleImageInput} className="sr-only"
@@ -347,56 +345,56 @@ const EditForm = () => {
                     <div className="px-4 py-5 md:p-6 bg-gradient-to-br from-gray-300 via-white to-gray-300 ">
                       <div className="grid grid-cols-6 gap-6">
                         <div className="col-span-6 sm:col-span-3">
-                          <label className="block text-sm font-medium text-gray-700">First name</label>
+                          <label className="block text-sm font-medium text-gray-700 pl-2">First name</label>
                           <div name="first_name" id="first_name" type="text"
-                            className="w-full w-full shadow-sm md:text-sm border-gray-200 bg-transparent rounded-md capitalize">
+                            className="w-full shadow-sm md:text-sm border-gray-200 bg-transparent rounded-md capitalize">
                             {user.firstName}
                           </div>
                         </div>
                         <div className="col-span-6 md:col-span-3">
-                          <label className="block text-sm font-medium text-gray-700">Last name</label>
+                          <label className="block text-sm font-medium text-gray-700 pl-2">Last name</label>
                           <div name="last_name" id="last_name" type="text"
                             className="w-full shadow-sm md:text-sm border-gray-200 bg-transparent rounded-md capitalize">
                             {user.lastName}
                           </div>
                         </div>
                         <div className="col-span-6 md:col-span-3">
-                          <label className="block text-sm font-medium text-gray-700">Username</label>
+                          <label className="block text-sm font-medium text-gray-700 pl-2">Username</label>
                           <div name="username" id="username" type="text"
                             className="w-full shadow-sm md:text-sm border-gray-200 bg-transparent rounded-md" >
                             {user.username}
                           </div>
                         </div>
                         <div className="col-span-6 md:col-span-3">
-                          <label className="block text-sm font-medium text-gray-700">Email address</label>
+                          <label className="block text-sm font-medium text-gray-700 pl-2">Email address</label>
                           <div name="email_address" id="email_address" type="text"
                             className="w-full shadow-sm md:text-sm border-gray-200 bg-transparent rounded-md">
                             {user.email}
                           </div>
                         </div>
                         <div className="col-span-6">
-                          <label className="block text-sm font-medium text-gray-700">Street address</label>
+                          <label className="block text-sm font-medium text-gray-700 pl-2">Street address</label>
                           <input name="street_address" id="street_address" autoComplete="street-address" {...address.params}
                             className="mt-1 focus:border-gray-500 block w-full shadow-sm md:text-sm border-gray-300 rounded-md" />
                         </div>
                         <div className="col-span-6 md:col-span-2">
-                          <label className="block text-sm font-medium text-gray-700">ZIP / Postal</label>
+                          <label className="block text-sm font-medium text-gray-700 pl-2">ZIP / Postal</label>
                           <input name="postal_code" id="postal_code" autoComplete="postal-code" {...zipCode.params}
                             className=" focus:border-gray-500 block w-full shadow-sm md:text-sm border-gray-300 rounded-md" />
                         </div>
                         <div className="col-span-6 md:col-span-2">
-                          <label className="block text-sm font-medium text-gray-700">City</label>
+                          <label className="block text-sm font-medium text-gray-700 pl-2">City</label>
                           <input name="city" id="city" {...city.params}
                             className="focus:border-gray-500 block w-full shadow-sm md:text-sm border-gray-300 rounded-md" />
                         </div>
                         <div className="col-span-6 md:col-span-2">
-                          <label className="block text-sm font-medium text-gray-700">Mobile number</label>
+                          <label className="block text-sm font-medium text-gray-700 pl-2">Mobile number</label>
                           <input name="mobile" id="mobile" {...mobileNumber.params} placeholder="044123456"
                             className="mt-1 focus:border-gray-500 block w-full shadow-sm md:text-sm border-gray-300 rounded-md placeholder-gray-200" />
                         </div>
                         <div className="col-span-6">
                           <div className="flex flex-col h-12">
-                            <label className="block text-sm font-medium text-gray-700">Country</label>
+                            <label className="block text-sm font-medium text-gray-700 pl-2">Country</label>
                             <div id="country" name="country" type="text"
                               className="flex flex-row justify-between h-10 px-3 border border-gray-300 ring-gray-500 bg-white rounded-md shadow-sm md:text-md">
                               {country ?
@@ -457,19 +455,19 @@ const EditForm = () => {
                     <div className="px-4 py-5 md:p-6 bg-gradient-to-br from-gray-300 via-white to-gray-300 ">
                       <div className="grid grid-cols-6 gap-6">
                         <div className="col-span-6 md:col-span-4">
-                          <label className="block text-sm font-medium text-gray-700">Old password</label>
+                          <label className="block text-sm font-medium text-gray-700 pl-2">Old password</label>
                           <input name="oldPassword" id="oldPassword" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" {...oldPassword.params}
                             className="mt-1 focus:border-gray-500 block w-full shadow-sm md:text-sm border-gray-300 rounded-md placeholder-gray-200" />
                         </div>
                         <div className="col-span-6 md:col-span-4">
-                          <label className="block text-sm font-medium text-gray-700">
+                          <label className="block text-sm font-medium text-gray-700 pl-2">
                             Re-type old password <span className="text-sm text-gray-300 pl-2">{
                               oldPasswordConfirm.params.value === oldPassword.params.value && oldPasswordConfirm.params.value.length > 7 ? '(passwords matched)' : ''}</span></label>
                           <input name="oldPasswordConfirm" id="oldPasswordConfirm" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" {...oldPasswordConfirm.params}
                             className="mt-1 focus:border-gray-500 block w-full shadow-sm md:text-sm border-gray-300 rounded-md placeholder-gray-200" />
                         </div>
                         <div className="col-span-6 md:col-span-4">
-                          <label className="block text-sm font-medium text-gray-700">
+                          <label className="block text-sm font-medium text-gray-700 pl-2">
                             New password<span className="text-sm text-gray-300 pl-2">{
                               oldPassword.params.value === newPassword.params.value && newPassword.params.value.length > 7
                                 ? '(New password cannot be the same as the old one)' : ''}</span></label>
@@ -506,7 +504,7 @@ const EditForm = () => {
                   <div className="px-4 py-5 md:p-6 bg-gradient-to-br from-gray-300 via-white to-gray-300 ">
                     <div className="grid grid-cols-6 gap-6">
                       <p className="col-span-6 mt-1 p-2 text-lg text-gray-600">
-                        Please make that you really need or want your profile to be removed, all the data will be lost after doing so.</p>
+                        Please make that you really need or want your profile to be removed, all the data will be lost after doing so and cannot be recovered.</p>
                     </div>
                   </div>
                   <div className="px-4 py-3 bg-gray-400 text-right md:px-6">
@@ -544,9 +542,8 @@ const EditForm = () => {
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
                     </svg>
                   </div>
-                  <p className="my-4 text-blueGray-500 text-lg leading-relaxed">
-                    Are you sure you want to remove your account?
-                    All of your data will be permanently removed. This action cannot be undone.
+                  <p className="text-center text-gray-500 text-md p-2 leading-relaxed">
+                    Are you sure you want to remove your account? All of your data will be permanently removed. This action cannot be undone.
                   </p>
                 </div>
                 <div className="flex items-center justify-end p-3 pr-4 border-t border-solid border-blueGray-200 rounded-b">

@@ -8,7 +8,14 @@ const loadUser = () => {
 
 const removeUser = () => {
   localStorage.removeItem('loggedInUser')
-  localStorage.clear()
 }
 
-export default { saveUser, loadUser, removeUser }
+const setUserLanguage = (language) => {
+  localStorage.setItem('userLanguage', JSON.stringify(language))
+}
+
+const loadUserLanguage = () => {
+  return JSON.parse(localStorage.getItem('userLanguage'))
+}
+
+export default { saveUser, loadUser, removeUser, setUserLanguage, loadUserLanguage }

@@ -1,13 +1,13 @@
 import React, { useState } from 'react'
 import { Link, useHistory } from 'react-router-dom'
-import { useField } from '../hooks/index'
 import { useDispatch } from 'react-redux'
-import threes from '../img/threes.png' // image
-import { setNotification } from '../reducers/notificationReducer'
-import { userLogin, userLogout } from '../reducers/loginReducer'
-import loginService from '../services/login'
+import { useField } from '../../hooks/index'
+import threes from '../../img/threes.png' // image
+import { setNotification } from '../../reducers/notificationReducer'
+import { userLogin, userLogout } from '../../reducers/loginReducer'
+import loginService from '../../services/login'
 
-const SigninForm = () => {
+const SigninFormFin = () => {
   const dispatch = useDispatch()
   const history = useHistory()
   const username = useField('text')
@@ -35,7 +35,7 @@ const SigninForm = () => {
     //     title: 'Success',
     //     show: true
     //   }))
-    //   history.push('/frontpage')
+    //   history.push('/fin/frontpage')
     // } catch (error) {
     //   //console.log('SIGN IN ERROR: ', error.response.data.error)
     //   dispatch(setNotification({
@@ -44,35 +44,33 @@ const SigninForm = () => {
     //     show: true
     //   }))
     // }
-    let warningTimeout
-    let logoutTimeout
     try {
       // debugger
       var user = await loginService.login(credentials)
-      console.log('USER: ', user)
+      // console.log('USER: ', user)
       dispatch(userLogin(user))
       setAutoLogout()
       if (user.userType === 'client') {
         dispatch(setNotification({
-          message: `Welcome back ${user.username}, your session will automatically expire in 30 minutes`,
-          title: 'Success',
+          message: `Tervetuloa takaisin ${user.username}, istuntosi vanhenee automaattisesti 30 minuutissa`,
+          title: 'Menestys',
           show: true
         }))
         username.reset()
         password.reset()
       } else {
         dispatch(setNotification({
-          message: `Welcome back ${user.username}`,
-          title: 'Success',
+          message: `Tervetuloa takaisin ${user.username}`,
+          title: 'Menestys',
           show: true
         }))
       }
-      history.push('/frontpage')
+      history.push('/fin/frontpage')
     } catch (error) {
       //console.log('SIGN IN ERROR: ', error.response.data.error)
       dispatch(setNotification({
-        message: `${error.response.data.error}`,
-        title: 'Login error',
+        message: 'Väärä käyttäjänimi tai salasana',
+        title: 'kirjautumisvirhe',
         show: true
       }))
     }
@@ -85,9 +83,9 @@ const SigninForm = () => {
     // clearTimeout(warningTimeout)
     // clearTimeout(logoutTimeout)
     warningTimeout = setTimeout(() => {
-      console.log(showModal)
+      // console.log(showModal)
       setShowModal(!showModal)
-      console.log(showModal)
+      // console.log(showModal)
     }, 1800000)
   }
 
@@ -97,11 +95,11 @@ const SigninForm = () => {
     logoutTimeout = setTimeout(() => {
       dispatch(userLogout())
       dispatch(setNotification({
-        message: 'Your session has been expired, please log in again.',
-        title: 'Session expired',
+        message: 'Istuntosi on vanhentunut, kirjaudu sisään uudelleen.',
+        title: 'Istunto päättyi',
         show: true
       }))
-      history.push('/frontpage')
+      history.push('/fin/frontpage')
     }, 1800000)
     setShowModal(!showModal)
   }
@@ -109,7 +107,7 @@ const SigninForm = () => {
   const handleLogout = () => {
     dispatch(userLogout())
     setShowModal(!showModal)
-    history.push('/frontpage')
+    history.push('/fin/frontpage')
   }
 
 
@@ -118,37 +116,35 @@ const SigninForm = () => {
       <div className="max-w-md w-full space-y-8">
         <div>
           <img className="mx-auto h-12 w-auto rounded" src={threes} />
-          <h2 className="mt-6 text-center text-3xl font-extrabold text-gray-700">Sign in to your account</h2>
+          <h2 className="mt-6 text-center text-3xl font-extrabold text-gray-700">Kirjaudu sisään tiliisi</h2>
         </div>
         <form className="mt-8 space-y-6" onSubmit={handleLogin}>
           <div className="rounded-md shadow-sm -space-y-px">
             <div>
-              <label className="sr-only">Username</label>
+              <label className="sr-only">käyttäjänimi</label>
               <input id="username" name="username" autoComplete="off" pattern="[a-z]{1,15}"
                 {...username.params}
                 className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-300
                 text-gray-900 rounded-t-md focus:border-gray-500 shadow-sm sm:text-md"
-                placeholder="Username" title="Username is required" required />
+                placeholder="Käyttäjänimi" title="Username is required" required />
             </div>
             <div>
-              <label className="sr-only">Password</label>
+              <label className="sr-only">Salasana</label>
               <input id="password" name="password" autoComplete="current-password"
                 {...password.params}
                 className="z-0 appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-300
                 text-gray-900 rounded-b-md focus:border-gray-500 shadow-sm md:text-md valid-haspopup"
-                placeholder="Password" title="Password is required" required />
+                placeholder="Salasana" title="Password is required" required />
             </div>
           </div>
 
           <div className="flex items-center justify-between">
             <div className="flex items-center pl-2 ">
               <input id="remember_me" name="remember_me" type="checkbox" className="h-4 w-4 text-gray-500 focus:ring-red-500 border-gray-300 rounded" />
-              <label className="ml-2 block text-sm text-gray-900">
-                Remember me
-          </label>
+              <label className="ml-2 block text-sm text-gray-900">Muista minut</label>
             </div>
             <div className="text-sm pr-2 ">
-              <Link to='' className="font-medium text-indigo-700 hover:text-indigo-500">Forgot your password?</Link>
+              <Link to='' className="font-medium text-indigo-700 hover:text-indigo-500">Unohditko salasanasi?</Link>
             </div>
           </div>
 
@@ -176,7 +172,7 @@ const SigninForm = () => {
               </svg>
             </button>
             <div className="flex items-start justify-between p-1 pl-4 pb-2 border-b border-solid border-blueGray-200 rounded-t">
-              <h3 className="text-2xl font-semibold text-gray-700">Session expiration warning</h3>
+              <h3 className="text-2xl font-semibold text-gray-700">Istunnon vanhentumisvaroitus</h3>
             </div>
             <div className="relative pl-4 pr-4 pt-4 flex-auto">
               <div className="mx-auto flex-shrink-0 flex items-center justify-center h-12 w-12 rounded-full bg-red-100 md:mx-0 md:h-10 md:w-10">
@@ -185,16 +181,16 @@ const SigninForm = () => {
                 </svg>
               </div>
               <p className="my-4 text-blueGray-500 text-lg leading-relaxed">
-                You have been logged in for 30 minutes, would you like to stay for 30 more minutes or logout now?
+                Olet kirjautunut sisään 30 minuutiksi. Haluatko pysyä vielä 30 minuuttia tai kirjautua ulos nyt?
                   </p>
             </div>
             <div className="flex items-center justify-end p-3 pr-4 border-t border-solid border-blueGray-200 rounded-b">
               <button className="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 text-base font-medium 
                     text-white focus:outline-none bg-gray-500 hover:bg-gray-400 focus:ring focus:ring-offset-1 focus:ring-gray-800 transform transition active:bg-gray-800 md:ml-3 md:w-auto md:text-md"
-                type="button" onClick={() => handleLogout()} >Logout now</button>
+                type="button" onClick={() => handleLogout()} >Kirjaudu ulos nyt</button>
               <button className="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 text-base font-medium 
                     text-white focus:outline-none bg-gray-500 hover:bg-gray-400 focus:ring focus:ring-offset-1 focus:ring-gray-800 transform transition active:bg-gray-800 md:ml-3 md:w-auto md:text-md"
-                type="button" onClick={() => handleResetTimers()} >Stay logged in</button>
+                type="button" onClick={() => handleResetTimers()} >Pysy sisäänkirjautuneena</button>
             </div>
           </div>
         </div>
@@ -203,4 +199,4 @@ const SigninForm = () => {
   )
 }
 
-export default SigninForm
+export default SigninFormFin

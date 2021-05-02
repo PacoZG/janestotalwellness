@@ -1,8 +1,8 @@
 import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { setNotification } from '../reducers/notificationReducer'
+import { setNotification } from '../../reducers/notificationReducer'
 //{ showModal, setShowModal, message, title }
-const Modal = () => {
+const ModalFin = () => {
   const messageData = useSelector(state => state.notification)
   const dispatch = useDispatch()
   //console.log('MESSAGE DATA IN MODAL: ', messageData)
@@ -54,4 +54,4 @@ const Modal = () => {
   )
 }
 
-export default Modal
+export default ModalFin
