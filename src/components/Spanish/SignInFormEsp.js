@@ -66,11 +66,11 @@ const SigninForm = () => {
           show: true
         }))
       }
-      history.push('/esp/frontpage')
+      history.push('/esp/myprogram')
     } catch (error) {
       //console.log('SIGN IN ERROR: ', error.response.data.error)
       dispatch(setNotification({
-        message: `Nombre de usuario o contraseña invalido`,
+        message: 'Nombre de usuario o contraseña invalido',
         title: 'Datos erroneos',
         show: true
       }))
@@ -142,9 +142,7 @@ const SigninForm = () => {
           <div className="flex items-center justify-between">
             <div className="flex items-center pl-2 ">
               <input id="remember_me" name="remember_me" type="checkbox" className="h-4 w-4 text-gray-500 focus:ring-red-500 border-gray-300 rounded" />
-              <label className="ml-2 block text-sm text-gray-900">
-                Recordarme
-          </label>
+              <label className="ml-2 block text-sm text-gray-900">Recordarme</label>
             </div>
             <div className="text-sm pr-2 ">
               <Link to='' className="font-medium text-indigo-700 hover:text-indigo-500">¿Olvidaste tu contraseña?</Link>
@@ -158,8 +156,7 @@ const SigninForm = () => {
                 <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
                   <path fillRule="evenodd" d="M3 3a1 1 0 011 1v12a1 1 0 11-2 0V4a1 1 0 011-1zm7.707 3.293a1 1 0 010 1.414L9.414 9H17a1 1 0 110 2H9.414l1.293 1.293a1 1 0 01-1.414 1.414l-3-3a1 1 0 010-1.414l3-3a1 1 0 011.414 0z" clipRule="evenodd" />
                 </svg>
-              </span>Comenzar sesión
-        </button>
+              </span>Comenzar sesión</button>
           </div>
         </form>
       </div>
@@ -183,16 +180,15 @@ const SigninForm = () => {
                 </svg>
               </div>
               <p className="my-4 text-blueGray-500 text-lg leading-relaxed">
-                Tu sesión ha estado abierta por mas de 30 minutos ¿quieres continuar conectado por 30 minutos mas o cerrar sesión ahora?
-                  </p>
+                Tu sesión ha estado abierta por mas de 30 minutos ¿quieres continuar conectado por 30 minutos mas o cerrar sesión ahora?</p>
             </div>
             <div className="flex items-center justify-end p-3 pr-4 border-t border-solid border-blueGray-200 rounded-b">
-              <button className="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 text-base font-medium 
+              <button className="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 text-base font-medium
                     text-white focus:outline-none bg-gray-500 hover:bg-gray-400 focus:ring focus:ring-offset-1 focus:ring-gray-800 transform transition active:bg-gray-800 md:ml-3 md:w-auto md:text-md"
-                type="button" onClick={() => handleLogout()} >Cerrar sesión</button>
-              <button className="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 text-base font-medium 
+              type="button" onClick={() => handleLogout()} >Cerrar sesión</button>
+              <button className="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 text-base font-medium
                     text-white focus:outline-none bg-gray-500 hover:bg-gray-400 focus:ring focus:ring-offset-1 focus:ring-gray-800 transform transition active:bg-gray-800 md:ml-3 md:w-auto md:text-md"
-                type="button" onClick={() => handleResetTimers()} >Continuar sesión</button>
+              type="button" onClick={() => handleResetTimers()} >Continuar sesión</button>
             </div>
           </div>
         </div>

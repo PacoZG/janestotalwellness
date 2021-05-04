@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
+import { BrowserRouter as Router, Switch, Route, Redirect } from 'react-router-dom'
 import { initializeUsers } from './reducers/usersReducer'
 import { getAllNotes } from './reducers/noteReducer'
 
@@ -46,14 +46,14 @@ import UserProfileEsp from './components/Spanish/UserProfileEsp'
 const App = () => {
   const dispatch = useDispatch()
   const userLanguage = useSelector(state => state.language)
-  const UILanguage = userLanguage ? userLanguage : 'fin'
+  const UILanguage = userLanguage ? userLanguage : 'eng'
   useEffect(() => {
     dispatch(initializeUsers())
     dispatch(getAllNotes())
   }, [dispatch])
   console.log('UI LANGUAGE: ', UILanguage)
 
-  if (UILanguage === 'eng'){
+  if (UILanguage === 'eng') {
     return (
       <div >
         <Router>
@@ -61,6 +61,9 @@ const App = () => {
           <Switch>
             <Route path="/eng/clients/:id">
               <Client />
+            </Route>
+            <Route exact={true} path="/">
+              <Redirect to="/eng/frontpage" />
             </Route>
             <Route path="/eng/signUp" >
               <SignUpForm />
@@ -74,8 +77,8 @@ const App = () => {
             <Route path="/eng/editForm">
               <Editform />
             </Route>
-            <Route path="/eng/frontpage">
-              <Frontpage />
+            <Route>
+              <Frontpage path="/eng/frontpage" />
             </Route>
             <Route path="/eng/myprogram">
               <MyProgram />
@@ -92,7 +95,7 @@ const App = () => {
       </div >
     )
   } else if (UILanguage === 'fin') {
-    return(
+    return (
       <div>
         <Router>
           <MainMenuFin />
@@ -130,7 +133,7 @@ const App = () => {
       </div>
     )
   } else if (UILanguage === 'esp') {
-    return(
+    return (
       <div>
         <Router>
           <MainMenuEsp />

@@ -87,7 +87,7 @@ const EditFormFin = () => {
         show: true
       }))
     }
-    if (healthInfo.params.value.length > 29 && healthInfo.params.value.length != 0) {
+    if (healthInfo.params.value.length > 29 && healthInfo.params.value.length !== 0) {
       updatedUser = {
         ...updatedUser,
         healthInfo: healthInfo.params.value
@@ -269,7 +269,7 @@ const EditFormFin = () => {
                     <div className="px-4 py-5 space-y-6 sm:p-6 bg-gradient-to-br from-gray-300 via-white to-gray-300 ">
                       <div>
                         <label className="block text-sm font-medium text-gray-700 pl-2">Health information
-                        {healthInfo.params.value.length > 29 ?
+                          {healthInfo.params.value.length > 29 ?
                             <span className="pl-1 text-xs font-normal">{`(${healthInfo.params.value.length}/500)`}</span>
                             :
                             <span className="pl-1 text-xs font-normal">{`(${healthInfo.params.value.length}/30 characters minimum)`}</span>
@@ -461,16 +461,15 @@ const EditFormFin = () => {
                         </div>
                         <div className="col-span-6 md:col-span-4">
                           <label className="block text-sm font-medium text-gray-700 pl-2">Kirjoita vanha salasana uudelleen
-                          <span className="text-sm text-gray-300 pl-2">{
+                            <span className="text-sm text-gray-300 pl-2">{
                               oldPasswordConfirm.params.value === oldPassword.params.value && oldPasswordConfirm.params.value.length > 7 ? '(salasanat vastaavat)' : ''}</span></label>
                           <input name="oldPasswordConfirm" id="oldPasswordConfirm" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" {...oldPasswordConfirm.params}
                             className="mt-1 focus:border-gray-500 block w-full shadow-sm md:text-sm border-gray-300 rounded-md placeholder-gray-200" />
                         </div>
                         <div className="col-span-6 md:col-span-4">
-                          <label className="block text-sm font-medium text-gray-700 pl-2">Uusi salasana
-                          <span className="text-sm text-gray-300 pl-2">{
-                              oldPassword.params.value === newPassword.params.value && newPassword.params.value.length > 7
-                                ? '(Uusi salasana ei voi olla sama kuin vanha)' : ''}</span></label>
+                          <label className="block text-sm font-medium text-gray-700 pl-2">Uusi salasana<span className="text-sm text-gray-300 pl-2">
+                            {oldPassword.params.value === newPassword.params.value && newPassword.params.value.length > 7 ?
+                              '(Uusi salasana ei voi olla sama kuin vanha)' : ''}</span></label>
                           <input name="newPassword" id="newPassword" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"  {...newPassword.params}
                             className="mt-1 focus:border-gray-500 block w-full shadow-sm md:text-sm border-gray-300 rounded-md placeholder-gray-200" />
                         </div>
@@ -547,12 +546,12 @@ const EditFormFin = () => {
                   </p>
                 </div>
                 <div className="flex items-center justify-end p-3 pr-4 border-t border-solid border-blueGray-200 rounded-b">
-                  <button className="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 text-base font-medium 
+                  <button className="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 text-base font-medium
                     text-white focus:outline-none bg-gray-500 hover:bg-gray-400 focus:ring focus:ring-offset-1 focus:ring-gray-800 transform transition active:bg-gray-800 md:ml-3 md:w-24 md:text-md"
-                    type="button" onClick={() => setShowModal(!showModal)} >Peruuttaa</button>
-                  <button className="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 text-base font-medium 
+                  type="button" onClick={() => setShowModal(!showModal)} >Peruuttaa</button>
+                  <button className="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 text-base font-medium
                     text-white focus:outline-none bg-gray-500 hover:bg-gray-400 focus:ring focus:ring-offset-1 focus:ring-gray-800 transform transition active:bg-gray-800 md:ml-3 md:w-24 md:text-md"
-                    type="button" onClick={() => handleProfileRemoval()} >Poista</button>
+                  type="button" onClick={() => handleProfileRemoval()} >Poista</button>
                 </div>
               </div>
             </div>

@@ -44,7 +44,7 @@ const SigninForm = () => {
     //     show: true
     //   }))
     // }
-    
+
     try {
       // debugger
       var user = await loginService.login(credentials)
@@ -142,9 +142,7 @@ const SigninForm = () => {
           <div className="flex items-center justify-between">
             <div className="flex items-center pl-2 ">
               <input id="remember_me" name="remember_me" type="checkbox" className="h-4 w-4 text-gray-500 focus:ring-red-500 border-gray-300 rounded" />
-              <label className="ml-2 block text-sm text-gray-900">
-                Remember me
-          </label>
+              <label className="ml-2 block text-sm text-gray-900">Remember me</label>
             </div>
             <div className="text-sm pr-2 ">
               <Link to='' className="font-medium text-indigo-700 hover:text-indigo-500">Forgot your password?</Link>
@@ -152,15 +150,14 @@ const SigninForm = () => {
           </div>
 
           <div>
-            <button type="submit" className="mt-1 mb-6 h-12 w-full bg-gray-500 text-white rounded hover:bg-gray-400
+            <button id="login-button" type="submit" className="mt-1 mb-6 h-12 w-full bg-gray-500 text-white rounded hover:bg-gray-400
           focus:ring focus:ring-offset-1 focus:ring-red-800 transform transition active:bg-red-800">
               <span className="absolute left-0 inset-y-0 flex items-center pl-3">
                 <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
                   <path fillRule="evenodd" d="M3 3a1 1 0 011 1v12a1 1 0 11-2 0V4a1 1 0 011-1zm7.707 3.293a1 1 0 010 1.414L9.414 9H17a1 1 0 110 2H9.414l1.293 1.293a1 1 0 01-1.414 1.414l-3-3a1 1 0 010-1.414l3-3a1 1 0 011.414 0z" clipRule="evenodd" />
                 </svg>
               </span>
-          Sign in
-        </button>
+          Sign in</button>
           </div>
         </form>
       </div>
@@ -183,17 +180,15 @@ const SigninForm = () => {
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
                 </svg>
               </div>
-              <p className="my-4 text-blueGray-500 text-lg leading-relaxed">
-                You have been logged in for 30 minutes, would you like to stay for 30 more minutes or logout now?
-                  </p>
+              <p className="my-4 text-blueGray-500 text-lg leading-relaxed">You have been logged in for 30 minutes, would you like to stay for 30 more minutes or logout now?</p>
             </div>
             <div className="flex items-center justify-end p-3 pr-4 border-t border-solid border-blueGray-200 rounded-b">
-              <button className="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 text-base font-medium 
+              <button className="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 text-base font-medium
                     text-white focus:outline-none bg-gray-500 hover:bg-gray-400 focus:ring focus:ring-offset-1 focus:ring-gray-800 transform transition active:bg-gray-800 md:ml-3 md:w-auto md:text-md"
-                type="button" onClick={() => handleLogout()} >Logout now</button>
-              <button className="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 text-base font-medium 
-                    text-white focus:outline-none bg-gray-500 hover:bg-gray-400 focus:ring focus:ring-offset-1 focus:ring-gray-800 transform transition active:bg-gray-800 md:ml-3 md:w-auto md:text-md"
-                type="button" onClick={() => handleResetTimers()} >Stay logged in</button>
+              type="button" onClick={() => handleLogout()} >Logout now</button>
+              <button className="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 text-base font-medium
+              text-white focus:outline-none bg-gray-500 hover:bg-gray-400 focus:ring focus:ring-offset-1 focus:ring-gray-800 transform transition active:bg-gray-800 md:ml-3 md:w-auto md:text-md"
+              type="button" onClick={() => handleResetTimers()} >Stay logged in</button>
             </div>
           </div>
         </div>

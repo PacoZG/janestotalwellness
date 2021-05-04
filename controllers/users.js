@@ -15,7 +15,7 @@ usersRouter.post('/', async (request, response) => {
   const user = new User({
     ...body,
     createdAt: new Date(),
-    userType: 'client',
+    userType: body.userType ? body.userType : 'admin',
     passwordHash
   })
   // console.log('USER TO SAVE: ', user)
@@ -29,7 +29,7 @@ usersRouter.post('/', async (request, response) => {
   } catch (error) {
     console.log('ERROR IN SERVER:', error.message)
     response.status(400).send(error)
-    
+
   }
 })
 

@@ -54,7 +54,7 @@ const ClientFin = () => {
   }
 
   const getDate = (objectDate) => {
-    const months = ["tammikuu", "helmikuu", "marssi", "huhtikuu", "saattaa", "kesäkuu", "heinäkuu", "elokuu", "syyskuu", "lokakuu", "marraskuu", "joulukuu"]
+    const months = ['tammikuu', 'helmikuu', 'marssi', 'huhtikuu', 'saattaa', 'kesäkuu', 'heinäkuu', 'elokuu', 'syyskuu', 'lokakuu', 'marraskuu', 'joulukuu']
     const weekDays = ['maanantai', 'tiistai', 'keskiviikko', 'torstai', 'periantai', 'lauantai', 'sunnuntai']
     const date = new Date(objectDate)
     const day = date.getDate() < 10 ? '0' + date.getDate() : date.getDate()
@@ -125,7 +125,7 @@ const ClientFin = () => {
         const newNote = await noteService.create(data)
         // console.log('RESPONSE RECEIVED IN CLIENT: ', newNote)
         client.notes = client.notes.concat(newNote)
-        // setNotes(notes.concat(newNote)) // this hook does not respond since  
+        // setNotes(notes.concat(newNote)) // this hook does not respond since
         dispatch(createNote(newNote))
         dispatch(setNotification({
           message: 'Huomautus on lisätty',
@@ -199,7 +199,7 @@ const ClientFin = () => {
               //   <svg className="h-full w-full text-gray-300" fill="currentColor" viewBox="0 0 24 24">
               //     <path d="M24 20.993V24H0v-2.996A14.977 14.977 0 0112.004 15c4.904 0 9.26 2.354 11.996 5.993zM16.002 8.999a4 4 0 11-8 0 4 4 0 018 0z" />
               //   </svg>
-              // </span> 
+              // </span>
             }
             <label className="tracking-wide pt-2 pb-1">{`${client.firstName} ${client.lastName}`}</label>
           </div>
@@ -292,7 +292,7 @@ const ClientFin = () => {
                   className="mt-1 focus:border-gray-500 block w-full shadow-sm md:text-sm border-gray-300 rounded-md" />
               </div>
               <label className="text-sm font-medium text-gray-700 pl-2 pt-2">Muistiinpanon sisältö
-                  {content.params.value.length > 29 ?
+                {content.params.value.length > 29 ?
                   <span className="pl-1 text-xs font-normal">{`(${content.params.value.length}/500)`}</span>
                   :
                   <span className="pl-1 text-xs font-normal">{`(${content.params.value.length}/30 characters minimum)`}</span>
@@ -340,7 +340,7 @@ const ClientFin = () => {
         from-gray-300 via-white to-gray-300 p-3 ">
 
           <div className="w-screen">
-            <div className="flex flex-col p-4 m-4 shadow-2xl bg-gradient-to-br 
+            <div className="flex flex-col p-4 m-4 shadow-2xl bg-gradient-to-br
             from-gray-300 via-white to-gray-300 border-double border rounded-md">
               <div className="flex p-6 border-b">
 
@@ -452,8 +452,7 @@ const ClientFin = () => {
                 <div className="p-5">
                   <h2 className="text-xl font-medium text-gray-900">Tee uusi muistiinpano</h2>
                   <p className="mt-1 text-sm text-gray-600">
-                    Ilmaise tunteita ja reaktioita vuorovaikutuksesta, suorituskyvystä tai yleisistä ajatuksista istunnoistani tämän asiakkaan kanssa.
-                    </p>
+                    Ilmaise tunteita ja reaktioita vuorovaikutuksesta, suorituskyvystä tai yleisistä ajatuksista istunnoistani tämän asiakkaan kanssa.</p>
                 </div>
               </div>
               <div className="m-4 col-span-2 ">

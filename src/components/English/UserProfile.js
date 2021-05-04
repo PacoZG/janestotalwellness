@@ -3,7 +3,7 @@ import { useSelector } from 'react-redux'
 
 const UserProfile = () => {
   const loggedUser = useSelector(state => state.loggedUser)
-  // console.log('LOGGED USER: ', loggedUser)
+  console.log('LOGGED USER: ', loggedUser)
   const user = useSelector(state => state.users.find(user => user.id === loggedUser.id))
   console.log('USER_PROFILE_INFO: ', user)
 
@@ -36,7 +36,7 @@ const UserProfile = () => {
     }
   }
 
-  if (!user){
+  if (!user) {
     return (
       <div className="justify-center items-center flex outline-none bg-gray-100 min-h-screen">
         <div className="flex flex-row space-x-1">
@@ -48,7 +48,7 @@ const UserProfile = () => {
       </div>
     )
   }
-  
+
   return (
     <div>
       <div className="bg-gray-100 min-h-screen">
@@ -104,7 +104,7 @@ const UserProfile = () => {
           </div>
           <div className="border-t border-gray-300 border-b mb-3">
             <div className="pl-8 md:pl-10 bg-gray-50 grid grid-flow-row md:grid-cols-2 md:py-2 md:px-6">
-              <dt className="pt-3 md:pt-4 text-lg font-medium text-gray-500">Health information</dt>
+              <dt className="pt-3 md:pt-4 text-lg font-medium text-gray-500">Health report</dt>
               <dd className="pb-3 md:pt-4 text-lg text-gray-900">
                 {user.healthInfo ? user.healthInfo : 'Not yet provided'}</dd>
             </div>
@@ -128,14 +128,6 @@ const UserProfile = () => {
               <dt className="pt-3 md:pt-4 text-lg font-medium text-gray-500">{'Approximate BMI\n(Body Mass Index)'}</dt>
               <dd className="pb-3 md:pt-4 text-lg text-gray-900">{getBMI()}</dd>
             </div>
-          </div>
-        </div>
-        <div className="bg-white pb-2 m-2 mb-1 shadow overflow-hidden rounded-lg">
-          <div className="p-3 md:p-1 md:pl-3 ">
-            <h3 className="text-xl font-medium text-gray-900 pl-3 md:pl-6 md:py-3">Feedback</h3>
-          </div>
-          <div className="border-t border-gray-300 border-b mb-3">
-            
           </div>
         </div>
       </div>

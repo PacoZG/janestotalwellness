@@ -3,7 +3,7 @@ module.exports = {
   jest: {
     configure: {
       globals: {
-        "CONFIG": true
+        'CONFIG': true
       }
     }
   },

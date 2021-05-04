@@ -87,7 +87,7 @@ const EditForm = () => {
         show: true
       }))
     }
-    if (healthInfo.params.value.length > 29 && healthInfo.params.value.length != 0) {
+    if (healthInfo.params.value.length > 29 && healthInfo.params.value.length !== 0) {
       updatedUser = {
         ...updatedUser,
         healthInfo: healthInfo.params.value
@@ -196,6 +196,7 @@ const EditForm = () => {
   const handlePasswordChange = async (event) => {
     event.preventDefault()
     const data = {
+      user: user,
       oldPassword: oldPassword.params.value,
       newPassword: newPassword.params.value
     }
@@ -204,7 +205,7 @@ const EditForm = () => {
         const userupdate = await loginService.updatePassword(data)
         //console.log('UPDATED USER EDIT PROFILE:', userupdate)
         dispatch(setNotification({
-          message: 'Your password has been successfully updated, new password will be valid next time you login',
+          message: 'Your password has been successfully updated, new password will be valid next time you login.',
           title: 'Sucess',
           show: true
         }))
@@ -268,20 +269,19 @@ const EditForm = () => {
                     <div className="px-4 py-5 space-y-6 sm:p-6 bg-gradient-to-br from-gray-300 via-white to-gray-300 ">
                       <div>
                         <label className="block text-sm font-medium text-gray-700 pl-2">Health report
-                        {healthInfo.params.value.length > 29 ?
+                          {healthInfo.params.value.length > 29 ?
                             <span className="pl-1 text-xs font-normal">{`(${healthInfo.params.value.length}/500)`}</span>
                             :
                             <span className="pl-1 text-xs font-normal">{`(${healthInfo.params.value.length}/30 characters minimum)`}</span>
                           }
                         </label>
                         <div className="mt-1">
-                          <textarea id="about" name="about" rows="3" minLength="30" maxLength="500" placeholder="30 characters minimum" {...healthInfo.params}
+                          <textarea id="health-report" name="about" rows="3" minLength="30" maxLength="500" placeholder="30 characters minimum" {...healthInfo.params}
                             className="shadow-sm focus:ring-indigo-500 focus:border-gray-500 mt-1 block w-full sm:text-sm border-gray-300 rounded-md placeholder-gray-200"
                           />
                         </div>
                         <p className="mt-2 text-sm text-gray-500">
-                          Medical background, chronic health issues, treatments, etc. If you have any doctor's certificate please share it with me in person.
-                        </p>
+                          {'Medical background, chronic health issues, treatments, etc. If you have any doctor\'s certificate please share it with me in person.'}</p>
                       </div>
                       <div className="ml-6 md:ml-28">
                         <div className="flex flex-row items-center md:space-x-10">
@@ -307,7 +307,7 @@ const EditForm = () => {
                             <label className="cursor-pointer bg-gray-500 hover:bg-gray-400 px-3 py-2 h-30 w-auto rounded-md
                             text-xs text-white md:w-auto md:text-base md:hover:bg-gray-300 focus-within:ring-offset-2 focus-within:ring-red-600">
                               <span>{selectedFile ? 'Change image' : 'Upload a picture'}</span>
-                              <input type="file" name="image" accept="image/*" onChange={handleImageInput} className="sr-only"
+                              <input id="image-input" type="file" name="image" accept="image/*" onChange={handleImageInput} className="sr-only"
                               />
                             </label>
                           </div>
@@ -315,7 +315,7 @@ const EditForm = () => {
                       </div>
                     </div>
                     <div className="px-4 py-3 bg-gray-400 text-right sm:px-6 rounded-b-md">
-                      <button type="submit"
+                      <button id="save-health-button" type="submit"
                         className="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm font-medium rounded-md
                       bg-gray-500 text-sm text-white hover:bg-gray-300 focus-within:outline-none focus-within:ring-1">
                         Save</button>
@@ -373,12 +373,12 @@ const EditForm = () => {
                         </div>
                         <div className="col-span-6">
                           <label className="block text-sm font-medium text-gray-700 pl-2">Street address</label>
-                          <input name="street_address" id="street_address" autoComplete="street-address" {...address.params}
+                          <input name="street_address" id="street-address" autoComplete="street-address" {...address.params}
                             className="mt-1 focus:border-gray-500 block w-full shadow-sm md:text-sm border-gray-300 rounded-md" />
                         </div>
                         <div className="col-span-6 md:col-span-2">
                           <label className="block text-sm font-medium text-gray-700 pl-2">ZIP / Postal</label>
-                          <input name="postal_code" id="postal_code" autoComplete="postal-code" {...zipCode.params}
+                          <input name="postal_code" id="postal-code" autoComplete="postal-code" {...zipCode.params}
                             className=" focus:border-gray-500 block w-full shadow-sm md:text-sm border-gray-300 rounded-md" />
                         </div>
                         <div className="col-span-6 md:col-span-2">
@@ -416,7 +416,7 @@ const EditForm = () => {
                           </div>
                           <div style={visibleDrop} className="border rounded-sm col-span-6 bg-white mt-4">
                             {countries.sort().map(country =>
-                              <p className="p-1 pl-2 text-gray-700 hover:bg-gray-500 hover:text-white cursor-pointer"
+                              <p id={`${country}`} className="p-1 pl-2 text-gray-700 hover:bg-gray-500 hover:text-white cursor-pointer"
                                 onClick={() => handleCountry(country)} key={country}
                               >{country}</p>
                             )}
@@ -425,7 +425,7 @@ const EditForm = () => {
                       </div>
                     </div>
                     <div className="px-4 py-3 bg-gray-400 text-right md:px-6">
-                      <button type="button" onClick={handletPersonalInfo}
+                      <button id="save-personal-info-button" type="button" onClick={handletPersonalInfo}
                         className="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm font-medium rounded-md
                       bg-gray-500 text-sm text-white hover:bg-gray-300 focus-within:outline-none focus-within:ring-1">
                         Save</button>
@@ -476,7 +476,7 @@ const EditForm = () => {
                       </div>
                     </div>
                     <div className="px-4 py-3 bg-gray-400 text-right md:px-6">
-                      <button type="button" onClick={handlePasswordChange}
+                      <button id="save-updated-password-button" type="button" onClick={handlePasswordChange}
                         className="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm font-medium rounded-md
                       bg-gray-500 text-sm text-white hover:bg-gray-300 focus-within:outline-none focus-within:ring-1">
                         Save</button>
@@ -546,12 +546,12 @@ const EditForm = () => {
                   </p>
                 </div>
                 <div className="flex items-center justify-end p-3 pr-4 border-t border-solid border-blueGray-200 rounded-b">
-                  <button className="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 text-base font-medium 
+                  <button className="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 text-base font-medium
                     text-white focus:outline-none bg-gray-500 hover:bg-gray-400 focus:ring focus:ring-offset-1 focus:ring-gray-800 transform transition active:bg-gray-800 md:ml-3 md:w-24 md:text-md"
-                    type="button" onClick={() => setShowModal(!showModal)} >Cancel</button>
-                  <button className="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 text-base font-medium 
+                  type="button" onClick={() => setShowModal(!showModal)} >Cancel</button>
+                  <button className="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 text-base font-medium
                     text-white focus:outline-none bg-gray-500 hover:bg-gray-400 focus:ring focus:ring-offset-1 focus:ring-gray-800 transform transition active:bg-gray-800 md:ml-3 md:w-24 md:text-md"
-                    type="button" onClick={() => handleProfileRemoval()} >Remove</button>
+                  type="button" onClick={() => handleProfileRemoval()} >Remove</button>
                 </div>
               </div>
             </div>

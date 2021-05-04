@@ -36,7 +36,7 @@ const UserProfile = () => {
     }
   }
 
-  if (!user){
+  if (!user) {
     return (
       <div className="justify-center items-center flex outline-none bg-gray-100 min-h-screen">
         <div className="flex flex-row space-x-1">
@@ -48,7 +48,7 @@ const UserProfile = () => {
       </div>
     )
   }
-  
+
   return (
     <div>
       <div className="bg-gray-100 min-h-screen">

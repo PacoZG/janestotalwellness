@@ -13,7 +13,7 @@ const Modal = () => {
   return (
     <div>
       {messageData.show ? (
-        <div>
+        <div id="modal">
           <div
             className="justify-center items-center flex overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none">
             <div className="relative w-auto my-6 mx-auto max-w-sm">
@@ -28,20 +28,19 @@ const Modal = () => {
                   </svg>
                 </button>
                 <div className="flex items-start justify-between p-1 pl-4 border-b border-solid border-blueGray-200 rounded-t">
-                  <h3 className="text-2xl font-semibold text-gray-700">{messageData.title}</h3>
+                  <h3 id="title" className="text-2xl font-semibold text-gray-700">{messageData.title}</h3>
 
                 </div>
                 {/*body*/}
                 <div className="relative pl-4 pr-4 flex-auto">
-                  <p className="my-4 text-blueGray-500 text-lg leading-relaxed">{messageData.message}</p>
+                  <p id="modal-message" className="my-4 text-blueGray-500 text-lg leading-relaxed">{messageData.message}</p>
                 </div>
                 {/*footer*/}
                 <div className="flex items-center justify-end p-2 pr-4 border-t border-solid border-blueGray-200 rounded-b">
                   <button
-                    className="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 text-base font-medium 
+                    className="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 text-base font-medium
                     text-white focus:outline-none bg-gray-500 hover:bg-gray-400 focus:ring focus:ring-offset-1 focus:ring-gray-800 transform transition active:bg-gray-800 md:ml-3 md:w-auto md:text-md"
-                    type="button"
-                    onClick={hideModal}
+                    id="modal-ok" type="button" onClick={hideModal}
                   >OK</button>
                 </div>
               </div>

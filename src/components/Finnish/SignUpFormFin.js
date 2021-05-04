@@ -7,7 +7,7 @@ import userService from '../../services/user'
 
 const SignUpFormFin = () => {
   const dispatch = useDispatch()
-  
+
   const [dropdown, setDropdown] = useState(false)
   const visibleDrop = { display: dropdown ? '' : 'none' }
 
@@ -37,7 +37,7 @@ const SignUpFormFin = () => {
 
   const handleSignUp = async (event) => {
     event.preventDefault()
-    var genders = document.getElementsByName('gender');
+    var genders = document.getElementsByName('gender')
     let selectedGender
 
     for (var i = 0; i < genders.length; i++) {
@@ -178,10 +178,10 @@ const SignUpFormFin = () => {
                         </span>
                       </div>
                       <div style={visibleDrop} className="absolute border rounded-b-md rounded-sm mt-2 col-span-6 w-full bg-white z-50 ">
-                        {countries.sort().map(country => 
+                        {countries.sort().map(country =>
                           <p className="p-1 pl-2 text-gray-500 hover:bg-gray-500 hover:text-white cursor-pointer"
-                          onClick={() => handleCountry(country)} key={country}
-                        >{country}</p>
+                            onClick={() => handleCountry(country)} key={country}
+                          >{country}</p>
                         )}
                       </div>
                     </div>
@@ -204,7 +204,7 @@ const SignUpFormFin = () => {
                   </div>
                   <div className="col-span-6 md:col-span-3">
                     <label className="p-0 bottom-12 ml-2 bg-transparent text-gray-200 ">Kirjoita salasana uudelleen<span className="text-sm text-gray-300 pl-2">{
-                              passwordConfirm.params.value === password.params.value && passwordConfirm.params.value.length > 7 ? '(passwords matched)' : ''}</span>
+                      passwordConfirm.params.value === password.params.value && passwordConfirm.params.value.length > 7 ? '(passwords matched)' : ''}</span>
                     </label>
                     <input className="focus:border-gray-500 block h-12 w-full shadow-sm md:text-sm border-gray-300 rounded-md placeholder-gray-200"
                       pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Sen on sisällettävä vähintään yksi numero ja yksi isoja ja pieniä kirjaimia sekä vähintään 8 tai enemmän merkkejä"
@@ -245,7 +245,7 @@ const SignUpFormFin = () => {
                       {...weight.params} required />
                   </div><div className="col-span-6 md:col-span-6">
                     <label className="p-0 bottom-12 ml-2 bg-transparent text-gray-200 ">Tausta
-                    <span className="text-gray-400 text-sm pl-2">(minkälaista fyysistä toimintaa olet tehnyt aiemmin?)</span></label>
+                      <span className="text-gray-400 text-sm pl-2">(minkälaista fyysistä toimintaa olet tehnyt aiemmin?)</span></label>
                     <input className="focus:border-gray-500 block h-12 w-full shadow-sm md:text-sm border-gray-300 rounded-md placeholder-gray-200"
                       {...background.params} required />
                   </div>
@@ -257,8 +257,7 @@ const SignUpFormFin = () => {
                       {...goals.params} required />
                   </div>
                   <button className="mt-4 mb-6 h-12 w-full bg-gray-500 text-white rounded hover:bg-gray-400
-                    focus:ring focus:ring-offset-1 focus:ring-gray-800 transform transition active:bg-gray-800"
-                    type="submit">Sign up</button>
+                    focus:ring focus:ring-offset-1 focus:ring-gray-800 transform transition active:bg-gray-800" type="submit">Sign up</button>
                 </div>
               </div>
             </div>

@@ -14,7 +14,7 @@ const reducer = combineReducers({
   notes: noteReducer,
   loggedUser: loginReducer,
   notification: notificationReducer,
-  language: languageReducer  
+  language: languageReducer
 })
 
 const store = createStore(reducer, composeWithDevTools(applyMiddleware(thunk)))

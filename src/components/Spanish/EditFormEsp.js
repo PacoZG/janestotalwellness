@@ -87,7 +87,7 @@ const EditForm = () => {
         show: true
       }))
     }
-    if (healthInfo.params.value.length > 29 && healthInfo.params.value.length != 0) {
+    if (healthInfo.params.value.length > 29 && healthInfo.params.value.length !== 0) {
       updatedUser = {
         ...updatedUser,
         healthInfo: healthInfo.params.value
@@ -269,7 +269,7 @@ const EditForm = () => {
                     <div className="px-4 py-5 space-y-6 sm:p-6 bg-gradient-to-br from-gray-300 via-white to-gray-300 ">
                       <div>
                         <label className="block text-sm font-medium text-gray-700 pl-2">Reporte de salud
-                        {healthInfo.params.value.length > 29 ?
+                          {healthInfo.params.value.length > 29 ?
                             <span className="pl-1 text-xs font-normal">{`(${healthInfo.params.value.length}/500)`}</span>
                             :
                             <span className="pl-1 text-xs font-normal">{`(${healthInfo.params.value.length}/30 characters minimum)`}</span>
@@ -404,7 +404,6 @@ const EditForm = () => {
                               <div className="flex ">
                                 {country ? <span onClick={() => setCountry(null)}
                                   className="text-md text-gray-300 pr-2 cursor-pointer ">X</span> : null}
-
                                 <span className="inset-y-0 border-l pl-1 cursor-pointer"
                                   onClick={() => setDropdown(!dropdown)}>
                                   <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
@@ -461,14 +460,14 @@ const EditForm = () => {
                         </div>
                         <div className="col-span-6 md:col-span-4">
                           <label className="block text-sm font-medium text-gray-700 pl-2">Confirma tu contraseña
-                          <span className="text-sm text-gray-300 pl-2">{
+                            <span className="text-sm text-gray-300 pl-2">{
                               oldPasswordConfirm.params.value === oldPassword.params.value && oldPasswordConfirm.params.value.length > 7 ? '(passwords matched)' : ''}</span></label>
                           <input name="oldPasswordConfirm" id="oldPasswordConfirm" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" {...oldPasswordConfirm.params}
                             className="mt-1 focus:border-gray-500 block w-full shadow-sm md:text-sm border-gray-300 rounded-md placeholder-gray-200" />
                         </div>
                         <div className="col-span-6 md:col-span-4">
                           <label className="block text-sm font-medium text-gray-700 pl-2">Nueva contraseña
-                          <span className="text-sm text-gray-300 pl-2">{
+                            <span className="text-sm text-gray-300 pl-2">{
                               oldPassword.params.value === newPassword.params.value && newPassword.params.value.length > 7
                                 ? '(New password cannot be the same as the old one)' : ''}</span></label>
                           <input name="newPassword" id="newPassword" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"  {...newPassword.params}
@@ -547,12 +546,12 @@ const EditForm = () => {
                   </p>
                 </div>
                 <div className="flex items-center justify-end p-3 pr-4 border-t border-solid border-blueGray-200 rounded-b">
-                  <button className="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 text-base font-medium 
+                  <button className="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 text-base font-medium
                     text-white focus:outline-none bg-gray-500 hover:bg-gray-400 focus:ring focus:ring-offset-1 focus:ring-gray-800 transform transition active:bg-gray-800 md:ml-3 md:w-24 md:text-md"
-                    type="button" onClick={() => setShowModal(!showModal)} >Cancelar</button>
-                  <button className="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 text-base font-medium 
+                  type="button" onClick={() => setShowModal(!showModal)} >Cancelar</button>
+                  <button className="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 text-base font-medium
                     text-white focus:outline-none bg-gray-500 hover:bg-gray-400 focus:ring focus:ring-offset-1 focus:ring-gray-800 transform transition active:bg-gray-800 md:ml-3 md:w-24 md:text-md"
-                    type="button" onClick={() => handleProfileRemoval()} >Borrar</button>
+                  type="button" onClick={() => handleProfileRemoval()} >Borrar</button>
                 </div>
               </div>
             </div>

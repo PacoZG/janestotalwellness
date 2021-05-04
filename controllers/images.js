@@ -29,7 +29,7 @@ imageRouter.delete('/:id', async (request, response) => {
     const uploadResponse = await cloudinary.cloudinaryDelete(id)
     return response.status(201).json(uploadResponse)
   } catch (error) {
-    return response.status(400).send({ message: error.message})
+    return response.status(400).send({ message: error.message })
   }
 })
 

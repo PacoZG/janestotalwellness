@@ -7,7 +7,7 @@ import userService from '../../services/user'
 
 const SignUpForm = () => {
   const dispatch = useDispatch()
-  
+
   const [dropdown, setDropdown] = useState(false)
   const visibleDrop = { display: dropdown ? '' : 'none' }
 
@@ -28,6 +28,7 @@ const SignUpForm = () => {
   const countries = [
     'Finland', 'Sweden', 'Norway', 'Estonia', 'Germany', 'Spain', 'Italy', 'Netherland', 'Switzerland', 'Mexico'
   ]
+
   const handleCountry = (country) => {
     setCountry(country)
     setDropdown(!dropdown)
@@ -37,7 +38,7 @@ const SignUpForm = () => {
 
   const handleSignUp = async (event) => {
     event.preventDefault()
-    var genders = document.getElementsByName('gender');
+    var genders = document.getElementsByName('gender')
     let selectedGender
 
     for (var i = 0; i < genders.length; i++) {
@@ -59,6 +60,7 @@ const SignUpForm = () => {
       weight: parseInt(weight.params.value),
       country: country,
       goals: goals.params.value,
+      userType: 'client'
     }
     //console.log('NEW_USER: ', newUser)
     try {
@@ -141,28 +143,28 @@ const SignUpForm = () => {
         <form onSubmit={handleSignUp}>
           <div>
             <div className="min-w-md mx-auto overflow-hidden">
-              <h1 className="text-center font-medium font-serif m-2 text-2xl text-gray-300">Sign up form</h1>
+              <h1 className="text-center font-medium font-serif m-2 text-2xl text-gray-300">Sign Up</h1>
               <div className="px-4 py-4 bg-gray-700 md:p-6">
                 <div className="grid grid-cols-6 gap-6">
                   <div className="col-span-6 md:col-span-3">
                     <label className="p-0 bottom-12 ml-2 bg-transparent text-gray-200 ">First name</label>
                     <input className="focus:border-gray-500 block h-12 w-full shadow-sm md:text-sm border-gray-300 rounded-md placeholder-gray-200"
-                      pattern="([a-zA-Z]+\s){2,})" placeholder="John" {...firstName.params} required />
+                      pattern="([a-zA-Z]+\s){2,})" placeholder="John" id="first-name" {...firstName.params} required />
                   </div>
                   <div className="col-span-6 md:col-span-3">
                     <label className="p-0 bottom-12 ml-2 bg-transparent text-gray-200">Last name</label>
                     <input className="focus:border-gray-500 block h-12 w-full shadow-sm md:text-sm border-gray-300 rounded-md placeholder-gray-200"
-                      pattern="([a-zA-Z]+\s){2,})" placeholder="Smith" {...lastName.params} required />
+                      pattern="([a-zA-Z]+\s){2,})" placeholder="Smith" id="last-name" {...lastName.params} required />
                   </div>
                   <div className="col-span-6 md:col-span-3">
                     <label className="p-0 bottom-12 ml-2 bg-transparent text-gray-200 ">Username</label>
                     <input className="focus:border-gray-500 block h-12 w-full shadow-sm md:text-sm border-gray-300 rounded-md placeholder-gray-200"
-                      pattern="[A-Za-z0-9]+" placeholder="example: jhon1" title="User has to be at least 4 characters long" {...username.params} required />
+                      pattern="[A-Za-z0-9]+" placeholder="example: jhon1" id="username" title="User has to be at least 4 characters long" {...username.params} required />
                   </div>
                   <div className="col-span-6 sm:col-span-3">
                     <div className="mt-8 relative">
                       <label className="absolute bottom-12 ml-2 bg-transparent text-gray-200 ">Country</label>
-                      <div id="country" name="country" type="text"
+                      <div name="country" type="text"
                         className="h-12 w-full border border-gray-300 focus:ring-0 bg-white rounded-sm shadow-sm md:text-md text-left">
                         {country ?
                           <div className="pt-1 text-gray-500">
@@ -171,17 +173,17 @@ const SignUpForm = () => {
                           </div> :
                           <div className="opacity-25 pt-1">Select country</div>}
                         <span className="absolute right-0 inset-y-0 flex items-center pr-2 pl-1 border-l mt-2 mb-2 cursor-pointer"
-                          onClick={() => setDropdown(!dropdown)}>
+                          id="country-menu" onClick={() => setDropdown(!dropdown)}>
                           <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
                             <path fillRule="evenodd" d="M10 3a1 1 0 01.707.293l3 3a1 1 0 01-1.414 1.414L10 5.414 7.707 7.707a1 1 0 01-1.414-1.414l3-3A1 1 0 0110 3zm-3.707 9.293a1 1 0 011.414 0L10 14.586l2.293-2.293a1 1 0 011.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 010-1.414z" clipRule="evenodd" />
                           </svg>
                         </span>
                       </div>
-                      <div style={visibleDrop} className="absolute border rounded-b-md rounded-sm mt-2 col-span-6 w-full bg-white z-50 ">
-                        {countries.sort().map(country => 
+                      <div id="menu" style={visibleDrop} className="absolute border rounded-b-md rounded-sm mt-2 col-span-6 w-full bg-white z-50 ">
+                        {countries.sort().map(country =>
                           <p className="p-1 pl-2 text-gray-500 hover:bg-gray-500 hover:text-white cursor-pointer"
-                          onClick={() => handleCountry(country)} key={country}
-                        >{country}</p>
+                            id={`${country}`} onClick={() => handleCountry(country)} key={country}
+                          >{country}</p>
                         )}
                       </div>
                     </div>
@@ -192,7 +194,7 @@ const SignUpForm = () => {
                       pattern="[a-z0-9._%+-]+@[a-z0-9.-]+.[a-z]{2,4}$" id="email" placeholder="john@example.com" {...email.params} required />
                   </div>
                   <div className="col-span-6 md:col-span-3">
-                    <label className="p-0 bottom-12 ml-2 bg-transparent text-gray-200 ">Re-type email</label>
+                    <label className="p-0 bottom-12 ml-2 bg-transparent text-gray-200 ">Confirm email</label>
                     <input className="focus:border-gray-500 block h-12 w-full shadow-sm md:text-sm border-gray-300 rounded-md placeholder-gray-200"
                       pattern="[a-z0-9._%+-]+@[a-z0-9.-]+.[a-z]{2,4}$" id="email-confirm" {...emailConfirm.params} required />
                   </div>
@@ -203,17 +205,17 @@ const SignUpForm = () => {
                       {...password.params} required />
                   </div>
                   <div className="col-span-6 md:col-span-3">
-                    <label className="p-0 bottom-12 ml-2 bg-transparent text-gray-200 ">Re-type password<span className="text-sm text-gray-300 pl-2">{
-                              passwordConfirm.params.value === password.params.value && passwordConfirm.params.value.length > 7 ? '(passwords matched)' : ''}</span>
+                    <label className="p-0 bottom-12 ml-2 bg-transparent text-gray-200 ">Confirm password<span className="text-sm text-gray-300 pl-2">{
+                      passwordConfirm.params.value === password.params.value && passwordConfirm.params.value.length > 7 ? '(passwords matched)' : ''}</span>
                     </label>
                     <input className="focus:border-gray-500 block h-12 w-full shadow-sm md:text-sm border-gray-300 rounded-md placeholder-gray-200"
                       pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters"
-                      {...passwordConfirm.params} required />
+                      {...passwordConfirm.params} id="password-confirm" required />
                   </div>
                   <div className="col-span-6 md:col-span-3">
                     <label className="p-0 bottom-12 ml-2 bg-transparent text-gray-200 ">Date of birth</label>
                     <input className="focus:border-gray-500 block h-12 w-full shadow-sm md:text-sm border-gray-300 rounded-md placeholder-gray-200"
-                      {...dateOfBirth.params} min="1950-01-01" max="2005-12-31" required />
+                      {...dateOfBirth.params} min="1950-01-01" id="dateOfBirth" max="2005-12-31" required />
                   </div>
                   <div className="col-span-6 md:col-span-3 md:mt-8">
                     <div className="grid grid-flow-col justify-items-left pl-4 md:pl-4 mt-3 md:space-x-20">
@@ -237,27 +239,27 @@ const SignUpForm = () => {
                   <div className="col-span-6 md:col-span-3">
                     <label className="p-0 bottom-12 ml-2 bg-transparent text-gray-200 ">Height (cm)</label>
                     <input className="focus:border-gray-500 block h-12 w-full shadow-sm md:text-sm border-gray-300 rounded-md placeholder-gray-200"
-                      {...height.params} required />
+                      {...height.params} id="height" required />
                   </div>
                   <div className="col-span-6 md:col-span-3">
                     <label className="p-0 bottom-12 ml-2 bg-transparent text-gray-200 ">Weight (kg)</label>
                     <input className="focus:border-gray-500 block h-12 w-full shadow-sm md:text-sm border-gray-300 rounded-md placeholder-gray-200"
-                      {...weight.params} required />
+                      {...weight.params} id="weight" required />
                   </div><div className="col-span-6 md:col-span-6">
                     <label className="p-0 bottom-12 ml-2 bg-transparent text-gray-200 ">Background<span className="text-gray-400 text-sm pl-2">(What kind of physical activity have you done before?)</span></label>
                     <input className="focus:border-gray-500 block h-12 w-full shadow-sm md:text-sm border-gray-300 rounded-md placeholder-gray-200"
-                      {...background.params} required />
+                      {...background.params} id="background" required />
                   </div>
                 </div>
                 <div className="col-span-6 md:col-span-6">
                   <div className="mt-4 relative">
                     <p className="pl-2 text-gray-200" >Goals</p>
                     <textarea className="h-40 focus:border-gray-500 block w-full shadow-sm md:text-sm border-gray-300 rounded-md placeholder-gray-200" placeholder="Tell me why you are seeking for my help"
-                      {...goals.params} required />
+                      {...goals.params} id="goals" required />
                   </div>
                   <button className="mt-4 mb-6 h-12 w-full bg-gray-500 text-white rounded hover:bg-gray-400
                     focus:ring focus:ring-offset-1 focus:ring-gray-800 transform transition active:bg-gray-800"
-                    type="submit">Sign up</button>
+                  type="submit" id="signUp-button">Sign up</button>
                 </div>
               </div>
             </div>

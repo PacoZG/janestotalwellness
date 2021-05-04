@@ -4,19 +4,19 @@ const usersReducer = (state = [], action) => {
   // console.log('USERS STATE IN USERREDUCER:', state)
   // console.log('USERS ACTION IN USERREDUCER:', action.data)
   switch (action.type) {
-    case 'INIT_USERS':
-      return action.data
-    case 'NEW_USER':
-      return state.concat(action.data)
-    case 'GET_USER':
-      return action.data
-    case 'UPDATE_USER':
-      const id = action.data.id
-      return state.map(user => user.id !== id ? user : action.data)
-    case 'DELETE':
-      return state.filter(user => user.id !== action.data)
-    default:
-      return state
+  case 'INIT_USERS':
+    return action.data
+  case 'NEW_USER':
+    return state.concat(action.data)
+  case 'GET_USER':
+    return action.data
+  case 'UPDATE_USER':
+    const id = action.data.id
+    return state.map(user => user.id !== id ? user : action.data)
+  case 'DELETE':
+    return state.filter(user => user.id !== action.data)
+  default:
+    return state
   }
 }
 

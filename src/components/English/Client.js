@@ -54,7 +54,7 @@ const Client = () => {
   }
 
   const getDate = (objectDate) => {
-    const months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
+    const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
     const weekDays = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
     const date = new Date(objectDate)
     const day = date.getDate() < 10 ? '0' + date.getDate() : date.getDate()
@@ -125,7 +125,7 @@ const Client = () => {
         const newNote = await noteService.create(data)
         // console.log('RESPONSE RECEIVED IN CLIENT: ', newNote)
         client.notes = client.notes.concat(newNote)
-        // setNotes(notes.concat(newNote)) // this hook does not respond since  
+        // setNotes(notes.concat(newNote)) // this hook does not respond since
         dispatch(createNote(newNote))
         dispatch(setNotification({
           message: 'Note has been added',
@@ -199,17 +199,17 @@ const Client = () => {
               //   <svg className="h-full w-full text-gray-300" fill="currentColor" viewBox="0 0 24 24">
               //     <path d="M24 20.993V24H0v-2.996A14.977 14.977 0 0112.004 15c4.904 0 9.26 2.354 11.996 5.993zM16.002 8.999a4 4 0 11-8 0 4 4 0 018 0z" />
               //   </svg>
-              // </span> 
+              // </span>
             }
             <label className="tracking-wide border-b pt-2 pb-1">{`${client.firstName} ${client.lastName}`}</label>
           </div>
           <div className="grid grid-cols-6 gap-4 place-items-center border-b pb-3">
             <div className="block col-span-6">
-              <p className="text-md">{client.address ? client.address : <span className="text-red-400">Address hasn't been provided yet</span>}</p>
+              <p className="text-md">{client.address ? client.address : <span className="text-red-400">{'Address hasn\'t been provided yet'}</span>}</p>
             </div>
             <div className="block col-span-6">
               <p className="text-md ">
-                {client.address && client.zipCode && client.city ? `${client.zipCode}, ${client.city}. ${client.country.toUpperCase()}` : <span className="text-red-400">Address hasn't been provided yet</span>}</p>
+                {client.address && client.zipCode && client.city ? `${client.zipCode}, ${client.city}. ${client.country.toUpperCase()}` : <span className="text-red-400">{'Address hasn\'t been provided yet'}</span>}</p>
             </div>
             <div className="block col-span-6">
               <p className="text-md"><span className="font-semibold">Email: </span>
@@ -217,7 +217,7 @@ const Client = () => {
             </div>
             <div className="block col-span-6">
               <p className="text-md"><span className="font-semibold">Mobile: </span>
-                {client.mobileNumber ? client.mobileNumber : <span className="text-red-400">hasn't been provided yet</span>}</p>
+                {client.mobileNumber ? client.mobileNumber : <span className="text-red-400">{'hasn\'t been provided yet'}</span>}</p>
             </div>
             <div className="block col-span-3 capitalize">
               <p className="text-md"><span className="font-semibold">Gender: </span>
@@ -336,12 +336,9 @@ const Client = () => {
       <div className="bg-gray-200 p-2 ">
         <div className="hidden md:flex min-h-screen shadow overflow-hidden rounded-md bg-gradient-to-br
         from-gray-300 via-white to-gray-300 p-3 ">
-
           <div className="w-screen">
-            <div className="flex flex-col p-4 m-4 shadow-2xl bg-gradient-to-br 
-            from-gray-300 via-white to-gray-300 border-double border rounded-md">
+            <div className="flex flex-col p-4 m-4 shadow-2xl bg-gradient-to-brfrom-gray-300 via-white to-gray-300 border-double border rounded-md">
               <div className="flex p-6 border-b">
-
                 <div className="flex flex-col items-center space-y-3 border-gray-700 p-9 ">
                   <label className="tracking-wide border-b pb-2">{`${client.username}`}</label>
                   {client.imageURL ?
@@ -359,11 +356,11 @@ const Client = () => {
                   <div className="grid grid-cols-6 gap-4">
                     <div className="col-span-6">
                       <p className="text-md text-left"><span className="text-left font-semibold pr-8">Address: </span>
-                        {client.address ? client.address : <span className="text-red-400">Address hasn't been provided yet</span>}</p>
+                        {client.address ? client.address : <span className="text-red-400">{'Address hasn\'t been provided yet'}</span>}</p>
                     </div>
                     <div className="col-span-6">
                       <p className="text-md text-left"><span className="text-left font-semibold pr-8">Address: </span>
-                        {client.address && client.zipCode && client.city ? `${client.zipCode}, ${client.city}. ${client.country.toUpperCase()}` : <span className="text-red-400">Address hasn't been provided yet</span>}
+                        {client.address && client.zipCode && client.city ? `${client.zipCode}, ${client.city}. ${client.country.toUpperCase()}` : <span className="text-red-400">{'Address hasn\'t been provided yet'}</span>}
                       </p>
                     </div>
                     <div className=" col-span-3">
@@ -408,7 +405,6 @@ const Client = () => {
                 <p className="border-transparent text-left">{client.healthInfo ? client.healthInfo : <span className="text-red-400">Not yet provided</span>}</p>
               </div>
             </div>
-
             <div className="mr-4 ml-4">
               <div className="grid grid-cols-3 gap-6 shadow-2xl bg-gradient-to-br from-gray-300 via-white to-gray-300
                 border-double border rounded-md">
@@ -451,7 +447,7 @@ const Client = () => {
                   <h2 className="text-xl font-medium text-gray-900">Make a new note</h2>
                   <p className="mt-1 text-sm text-gray-600">
                     Express your feelings and reactions about the interaction, performance or general thoughts about my sessions with this client.
-                    </p>
+                  </p>
                 </div>
               </div>
               <div className="m-4 col-span-2 ">

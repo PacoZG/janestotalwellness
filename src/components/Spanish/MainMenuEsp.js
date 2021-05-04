@@ -73,7 +73,7 @@ const MainMenu = () => {
               </div>
               <div className="ml-10 flex items-baseline space-x-3 pt-2">
                 <Link to="/esp/frontpage" className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">
-                  <i className="text-gray-300">Jane's Total Wellness</i>
+                  <i className="text-gray-300">{'Jane\'s Total Wellness'}</i>
                 </Link>
 
                 <Link to="/esp/exercises" className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Librería de ejercicios</Link>
@@ -92,7 +92,7 @@ const MainMenu = () => {
           <div className="hidden md:block">
             <div className="ml-4 flex items-center md:ml-6">
               <div style={visibleLangMenu}
-                className="absolute bg-gray-200 top-14 right-24 h-auto w-auto rounded-sm z-40 origin-top-right mt-2 
+                className="absolute bg-gray-200 top-14 right-24 h-auto w-auto rounded-sm z-40 origin-top-right mt-2
               shadow-lg py-1 ring-1 ring-black ring-opacity-5 focus:outline-none divide-y divide-gray-500">
                 <p className="text-center p-1 hover:bg-gray-500 hover:text-gray-100 cursor-pointer " onClick={() => handleSetLanguage('eng')}>ENG</p>
                 <p className="text-center p-1 hover:bg-gray-500 hover:text-gray-100 cursor-pointer" onClick={() => handleSetLanguage('fin')}>FIN</p>
@@ -129,7 +129,7 @@ const MainMenu = () => {
                     <div>
                       <Link to="/esp/profile" className="block px-4 py-2 text-sm text-gray-800 hover:bg-gray-100" role="menuitem">Perfil</Link>
                       <Link to="/esp/editForm" className="block px-4 py-2 text-sm text-gray-800 hover:bg-gray-100" role="menuitem">Editar perfil</Link>
-                      <Link to="#" onClick={handleLogout} className="block px-4 py-2 text-sm text-gray-800 hover:bg-gray-100" role="menuitem" >Cerrar sesión</Link>
+                      <p onClick={handleLogout} className="block px-4 py-2 text-sm text-gray-800 hover:bg-gray-100 cursor-pointer" role="menuitem" >Cerrar sesión</p>
                     </div>
                     :
                     <div>
@@ -163,7 +163,7 @@ const MainMenu = () => {
           <div className="absolute inset-y-0 right-0 border-gray-700">
             <div className="flex items-center px-4 right-0">
               <div style={visibleLangMenu}
-                className="absolute bg-gray-200 top-8 right-24 h-auto w-auto rounded-sm z-40 origin-top-right mt-2 
+                className="absolute bg-gray-200 top-8 right-24 h-auto w-auto rounded-sm z-40 origin-top-right mt-2
                             shadow-lg py-1 ring-1 ring-black ring-opacity-5 focus:outline-none divide-y divide-gray-500">
                 <p className="text-center p-1 hover:bg-gray-500 hover:text-gray-100 cursor-pointer " onClick={() => handleSetLanguage('eng')}>ENG</p>
                 <p className="text-center p-1 hover:bg-gray-500 hover:text-gray-100 cursor-pointer" onClick={() => handleSetLanguage('fin')}>FIN</p>
@@ -178,11 +178,7 @@ const MainMenu = () => {
               <button style={languageBackgroundVisible} onClick={handleLanguageBrackground} className="fixed inset-0 w-full bg-black opacity-20 z-30"></button>
               <button type="button" tabIndex="-1" className="relative z-10 max-w-xs bg-gray-800 rounded-full flex items-center
                 text-sm focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-gray-300"
-                id="user-menu"
-                aria-expanded="false"
-                aria-haspopup="true"
-                onClick={handleDropdown}
-              >
+              id="user-menu" aria-expanded="false" aria-haspopup="true" onClick={handleDropdown} >
                 {loggedUser && loggedUser.imageURL ?
                   <img className="h-12 w-12 rounded-full" src={loggedUser.imageURL} alt="" /> :
                   <span className="inline-block rounded-full h-10 w-10 md:rounded-full overflow-hidden bg-gray-100">
@@ -210,16 +206,13 @@ const MainMenu = () => {
             </div>
           </div>
         </div>
-        <div style={mobileMenu} className="border-t pt-2 pb-2">
+        <div style={mobileMenu} className="md:hidden border-t pt-2 pb-2">
           <div className="space-y-3 ">
-            <Link to="/esp/frontpage" className="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 rounded-md text-base font-medium">Jane's Total Wellness</Link>
-
+            <Link to="/esp/frontpage" className="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 rounded-md text-base font-medium">{'Jane\'s Total Wellness'}</Link>
             <Link to="/esp/exercises" className="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 rounded-md text-base font-medium">Librería de ejercicios</Link>
-
             {loggedUser ?
               <Link to="/esp/myprogram" className="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 rounded-md text-base font-medium">Mi Programa</Link>
               : null}
-
             {loggedUser && loggedUser.userType === 'admin' ?
               <Link to="/esp/clients" className="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 rounded-md text-base font-medium">Mis clientes</Link> :
               null

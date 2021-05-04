@@ -7,7 +7,7 @@ const userSchema = new mongoose.Schema({
       type: mongoose.Schema.Types.ObjectId,
       ref: 'Note'
     }
-  ],  
+  ],
   createdAt: Date,
   updatedAt: Date,
   userType: String,

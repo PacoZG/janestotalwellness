@@ -2,7 +2,7 @@ import axios from 'axios'
 const baseUrl = '/api/users'
 
 const getConfig = () => {
-  return  {
+  return {
     headers: { Authorization: `bearer ${localdb.loadUser().token}` }
   }
 }
@@ -15,8 +15,8 @@ const getAll = async () => {
 
 const createUser = async (newUser) => {
   //console.log('USER_TO_SAVE: ', newUser)
-    const response = await axios.post(baseUrl, newUser)
-    return response.data
+  const response = await axios.post(baseUrl, newUser)
+  return response.data
 }
 
 const getUser = async (id) => {

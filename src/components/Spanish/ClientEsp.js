@@ -54,7 +54,7 @@ const Client = () => {
   }
 
   const getDate = (objectDate) => {
-    const months = ["Ene", "Feb", "Mar", "Abr", "May", "Jun", "Jul", "Ago", "Sep", "Oct", "Nov", "Dec"]
+    const months = ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul', 'Ago', 'Sep', 'Oct', 'Nov', 'Dec']
     const weekDays = ['Lun', 'Mar', 'Mie', 'Jue', 'Vie', 'Sab', 'Dom']
     const date = new Date(objectDate)
     const day = date.getDate() < 10 ? '0' + date.getDate() : date.getDate()
@@ -125,7 +125,7 @@ const Client = () => {
         const newNote = await noteService.create(data)
         // console.log('RESPONSE RECEIVED IN CLIENT: ', newNote)
         client.notes = client.notes.concat(newNote)
-        // setNotes(notes.concat(newNote)) // this hook does not respond since  
+        // setNotes(notes.concat(newNote)) // this hook does not respond since
         dispatch(createNote(newNote))
         dispatch(setNotification({
           message: 'La nota ha sido creada',
@@ -199,7 +199,7 @@ const Client = () => {
               //   <svg className="h-full w-full text-gray-300" fill="currentColor" viewBox="0 0 24 24">
               //     <path d="M24 20.993V24H0v-2.996A14.977 14.977 0 0112.004 15c4.904 0 9.26 2.354 11.996 5.993zM16.002 8.999a4 4 0 11-8 0 4 4 0 018 0z" />
               //   </svg>
-              // </span> 
+              // </span>
             }
             <label className="tracking-wide border-b pt-2 pb-1">{`${client.firstName} ${client.lastName}`}</label>
           </div>
@@ -289,7 +289,7 @@ const Client = () => {
                   className="mt-1 focus:border-gray-500 block w-full shadow-sm md:text-sm border-gray-300 rounded-md" />
               </div>
               <label className="text-sm font-medium text-gray-700 pl-2 pt-2">Contenido de la nota
-                  {content.params.value.length > 29 ?
+                {content.params.value.length > 29 ?
                   <span className="pl-1 text-xs font-normal">{`(${content.params.value.length}/500)`}</span>
                   :
                   <span className="pl-1 text-xs font-normal">{`(${content.params.value.length}/30 characters minimum)`}</span>
@@ -334,12 +334,10 @@ const Client = () => {
       <div className="bg-gray-200 p-2 ">
         <div className="hidden md:flex min-h-screen shadow overflow-hidden rounded-md bg-gradient-to-br
         from-gray-300 via-white to-gray-300 p-3 ">
-
           <div className="w-screen">
-            <div className="flex flex-col p-4 m-4 shadow-2xl bg-gradient-to-br 
+            <div className="flex flex-col p-4 m-4 shadow-2xl bg-gradient-to-br
             from-gray-300 via-white to-gray-300 border-double border rounded-md">
               <div className="flex p-6 border-b">
-
                 <div className="flex flex-col items-center space-y-3 border-gray-700 p-9 ">
                   <label className="tracking-wide border-b pb-2">{`${client.username}`}</label>
                   {client.imageURL ?
@@ -448,8 +446,7 @@ const Client = () => {
                 <div className="p-5">
                   <h2 className="text-xl font-medium text-gray-900">Crea una nota</h2>
                   <p className="mt-1 text-sm text-gray-600">
-                    Expresa tus sentimientos y reacciones acerca de la interacción, desempeño o lo que pensamiento generales sobre tus sesiones con este cliente.
-                    </p>
+                    Expresa tus sentimientos y reacciones acerca de la interacción, desempeño o lo que pensamiento generales sobre tus sesiones con este cliente.</p>
                 </div>
               </div>
               <div className="m-4 col-span-2 ">
@@ -485,7 +482,7 @@ const Client = () => {
               <div className="col-span-3">
                 <h3 className="text-center text-xl font-semibold pt-4 pb-2 border-t ">Notes</h3>
                 <p className="text-center text-gray-400 text-md pb-2 pl-24 pr-24 border-b">
-                Para actualizar una nota, escriba en los campos de arriba (título y contenido de la nota) y haga clic en el botón Actualizar en la nota que desea actualizar</p>
+                  Para actualizar una nota, escriba en los campos de arriba (título y contenido de la nota) y haga clic en el botón Actualizar en la nota que desea actualizar</p>
                 <div className="pl-32 pr-32 pt-4 pb-4">
                   {client.notes.length > 0 ?
                     client.notes.map(note =>

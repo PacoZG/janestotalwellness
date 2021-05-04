@@ -17,7 +17,7 @@ notesRouter.post('/', async (request, response) => {
     content: body.note.content,
     date: new Date()
   })
-  
+
   if (body.loggedUserType === 'admin') {
     const savedNote = await note.save()
     user.notes = user.notes.concat(savedNote._id)

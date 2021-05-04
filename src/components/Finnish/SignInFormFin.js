@@ -65,7 +65,7 @@ const SigninFormFin = () => {
           show: true
         }))
       }
-      history.push('/fin/frontpage')
+      history.push('/fin/myprogram')
     } catch (error) {
       //console.log('SIGN IN ERROR: ', error.response.data.error)
       dispatch(setNotification({
@@ -155,9 +155,7 @@ const SigninFormFin = () => {
                 <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
                   <path fillRule="evenodd" d="M3 3a1 1 0 011 1v12a1 1 0 11-2 0V4a1 1 0 011-1zm7.707 3.293a1 1 0 010 1.414L9.414 9H17a1 1 0 110 2H9.414l1.293 1.293a1 1 0 01-1.414 1.414l-3-3a1 1 0 010-1.414l3-3a1 1 0 011.414 0z" clipRule="evenodd" />
                 </svg>
-              </span>
-          Sign in
-        </button>
+              </span>Sign in</button>
           </div>
         </form>
       </div>
@@ -180,17 +178,15 @@ const SigninFormFin = () => {
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
                 </svg>
               </div>
-              <p className="my-4 text-blueGray-500 text-lg leading-relaxed">
-                Olet kirjautunut sisään 30 minuutiksi. Haluatko pysyä vielä 30 minuuttia tai kirjautua ulos nyt?
-                  </p>
+              <p className="my-4 text-blueGray-500 text-lg leading-relaxed">Olet kirjautunut sisään 30 minuutiksi. Haluatko pysyä vielä 30 minuuttia tai kirjautua ulos nyt?</p>
             </div>
             <div className="flex items-center justify-end p-3 pr-4 border-t border-solid border-blueGray-200 rounded-b">
-              <button className="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 text-base font-medium 
+              <button className="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 text-base font-medium
                     text-white focus:outline-none bg-gray-500 hover:bg-gray-400 focus:ring focus:ring-offset-1 focus:ring-gray-800 transform transition active:bg-gray-800 md:ml-3 md:w-auto md:text-md"
-                type="button" onClick={() => handleLogout()} >Kirjaudu ulos nyt</button>
-              <button className="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 text-base font-medium 
+              type="button" onClick={() => handleLogout()} >Kirjaudu ulos nyt</button>
+              <button className="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 text-base font-medium
                     text-white focus:outline-none bg-gray-500 hover:bg-gray-400 focus:ring focus:ring-offset-1 focus:ring-gray-800 transform transition active:bg-gray-800 md:ml-3 md:w-auto md:text-md"
-                type="button" onClick={() => handleResetTimers()} >Pysy sisäänkirjautuneena</button>
+              type="button" onClick={() => handleResetTimers()} >Pysy sisäänkirjautuneena</button>
             </div>
           </div>
         </div>
