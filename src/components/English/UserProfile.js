@@ -5,7 +5,7 @@ const UserProfile = () => {
   const loggedUser = useSelector(state => state.loggedUser)
   // console.log('LOGGED USER: ', loggedUser)
   const user = useSelector(state => state.users.find(user => user.id === loggedUser.id))
-  // console.log('USER_PROFILE_INFO: ', user)
+  console.log('USER_PROFILE_INFO: ', user)
 
   const getAge = () => {
     const birthday = new Date(user.dateOfBirth)
@@ -92,7 +92,7 @@ const UserProfile = () => {
               </div>
               <div className="pl-8 md:pl-10 bg-gray-50 grid grid-flow-row md:grid-cols-2 md:py-2 md:px-6">
                 <dt className="pt-3 md:pt-4 text-lg font-medium text-gray-500">Goals</dt>
-                <dd className="pb-3 md:pt-4 text-lg text-gray-900">{user.motivation}</dd>
+                <dd className="pb-3 md:pt-4 text-lg text-gray-900">{user.goals}</dd>
               </div>
             </div>
           </div>

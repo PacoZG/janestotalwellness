@@ -76,14 +76,14 @@ const MainMenu = () => {
                   <i className="text-gray-300">Jane's Total Wellness</i>
                 </Link>
 
-                <Link to="/eng/programs" className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Programs</Link>
-
                 <Link to="/eng/exercises" className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Exercise library</Link>
 
-                <Link to="/eng/recipes" className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Recipes</Link>
+                {loggedUser ?
+                  <Link to="/eng/myprogram" className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">My Program</Link>
+                  : null}
 
                 {loggedUser && loggedUser.userType === 'admin' ?
-                  <Link to="/eng/clients" className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">My clients</Link> :
+                  <Link to="/eng/clients" className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">My Clients</Link> :
                   null
                 }
               </div>
@@ -159,24 +159,6 @@ const MainMenu = () => {
                   </svg>}
               </button>
             </div>
-
-            <div style={mobileMenu} className="border-t">
-
-              <div className="px-1 pt-0 pb-1 space-y-0">
-                <Link to="/eng/frontpage" className="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium">Jane's Total Wellness</Link>
-
-                <Link to="/eng/programs" className="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium">Programs</Link>
-
-                <Link to="/eng/exercises" className="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium">Exercise library</Link>
-
-                <Link to="/eng/recipes" className="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium">Recipes</Link>
-
-                {loggedUser && loggedUser.userType === 'admin' ?
-                  <Link to="/eng/clients" className="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium">My clients</Link> :
-                  null
-                }
-              </div>
-            </div>
           </div>
           <div className="absolute inset-y-0 right-0 border-gray-700">
             <div className="flex items-center px-4 right-0">
@@ -226,6 +208,22 @@ const MainMenu = () => {
                 </div>
               }
             </div>
+          </div>
+        </div>
+        <div style={mobileMenu} className="border-t pt-2 pb-2">
+          <div className="space-y-3">
+            <Link to="/eng/frontpage" className="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 rounded-md text-base font-medium">Jane's Total Wellness</Link>
+
+            <Link to="/eng/exercises" className="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 rounded-md text-base font-medium">Exercise library</Link>
+
+            {loggedUser ?
+              <Link to="/eng/myprogram" className="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 rounded-md text-base font-medium">My Program</Link>
+              : null}
+
+            {loggedUser && loggedUser.userType === 'admin' ?
+              <Link to="/eng/clients" className="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 rounded-md text-base font-medium">My clients</Link> :
+              null
+            }
           </div>
         </div>
       </div>

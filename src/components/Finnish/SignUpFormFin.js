@@ -22,7 +22,7 @@ const SignUpFormFin = () => {
   const weight = useField('text')
   const dateOfBirth = useField('date')
   const background = useField('text')
-  const motivation = useField('text')
+  const goals = useField('text')
 
   const [country, setCountry] = useState(null)
   const countries = [
@@ -58,7 +58,7 @@ const SignUpFormFin = () => {
       height: parseInt(height.params.value),
       weight: parseInt(weight.params.value),
       country: country,
-      motivation: motivation.params.value,
+      goals: goals.params.value,
     }
     //console.log('NEW_USER: ', newUser)
     try {
@@ -100,7 +100,7 @@ const SignUpFormFin = () => {
         dateOfBirth.reset()
         height.reset()
         weight.reset()
-        motivation.reset()
+        goals.reset()
         setCountry('')
         for (var i = 0; i < genders.length; i++) {
           if (genders[i].checked) {
@@ -111,7 +111,7 @@ const SignUpFormFin = () => {
     } catch (error) {
       //debugger
       if (error) {
-        const message = error.response.data
+        const message = error.response.data.message
         if (message.includes('Error') && !message.includes(email.params.value)) {
           //console.log(username.params.value)
           dispatch(setNotification({
@@ -254,7 +254,7 @@ const SignUpFormFin = () => {
                   <div className="mt-4 relative">
                     <p className="pl-2 text-gray-200" >Tavoitteet</p>
                     <textarea className="h-40 focus:border-gray-500 block w-full shadow-sm md:text-sm border-gray-300 rounded-md placeholder-gray-200" placeholder="Tell me why you are seeking for my help"
-                      {...motivation.params} required />
+                      {...goals.params} required />
                   </div>
                   <button className="mt-4 mb-6 h-12 w-full bg-gray-500 text-white rounded hover:bg-gray-400
                     focus:ring focus:ring-offset-1 focus:ring-gray-800 transform transition active:bg-gray-800"

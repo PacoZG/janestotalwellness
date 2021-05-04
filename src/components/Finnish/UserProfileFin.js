@@ -92,7 +92,7 @@ const UserProfileFin = () => {
               </div>
               <div className="pl-8 md:pl-10 bg-gray-50 grid grid-flow-row md:grid-cols-2 md:py-2 md:px-6">
                 <dt className="pt-3 md:pt-4 text-lg font-medium text-gray-500">Tavoitteet</dt>
-                <dd className="pb-3 md:pt-4 text-lg text-gray-900">{user.motivation}</dd>
+                <dd className="pb-3 md:pt-4 text-lg text-gray-900">{user.goals}</dd>
               </div>
             </div>
           </div>

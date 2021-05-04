@@ -7,13 +7,12 @@ import { getAllNotes } from './reducers/noteReducer'
 // Components in english
 import Client from './components/English/Client'
 import Editform from './components/English/EditForm'
-import Exercises from './components/English/Exercises'
+import ExerciseLibrary from './components/English/ExerciseLibrary'
 import Footer from './components/English/Footer'
 import Frontpage from './components/English/Frontpage'
 import MainMenu from './components/English/MainMenu'
 import MyClients from './components/English/MyClients'
-import Programs from './components/English/Programs'
-import Recipes from './components/English/Recipes'
+import MyProgram from './components/English/MyProgram'
 import SignInForm from './components/English/SignInForm'
 import SignUpForm from './components/English/SignUpForm'
 import UserProfile from './components/English/UserProfile'
@@ -21,13 +20,12 @@ import UserProfile from './components/English/UserProfile'
 // Components in Finnish
 import ClientFin from './components/Finnish/ClientFin'
 import EditformFin from './components/Finnish/EditFormFin'
-import ExercisesFin from './components/Finnish/ExercisesFin'
+import ExerciseLibraryFin from './components/Finnish/ExerciseLibraryFin'
 import FooterFin from './components/Finnish/FooterFin'
 import FrontpageFin from './components/Finnish/FrontpageFin'
 import MainMenuFin from './components/Finnish/MainMenuFin'
 import MyClientsFin from './components/Finnish/MyClientsFin'
-import ProgramsFin from './components/Finnish/ProgramsFin'
-import RecipesFin from './components/Finnish/RecipesFin'
+import MyProgramFin from './components/Finnish/MyProgramFin'
 import SignInFormFin from './components/Finnish/SignInFormFin'
 import SignUpFormFin from './components/Finnish/SignUpFormFin'
 import UserProfileFin from './components/Finnish/UserProfileFin'
@@ -35,13 +33,12 @@ import UserProfileFin from './components/Finnish/UserProfileFin'
 // Components in Spanish
 import ClientEsp from './components/Spanish/ClientEsp'
 import EditformEsp from './components/Spanish/EditFormEsp'
-import ExercisesEsp from './components/Spanish/ExercisesEsp'
+import ExerciseLibraryEsp from './components/Spanish/ExerciseLibraryEsp'
 import FooterEsp from './components/Spanish/FooterEsp'
 import FrontpageEsp from './components/Spanish/FrontpageEsp'
 import MainMenuEsp from './components/Spanish/MainMenuEsp'
 import MyClientsEsp from './components/Spanish/MyClientsEsp'
-import ProgramsEsp from './components/Spanish/ProgramsEsp'
-import RecipesEsp from './components/Spanish/RecipesEsp'
+import MyProgramEsp from './components/Spanish/MyProgramEsp'
 import SignInFormEsp from './components/Spanish/SignInFormEsp'
 import SignUpFormEsp from './components/Spanish/SignUpFormEsp'
 import UserProfileEsp from './components/Spanish/UserProfileEsp'
@@ -80,14 +77,11 @@ const App = () => {
             <Route path="/eng/frontpage">
               <Frontpage />
             </Route>
-            <Route path="/eng/programs">
-              <Programs />
+            <Route path="/eng/myprogram">
+              <MyProgram />
             </Route>
             <Route path="/eng/exercises">
-              <Exercises />
-            </Route>
-            <Route path="/eng/recipes">
-              <Recipes />
+              <ExerciseLibrary />
             </Route>
             <Route path="/eng/clients">
               <MyClients />
@@ -121,14 +115,11 @@ const App = () => {
             <Route path="/fin/frontpage">
               <FrontpageFin />
             </Route>
-            <Route path="/fin/programs">
-              <ProgramsFin />
+            <Route path="/fin/myprogram">
+              <MyProgramFin />
             </Route>
             <Route path="/fin/exercises">
-              <ExercisesFin />
-            </Route>
-            <Route path="/fin/recipes">
-              <RecipesFin />
+              <ExerciseLibraryFin />
             </Route>
             <Route path="/fin/clients">
               <MyClientsFin />
@@ -162,14 +153,11 @@ const App = () => {
             <Route path="/esp/frontpage">
               <FrontpageEsp />
             </Route>
-            <Route path="/esp/programs">
-              <ProgramsEsp />
+            <Route path="/esp/myprogram">
+              <MyProgramEsp />
             </Route>
             <Route path="/esp/exercises">
-              <ExercisesEsp />
-            </Route>
-            <Route path="/esp/recipes">
-              <RecipesFin />
+              <ExerciseLibraryEsp />
             </Route>
             <Route path="/esp/clients">
               <MyClientsEsp />

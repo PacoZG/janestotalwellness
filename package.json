@@ -5,18 +5,24 @@
   "main": "index.js",
   "scripts": {
     "start": "set PORT=3000 && craco start",
-    "build": "craco build",
-    "test": "craco test",
-    "start-server": "node index.js",
+    "server": "node index.js",
     "dev-server": "nodemon index.js",
+    "build": "craco build",
+    "eslint": "eslint './**/*.{js,jsx}'",
+    "craco-test": "craco test",
+    "test": "cross-env NODE_ENV=test jest --verbose --runInBand ",
     "eject": "react-scripts eject"
   },
   "repository": {
     "type": "git",
-    "url": "My project"
+    "url": "git+https://github.com/PacoZG/My-project"
   },
+  "keywords": [
+    "fullstack-open-project"
+  ],
   "author": "Francisco Zavala",
   "license": "ISC",
+  "bugs": "https://github.com/PacoZG/My-project/issues",
   "dependencies": {
     "@craco/craco": "^6.1.1",
     "@tailwindcss/forms": "^0.2.1",
@@ -52,9 +58,13 @@
   "devDependencies": {
     "@tailwindcss/postcss7-compat": "^2.0.4",
     "autoprefixer": "^9.8.6",
+    "cross-env": "^7.0.3",
+    "cypress": "^7.2.0",
+    "eslint-plugin-jest": "^24.3.6",
     "json-server": "^0.16.3",
     "nodemon": "^2.0.7",
     "postcss": "^7.0.35",
+    "supertest": "^6.1.3",
     "tailwindcss": "npm:@tailwindcss/postcss7-compat@^2.0.4"
   },
   "browserslist": {
@@ -68,5 +78,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "jest": {
+    "testEnvironment": "node"
   }
 }

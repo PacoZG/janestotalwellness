@@ -1,9 +1,10 @@
 import React from 'react'
 
-const ExercisesFin = () => {
-  const exercises = null
+const MyProgramFin = () => {
 
-  if (!exercises) {
+  const program = null
+
+  if (!program) {
     return (
       <div className="justify-center items-center flex outline-none bg-gray-100 min-h-screen">
         <div className="flex flex-row space-x-1">
@@ -18,10 +19,10 @@ const ExercisesFin = () => {
   return (
     <div>
       <div className="bg-gray-100 min-h-screen pt-28">
-        Exercises
+        Programs
       </div>
     </div>
   )
 }
 
-export default ExercisesFin
+export default MyProgramFin

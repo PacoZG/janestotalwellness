@@ -33,7 +33,7 @@ loginRouter.post('/', async (request, response) => {
 
 loginRouter.put('/', async (request, response) => {
   const body = request.body
-  //console.log('BODY: ', body)
+  console.log('BODY: ', body)
   const decodedToken = jwt.verify(body.token, process.env.SECRET)
   //console.log('DECODED TOKEN: ', decodedToken.id)
   const user = await User.findById(decodedToken.id)
@@ -59,7 +59,7 @@ loginRouter.put('/', async (request, response) => {
         response.status(201).json(savedAndUpdatedUser)
       })
   } else {
-    return response.status(400).json({ error: 'Invalid password' })
+    return response.status(401).json({ error: 'Invalid password' })
   }
 })
 

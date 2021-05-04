@@ -77,11 +77,11 @@ const MainMenuFin = () => {
                   <i className="text-gray-300">Jane's Total Wellness</i>
                 </Link>
 
-                <Link to="/fin/programs" className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Ohjelmat</Link>
-
                 <Link to="/fin/exercises" className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Harjoituskirjasto</Link>
 
-                <Link to="/fin/recipes" className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Reseptit</Link>
+                {loggedUser ?
+                  <Link to="/fin/myprogram" className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Oma ohjelma</Link>
+                  : null}
 
                 {loggedUser && loggedUser.userType === 'admin' ?
                   <Link to="/fin/clients" className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Asiakkaani</Link> :
@@ -160,24 +160,6 @@ const MainMenuFin = () => {
                   </svg>}
               </button>
             </div>
-
-            <div style={mobileMenu} className="border-t">
-
-              <div className="px-1 pt-0 pb-1 space-y-0">
-                <Link to="/fin/frontpage" className="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium">Jane's Total Wellness</Link>
-
-                <Link to="/fin/programs" className="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium">Ohjelmat</Link>
-
-                <Link to="/fin/exercises" className="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium">Harjoituskirjasto</Link>
-
-                <Link to="/fin/recipes" className="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium">Reseptit</Link>
-
-                {loggedUser && loggedUser.userType === 'admin' ?
-                  <Link to="/fin/clients" className="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium">Asiakkaani</Link> :
-                  null
-                }
-              </div>
-            </div>
           </div>
           <div className="absolute inset-y-0 right-0 border-gray-700">
             <div className="flex items-center px-4 right-0">
@@ -227,6 +209,22 @@ const MainMenuFin = () => {
                 </div>
               }
             </div>
+          </div>
+        </div>
+        <div style={mobileMenu} className="border-t pt-2 pb-2">
+          <div className="space-y-3 ">
+            <Link to="/eng/frontpage" className="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 rounded-md text-base font-medium">Jane's Total Wellness</Link>
+
+            <Link to="/eng/exercises" className="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 rounded-md text-base font-medium">Harjoituskirjasto</Link>
+
+            {loggedUser ?
+              <Link to="/eng/myprogram" className="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 rounded-md text-base font-medium">Oma ohjelma</Link>
+              : null}
+
+            {loggedUser && loggedUser.userType === 'admin' ?
+              <Link to="/eng/clients" className="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 rounded-md text-base font-medium">Asiakkaani</Link> :
+              null
+            }
           </div>
         </div>
       </div>

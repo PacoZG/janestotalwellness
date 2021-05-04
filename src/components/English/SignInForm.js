@@ -66,7 +66,7 @@ const SigninForm = () => {
           show: true
         }))
       }
-      history.push('/eng/frontpage')
+      history.push('/eng/myprogram')
     } catch (error) {
       //console.log('SIGN IN ERROR: ', error.response.data.error)
       dispatch(setNotification({

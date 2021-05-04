@@ -7,12 +7,6 @@ const userSchema = new mongoose.Schema({
       type: mongoose.Schema.Types.ObjectId,
       ref: 'Note'
     }
-  ],
-  feedback: [
-    {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: 'Feedback'
-    }
   ],  
   createdAt: Date,
   updatedAt: Date,
@@ -56,7 +50,7 @@ const userSchema = new mongoose.Schema({
     required: true,
   },
   background: String,
-  motivation: {
+  goals: {
     type: String,
     required: true,
   },

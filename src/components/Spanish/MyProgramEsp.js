@@ -1,10 +1,10 @@
 import React from 'react'
 
-const Recipes = () => {
+const MyProgramEsp = () => {
 
-  const recipes = null
+  const program = null
 
-  if (!recipes) {
+  if (!program) {
     return (
       <div className="justify-center items-center flex outline-none bg-gray-100 min-h-screen">
         <div className="flex flex-row space-x-1">
@@ -19,10 +19,10 @@ const Recipes = () => {
   return (
     <div>
       <div className="bg-gray-100 min-h-screen pt-28">
-        Recipes
+        Programs
       </div>
     </div>
   )
 }
 
-export default Recipes
+export default MyProgramEsp

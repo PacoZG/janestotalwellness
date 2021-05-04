@@ -246,7 +246,7 @@ const Client = () => {
             </div>
             <div className="block col-span-6">
               <label className="text-left font-semibold">Goals</label>
-              <p className="text-md w-full overflow-ellipsis">{client.motivation}</p>
+              <p className="text-md w-full overflow-ellipsis">{client.goals}</p>
             </div>
             <div className="block col-span-6">
               <label className="text-left font-semibold">Health report</label>
@@ -401,7 +401,7 @@ const Client = () => {
               </div>
               <div className="pr-16 pl-16 pt-4 pb-4 border-b">
                 <label className="text-left font-semibold pr-8">Goals</label>
-                <p className="border-transparent text-left">{client.motivation}</p>
+                <p className="border-transparent text-left">{client.goals}</p>
               </div>
               <div className="pr-16 pl-16 pt-4 pb-4 border-b">
                 <label className="text-left font-semibold pr-8">Health report</label>

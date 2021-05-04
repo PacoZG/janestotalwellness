@@ -27,14 +27,15 @@ usersRouter.post('/', async (request, response) => {
       isRegisteredNew: true,
     })
   } catch (error) {
-    response.status(400).send(error.message)
-    //console.log('ERROR IN SERVER:', error.message)
+    console.log('ERROR IN SERVER:', error.message)
+    response.status(400).send(error)
+    
   }
 })
 
 usersRouter.put('/:id', async (request, response) => {
   const body = request.body
-  console.log('ID: ', request.params.id)
+  // console.log('ID: ', request.params.id)
   const user = {
     ...body,
     updatedAt: new Date()
@@ -57,7 +58,7 @@ usersRouter.get('/:id', async (request, response) => {
   }
 })
 
-usersRouter.delete('/:id', async (request, _response) => {
+usersRouter.delete('/:id', async (request, response) => {
   await User.findByIdAndDelete(request.params.id)
   response.status(204).end()
 })

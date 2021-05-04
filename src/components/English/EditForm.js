@@ -196,7 +196,6 @@ const EditForm = () => {
   const handlePasswordChange = async (event) => {
     event.preventDefault()
     const data = {
-      user: user,
       oldPassword: oldPassword.params.value,
       newPassword: newPassword.params.value
     }

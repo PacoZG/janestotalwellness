@@ -14,7 +14,7 @@ const imageRouter = require('./controllers/images')
 const notesRouter = require('./controllers/notes')
 
 const url = config.MONGODB_URI
-console.log('Connected to MongoDB')
+console.log('Connected to MongoDB', url)
 
 mongoose.connect(url, { useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false, useCreateIndex: true })
   .then(() => {

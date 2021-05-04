@@ -246,7 +246,7 @@ const Client = () => {
             </div>
             <div className="block col-span-6">
               <label className="text-left font-semibold">Metas</label>
-              <p className="text-md w-full overflow-ellipsis">{client.motivation}</p>
+              <p className="text-md w-full overflow-ellipsis">{client.goals}</p>
             </div>
             <div className="block col-span-6">
               <label className="text-left font-semibold">Información relativa a tu salud</label>
@@ -399,7 +399,7 @@ const Client = () => {
               </div>
               <div className="pr-16 pl-16 pt-4 pb-4 border-b">
                 <label className="text-left font-semibold pr-8">Metas</label>
-                <p className="border-transparent text-left">{client.motivation}</p>
+                <p className="border-transparent text-left">{client.goals}</p>
               </div>
               <div className="pr-16 pl-16 pt-4 pb-4 border-b">
                 <label className="text-left font-semibold pr-8">Información relativa a tu salud</label>
