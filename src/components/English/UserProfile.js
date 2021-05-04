@@ -3,9 +3,9 @@ import { useSelector } from 'react-redux'
 
 const UserProfile = () => {
   const loggedUser = useSelector(state => state.loggedUser)
-  console.log('LOGGED USER: ', loggedUser)
+  // console.log('LOGGED USER: ', loggedUser)
   const user = useSelector(state => state.users.find(user => user.id === loggedUser.id))
-  console.log('USER_PROFILE_INFO: ', user)
+  // console.log('USER_PROFILE_INFO: ', user)
 
   const getAge = () => {
     const birthday = new Date(user.dateOfBirth)

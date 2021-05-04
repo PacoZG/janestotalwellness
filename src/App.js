@@ -51,7 +51,7 @@ const App = () => {
     dispatch(initializeUsers())
     dispatch(getAllNotes())
   }, [dispatch])
-  console.log('UI LANGUAGE: ', UILanguage)
+  // console.log('UI LANGUAGE: ', UILanguage)
 
   if (UILanguage === 'eng') {
     return (

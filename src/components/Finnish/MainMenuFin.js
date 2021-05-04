@@ -95,11 +95,11 @@ const MainMenuFin = () => {
               <div style={visibleLangMenu}
                 className="absolute bg-gray-200 top-14 right-24 h-auto w-auto rounded-sm z-40 origin-top-right mt-2
               shadow-lg py-1 ring-1 ring-black ring-opacity-5 focus:outline-none divide-y divide-gray-500">
-                <p className="text-center p-1 hover:bg-gray-500 hover:text-gray-100 cursor-pointer " onClick={() => handleSetLanguage('eng')}>ENG</p>
-                <p className="text-center p-1 hover:bg-gray-500 hover:text-gray-100 cursor-pointer " >FIN</p>
-                <p className="text-center p-1 hover:bg-gray-500 hover:text-gray-100 cursor-pointer " onClick={() => handleSetLanguage('esp')}>ESP</p>
+                <p id="ENG" className="text-center p-1 hover:bg-gray-500 hover:text-gray-100 cursor-pointer " onClick={() => handleSetLanguage('eng')}>ENG</p>
+                <p id="FIN" className="text-center p-1 hover:bg-gray-500 hover:text-gray-100 cursor-pointer " >FIN</p>
+                <p id="ESP" className="text-center p-1 hover:bg-gray-500 hover:text-gray-100 cursor-pointer " onClick={() => handleSetLanguage('esp')}>ESP</p>
               </div>
-              <button className="pr-3 text-xl text-gray-300 rounded-full focus:outline-none " type="button"
+              <button id="language-menuShow" className="pr-3 text-xl text-gray-300 rounded-full focus:outline-none " type="button"
                 onClick={handleLanguageDropdwon}>
                 <svg xmlns="http://www.w3.org/2000/svg" className="h-7 w-7" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9" />
@@ -108,10 +108,7 @@ const MainMenuFin = () => {
               <button style={languageBackgroundVisible} onClick={handleLanguageBrackground} className="fixed inset-0 w-full bg-black opacity-25 z-30"></button>
               <div className="ml-3 relative">
                 <button type="button" tabIndex="-1" className="relative z-10 max-w-xs bg-gray-800 rounded-full flex items-center text-sm focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-gray-300"
-                  id="user-menu"
-                  aria-expanded="false"
-                  aria-haspopup="true"
-                  onClick={handleDropdown}
+                  id="user-menu" aria-expanded="false" aria-haspopup="true" onClick={handleDropdown}
                 >
                   {loggedUser && loggedUser.imageURL ?
                     <img className="h-12 w-12 rounded-full p-1 bg-gray-200 transform hover:rotate-6 transition" src={loggedUser.imageURL} alt="" /> :

@@ -43,6 +43,19 @@ describe('Wellness app', function () {
     cy.contains('Page under construction')
   })
 
+  it('Test app in different languages', function (){
+    cy.contains('Page under construction')
+    cy.get('#language-menuShow').click()
+    cy.get('#FIN').click()
+    cy.contains('Sivua rakennetaan')
+    cy.get('#language-menuShow').click()
+    cy.get('#ESP').click()
+    cy.contains('Página en construcción')
+    cy.get('#language-menuShow').click()
+    cy.get('#ENG').click()
+    cy.contains('Page under construction')
+  })
+
   it('Sign up form is shown', function () {
     cy.visit('http://localhost:3000/eng/signUp')
     cy.contains('First name')
@@ -212,6 +225,9 @@ describe('Wellness app', function () {
       cy.get('#login-button').click()
       cy.get('#modal-message').contains('Welcome back bruce, your session will automatically expire in 30 minutes')
       cy.get('#modal-ok').click()
+      cy.get('#user-menu').click()
+      cy.get('#signout-button').click()
+      cy.get('#background-button').click()
     })
   })
 })
