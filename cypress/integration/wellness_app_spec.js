@@ -149,7 +149,7 @@ describe('Wellness app', function () {
       cy.get('#user-menu').click()
     })
 
-    it('...visit his profile page', function () {
+    it('...visit his/her profile page', function () {
       cy.get('#profile-button').click()
       cy.get('#user-menu').click()
       cy.contains('Profile')
