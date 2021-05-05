@@ -80,27 +80,6 @@ describe('Now let us save some users and test it', () => {
     expect(response.body.error).toContain('Invalid username or password')
   })
 
-  test('User can succesfully change his/her password', async () => {
-    const loggedInUser = await api.post('/api/login').send({ username: 'wick', password: 'secret' })
-    console.log('LOGGED IN USER: ', loggedInUser.body.token)
-    const data = {
-      token: loggedInUser.body.token,
-      oldPassword: 'secret',
-      newPassword: 'superSecret'
-    }
-    const response = await api.put('/api/login').send(data)
-      .expect(201)
-      .expect('Content-Type', /application\/json/)
-    console.log('RESPONSE UPDATING PASSWORD:', response.body)
-
-    // try login in with the password
-    const loginTest = await api.post('/api/login').send({ username: 'wick', password: 'superSecret' })
-      .expect(201)
-      .expect('Content-Type', /application\/json/)
-    // console.log('LOGIN TEST: ', loginTest.body)
-    expect(loginTest.body.username).toContain('wick')
-  })
-
   test('User can delete his/her profile', async () => {
     const usersInDB = await helper.usersInDB()
     // console.log('Length 1 ', usersInDB.length)
