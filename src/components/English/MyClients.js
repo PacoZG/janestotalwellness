@@ -4,10 +4,8 @@ import { useDispatch, useSelector } from 'react-redux'
 import bruja from '../../img/bruja.jpg'
 
 const MyClients = () => {
-  const dispatch = useDispatch()
-  const history = useHistory()
   const users = useSelector(state => state.users).filter(user => user.userType === 'client')
-  //console.log('USERS: ', users)
+  console.log('USERS: ', users)
 
 
   if (!users) {
@@ -22,6 +20,7 @@ const MyClients = () => {
       </div>
     )
   }
+
   return (
     <div className="bg-gray-200 min-h-screen">
       <div className="bg-gray-200 p-2">
@@ -33,7 +32,7 @@ const MyClients = () => {
             {users.map(user =>
               <li className="flex flex-col items-center space-y-2 md:mt-2 md:mb-5 md:ml-5 md:mr-2 " key={user.id}>
                 <Link className="bg-gradient-to-bl from-red-600 via-blue-200 to-yellow-100 rounded-full p-1"
-                  to={`/eng/clients/${user.id}`}>
+                  to={`/eng/myclients/${user.id}`} id="client-link">
                   {user.imageURL ?
                     <img className="h-28 w-28 md:h-32 md:w-32 rounded-full bg-white p-1 transform hover:rotate-6 transition" src={user.imageURL} /> :
                     <img className="opacity-10 h-32 w-32 rounded-full bg-white p-1 transform hover:rotate-6 transition" src={bruja} />

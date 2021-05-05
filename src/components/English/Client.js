@@ -16,7 +16,7 @@ const Client = () => {
   //console.log('CLIENT ID: ', paramId)
   const client = useSelector(state => state.users.find(u => u.id === paramId))
   const notes = useSelector(state => state.notes)
-  // console.log('CLIENT: ', client)
+  console.log('CLIENT: ', client)
   // console.log('NOTES: ', notes)
 
   const height = useField('text')

@@ -72,15 +72,15 @@ const MainMenu = () => {
                 <img className="h-12 w-12 rounded-full" src={threes} alt="Workflow" />
               </div>
               <div className="ml-10 flex items-baseline space-x-3 pt-2">
-                <Link to="/eng/frontpage" className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">
+                <Link id="frontpage" to="/eng/frontpage" className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">
                   <i className="text-gray-300">{'Jane\'s Total Wellness'}</i>
                 </Link>
-                <Link to="/eng/exercises" className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Exercise library</Link>
+                <Link id="exercises" to="/eng/exercises" className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Exercise library</Link>
                 {loggedUser ?
-                  <Link to="/eng/myprogram" className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">My Program</Link>
+                  <Link id="myprogram" to="/eng/myprogram" className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">My Program</Link>
                   : null}
                 {loggedUser && loggedUser.userType === 'admin' ?
-                  <Link to="/eng/clients" className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">My Clients</Link> :
+                  <Link id="myclients" to="/eng/myclients" className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">My Clients</Link> :
                   null
                 }
               </div>
@@ -91,9 +91,15 @@ const MainMenu = () => {
               <div style={visibleLangMenu}
                 className="absolute bg-gray-200 top-14 right-24 h-auto w-auto rounded-sm z-40 origin-top-right mt-2
                             shadow-lg py-1 ring-1 ring-black ring-opacity-5 focus:outline-none divide-y divide-gray-500">
-                <p id="ENG" className="text-center p-1 hover:bg-gray-500 hover:text-gray-100 cursor-pointer " >ENG</p>
-                <p id="FIN" className="text-center p-1 hover:bg-gray-500 hover:text-gray-100 cursor-pointer " onClick={() => handleSetLanguage('fin')}>FIN</p>
-                <p id="ESP" className="text-center p-1 hover:bg-gray-500 hover:text-gray-100 cursor-pointer " onClick={() => handleSetLanguage('esp')}>ESP</p>
+                <p id="ENG" className="text-center p-1 hover:bg-gray-500 hover:text-gray-100 cursor-pointer " >
+                  <img src="https://flagcdn.com/40x30/gb.png" className="h-4 w-6" width="80" height="60" alt="UK" />
+                </p>
+                <p id="FIN" className="text-center p-1 hover:bg-gray-500 hover:text-gray-100 cursor-pointer " onClick={() => handleSetLanguage('fin')}>
+                  <img src="https://flagcdn.com/80x60/fi.png" className="h-4 w-6" width="80" height="60" alt="Finland" />
+                </p>
+                <p id="ESP" className="text-center p-1 hover:bg-gray-500 hover:text-gray-100 cursor-pointer " onClick={() => handleSetLanguage('esp')}>
+                  <img src="https://flagcdn.com/40x30/es.png" className="h-4 w-6" width="80" height="60" alt="Spain" />
+                </p>
               </div>
               <button id="language-menuShow" className="pr-3 text-xl text-gray-300 rounded-full focus:outline-none z-40 " type="button"
                 onClick={handleLanguageDropdwon}>
@@ -126,8 +132,8 @@ const MainMenu = () => {
                     </div>
                     :
                     <div>
-                      <Link to="/eng/signIn" className="block px-4 py-2 text-sm text-gray-800 hover:bg-gray-100" role="menuitem">Sign in</Link>
-                      <Link to="/eng/signUp" className="block px-4 py-2 text-sm text-gray-800 hover:bg-gray-100" role="menuitem">Sign up</Link>
+                      <Link id="singin" to="/eng/signIn" className="block px-4 py-2 text-sm text-gray-800 hover:bg-gray-100" role="menuitem">Sign in</Link>
+                      <Link id="signup" to="/eng/signUp" className="block px-4 py-2 text-sm text-gray-800 hover:bg-gray-100" role="menuitem">Sign up</Link>
                     </div>
                   }
                 </div>
@@ -158,9 +164,15 @@ const MainMenu = () => {
               <div style={visibleLangMenu}
                 className="absolute bg-gray-200 top-8 right-24 h-auto w-auto rounded-sm z-40 origin-top-right mt-2
               shadow-lg py-1 ring-1 ring-black ring-opacity-5 focus:outline-none divide-y divide-gray-500">
-                <p className="p-1 " >ENG</p>
-                <p className="p-1 pl-2 " onClick={() => handleSetLanguage('fin')}>FIN</p>
-                <p className="p-1 pl-2 " onClick={() => handleSetLanguage('esp')}>ESP</p>
+                <p className="p-1 " >
+                  <img src="https://flagcdn.com/40x30/gb.png" className="h-5 w-7" width="80" height="60" alt="UK" />
+                </p>
+                <p className="p-1 " onClick={() => handleSetLanguage('fin')}>
+                  <img src="https://flagcdn.com/80x60/fi.png" className="h-5 w-7" width="80" height="60" alt="Finland" />
+                </p>
+                <p className="p-1 " onClick={() => handleSetLanguage('esp')}>
+                  <img src="https://flagcdn.com/40x30/es.png" className="h-5 w-7" width="80" height="60" alt="Spain" />
+                </p>
               </div>
               <button className="pr-3 text-xl text-gray-300 rounded-full focus:outline-none " type="button"
                 onClick={handleLanguageDropdwon}>
@@ -171,8 +183,7 @@ const MainMenu = () => {
               <button style={languageBackgroundVisible} onClick={handleLanguageBrackground} className="fixed inset-0 w-full bg-black opacity-20 z-30"></button>
               <button type="button" tabIndex="-1" className="relative z-10 max-w-xs bg-gray-800 rounded-full flex items-center
                 text-sm focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-gray-300"
-              id="user-menu" aria-expanded="false" aria-haspopup="true" onClick={handleDropdown}
-              >
+              id="user-menu" aria-expanded="false" aria-haspopup="true" onClick={handleDropdown} >
                 {loggedUser && loggedUser.imageURL ?
                   <img className="h-12 w-12 rounded-full" src={loggedUser.imageURL} alt="" /> :
                   <span className="inline-block rounded-full h-10 w-10 md:rounded-full overflow-hidden bg-gray-100">
@@ -208,7 +219,7 @@ const MainMenu = () => {
               <Link to="/eng/myprogram" className="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 rounded-md text-base font-medium">My Program</Link>
               : null}
             {loggedUser && loggedUser.userType === 'admin' ?
-              <Link to="/eng/clients" className="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 rounded-md text-base font-medium">My clients</Link> :
+              <Link to="/eng/myclients" className="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 rounded-md text-base font-medium">My clients</Link> :
               null
             }
           </div>

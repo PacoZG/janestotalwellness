@@ -34,7 +34,7 @@ const updateUser = async (user) => {
 }
 
 const removeUser = async (user) => {
-  console.log('USER TO DELETE IN SERVICE: ', user)
+  // console.log('USER TO DELETE IN SERVICE: ', user)
   const response = await axios.delete(`${baseUrl}/${user.id}`)
   return response.data
 }

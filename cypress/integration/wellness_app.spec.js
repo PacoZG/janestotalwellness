@@ -40,67 +40,76 @@ describe('Wellness app', function () {
   })
 
   it('front page can be opened', function () {
-    cy.contains('Page under construction')
+    cy.contains('Page under construction') // temporary test
   })
 
-  it('Test app in different languages', function (){
-    cy.contains('Page under construction')
-    cy.get('#language-menuShow').click()
-    cy.get('#FIN').click()
-    cy.contains('Sivua rakennetaan')
-    cy.get('#language-menuShow').click()
-    cy.get('#ESP').click()
-    cy.contains('Página en construcción')
-    cy.get('#language-menuShow').click()
-    cy.get('#ENG').click()
-    cy.contains('Page under construction')
-  })
+  // describe('First our visibility and basic functionality', function () {
+  //   it('Test app in different languages', function () {
+  //     cy.contains('Page under construction')
+  //     cy.get('#language-menuShow').click()
+  //     cy.get('#FIN').click()
+  //     cy.contains('Sivua rakennetaan')
+  //     cy.get('#language-menuShow').click()
+  //     cy.get('#ESP').click()
+  //     cy.contains('Página en construcción')
+  //     cy.get('#language-menuShow').click()
+  //     cy.get('#ENG').click()
+  //     cy.contains('Page under construction')
+  //   })
 
-  it('Sign up form is shown', function () {
-    cy.visit('http://localhost:3000/eng/signUp')
-    cy.contains('First name')
-    cy.contains('Last name')
-    cy.contains('Username')
-    cy.contains('Country')
-    cy.contains('Email')
-    cy.contains('Confirm email')
-    cy.contains('Password')
-    cy.contains('Confirm password')
-    cy.contains('Date of birth')
-    cy.contains('Male')
-    cy.contains('Female')
-    cy.contains('Other')
-    cy.contains('Height (cm)')
-    cy.contains('Weight (kg)')
-    cy.contains('Background')
-    cy.contains('Goals')
-    cy.contains('Sign up')
-  })
+  //   it('check different pages visibility', function () { // temporary test, will expand over time
+  //     cy.get('#exercises').click()
+  //     cy.contains('Page under construction')
+  //   })
 
-  describe('Create a new user', function () {
-    it('Succesfully creates a new user', function () {
-      cy.visit('http://localhost:3000/eng/signUp')
-      cy.contains('Sign up')
-      cy.get('#first-name').type('John')
-      cy.get('#last-name').type('Wick')
-      cy.get('#username').type('wick')
-      cy.get('#country-menu').click()
-      cy.get('#Italy').click()
-      cy.get('#email').type('john.wick@example.com')
-      cy.get('#email-confirm').type('john.wick@example.com')
-      cy.get('#password').type('1SuperSecret')
-      cy.get('#password-confirm').type('1SuperSecret')
-      cy.get('#dateOfBirth').type('1976-10-17')
-      cy.get('#male').click()
-      cy.get('#height').type('185')
-      cy.get('#weight').type('87')
-      cy.get('#background').type('Lots of movies and stunt work')
-      cy.get('#goals').type('Be richer and even more famous')
-      cy.get('#signUp-button').click()
-      cy.get('#title').contains('Success')
-      cy.get('#modal-ok').click()
-    })
-  })
+  //   it('Sign up form is shown', function () {
+  //     cy.visit('http://localhost:3000/eng/signUp')
+  //     cy.contains('First name')
+  //     cy.contains('Last name')
+  //     cy.contains('Username')
+  //     cy.contains('Country')
+  //     cy.contains('Email')
+  //     cy.contains('Confirm email')
+  //     cy.contains('Password')
+  //     cy.contains('Confirm password')
+  //     cy.contains('Date of birth')
+  //     cy.contains('Male')
+  //     cy.contains('Female')
+  //     cy.contains('Other')
+  //     cy.contains('Height (cm)')
+  //     cy.contains('Weight (kg)')
+  //     cy.contains('Background')
+  //     cy.contains('Goals')
+  //     cy.contains('Sign up')
+  //   })
+  // })
+
+  // describe('Create a new user', function () {
+  //   it('Succesfully creates a new user', function () {
+  //     cy.get('#user-menu').click()
+  //     cy.get('#signup').click()
+  //     cy.get('#background-button').click()
+  //     cy.contains('Sign up')
+  //     cy.get('#first-name').type('John')
+  //     cy.get('#last-name').type('Wick')
+  //     cy.get('#username').type('wick')
+  //     cy.get('#country-menu').click()
+  //     cy.get('#Italy').click()
+  //     cy.get('#email').type('john.wick@example.com')
+  //     cy.get('#email-confirm').type('john.wick@example.com')
+  //     cy.get('#password').type('1SuperSecret')
+  //     cy.get('#password-confirm').type('1SuperSecret')
+  //     cy.get('#dateOfBirth').type('1976-10-17')
+  //     cy.get('#male').click()
+  //     cy.get('#height').type('185')
+  //     cy.get('#weight').type('87')
+  //     cy.get('#background').type('Lots of movies and stunt work')
+  //     cy.get('#goals').type('Be richer and even more famous')
+  //     cy.get('#signUp-button').click()
+  //     cy.get('#title').contains('Success')
+  //     cy.get('#modal-ok').click()
+  //   })
+  // })
 
   describe('User goes to sign in page and...', function () {
     it('fails to login because of wrong credentials', function () {
@@ -114,7 +123,9 @@ describe('Wellness app', function () {
     })
 
     it('client signs in successfully', function () {
-      cy.visit('http://localhost:3000/eng/signIn')
+      cy.get('#user-menu').click()
+      cy.get('#singin').click()
+      cy.get('#user-menu').click()
       cy.contains('Sign in to your account')
       cy.get('#username').type('bruce')
       cy.get('#password').type('superSecret')
@@ -123,15 +134,22 @@ describe('Wellness app', function () {
       cy.get('#modal-ok').click()
       cy.contains('Page under construction')
     })
+  })
 
-    it('Sign in and visit his profile page', function () {
-      cy.visit('http://localhost:3000/eng/signIn')
+  describe('The user...', function () {
+    beforeEach('...signs in and...', function () {
+      cy.get('#user-menu').click()
+      cy.get('#singin').click()
+      cy.get('#user-menu').click()
       cy.contains('Sign in to your account')
       cy.get('#username').type('bruce')
       cy.get('#password').type('superSecret')
       cy.get('#login-button').click()
       cy.get('#modal-ok').click()
       cy.get('#user-menu').click()
+    })
+
+    it('...visit his profile page', function () {
       cy.get('#profile-button').click()
       cy.get('#user-menu').click()
       cy.contains('Profile')
@@ -164,14 +182,7 @@ describe('Wellness app', function () {
       cy.contains('Approximate BMI (Body Mass Index)')
     })
 
-    it('User signs in and edits his/her profile and check changes in the profile page', function () {
-      cy.visit('http://localhost:3000/eng/signIn')
-      cy.contains('Sign in to your account')
-      cy.get('#username').type('bruce')
-      cy.get('#password').type('superSecret')
-      cy.get('#login-button').click()
-      cy.get('#modal-ok').click()
-      cy.get('#user-menu').click()
+    it('...edits his/her profile and check changes in the profile page', function () {
       cy.get('#editProfile-button').click()
       cy.get('#background-button').click()
       cy.get('#health-report').type('The most anthologized poem of the last 25 years for a reason.')
@@ -200,13 +211,7 @@ describe('Wellness app', function () {
       cy.contains('The most anthologized poem of the last 25 years for a reason.')
     })
 
-    it('User changes password and checks by signing out and signin in with the new password', function () {
-      cy.visit('http://localhost:3000/eng/signIn')
-      cy.get('#username').type('bruce')
-      cy.get('#password').type('superSecret')
-      cy.get('#login-button').click()
-      cy.get('#modal-ok').click()
-      cy.get('#user-menu').click()
+    it('...changes password and checks by signing out and signin in with the new password', function () {
       cy.get('#editProfile-button').click()
       cy.get('#user-menu').click()
       cy.get('#oldPassword').type('superSecret')
@@ -228,6 +233,36 @@ describe('Wellness app', function () {
       cy.get('#user-menu').click()
       cy.get('#signout-button').click()
       cy.get('#background-button').click()
+    })
+  })
+
+  describe('Checking admins accessibility', function () {
+    beforeEach('When an admin logs in...', function () {
+      cy.visit('http://localhost:3000/eng/signIn')
+      cy.get('#username').type('rocky')
+      cy.get('#password').type('superSecret')
+      cy.get('#login-button').click()
+      cy.get('#modal-message').contains('Welcome back rocky')
+      cy.get('#modal-ok').click()
+    })
+
+    it('...the clients tab can be visible and accessible', function () {
+      cy.contains('My Clients')
+      cy.get('#myclients').click()
+      cy.get('#client-link').click()
+      cy.contains('Update biometrics')
+      cy.contains('Make a new note')
+    })
+
+    it('...makes a new note on the clients page', function () {
+      cy.get('#myclients').click()
+      cy.get('#client-link').click()
+      cy.get('#web-title').type('The Moose')
+      cy.get('#web-content').type('Moonlight as we enter the New Brunswick woods, hairy, scratchy, splintery')
+      cy.get('#web-saveNote').click()
+      cy.get('#modal-message').contains('Note has been added')
+      cy.get('#modal-ok').click()
+      cy.contains('The Moose')
     })
   })
 })

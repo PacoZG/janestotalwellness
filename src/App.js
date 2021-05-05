@@ -59,11 +59,9 @@ const App = () => {
         <Router>
           <MainMenu />
           <Switch>
-            <Route path="/eng/clients/:id">
+            <Redirect exact from="/" to="/eng/frontpage" />
+            <Route path="/eng/myclients/:id">
               <Client />
-            </Route>
-            <Route exact={true} path="/">
-              <Redirect to="/eng/frontpage" />
             </Route>
             <Route path="/eng/signUp" >
               <SignUpForm />
@@ -77,8 +75,8 @@ const App = () => {
             <Route path="/eng/editForm">
               <Editform />
             </Route>
-            <Route>
-              <Frontpage path="/eng/frontpage" />
+            <Route exact path="/eng/frontpage">
+              <Frontpage />
             </Route>
             <Route path="/eng/myprogram">
               <MyProgram />
@@ -86,7 +84,7 @@ const App = () => {
             <Route path="/eng/exercises">
               <ExerciseLibrary />
             </Route>
-            <Route path="/eng/clients">
+            <Route path="/eng/myclients">
               <MyClients />
             </Route>
           </Switch>
@@ -100,7 +98,7 @@ const App = () => {
         <Router>
           <MainMenuFin />
           <Switch>
-            <Route path="/fin/clients/:id">
+            <Route path="/fin/myclients/:id">
               <ClientFin />
             </Route>
             <Route path="/fin/signUp" >
@@ -124,7 +122,7 @@ const App = () => {
             <Route path="/fin/exercises">
               <ExerciseLibraryFin />
             </Route>
-            <Route path="/fin/clients">
+            <Route path="/fin/myclients">
               <MyClientsFin />
             </Route>
           </Switch>
@@ -138,7 +136,7 @@ const App = () => {
         <Router>
           <MainMenuEsp />
           <Switch>
-            <Route path="/esp/clients/:id">
+            <Route path="/esp/myclients/:id">
               <ClientEsp />
             </Route>
             <Route path="/esp/signUp" >
@@ -162,7 +160,7 @@ const App = () => {
             <Route path="/esp/exercises">
               <ExerciseLibraryEsp />
             </Route>
-            <Route path="/esp/clients">
+            <Route path="/esp/myclients">
               <MyClientsEsp />
             </Route>
           </Switch>

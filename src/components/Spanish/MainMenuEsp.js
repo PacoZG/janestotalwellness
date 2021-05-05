@@ -83,7 +83,7 @@ const MainMenu = () => {
                   : null}
 
                 {loggedUser && loggedUser.userType === 'admin' ?
-                  <Link to="/esp/clients" className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Mis Clientes</Link> :
+                  <Link to="/esp/myclients" className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Mis Clientes</Link> :
                   null
                 }
               </div>
@@ -94,9 +94,15 @@ const MainMenu = () => {
               <div style={visibleLangMenu}
                 className="absolute bg-gray-200 top-14 right-24 h-auto w-auto rounded-sm z-40 origin-top-right mt-2
               shadow-lg py-1 ring-1 ring-black ring-opacity-5 focus:outline-none divide-y divide-gray-500">
-                <p id="ENG" className="text-center p-1 hover:bg-gray-500 hover:text-gray-100 cursor-pointer " onClick={() => handleSetLanguage('eng')}>ENG</p>
-                <p id="FIN" className="text-center p-1 hover:bg-gray-500 hover:text-gray-100 cursor-pointer" onClick={() => handleSetLanguage('fin')}>FIN</p>
-                <p id="ESP" className="text-center p-1 hover:bg-gray-500 hover:text-gray-100 cursor-pointer" >ESP</p>
+                <p id="ENG" className="text-center p-1 hover:bg-gray-500 hover:text-gray-100 cursor-pointer " onClick={() => handleSetLanguage('eng')}>
+                  <img src="https://flagcdn.com/40x30/gb.png" className="h-4 w-6" width="80" height="60" alt="Finland" />
+                </p>
+                <p id="FIN" className="text-center p-1 hover:bg-gray-500 hover:text-gray-100 cursor-pointer" onClick={() => handleSetLanguage('fin')}>
+                  <img src="https://flagcdn.com/80x60/fi.png" className="h-4 w-6" width="80" height="60" alt="Finland" />
+                </p>
+                <p id="ESP" className="text-center p-1 hover:bg-gray-500 hover:text-gray-100 cursor-pointer" >
+                  <img src="https://flagcdn.com/40x30/es.png" className="h-4 w-6" width="80" height="60" alt="Spain" />
+                </p>
               </div>
               <button id="language-menuShow" className="pr-3 text-xl text-gray-300 rounded-full focus:outline-none " type="button"
                 onClick={handleLanguageDropdwon}>
@@ -162,9 +168,15 @@ const MainMenu = () => {
               <div style={visibleLangMenu}
                 className="absolute bg-gray-200 top-8 right-24 h-auto w-auto rounded-sm z-40 origin-top-right mt-2
                             shadow-lg py-1 ring-1 ring-black ring-opacity-5 focus:outline-none divide-y divide-gray-500">
-                <p className="text-center p-1 hover:bg-gray-500 hover:text-gray-100 cursor-pointer " onClick={() => handleSetLanguage('eng')}>ENG</p>
-                <p className="text-center p-1 hover:bg-gray-500 hover:text-gray-100 cursor-pointer" onClick={() => handleSetLanguage('fin')}>FIN</p>
-                <p className="text-center p-1 hover:bg-gray-500 hover:text-gray-100 cursor-pointer" >ESP</p>
+                <p className="text-center p-1 hover:bg-gray-500 hover:text-gray-100 cursor-pointer " onClick={() => handleSetLanguage('eng')}>
+                  <img src="https://flagcdn.com/40x30/gb.png" className="h-5 w-7" width="80" height="60" alt="UK" />
+                </p>
+                <p className="text-center p-1 hover:bg-gray-500 hover:text-gray-100 cursor-pointer" onClick={() => handleSetLanguage('fin')}>
+                  <img src="https://flagcdn.com/80x60/fi.png" className="h-5 w-7" width="80" height="60" alt="Finland" />
+                </p>
+                <p className="text-center p-1 hover:bg-gray-500 hover:text-gray-100 cursor-pointer" >
+                  <img src="https://flagcdn.com/40x30/es.png" className="h-5 w-7" width="80" height="60" alt="Spain" />
+                </p>
               </div>
               <button className="pr-3 text-xl text-gray-300 rounded-full focus:outline-none " type="button"
                 onClick={handleLanguageDropdwon}>
@@ -211,7 +223,7 @@ const MainMenu = () => {
               <Link to="/esp/myprogram" className="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 rounded-md text-base font-medium">Mi Programa</Link>
               : null}
             {loggedUser && loggedUser.userType === 'admin' ?
-              <Link to="/esp/clients" className="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 rounded-md text-base font-medium">Mis clientes</Link> :
+              <Link to="/esp/myclients" className="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 rounded-md text-base font-medium">Mis clientes</Link> :
               null
             }
           </div>

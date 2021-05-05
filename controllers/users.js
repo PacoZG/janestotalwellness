@@ -27,7 +27,7 @@ usersRouter.post('/', async (request, response) => {
       isRegisteredNew: true,
     })
   } catch (error) {
-    console.log('ERROR IN SERVER:', error.message)
+    // console.log('ERROR IN SERVER:', error.message)
     response.status(400).send(error)
 
   }
