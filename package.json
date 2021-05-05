@@ -5,16 +5,14 @@
   "main": "index.js",
   "scripts": {
     "start": "set PORT=3000 && craco start",
-    "craco-build": "craco build",
-    "craco-test": "craco test",
+    "build": "craco build",
     "production": "node index.js",
-    "build": "react-scripts build",
+    "dev-server": "nodemon index.js",
     "eslint": "eslint .",
     "test": "cross-env NODE_ENV=test jest --verbose --runInBand --silent ",
     "start:test": "cross-env NODE_ENV=test node index.js",
     "cypress:open": "cypress open",
     "test:e2e": "cypress run",
-    "dev-server": "nodemon index.js",
     "eject": "react-scripts eject"
   },
   "repository": {
