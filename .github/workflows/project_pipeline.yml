@@ -54,7 +54,7 @@ jobs:
           heroku_email: 'sirpaquillo1@yahoo.com.mx'
           dontuseforce: false
           procfile: 'web: npm run production'
-          healthcheck: 'https://jane-wellness-app.herokuapp.com//health'
+          healthcheck: 'https://jane-wellness-app.herokuapp.com/health'
           checkstring: 'ok'
           delay: 5
           rollbackonhealthcheckfailed: true
