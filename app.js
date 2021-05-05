@@ -37,18 +37,18 @@ app.use('/api/users', usersRouter)
 app.use('/api/login', loginRouter)
 app.use('/api/notes', notesRouter)
 
-app.get('/health', (req, res) => {
-  res.send('ok')
-})
-
-app.get('/helloworld', (request, response) => {
-  response.send('<h1>Hello World!</h1>')
-})
-
 if (process.env.NODE_ENV === 'test') {
   const testingRouter = require('./controllers/testing')
   app.use('/api/testing', testingRouter)
 }
+
+app.get('/health', (req, res) => {
+  res.send('ok')
+})
+
+app.get('/version', (req, res) => {
+  res.send('1') // change this string to ensure a new version deployed
+})
 
 app.use(middleware.unknownEndpoint)
 app.use(middleware.errorHandler)
