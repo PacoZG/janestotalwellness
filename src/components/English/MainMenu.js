@@ -69,7 +69,9 @@ const MainMenu = () => {
           <div className="flex items-center">
             <div className="hidden md:flex">
               <div className="flex-shrink-0">
-                <img className="h-12 w-12 rounded-full" src={threes} alt="Workflow" />
+                <p onClick={() => history.push('/')} className="cursor-pointer">
+                  <img className="h-12 w-12 rounded-full" src={threes} alt="Workflow" />
+                </p>
               </div>
               <div className="ml-10 flex items-baseline space-x-3 pt-2">
                 <Link id="frontpage" to="/eng/frontpage" className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">
