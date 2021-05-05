@@ -35,6 +35,6 @@ jobs:
           start: npm run start:test, npm start
           wait-on: 'http://localhost:3001'
         env:
-        NODE_ENV: 'test'
-        TEST_MONGODB_URI: ${{ secrets.TEST_MONGODB_URI }}
-        SECRET: ${{ secrets.SECRET }}
+          NODE_ENV: 'test'
+          TEST_MONGODB_URI: ${{ secrets.TEST_MONGODB_URI }}
+          SECRET: ${{ secrets.SECRET }}
