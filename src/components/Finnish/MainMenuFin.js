@@ -218,13 +218,13 @@ const MainMenuFin = () => {
         </div>
         <div style={mobileMenu} className="md:hidden border-t pt-2 pb-2">
           <div className="space-y-3 ">
-            <Link to="/eng/frontpage" className="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 rounded-md text-base font-medium">{'Jane\'s Total Wellness'}</Link>
-            <Link to="/eng/exercises" className="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 rounded-md text-base font-medium">Harjoituskirjasto</Link>
+            <Link to="/fin/frontpage" className="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 rounded-md text-base font-medium">{'Jane\'s Total Wellness'}</Link>
+            <Link to="/fin/exercises" className="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 rounded-md text-base font-medium">Harjoituskirjasto</Link>
             {loggedUser ?
-              <Link to="/eng/myprogram" className="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 rounded-md text-base font-medium">Oma ohjelma</Link>
+              <Link to="/fin/myprogram" className="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 rounded-md text-base font-medium">Oma ohjelma</Link>
               : null}
             {loggedUser && loggedUser.userType === 'admin' ?
-              <Link to="/eng/myclients" className="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 rounded-md text-base font-medium">Asiakkaani</Link> :
+              <Link to="/fin/myclients" className="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 rounded-md text-base font-medium">Asiakkaani</Link> :
               null
             }
           </div>

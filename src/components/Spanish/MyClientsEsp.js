@@ -31,7 +31,7 @@ const MyClients = () => {
             {users.map(user =>
               <li className="flex flex-col items-center space-y-2 md:mt-2 md:mb-5 md:ml-5 md:mr-2 " key={user.id}>
                 <Link className="bg-gradient-to-bl from-red-600 via-blue-200 to-yellow-100 rounded-full p-1"
-                  to={`/esp/clients/${user.id}`}>
+                  to={`/esp/myclients/${user.id}`}>
                   {user.imageURL ?
                     <img className="h-28 w-28 md:h-32 md:w-32 rounded-full bg-white p-1 transform hover:rotate-6 transition" src={user.imageURL} /> :
                     <img className="opacity-10 h-32 w-32 rounded-full bg-white p-1 transform hover:rotate-6 transition" src={bruja} />

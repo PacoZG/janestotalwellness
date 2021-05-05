@@ -5,6 +5,7 @@ import { initializeUsers } from './reducers/usersReducer'
 import { getAllNotes } from './reducers/noteReducer'
 
 // Components in english
+import WelcomePage from './components/English/WelcomePage'
 import Client from './components/English/Client'
 import Editform from './components/English/EditForm'
 import ExerciseLibrary from './components/English/ExerciseLibrary'
@@ -59,17 +60,19 @@ const App = () => {
         <Router>
           <MainMenu />
           <Switch>
-            <Redirect exact from="/" to="/eng/frontpage" />
-            <Route path="/eng/myclients/:id">
+            <Router exact path='/'>
+              <WelcomePage />
+            </Router>
+            <Route exact path="/eng/myclients/:id">
               <Client />
             </Route>
-            <Route path="/eng/signUp" >
+            <Route exact path="/eng/signUp" >
               <SignUpForm />
             </Route>
-            <Route path="/eng/signIn" >
+            <Route exact path="/eng/signIn" >
               <SignInForm />
             </Route>
-            <Route path="/eng/profile">
+            <Route exact path="/eng/profile">
               <UserProfile />
             </Route>
             <Route path="/eng/editForm">

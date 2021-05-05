@@ -266,9 +266,9 @@ const EditForm = () => {
               <div className="mr-2 ml-2 mt-3 md:mt-5 md:pt-7 md:col-span-2 ">
                 <form onSubmit={handleEditProfile}>
                   <div className="shadow md:rounded-md md:overflow-hidden rounded-b-md ">
-                    <div className="px-4 py-5 space-y-6 sm:p-6 bg-gradient-to-br from-gray-300 via-white to-gray-300 ">
+                    <div className="p-4 space-y-5 bg-gradient-to-br from-gray-300 via-white to-gray-300 ">
                       <div>
-                        <label className="block text-sm font-medium text-gray-700 pl-2">Health report
+                        <label className="block text-sm font-medium text-gray-700 pl-2 md:pl-3">Health report
                           {healthInfo.params.value.length > 29 ?
                             <span className="pl-1 text-xs font-normal">{`(${healthInfo.params.value.length}/500)`}</span>
                             :
@@ -277,10 +277,9 @@ const EditForm = () => {
                         </label>
                         <div className="mt-1">
                           <textarea id="health-report" name="about" rows="3" minLength="30" maxLength="500" placeholder="30 characters minimum" {...healthInfo.params}
-                            className="shadow-sm focus:ring-indigo-500 focus:border-gray-500 mt-1 block w-full sm:text-sm border-gray-300 rounded-md placeholder-gray-200"
-                          />
+                            className="h-24 md:h-32 block border border-transparent focus:outline-none focus:ring-1 focus:ring-gray-400 focus:border-transparent w-full rounded-md p-2 text-sm" />
                         </div>
-                        <p className="mt-2 text-sm text-gray-500">
+                        <p className="mt-2 p-1 text-sm text-gray-500">
                           {'Medical background, chronic health issues, treatments, etc. If you have any doctor\'s certificate please share it with me in person.'}</p>
                       </div>
                       <div className="ml-6 md:ml-28">
@@ -341,61 +340,61 @@ const EditForm = () => {
               <div className="mr-2 ml-2 mt-3 md:mt-5 md:col-span-2">
                 <form >
                   <div className="shadow overflow-hidden md:rounded-md rounded-b-md">
-                    <div className="px-4 py-5 md:p-6 bg-gradient-to-br from-gray-300 via-white to-gray-300 ">
+                    <div className="px-4 pb-5 pt-4 md:py-5 md:p-6 bg-gradient-to-br from-gray-300 via-white to-gray-300 ">
                       <div className="grid grid-cols-6 gap-6">
-                        <div className="col-span-6 sm:col-span-3">
+                        <div className="col-span-6 md:col-span-3">
                           <label className="block text-sm font-medium text-gray-700 pl-2">First name</label>
                           <div name="first_name" id="first_name" type="text"
-                            className="w-full shadow-sm md:text-sm border-gray-200 bg-transparent rounded-md capitalize">
+                            className="w-full h-8 pl-2 pt-1 shadow-sm text-md rounded-md capitalize">
                             {user.firstName}
                           </div>
                         </div>
                         <div className="col-span-6 md:col-span-3">
                           <label className="block text-sm font-medium text-gray-700 pl-2">Last name</label>
                           <div name="last_name" id="last_name" type="text"
-                            className="w-full shadow-sm md:text-sm border-gray-200 bg-transparent rounded-md capitalize">
+                            className="w-full h-8 pl-2 pt-1 shadow-sm text-md rounded-md capitalize">
                             {user.lastName}
                           </div>
                         </div>
                         <div className="col-span-6 md:col-span-3">
                           <label className="block text-sm font-medium text-gray-700 pl-2">Username</label>
                           <div name="username" id="username" type="text"
-                            className="w-full shadow-sm md:text-sm border-gray-200 bg-transparent rounded-md" >
+                            className="w-full h-8 pl-2 pt-1 shadow-sm text-md rounded-md " >
                             {user.username}
                           </div>
                         </div>
                         <div className="col-span-6 md:col-span-3">
                           <label className="block text-sm font-medium text-gray-700 pl-2">Email address</label>
                           <div name="email_address" id="email_address" type="text"
-                            className="w-full shadow-sm md:text-sm border-gray-200 bg-transparent rounded-md">
+                            className="w-full h-8 pl-2 pt-1 shadow-sm text-md rounded-md">
                             {user.email}
                           </div>
                         </div>
                         <div className="col-span-6">
                           <label className="block text-sm font-medium text-gray-700 pl-2">Street address</label>
                           <input name="street_address" id="street-address" autoComplete="street-address" {...address.params}
-                            className="mt-1 focus:border-gray-500 block w-full shadow-sm md:text-sm border-gray-300 rounded-md" />
+                            className="block border border-transparent focus:outline-none focus:ring-1 focus:ring-gray-400 focus:border-transparent w-full rounded-sm h-8 pl-2 text-sm" />
                         </div>
                         <div className="col-span-6 md:col-span-2">
                           <label className="block text-sm font-medium text-gray-700 pl-2">ZIP / Postal</label>
                           <input name="postal_code" id="postal-code" autoComplete="postal-code" {...zipCode.params}
-                            className=" focus:border-gray-500 block w-full shadow-sm md:text-sm border-gray-300 rounded-md" />
+                            className="block border border-transparent focus:outline-none focus:ring-1 focus:ring-gray-400 focus:border-transparent w-full rounded-sm h-8 pl-2 text-sm" />
                         </div>
                         <div className="col-span-6 md:col-span-2">
                           <label className="block text-sm font-medium text-gray-700 pl-2">City</label>
                           <input name="city" id="city" {...city.params}
-                            className="focus:border-gray-500 block w-full shadow-sm md:text-sm border-gray-300 rounded-md" />
+                            className="block border border-transparent focus:outline-none focus:ring-1 focus:ring-gray-400 focus:border-transparent w-full rounded-sm h-8 pl-2 text-sm" />
                         </div>
                         <div className="col-span-6 md:col-span-2">
                           <label className="block text-sm font-medium text-gray-700 pl-2">Mobile number</label>
                           <input name="mobile" id="mobile" {...mobileNumber.params} placeholder="044123456"
-                            className="mt-1 focus:border-gray-500 block w-full shadow-sm md:text-sm border-gray-300 rounded-md placeholder-gray-200" />
+                            className="block border border-transparent focus:outline-none focus:ring-1 focus:ring-gray-400 focus:border-transparent w-full rounded-sm h-8 pl-2 text-sm placeholder-gray-200" />
                         </div>
                         <div className="col-span-6">
                           <div className="flex flex-col h-12">
                             <label className="block text-sm font-medium text-gray-700 pl-2">Country</label>
                             <div id="country" name="country" type="text"
-                              className="flex flex-row justify-between h-10 px-3 border border-gray-300 ring-gray-500 bg-white rounded-md shadow-sm md:text-md">
+                              className="flex flex-row justify-between border border-transparent focus:outline-none focus:ring-1 focus:ring-gray-400 focus:border-transparent bg-white rounded-sm p-2 pl-2 w-full">
                               {country ?
                                 <div className="text-gray-500 md:text-md">{country}</div > :
                                 <div className="opacity-25">Select country</div>
@@ -404,7 +403,7 @@ const EditForm = () => {
                                 {country ? <span onClick={() => setCountry(null)}
                                   className="text-md text-gray-300 pr-2 cursor-pointer ">X</span> : null}
 
-                                <span className="inset-y-0 border-l pl-1 cursor-pointer"
+                                <span className="inset-y-0 border-l pl-1 pt-1 cursor-pointer"
                                   onClick={() => setDropdown(!dropdown)}>
                                   <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
                                     <path fillRule="evenodd" d="M10 3a1 1 0 01.707.293l3 3a1 1 0 01-1.414 1.414L10 5.414 7.707 7.707a1 1 0 01-1.414-1.414l3-3A1 1 0 0110 3zm-3.707 9.293a1 1 0 011.414 0L10 14.586l2.293-2.293a1 1 0 011.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 010-1.414z"
@@ -451,19 +450,19 @@ const EditForm = () => {
               <div className="mr-2 ml-2 mt-3 md:mt-5 md:col-span-2">
                 <form >
                   <div className="shadow overflow-hidden md:rounded-md rounded-b-md">
-                    <div className="px-4 py-5 md:p-6 bg-gradient-to-br from-gray-300 via-white to-gray-300 ">
+                    <div className="px-4 pb-5 pt-4 md:py-5 md:p-6 bg-gradient-to-br from-gray-300 via-white to-gray-300 ">
                       <div className="grid grid-cols-6 gap-6">
                         <div className="col-span-6 md:col-span-4">
                           <label className="block text-sm font-medium text-gray-700 pl-2">Old password</label>
                           <input name="oldPassword" id="oldPassword" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" {...oldPassword.params}
-                            className="mt-1 focus:border-gray-500 block w-full shadow-sm md:text-sm border-gray-300 rounded-md placeholder-gray-200" />
+                            className="block border border-transparent focus:outline-none focus:ring-1 focus:ring-gray-400 focus:border-transparent w-full rounded-md h-8 pl-2 text-sm" />
                         </div>
                         <div className="col-span-6 md:col-span-4">
                           <label className="block text-sm font-medium text-gray-700 pl-2">
-                            Re-type old password <span className="text-sm text-gray-300 pl-2">{
+                            Confirm old password <span className="text-sm text-gray-300 pl-2">{
                               oldPasswordConfirm.params.value === oldPassword.params.value && oldPasswordConfirm.params.value.length > 7 ? '(passwords matched)' : ''}</span></label>
                           <input name="oldPasswordConfirm" id="oldPasswordConfirm" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" {...oldPasswordConfirm.params}
-                            className="mt-1 focus:border-gray-500 block w-full shadow-sm md:text-sm border-gray-300 rounded-md placeholder-gray-200" />
+                            className="block border border-transparent focus:outline-none focus:ring-1 focus:ring-gray-400 focus:border-transparent w-full rounded-md h-8 pl-2 text-sm" />
                         </div>
                         <div className="col-span-6 md:col-span-4">
                           <label className="block text-sm font-medium text-gray-700 pl-2">
@@ -471,7 +470,7 @@ const EditForm = () => {
                               oldPassword.params.value === newPassword.params.value && newPassword.params.value.length > 7
                                 ? '(New password cannot be the same as the old one)' : ''}</span></label>
                           <input name="newPassword" id="newPassword" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"  {...newPassword.params}
-                            className="mt-1 focus:border-gray-500 block w-full shadow-sm md:text-sm border-gray-300 rounded-md placeholder-gray-200" />
+                            className="block border border-transparent focus:outline-none focus:ring-1 focus:ring-gray-400 focus:border-transparent w-full rounded-md h-8 pl-2 text-sm" />
                         </div>
                       </div>
                     </div>

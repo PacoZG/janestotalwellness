@@ -16,7 +16,7 @@ const Client = () => {
   //console.log('CLIENT ID: ', paramId)
   const client = useSelector(state => state.users.find(u => u.id === paramId))
   const notes = useSelector(state => state.notes)
-  console.log('CLIENT: ', client)
+  // console.log('CLIENT: ', client)
   // console.log('NOTES: ', notes)
 
   const height = useField('text')
@@ -262,17 +262,17 @@ const Client = () => {
               <div className="col-span-3">
                 <label className="text-sm font-medium text-gray-700 pl-1">Height</label>
                 <input name="height" id="mobile-height" {...height.params}
-                  className="focus:border-gray-500 block w-full shadow-sm border-gray-300 rounded-t-md" />
+                  className="block border border-transparent focus:outline-none focus:ring-1 focus:ring-gray-400 w-full h-9 p-2 shadow-sm text-sm border-gray-300 rounded-t-md" />
               </div>
               <div className="col-span-3">
                 <label className="text-sm font-medium text-gray-700 pl-1">Weight</label>
                 <input name="weight" id="mobile-weight" {...weight.params}
-                  className="focus:border-gray-500 block w-full shadow-sm border-gray-300 rounded-t-md" />
+                  className="block border border-transparent focus:outline-none focus:ring-1 focus:ring-gray-400 w-full h-9 p-2 shadow-sm text-sm border-gray-300 rounded-t-md" />
               </div>
             </div>
             <div className="px-3 py-2 bg-gray-400 text-right rounded-b-md">
               <button type="button" id="mobile-saveInfo" onClick={handleClientsInfo}
-                className="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm font-medium rounded-md
+                className="inline-flex justify-center py-1 px-4 border border-transparent shadow-sm font-medium rounded-md
                       bg-gray-500 text-sm text-white hover:bg-gray-300 focus-within:outline-none focus-within:ring-1">
                 Save</button>
             </div>
@@ -286,7 +286,7 @@ const Client = () => {
                 <div className="">
                   <label className="block text-sm font-medium text-gray-700 pl-1">Title</label>
                   <input name="title" id="mobile-title" minLength="5" maxLength="30" {...title.params}
-                    className="mt-1 focus:border-gray-500 block w-full shadow-sm md:text-sm border-gray-300 rounded-md" />
+                    className="block border border-transparent focus:outline-none focus:ring-1 focus:ring-gray-400 w-full h-9 shadow-sm border-gray-300 rounded-sm p-2" />
                 </div>
                 <label className="text-sm font-medium text-gray-700 pl-2 pt-2"> Note content
                   {content.params.value.length > 29 ?
@@ -296,7 +296,7 @@ const Client = () => {
                   }
                 </label>
                 <textarea name="height" id="mobile-content" rows="10" minLength="30" maxLength="500" placeholder="30 characters minimum" {...content.params}
-                  className="focus:border-gray-500 block w-full shadow-sm border-gray-300 rounded-t-md h-32 placeholder-gray-200" />
+                  className="h-32 block border border-transparent focus:outline-none focus:ring-1 focus:ring-gray-400 focus:border-transparent w-full rounded-md p-2 text-sm placeholder-gray-200" />
               </div>
             </div>
             <div className="px-3 py-2 bg-gray-400 text-right rounded-b-md">
@@ -417,16 +417,16 @@ const Client = () => {
                 <div className="m-4 col-span-2">
                   <div className="shadow overflow-hidden md:rounded-md rounded-b-md">
                     <div className="p-6 bg-transparent">
-                      <div className="grid grid-cols-6 gap-6">
-                        <div className="col-span-4">
+                      <div className="grid grid-cols-6 gap-3">
+                        <div className="col-span-3">
                           <label className="block text-sm font-medium text-gray-700 pl-2">Height</label>
                           <input name="wem-height" id="web-height" {...height.params}
-                            className="mt-1 focus:border-gray-500 block w-full shadow-sm md:text-sm border-gray-300 rounded-md placeholder-gray-200" />
+                            className="block border border-transparent focus:outline-none focus:ring-1 focus:ring-gray-400 focus:border-transparent w-full rounded-sm h-8 pl-2 text-sm " />
                         </div>
-                        <div className="col-span-4">
+                        <div className="col-span-3">
                           <label className="block text-sm font-medium text-gray-700 pl-2">Weight</label>
                           <input name="web-weight" id="web-weight" {...weight.params}
-                            className="mt-1 focus:border-gray-500 block w-full shadow-sm md:text-sm border-gray-300 rounded-md placeholder-gray-200" />
+                            className="block border border-transparent focus:outline-none focus:ring-1 focus:ring-gray-400 focus:border-transparent w-full rounded-sm h-8 pl-2 text-sm " />
                         </div>
                       </div>
                     </div>
@@ -453,11 +453,11 @@ const Client = () => {
               <div className="m-4 col-span-2 ">
                 <div className="shadow overflow-hidden rounded-md rounded-b-md">
                   <div className="p-6 bg-transparent">
-                    <div className="grid grid-cols-6 gap-6">
+                    <div className="grid grid-cols-6 gap-3">
                       <div className="col-span-6">
                         <label className="block text-sm font-medium text-gray-700 pl-2">Title</label>
                         <input name="title" id="web-title" {...title.params}
-                          className="mt-1 focus:border-gray-500 block w-full shadow-sm text-sm border-gray-300 rounded-md placeholder-gray-200" />
+                          className="block border border-transparent focus:outline-none focus:ring-1 focus:ring-gray-400 focus:border-transparent w-full rounded-sm h-8 pl-2 text-sm" />
                       </div>
                       <div className="col-span-6">
                         <label className="text-sm font-medium text-gray-700 pl-2 pt-2">Note content
@@ -468,7 +468,7 @@ const Client = () => {
                           }
                         </label>
                         <textarea name="height" id="web-content" rows="10" minLength="30" maxLength="500" placeholder="30 characters minimum" {...content.params}
-                          className="focus:border-gray-500 block w-full shadow-sm border-gray-300 rounded-md h-28 placeholder-gray-200" />
+                          className="h-32 block border border-transparent focus:outline-none focus:ring-1 focus:ring-gray-400 focus:border-transparent w-full rounded-md p-2 text-sm placeholder-gray-200" />
                       </div>
                     </div>
                   </div>

@@ -26,7 +26,7 @@
   "license": "ISC",
   "bugs": "https://github.com/PacoZG/My-project/issues",
   "dependencies": {
-    "@craco/craco": "^6.1.1",
+    "@craco/craco": "^6.1.2",
     "@tailwindcss/forms": "^0.2.1",
     "axios": "^0.21.1",
     "bcrypt": "^5.0.1",
