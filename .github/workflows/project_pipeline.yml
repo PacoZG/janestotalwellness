@@ -38,3 +38,23 @@ jobs:
           NODE_ENV: 'test'
           TEST_MONGODB_URI: ${{ secrets.TEST_MONGODB_URI }}
           SECRET: ${{ secrets.SECRET }}
+      - name: Bump version and push tag
+        uses: anothrNick/github-tag-action@1.33.0
+        if: ${{ github.event_name == 'push' && !contains(join(github.event.commits.*.message, ', '), '#skip') }}
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          WITH_V: true
+          DEFAULT_BUMP: '#patch'
+      - name: Deployment to Heroku
+        uses: akhileshns/heroku-deploy@v3.12.12 # This is the action
+        if: ${{ github.event_name == 'push' && !contains(join(github.event.commits.*.message, ', '), '#skip') }}
+        with:
+          heroku_api_key: ${{secrets.HEROKU_API_KEY}}
+          heroku_app_name: 'jane-wellness-app' # Must be unique in Heroku
+          heroku_email: 'sirpaquillo1@yahoo.com.mx'
+          dontuseforce: false
+          procfile: 'web: npm run production'
+          healthcheck: 'https://jane-wellness-app.herokuapp.com//health'
+          checkstring: 'ok'
+          delay: 5
+          rollbackonhealthcheckfailed: true
