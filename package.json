@@ -5,6 +5,8 @@
   "main": "index.js",
   "scripts": {
     "start": "set PORT=3000 && craco start",
+    "craco-build": "craco build",
+    "craco-test": "craco test",
     "production": "node index.js",
     "build": "react-scripts build",
     "eslint": "eslint .",
@@ -13,8 +15,6 @@
     "cypress:open": "cypress open",
     "test:e2e": "cypress run",
     "dev-server": "nodemon index.js",
-    "craco-build": "craco build",
-    "craco-test": "craco test",
     "eject": "react-scripts eject"
   },
   "repository": {
