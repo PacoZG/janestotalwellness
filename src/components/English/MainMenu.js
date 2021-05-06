@@ -128,7 +128,7 @@ const MainMenu = () => {
                   role="menu" aria-orientation="vertical" aria-labelledby="user-menu" >
                   {loggedUser ?
                     <div className=" divide-y divide-gray-300 " >
-                      <Link to="/eng/profile" className="block text-md text-gray-800 hover:bg-gray-100 p-1 " role="menuitem">
+                      <Link id="profile-button" to="/eng/profile" className="block text-md text-gray-800 hover:bg-gray-100 p-1 " role="menuitem">
                         <div className="flex items-center pl-1">
                           <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5.121 17.804A13.937 13.937 0 0112 16c2.5 0 4.847.655 6.879 1.804M15 10a3 3 0 11-6 0 3 3 0 016 0zm6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
@@ -136,7 +136,7 @@ const MainMenu = () => {
                           <span className="pl-2 text-sm">Profile</span>
                         </div>
                       </Link>
-                      <Link to="/eng/editForm" className="block text-md text-gray-800 hover:bg-gray-100 p-1" role="menuitem">
+                      <Link id="editprofile-button" to="/eng/editForm" className="block text-md text-gray-800 hover:bg-gray-100 p-1" role="menuitem">
                         <div className="flex items-center pl-1">
                           <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
@@ -144,7 +144,7 @@ const MainMenu = () => {
                           <span className="pl-2 text-sm">Edit Profile</span>
                         </div>
                       </Link>
-                      <div onClick={handleLogout} className="block text-md text-gray-800 hover:bg-gray-100 p-1 cursor-pointer" role="menuitem">
+                      <div id="signout-button" onClick={handleLogout} className="block text-md text-gray-800 hover:bg-gray-100 p-1 cursor-pointer" role="menuitem">
                         <div className="flex items-center pl-1">
                           <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
@@ -155,7 +155,7 @@ const MainMenu = () => {
                     </div>
                     :
                     <div className=" divide-y divide-gray-300">
-                      <Link to="/eng/signIn" className="block text-md text-gray-800 hover:bg-gray-100 p-1" role="menuitem">
+                      <Link id="signin-button" to="/eng/signIn" className="block text-md text-gray-800 hover:bg-gray-100 p-1" role="menuitem">
                         <div className="flex items-center pl-1">
                           <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M11 16l-4-4m0 0l4-4m-4 4h14m-5 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h7a3 3 0 013 3v1" />
@@ -163,7 +163,7 @@ const MainMenu = () => {
                           <span className="pl-2 text-sm">Sign in</span>
                         </div>
                       </Link>
-                      <Link to="/eng/signUp" className="block text-md text-gray-800 hover:bg-gray-100 pl-1 pt-1 pb-1" role="menuitem">
+                      <Link id="signup-button" to="/eng/signUp" className="block text-md text-gray-800 hover:bg-gray-100 pl-1 pt-1 pb-1" role="menuitem">
                         <div className="flex items-center pl-1 ">
                           <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M18 9v3m0 0v3m0-3h3m-3 0h-3m-2-5a4 4 0 11-8 0 4 4 0 018 0zM3 20a6 6 0 0112 0v1H3v-1z" />
@@ -219,40 +219,40 @@ const MainMenu = () => {
               </button>
               <button style={languageBackgroundVisible} onClick={handleLanguageBrackground} className="fixed inset-0 w-full bg-black opacity-20 z-30"></button>
               <button type="button" tabIndex="-1" id="user-menu" aria-expanded="false" aria-haspopup="true" onClick={handleDropdown}
-                className="relative z-10 max-w-xs bg-gray-800 rounded-full flex items-center
+                className="relative z-50 max-w-xs bg-gray-800 rounded-full flex items-center
                 text-sm focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-gray-300"
               >
                 {loggedUser && loggedUser.imageURL ?
-                  <img className="h-12 w-12 rounded-full" src={loggedUser.imageURL} alt="" /> :
+                  <img className="h-12 w-12 rounded-full" src={loggedUser.imageURL} /> :
                   <span className="inline-block rounded-full h-10 w-10 md:rounded-full overflow-hidden bg-gray-100">
                     <svg className="h-full w-full text-gray-300" fill="currentColor" viewBox="0 0 24 24">
                       <path d="M24 20.993V24H0v-2.996A14.977 14.977 0 0112.004 15c4.904 0 9.26 2.354 11.996 5.993zM16.002 8.999a4 4 0 11-8 0 4 4 0 018 0z" />
                     </svg>
                   </span>}
               </button>
-              <button style={backgroundVisible} onClick={handleBrackground} className="fixed inset-0 w-full bg-black opacity-25 z-40"></button>
+              <button style={backgroundVisible} onClick={handleBrackground} className="fixed inset-0 w-full bg-black opacity-25 z-30"></button>
             </div>
-            <div style={visibleMobileDrop} className="origin-top-right absolute right-2 z-40 mt-2 w-36 rounded-md shadow-lg py-1 bg-white ring-1 ring-black ring-opacity-5 focus:outline-none"
+            <div style={visibleMobileDrop} className="origin-top-right absolute right-2 z-50 mt-2 w-36 rounded-md shadow-lg py-1 bg-white ring-1 ring-black ring-opacity-5 focus:outline-none"
               role="menu" aria-orientation="vertical" aria-labelledby="user-menu" >
               {loggedUser ?
                 <div className=" divide-y divide-gray-300 " >
-                  <Link to="/eng/profile" className="block text-md text-gray-800 hover:bg-gray-100 p-1" role="menuitem">
-                    <div className="flex items-center pl-1 pb-1">
+                  <Link  to="/eng/profile" className="block text-md text-gray-800 hover:bg-gray-100 p-1" role="menuitem">
+                    <div id="profile" className="flex items-center pl-1 pb-1">
                       <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5.121 17.804A13.937 13.937 0 0112 16c2.5 0 4.847.655 6.879 1.804M15 10a3 3 0 11-6 0 3 3 0 016 0zm6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
                       </svg>
-                      <span className="pl-2 text-sm">Profile</span>
+                      <span id="profile" className="pl-2 text-sm">Profile</span>
                     </div>
                   </Link>
-                  <Link to="/eng/editForm" className="block text-md text-gray-800 hover:bg-gray-100 p-1" role="menuitem">
-                    <div className="flex items-center pl-1 p-1">
+                  <Link id="edit-profile" to="/eng/editForm" className="block text-md text-gray-800 hover:bg-gray-100 p-1" role="menuitem">
+                    <div id="edit-profile" className="flex items-center pl-1 p-1">
                       <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
                       </svg>
                       <span className="pl-2 text-sm">Edit Profile</span>
                     </div>
                   </Link>
-                  <div onClick={handleLogout} className="block text-md text-gray-800 hover:bg-gray-100 p-1" role="menuitem">
+                  <div id="signout" onClick={handleLogout} className="block text-md text-gray-800 hover:bg-gray-100 p-1" role="menuitem">
                     <div className="flex items-center pl-1 pt-1">
                       <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
@@ -263,7 +263,7 @@ const MainMenu = () => {
                 </div>
                 :
                 <div className=" divide-y divide-gray-300">
-                  <Link to="/eng/signIn" className="block text-md text-gray-800 hover:bg-gray-100 p-1" role="menuitem">
+                  <Link id="signin" to="/eng/signIn" className="block text-md text-gray-800 hover:bg-gray-100 p-1" role="menuitem">
                     <div className="flex items-center pl-1 pb-1 ">
                       <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M11 16l-4-4m0 0l4-4m-4 4h14m-5 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h7a3 3 0 013 3v1" />
@@ -271,7 +271,7 @@ const MainMenu = () => {
                       <span className="pl-2 text-sm">Sign in</span>
                     </div>
                   </Link>
-                  <Link to="/eng/signUp" className="block text-md text-gray-800 hover:bg-gray-100 pl-1 pt-1 pb-1" role="menuitem">
+                  <Link id="signup" to="/eng/signUp" className="block text-md text-gray-800 hover:bg-gray-100 pl-1 pt-1 pb-1" role="menuitem">
                     <div className="flex items-center pl-1 pt-1 ">
                       <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M18 9v3m0 0v3m0-3h3m-3 0h-3m-2-5a4 4 0 11-8 0 4 4 0 018 0zM3 20a6 6 0 0112 0v1H3v-1z" />

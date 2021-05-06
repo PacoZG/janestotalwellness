@@ -87,7 +87,7 @@ describe('Wellness app', function () {
   describe('Create a new user', function () {
     it('Succesfully creates a new user', function () {
       cy.get('#user-menu').click()
-      cy.get('#signup').click()
+      cy.get('#signup-button').click()
       cy.get('#background-button').click()
       cy.contains('Sign up')
       cy.get('#first-name').type('John')
@@ -105,7 +105,7 @@ describe('Wellness app', function () {
       cy.get('#weight').type('87')
       cy.get('#background').type('Lots of movies and stunt work')
       cy.get('#goals').type('Be richer and even more famous')
-      cy.get('#signUp-button').click()
+      cy.get('#subscribe-button').click()
       cy.get('#title').contains('Success')
       cy.get('#modal-ok').click()
     })
@@ -124,7 +124,7 @@ describe('Wellness app', function () {
 
     it('...signs in successfully', function () {
       cy.get('#user-menu').click()
-      cy.get('#singin').click()
+      cy.get('#signin-button').click()
       cy.get('#user-menu').click()
       cy.contains('Sign in to your account')
       cy.get('#username').type('bruce')
@@ -139,7 +139,7 @@ describe('Wellness app', function () {
   describe('The user...', function () {
     beforeEach('...signs in and...', function () {
       cy.get('#user-menu').click()
-      cy.get('#singin').click()
+      cy.get('#signin-button').click()
       cy.get('#user-menu').click()
       cy.contains('Sign in to your account')
       cy.get('#username').type('bruce')
@@ -183,7 +183,7 @@ describe('Wellness app', function () {
     })
 
     it('...edits his/her profile and check changes in the profile page', function () {
-      cy.get('#editProfile-button').click()
+      cy.get('#editprofile-button').click()
       cy.get('#background-button').click()
       cy.get('#health-report').type('The most anthologized poem of the last 25 years for a reason.')
       cy.get('.grid > .cursor-pointer').click()
@@ -212,7 +212,7 @@ describe('Wellness app', function () {
     })
 
     it('...changes password and checks by signing out and signin in with the new password', function () {
-      cy.get('#editProfile-button').click()
+      cy.get('#editprofile-button').click()
       cy.get('#user-menu').click()
       cy.get('#oldPassword').type('superSecret')
       cy.get('#oldPasswordConfirm').type('superSecret')
