@@ -59,10 +59,12 @@ const App = () => {
       <div >
         <Router>
           <MainMenu />
-          <Redirect exact from="/" to="/eng/home" />
           <Switch>
             <Route path="/eng/myclients/:id">
               <Client />
+            </Route>
+            <Route exact path="/">
+              <Redirect to="/eng/home" />
             </Route>
             <Route path="/eng/signUp" >
               <SignUpForm />
