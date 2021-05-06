@@ -292,13 +292,13 @@ const ClientFin = () => {
                   className="block border border-transparent focus:outline-none focus:ring-1 focus:ring-gray-400 w-full h-9 shadow-sm border-gray-300 rounded-sm p-2" />
               </div>
               <label className="text-sm font-medium text-gray-700 pl-2 pt-2">Muistiinpanon sisältö
-                {content.params.value.length > 29 ?
+                {content.params.value.length > 1 ?
                   <span className="pl-1 text-xs font-normal">{`(${content.params.value.length}/500)`}</span>
                   :
                   <span className="pl-1 text-xs font-normal">{`(${content.params.value.length}/30 characters minimum)`}</span>
                 }
               </label>
-              <textarea name="height" id="mobile-content" rows="10" minLength="30" maxLength="500" placeholder="30 characters minimum" {...content.params}
+              <textarea name="height" id="mobile-content" rows="10" minLength="2" maxLength="500" placeholder="30 characters minimum" {...content.params}
                 className="h-32 block border border-transparent focus:outline-none focus:ring-1 focus:ring-gray-400 focus:border-transparent w-full rounded-md p-2 text-sm placeholder-gray-200" />
             </div>
             <div className="px-3 py-2 bg-gray-400 text-right rounded-b-md">
@@ -466,10 +466,10 @@ const ClientFin = () => {
                       </div>
                       <div className="col-span-6">
                         <label className="text-sm font-medium text-gray-700 pl-2 pt-2">Muistiinpanon sisältö
-                          {content.params.value.length > 29 ?
+                          {content.params.value.length > 1 ?
                             <span className="pl-1 text-xs font-normal">{`(${content.params.value.length}/500)`}</span>
                             :
-                            <span className="pl-1 text-xs font-normal">{`(${content.params.value.length}/30 characters minimum)`}</span>
+                            <span className="pl-1 text-xs font-normal">{`(${content.params.value.length}/2 characters minimum)`}</span>
                           }
                         </label>
                         <textarea name="height" id="web-content" rows="10" minLength="30" maxLength="500" placeholder="30 characters minimum" {...content.params}

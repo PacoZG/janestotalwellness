@@ -24,7 +24,10 @@
   ],
   "author": "Francisco Zavala",
   "license": "ISC",
-  "bugs": "https://github.com/PacoZG/My-project/issues",
+  "bugs": {
+    "url": "https://github.com/PacoZG/My-project/issues"
+  },
+  "homepage": "https://jane-wellness-app.herokuapp.com/eng/home",
   "dependencies": {
     "@craco/craco": "^6.1.2",
     "@tailwindcss/forms": "^0.2.1",

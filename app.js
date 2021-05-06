@@ -3,6 +3,7 @@ const cors = require('cors')
 require('express-async-errors')
 const mongoose = require('mongoose')
 const app = express()
+const path = require('path')
 
 const config = require('./utils/config')
 const logger = require('./utils/logger')
@@ -48,6 +49,13 @@ app.get('/health', (req, res) => {
 
 app.get('/version', (req, res) => {
   res.send('1') // change this string to ensure a new version deployed
+})
+
+app.use(express.static(path.join(__dirname, 'build')))
+
+
+app.get('/*', function(req,res) {
+  res.sendFile(path.join(__dirname, 'build', 'index.html'))
 })
 
 app.use(middleware.unknownEndpoint)

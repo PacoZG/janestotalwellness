@@ -73,7 +73,7 @@ const MainMenuFin = () => {
                 <img className="h-12 w-12 rounded-full" src={threes} alt="Workflow" />
               </div>
               <div className="ml-10 flex items-baseline space-x-3 pt-2">
-                <Link to="/fin/frontpage" className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">
+                <Link to="/fin/home" className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">
                   <i className="text-gray-300">{'Jane\'s Total Wellness'}</i>
                 </Link>
 
@@ -218,7 +218,7 @@ const MainMenuFin = () => {
         </div>
         <div style={mobileMenu} className="md:hidden border-t pt-2 pb-2">
           <div className="space-y-3 ">
-            <Link to="/fin/frontpage" className="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 rounded-md text-base font-medium">{'Jane\'s Total Wellness'}</Link>
+            <Link to="/fin/home" className="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 rounded-md text-base font-medium">{'Jane\'s Total Wellness'}</Link>
             <Link to="/fin/exercises" className="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 rounded-md text-base font-medium">Harjoituskirjasto</Link>
             {loggedUser ?
               <Link to="/fin/myprogram" className="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 rounded-md text-base font-medium">Oma ohjelma</Link>

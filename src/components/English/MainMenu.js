@@ -69,12 +69,12 @@ const MainMenu = () => {
           <div className="flex items-center">
             <div className="hidden md:flex">
               <div className="flex-shrink-0">
-                <p onClick={() => history.push('/')} className="cursor-pointer">
-                  <img className="h-12 w-12 rounded-full" src={threes} alt="Workflow" />
-                </p>
+                {/* <p onClick={() => history.push('/eng/home')} className="cursor-pointer"> */}
+                <img className="h-12 w-12 rounded-full" src={threes} alt="Workflow" />
+                {/* </p> */}
               </div>
               <div className="ml-10 flex items-baseline space-x-3 pt-2">
-                <Link id="frontpage" to="/eng/frontpage" className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">
+                <Link id="frontpage" to="/eng/home" className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">
                   <i className="text-gray-300">{'Jane\'s Total Wellness'}</i>
                 </Link>
                 <Link id="exercises" to="/eng/exercises" className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Exercise library</Link>
@@ -215,7 +215,7 @@ const MainMenu = () => {
         </div>
         <div style={mobileMenu} className="md:hidden border-t pt-2 pb-2">
           <div className="space-y-3">
-            <Link to="/eng/frontpage" className="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 rounded-md text-base font-medium">{'Jane\'s Total Wellness'}</Link>
+            <Link to="/eng/home" className="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 rounded-md text-base font-medium">{'Jane\'s Total Wellness'}</Link>
             <Link to="/eng/exercises" className="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 rounded-md text-base font-medium">Exercise library</Link>
             {loggedUser ?
               <Link to="/eng/myprogram" className="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 rounded-md text-base font-medium">My Program</Link>

@@ -5,25 +5,25 @@ import { initializeUsers } from './reducers/usersReducer'
 import { getAllNotes } from './reducers/noteReducer'
 
 // Components in english
-import WelcomePage from './components/English/WelcomePage'
 import Client from './components/English/Client'
 import Editform from './components/English/EditForm'
 import ExerciseLibrary from './components/English/ExerciseLibrary'
 import Footer from './components/English/Footer'
-import Frontpage from './components/English/Frontpage'
+import Home from './components/English/Home'
 import MainMenu from './components/English/MainMenu'
 import MyClients from './components/English/MyClients'
 import MyProgram from './components/English/MyProgram'
 import SignInForm from './components/English/SignInForm'
 import SignUpForm from './components/English/SignUpForm'
 import UserProfile from './components/English/UserProfile'
+// import WelcomePage from './components/English/WelcomePage'
 
 // Components in Finnish
 import ClientFin from './components/Finnish/ClientFin'
 import EditformFin from './components/Finnish/EditFormFin'
 import ExerciseLibraryFin from './components/Finnish/ExerciseLibraryFin'
 import FooterFin from './components/Finnish/FooterFin'
-import FrontpageFin from './components/Finnish/FrontpageFin'
+import HomeFin from './components/Finnish/HomeFin'
 import MainMenuFin from './components/Finnish/MainMenuFin'
 import MyClientsFin from './components/Finnish/MyClientsFin'
 import MyProgramFin from './components/Finnish/MyProgramFin'
@@ -36,7 +36,7 @@ import ClientEsp from './components/Spanish/ClientEsp'
 import EditformEsp from './components/Spanish/EditFormEsp'
 import ExerciseLibraryEsp from './components/Spanish/ExerciseLibraryEsp'
 import FooterEsp from './components/Spanish/FooterEsp'
-import FrontpageEsp from './components/Spanish/FrontpageEsp'
+import HomeEsp from './components/Spanish/HomeEsp'
 import MainMenuEsp from './components/Spanish/MainMenuEsp'
 import MyClientsEsp from './components/Spanish/MyClientsEsp'
 import MyProgramEsp from './components/Spanish/MyProgramEsp'
@@ -60,9 +60,10 @@ const App = () => {
         <Router>
           <MainMenu />
           <Switch>
-            <Router exact path='/'>
+            <Redirect exact from="/" to="/eng/home" />
+            {/* <Router exact path='/eng/home'>
               <WelcomePage />
-            </Router>
+            </Router> */}
             <Route exact path="/eng/myclients/:id">
               <Client />
             </Route>
@@ -78,8 +79,8 @@ const App = () => {
             <Route path="/eng/editForm">
               <Editform />
             </Route>
-            <Route exact path="/eng/frontpage">
-              <Frontpage />
+            <Route exact path="/eng/home">
+              <Home />
             </Route>
             <Route path="/eng/myprogram">
               <MyProgram />
@@ -116,8 +117,8 @@ const App = () => {
             <Route path="/fin/editForm">
               <EditformFin />
             </Route>
-            <Route path="/fin/frontpage">
-              <FrontpageFin />
+            <Route path="/fin/home">
+              <HomeFin />
             </Route>
             <Route path="/fin/myprogram">
               <MyProgramFin />
@@ -154,8 +155,8 @@ const App = () => {
             <Route path="/esp/editForm">
               <EditformEsp />
             </Route>
-            <Route path="/esp/frontpage">
-              <FrontpageEsp />
+            <Route path="/esp/home">
+              <HomeEsp />
             </Route>
             <Route path="/esp/myprogram">
               <MyProgramEsp />

@@ -5,9 +5,9 @@ const WelcomePage = () => {
 
   if (!exercise) {
     return (
-      <div className="justify-center items-center flex outline-none bg-gray-100 min-h-screen p-60">
+      <div className="justify-center items-center flex outline-none bg-gray-100 min-h-screen md:p-60">
         <p className="pr-2 text-center" >
-          Welcome to Jane Wellness App, we are working hard to bring the best experience possible for you
+          Welcome to Jane Total Wellness app, we are working hard to bring the best experience possible for you
           and your journey to a healthy body, mind and soul.
         </p>
       </div>
