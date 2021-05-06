@@ -2,7 +2,7 @@ describe('Wellness app', function () {
 
   beforeEach(function () {
     cy.request('POST', 'http://localhost:3001/api/testing/reset')
-    cy.visit('http://localhost:3000/eng/frontpage')
+    cy.visit('http://localhost:3000/eng/home')
     const adminUser = {
       username: 'rocky',
       firstName: 'Silvester',
@@ -36,25 +36,25 @@ describe('Wellness app', function () {
 
     cy.request('POST', 'http://localhost:3001/api/users/', adminUser)
     cy.request('POST', 'http://localhost:3001/api/users/', clientUser)
-    cy.visit('http://localhost:3000/eng/frontpage')
+    cy.visit('http://localhost:3000/eng/home')
   })
 
   it('front page can be opened', function () {
-    cy.contains('Page under construction') // temporary test
+    cy.contains('Welcome to Jane Total Wellness app') // temporary test
   })
 
   describe('First our visibility and basic functionality', function () {
     it('Test app in different languages', function () {
-      cy.contains('Page under construction')
+      cy.contains('Welcome to Jane Total Wellness app')
       cy.get('#language-menuShow').click()
       cy.get('#FIN').click()
-      cy.contains('Sivua rakennetaan')
+      cy.contains('Tervetuloa Jane Total Wellness app')
       cy.get('#language-menuShow').click()
       cy.get('#ESP').click()
-      cy.contains('Página en construcción')
+      cy.contains('Bienvenido a Jane Total Wellness app')
       cy.get('#language-menuShow').click()
       cy.get('#ENG').click()
-      cy.contains('Page under construction')
+      cy.contains('Welcome to Jane Total Wellness app')
     })
 
     it('check different pages visibility', function () { // temporary test, will expand over time
