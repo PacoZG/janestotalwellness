@@ -104,6 +104,9 @@ const App = () => {
             <Route path="/fin/myclients/:id">
               <ClientFin />
             </Route>
+            <Route exact path="/">
+              <Redirect to="/fin/home" />
+            </Route>
             <Route path="/fin/signUp" >
               <SignUpFormFin />
             </Route>
@@ -141,6 +144,9 @@ const App = () => {
           <Switch>
             <Route path="/esp/myclients/:id">
               <ClientEsp />
+            </Route>
+            <Route exact path="/">
+              <Redirect to="/esp/home" />
             </Route>
             <Route path="/esp/signUp" >
               <SignUpFormEsp />

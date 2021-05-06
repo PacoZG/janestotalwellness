@@ -115,7 +115,7 @@ const SigninFormFin = () => {
     <div className="static min-h-screen flex justify-center bg-gray-300 pt-20 py-12 px-4 sm:px-6 lg:px-8">
       <div className="max-w-md w-full space-y-8">
         <div>
-          <img className="mx-auto h-12 w-auto rounded" src={threes} />
+          <img className="mx-auto h-12 w-auto rounded" src="https://res.cloudinary.com/dbn5gpgi5/image/upload/v1618604826/sample.jpg" />
           <h2 className="mt-6 text-center text-3xl font-extrabold text-gray-700">Kirjaudu sisään tiliisi</h2>
         </div>
         <form className="mt-8 space-y-6" onSubmit={handleLogin}>
