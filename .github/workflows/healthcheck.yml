@@ -1,6 +1,6 @@
 name: Wellness project healthcheck
 
-# on:
+on:
 #   schedule:
 #     - cron:  '0 0 * * MON' # “At 00:00 on every day-of-week from Monday through Friday.”
 
