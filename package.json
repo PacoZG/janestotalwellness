@@ -27,7 +27,7 @@
   "bugs": {
     "url": "https://github.com/PacoZG/My-project/issues"
   },
-  "homepage": "https://jane-wellness-app.herokuapp.com/eng/home",
+  "homepage": "https://jane-wellness-app.herokuapp.com",
   "dependencies": {
     "@craco/craco": "^6.1.2",
     "@tailwindcss/forms": "^0.2.1",

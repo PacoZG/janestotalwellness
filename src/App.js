@@ -61,25 +61,22 @@ const App = () => {
           <MainMenu />
           <Switch>
             <Redirect exact from="/" to="/eng/home" />
-            {/* <Router exact path='/eng/home'>
-              <WelcomePage />
-            </Router> */}
-            <Route exact path="/eng/myclients/:id">
+            <Route path="/eng/myclients/:id">
               <Client />
             </Route>
-            <Route exact path="/eng/signUp" >
+            <Route path="/eng/signUp" >
               <SignUpForm />
             </Route>
-            <Route exact path="/eng/signIn" >
+            <Route path="/eng/signIn" >
               <SignInForm />
             </Route>
-            <Route exact path="/eng/profile">
+            <Route path="/eng/profile">
               <UserProfile />
             </Route>
             <Route path="/eng/editForm">
               <Editform />
             </Route>
-            <Route exact path="/eng/home">
+            <Route path="/eng/home">
               <Home />
             </Route>
             <Route path="/eng/myprogram">
