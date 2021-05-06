@@ -308,7 +308,7 @@ const Client = () => {
           </div>
           <h3 className="text-lg text-center font-semibold p-2 pt-3">Notes</h3>
           <p className="text-justify text-gray-400 text-md pb-2 pr-3 pl-3 border-b">
-            To update a note, type in the fields above (note title and content) and click the Update button on the note you wish to update</p>
+            In order to update a note, type in the fields above (note title and content) and click the Update button on the note you wish to update</p>
           {client.notes.length > 0 ?
             client.notes.map(note =>
               <div key={note.id} className="p-2 border rounded-sm shadow-sm mt-2">
@@ -483,7 +483,7 @@ const Client = () => {
               <div className="col-span-3">
                 <h3 className="text-center text-xl font-semibold pt-4 pb-2 border-t ">Notes</h3>
                 <p className="text-center text-gray-400 text-md pb-2 pl-24 pr-24 border-b">
-                  To update a note type in the fields above (Title and Note content) then click the Update button on the note you wish to update</p>
+                  In order to update a note type in the fields above (Title and Note content) then click the Update button on the note you wish to update</p>
                 <div className="pl-32 pr-32 pt-4 pb-4">
                   {client.notes.length > 0 ?
                     client.notes.map(note =>

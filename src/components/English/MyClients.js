@@ -1,11 +1,11 @@
 import React from 'react'
-import { Link, useHistory } from 'react-router-dom'
-import { useDispatch, useSelector } from 'react-redux'
+import { Link } from 'react-router-dom'
+import { useSelector } from 'react-redux'
 import bruja from '../../img/bruja.jpg'
 
 const MyClients = () => {
   const users = useSelector(state => state.users).filter(user => user.userType === 'client')
-  console.log('USERS: ', users)
+  // console.log('USERS: ', users)
 
 
   if (!users) {

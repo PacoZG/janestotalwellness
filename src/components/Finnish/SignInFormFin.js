@@ -124,16 +124,14 @@ const SigninFormFin = () => {
               <label className="sr-only">käyttäjänimi</label>
               <input id="username" name="username" autoComplete="off" pattern="[a-z]{1,15}"
                 {...username.params}
-                className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-300
-                text-gray-900 rounded-t-md focus:border-gray-500 shadow-sm sm:text-md"
+                className="block border border-transparent focus:outline-none focus:ring-1 focus:ring-gray-400 focus:border-transparent w-full px-3 py-2 rounded-t-md placeholder-gray-200 "
                 placeholder="Käyttäjänimi" title="Username is required" required />
             </div>
             <div>
               <label className="sr-only">Salasana</label>
               <input id="password" name="password" autoComplete="current-password"
                 {...password.params}
-                className="z-0 appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-300
-                text-gray-900 rounded-b-md focus:border-gray-500 shadow-sm md:text-md valid-haspopup"
+                className="block border border-transparent focus:outline-none focus:ring-1 focus:ring-gray-400 focus:border-transparent w-full px-3 py-2 rounded-b-md placeholder-gray-200"
                 placeholder="Salasana" title="Password is required" required />
             </div>
           </div>

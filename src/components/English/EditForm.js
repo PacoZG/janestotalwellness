@@ -277,7 +277,7 @@ const EditForm = () => {
                         </label>
                         <div className="mt-1">
                           <textarea id="health-report" name="about" rows="3" minLength="30" maxLength="500" placeholder="30 characters minimum" {...healthInfo.params}
-                            className="h-24 md:h-32 block border border-transparent focus:outline-none focus:ring-1 focus:ring-gray-400 focus:border-transparent w-full rounded-md p-2 text-sm" />
+                            className="h-24 md:h-32 block border border-transparent focus:outline-none focus:ring-1 focus:ring-gray-400 focus:border-transparent w-full rounded-md p-2 text-sm placeholder-gray-200" />
                         </div>
                         <p className="mt-2 p-1 text-sm text-gray-500">
                           {'Medical background, chronic health issues, treatments, etc. If you have any doctor\'s certificate please share it with me in person.'}</p>
@@ -345,28 +345,28 @@ const EditForm = () => {
                         <div className="col-span-6 md:col-span-3">
                           <label className="block text-sm font-medium text-gray-700 pl-2">First name</label>
                           <div name="first_name" id="first_name" type="text"
-                            className="w-full h-8 pl-2 pt-1 shadow-sm text-md rounded-md capitalize">
+                            className="bg-transparent border-transparent shadow-md rounded-sm w-full h-8 text-sm pl-2capitalize">
                             {user.firstName}
                           </div>
                         </div>
                         <div className="col-span-6 md:col-span-3">
                           <label className="block text-sm font-medium text-gray-700 pl-2">Last name</label>
                           <div name="last_name" id="last_name" type="text"
-                            className="w-full h-8 pl-2 pt-1 shadow-sm text-md rounded-md capitalize">
+                            className="bg-transparent border-transparent shadow-md rounded-sm w-full h-8 text-sm pl-2capitalize">
                             {user.lastName}
                           </div>
                         </div>
                         <div className="col-span-6 md:col-span-3">
                           <label className="block text-sm font-medium text-gray-700 pl-2">Username</label>
                           <div name="username" id="username" type="text"
-                            className="w-full h-8 pl-2 pt-1 shadow-sm text-md rounded-md " >
+                            className="bg-transparent border-transparent shadow-md rounded-sm w-full h-8 text-sm pl-2" >
                             {user.username}
                           </div>
                         </div>
                         <div className="col-span-6 md:col-span-3">
                           <label className="block text-sm font-medium text-gray-700 pl-2">Email address</label>
                           <div name="email_address" id="email_address" type="text"
-                            className="w-full h-8 pl-2 pt-1 shadow-sm text-md rounded-md">
+                            className="bg-transparent border-transparent shadow-md rounded-sm w-full h-8 text-sm pl-2">
                             {user.email}
                           </div>
                         </div>
@@ -396,13 +396,12 @@ const EditForm = () => {
                             <div id="country" name="country" type="text"
                               className="flex flex-row justify-between border border-transparent focus:outline-none focus:ring-1 focus:ring-gray-400 focus:border-transparent bg-white rounded-sm p-2 pl-2 w-full">
                               {country ?
-                                <div className="text-gray-500 md:text-md">{country}</div > :
-                                <div className="opacity-25">Select country</div>
+                                <div className="text-gray-500 md:text-md pl-1">{country}</div > :
+                                <div className="opacity-25 text-lg pl-1">Select country</div>
                               }
                               <div className="flex ">
                                 {country ? <span onClick={() => setCountry(null)}
                                   className="text-md text-gray-300 pr-2 cursor-pointer ">X</span> : null}
-
                                 <span className="inset-y-0 border-l pl-1 pt-1 cursor-pointer"
                                   onClick={() => setDropdown(!dropdown)}>
                                   <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
@@ -413,7 +412,7 @@ const EditForm = () => {
                               </div>
                             </div>
                           </div>
-                          <div style={visibleDrop} className="border rounded-sm col-span-6 bg-white mt-4">
+                          <div style={visibleDrop} className="border rounded-sm col-span-6 bg-white mt-4 divide-y divide-gray-50 ">
                             {countries.sort().map(country =>
                               <p id={`${country}`} className="p-1 pl-2 text-gray-700 hover:bg-gray-500 hover:text-white cursor-pointer"
                                 onClick={() => handleCountry(country)} key={country}

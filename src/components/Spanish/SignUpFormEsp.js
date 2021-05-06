@@ -146,17 +146,17 @@ const SignUpForm = () => {
                 <div className="grid grid-cols-6 gap-6">
                   <div className="col-span-6 md:col-span-3">
                     <label className="p-0 bottom-12 ml-2 bg-transparent text-gray-200 ">Nombre</label>
-                    <input className="focus:border-gray-500 block h-12 w-full shadow-sm md:text-sm border-gray-300 rounded-md placeholder-gray-200"
+                    <input className="block border border-transparent focus:outline-none focus:ring-1 focus:ring-gray-200 focus:border-transparent rounded-sm p-2 pl-3 h-12 w-full shadow-sm text-md border-gray-100 placeholder-gray-200"
                       pattern="([a-zA-Z]+\s){2,})" placeholder="John" {...firstName.params} required />
                   </div>
                   <div className="col-span-6 md:col-span-3">
                     <label className="p-0 bottom-12 ml-2 bg-transparent text-gray-200">Apellido</label>
-                    <input className="focus:border-gray-500 block h-12 w-full shadow-sm md:text-sm border-gray-300 rounded-md placeholder-gray-200"
+                    <input className="block border border-transparent focus:outline-none focus:ring-1 focus:ring-gray-200 focus:border-transparent rounded-sm p-2 pl-3 h-12 w-full shadow-sm text-md border-gray-100 placeholder-gray-200"
                       pattern="([a-zA-Z]+\s){2,})" placeholder="Smith" {...lastName.params} required />
                   </div>
                   <div className="col-span-6 md:col-span-3">
                     <label className="p-0 bottom-12 ml-2 bg-transparent text-gray-200 ">Nombre de usuario</label>
-                    <input className="focus:border-gray-500 block h-12 w-full shadow-sm md:text-sm border-gray-300 rounded-md placeholder-gray-200"
+                    <input className="block border border-transparent focus:outline-none focus:ring-1 focus:ring-gray-200 focus:border-transparent rounded-sm p-2 pl-3 h-12 w-full shadow-sm text-md border-gray-100 placeholder-gray-200"
                       pattern="[A-Za-z0-9]+" placeholder="example: jhon1" title="User has to be at least 4 characters long" {...username.params} required />
                   </div>
                   <div className="col-span-6 sm:col-span-3">
@@ -169,7 +169,7 @@ const SignUpForm = () => {
                             {country}<span onClick={() => setCountry(null)}
                               className="absolute pt-1 opacity-50 inset-y-0 right-11 mt-2 z-50 cursor-pointer">X</span>
                           </div> :
-                          <div className="opacity-25 pt-1">Selecciona un país</div>}
+                          <div className="opacity-25 text-lg">Selecciona un país</div>}
                         <span className="absolute right-0 inset-y-0 flex items-center pr-2 pl-1 border-l mt-2 mb-2 cursor-pointer"
                           onClick={() => setDropdown(!dropdown)}>
                           <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
@@ -177,9 +177,9 @@ const SignUpForm = () => {
                           </svg>
                         </span>
                       </div>
-                      <div style={visibleDrop} className="absolute border rounded-b-md rounded-sm mt-2 col-span-6 w-full bg-white z-50 ">
+                      <div style={visibleDrop} className="absolute border rounded-b-md rounded-sm mt-2 col-span-6 w-full bg-white z-50 divide-y divide-gray-50 ">
                         {countries.sort().map(country =>
-                          <p className="p-1 pl-2 text-gray-500 hover:bg-gray-500 hover:text-white cursor-pointer"
+                          <p className="p-1 pl-3 text-gray-500 hover:bg-gray-500 hover:text-white cursor-pointer"
                             onClick={() => handleCountry(country)} key={country}
                           >{country}</p>
                         )}
@@ -188,17 +188,17 @@ const SignUpForm = () => {
                   </div>
                   <div className="col-span-6 md:col-span-3">
                     <label className="p-0 bottom-12 ml-2 bg-transparent text-gray-200 ">Email</label>
-                    <input className="focus:border-gray-500 block h-12 w-full shadow-sm md:text-sm border-gray-300 rounded-md placeholder-gray-200"
+                    <input className="block border border-transparent focus:outline-none focus:ring-1 focus:ring-gray-200 focus:border-transparent rounded-sm p-2 pl-3 h-12 w-full shadow-sm text-md border-gray-100 placeholder-gray-200"
                       pattern="[a-z0-9._%+-]+@[a-z0-9.-]+.[a-z]{2,4}$" id="email" placeholder="john@example.com" {...email.params} required />
                   </div>
                   <div className="col-span-6 md:col-span-3">
                     <label className="p-0 bottom-12 ml-2 bg-transparent text-gray-200 ">Confirma tu email</label>
-                    <input className="focus:border-gray-500 block h-12 w-full shadow-sm md:text-sm border-gray-300 rounded-md placeholder-gray-200"
+                    <input className="block border border-transparent focus:outline-none focus:ring-1 focus:ring-gray-200 focus:border-transparent rounded-sm p-2 pl-3 h-12 w-full shadow-sm text-md border-gray-100 placeholder-gray-200"
                       pattern="[a-z0-9._%+-]+@[a-z0-9.-]+.[a-z]{2,4}$" id="email-confirm" {...emailConfirm.params} required />
                   </div>
                   <div className="col-span-6 md:col-span-3">
                     <label className="p-0 bottom-12 ml-2 bg-transparent text-gray-200 ">Contraseña</label>
-                    <input className="focus:border-gray-500 block h-12 w-full shadow-sm md:text-sm border-gray-300 rounded-md placeholder-gray-200"
+                    <input className="block border border-transparent focus:outline-none focus:ring-1 focus:ring-gray-200 focus:border-transparent rounded-sm p-2 pl-3 h-12 w-full shadow-sm text-md border-gray-100 placeholder-gray-200"
                       pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" id="password" title="Must contain at least one  number and one uppercase and lowercase letter, and at least 8 or more characters"
                       {...password.params} required />
                   </div>
@@ -206,55 +206,64 @@ const SignUpForm = () => {
                     <label className="p-0 bottom-12 ml-2 bg-transparent text-gray-200 ">Confirma la contraseña<span className="text-sm text-gray-300 pl-2">{
                       passwordConfirm.params.value === password.params.value && passwordConfirm.params.value.length > 7 ? '(passwords matched)' : ''}</span>
                     </label>
-                    <input className="focus:border-gray-500 block h-12 w-full shadow-sm md:text-sm border-gray-300 rounded-md placeholder-gray-200"
+                    <input className="block border border-transparent focus:outline-none focus:ring-1 focus:ring-gray-200 focus:border-transparent rounded-sm p-2 pl-3 h-12 w-full shadow-sm text-md border-gray-100 placeholder-gray-200"
                       pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Debe contener al menos un núnmero, una letra mayúscula, una minúscula y al menos 8 caracteres"
                       {...passwordConfirm.params} required />
                   </div>
                   <div className="col-span-6 md:col-span-3">
                     <label className="p-0 bottom-12 ml-2 bg-transparent text-gray-200 ">Fecha de nacimiento</label>
-                    <input className="focus:border-gray-500 block h-12 w-full shadow-sm md:text-sm border-gray-300 rounded-md placeholder-gray-200"
+                    <input className="block border border-transparent focus:outline-none focus:ring-1 focus:ring-gray-200 focus:border-transparent rounded-sm p-2 pl-3 h-12 w-full shadow-sm text-md border-gray-100 placeholder-gray-200"
                       {...dateOfBirth.params} min="1950-01-01" max="2005-12-31" lang="es-ES" required />
                   </div>
                   <div className="col-span-6 md:col-span-3 md:mt-8">
                     <div className="grid grid-flow-col justify-items-left pl-4 md:pl-4 mt-3 md:space-x-20">
                       <div className="grid grid-flow-col ">
                         <input id="male" name="gender" type="radio" value="male"
-                          className="focus:ring-yellow-700 h-4 w-4 text-gray-400 border-gray-500" required />
+                          className="h-4 w-4 rounded-full border-gray-500 text-gray-500 focus:ring-gray-500" required />
                         <label className="block text-sm font-medium text-gray-200">Hombre</label>
                       </div>
                       <div className="grid grid-flow-col">
                         <input id="female" name="gender" type="radio" value="female"
-                          className="focus:ring-yellow-700 h-4 w-4 text-gray-400 border-gray-500" required />
+                          className="h-4 w-4 rounded-full border-gray-500 text-gray-500 focus:ring-gray-500" required />
                         <label className="lock text-sm font-medium text-gray-200">Mujer</label>
                       </div>
                       <div className="grid grid-flow-col">
                         <input id="other" name="gender" type="radio" value="other"
-                          className="focus:ring-yellow-700 h-4 w-4 text-gray-400 border-gray-500" required />
+                          className="h-4 w-4 rounded-full border-gray-500 text-gray-500 focus:ring-gray-500" required />
                         <label className="lock text-sm font-medium text-gray-200">Otro</label>
                       </div>
                     </div>
                   </div>
                   <div className="col-span-6 md:col-span-3">
                     <label className="p-0 bottom-12 ml-2 bg-transparent text-gray-200 ">Altura (cm)</label>
-                    <input className="focus:border-gray-500 block h-12 w-full shadow-sm md:text-sm border-gray-300 rounded-md placeholder-gray-200"
+                    <input className="block border border-transparent focus:outline-none focus:ring-1 focus:ring-gray-200 focus:border-transparent rounded-sm p-2 pl-3 h-12 w-full shadow-sm text-md border-gray-100 placeholder-gray-200"
                       {...height.params} required />
                   </div>
                   <div className="col-span-6 md:col-span-3">
                     <label className="p-0 bottom-12 ml-2 bg-transparent text-gray-200 ">Peso (kg)</label>
-                    <input className="focus:border-gray-500 block h-12 w-full shadow-sm md:text-sm border-gray-300 rounded-md placeholder-gray-200"
+                    <input className="block border border-transparent focus:outline-none focus:ring-1 focus:ring-gray-200 focus:border-transparent rounded-sm p-2 pl-3 h-12 w-full shadow-sm text-md border-gray-100 placeholder-gray-200"
                       {...weight.params} required />
                   </div><div className="col-span-6 md:col-span-6">
                     <label className="p-0 bottom-12 ml-2 bg-transparent text-gray-200 ">Antecedentes
                       <span className="text-gray-400 text-sm pl-2">(¿que tipo de actividad física has realizado anteriormente?)</span></label>
-                    <input className="focus:border-gray-500 block h-12 w-full shadow-sm md:text-sm border-gray-300 rounded-md placeholder-gray-200"
+                    <input className="block border border-transparent focus:outline-none focus:ring-1 focus:ring-gray-200 focus:border-transparent rounded-sm p-2 pl-3 h-12 w-full shadow-sm text-md border-gray-100 placeholder-gray-200"
                       {...background.params} required />
                   </div>
                 </div>
                 <div className="col-span-6 md:col-span-6">
                   <div className="mt-4 relative">
-                    <p className="pl-2 text-gray-200" >Metas</p>
-                    <textarea className="h-40 focus:border-gray-500 block w-full shadow-sm md:text-sm border-gray-300 rounded-md placeholder-gray-200" placeholder="Dime porque te gustaría tener mi ayuda"
+                    <p className="pl-2  mb-2 text-gray-200" >Metas</p>
+                    <textarea className="md:h-40 h-32 block border border-transparent focus:outline-none focus:ring-1 focus:ring-gray-400 focus:border-transparent w-full rounded-md p-2 text-sm placeholder-gray-200" placeholder="Dime porque te gustaría tener mi ayuda"
                       {...goals.params} required />
+                  </div>
+
+                  <div className="flex items-center space-x-2 pl-3 pt-3">
+                    <input id="terms-and-conditions" name="terms-and-conditions" type="checkbox"
+                      className="h-4 w-4 rounded border-gray-500 text-gray-500 focus:ring-gray-500" />
+                    <p className="text-gray-200">Acepto los</p>
+                    <a href="#" className="text-indigo-400 hover:text-indigo-300">términos</a>
+                    <p className="text-gray-200">y</p>
+                    <a href="#" className="text-indigo-400 hover:text-indigo-300">condiciones de privacidad</a>
                   </div>
                   <button className="mt-4 mb-6 h-12 w-full bg-gray-500 text-white rounded hover:bg-gray-400
                     focus:ring focus:ring-offset-1 focus:ring-gray-800 transform transition active:bg-gray-800" type="submit">Subscribirme</button>
