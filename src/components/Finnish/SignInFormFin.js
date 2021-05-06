@@ -35,7 +35,7 @@ const SigninFormFin = () => {
     //     title: 'Success',
     //     show: true
     //   }))
-    //   history.push('/fin/frontpage')
+    //   history.push('/fin/home')
     // } catch (error) {
     //   //console.log('SIGN IN ERROR: ', error.response.data.error)
     //   dispatch(setNotification({
@@ -99,7 +99,7 @@ const SigninFormFin = () => {
         title: 'Istunto päättyi',
         show: true
       }))
-      history.push('/fin/frontpage')
+      history.push('/fin/home')
     }, 1800000)
     setShowModal(!showModal)
   }
@@ -107,7 +107,7 @@ const SigninFormFin = () => {
   const handleLogout = () => {
     dispatch(userLogout())
     setShowModal(!showModal)
-    history.push('/fin/frontpage')
+    history.push('/fin/home')
   }
 
 

@@ -225,7 +225,7 @@ const EditForm = () => {
   // handle profile removal
   const handleProfileRemoval = () => {
     console.log('profile erased')
-    history.push('/esp/frontpage')
+    history.push('/esp/home')
     setShowModal(!showModal)
     dispatch(deleteUser(user))
     dispatch(setNotification({

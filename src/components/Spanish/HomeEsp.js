@@ -2,9 +2,9 @@ import React from 'react'
 
 const HomeEsp = () => {
 
-  const frontpage = null
+  const home = null
 
-  if (!frontpage) {
+  if (!home) {
     return (
       <div className="flex justify-center items-center outline-none bg-gray-100 min-h-screen md:p-60 p-6">
         <div className="flex flex-col items-center space-x-1">

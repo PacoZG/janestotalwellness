@@ -2,9 +2,9 @@ import React from 'react'
 
 const Home = () => {
 
-  const frontpage = null
+  const home = null
 
-  if (!frontpage) {
+  if (!home) {
     return (
       <div className="flex justify-center items-center outline-none bg-gray-100 min-h-screen md:p-60 p-6">
         <div className="flex flex-col items-center space-x-1">
@@ -20,7 +20,7 @@ const Home = () => {
   return (
     <div>
       <div className="bg-gray-100 min-h-screen pt-4">
-        Fronpage
+        Home
       </div>
     </div>
   )

@@ -37,7 +37,7 @@ const MainMenu = () => {
 
   const handleLogout = () => {
     dispatch(userLogout())
-    history.push('/esp/frontpage')
+    history.push('/esp/home')
   }
 
   const handleLanguageDropdwon = () => {
@@ -72,7 +72,7 @@ const MainMenu = () => {
                 <img className="h-12 w-12 rounded-full" src={threes} alt="Workflow" />
               </div>
               <div className="ml-10 flex items-baseline space-x-3 pt-2">
-                <Link to="/esp/frontpage" className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">
+                <Link to="/esp/home" className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">
                   <i className="text-gray-300">{'Jane\'s Total Wellness'}</i>
                 </Link>
 
@@ -217,7 +217,7 @@ const MainMenu = () => {
         </div>
         <div style={mobileMenu} className="md:hidden border-t pt-2 pb-2">
           <div className="space-y-3 ">
-            <Link to="/esp/frontpage" className="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 rounded-md text-base font-medium">{'Jane\'s Total Wellness'}</Link>
+            <Link to="/esp/home" className="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 rounded-md text-base font-medium">{'Jane\'s Total Wellness'}</Link>
             <Link to="/esp/exercises" className="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 rounded-md text-base font-medium">Librería de ejercicios</Link>
             {loggedUser ?
               <Link to="/esp/myprogram" className="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 rounded-md text-base font-medium">Mi Programa</Link>

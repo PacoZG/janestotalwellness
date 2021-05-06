@@ -37,7 +37,7 @@ const MainMenu = () => {
 
   const handleLogout = () => {
     dispatch(userLogout())
-    history.push('/eng/frontpage')
+    history.push('/eng/home')
   }
 
   const handleLanguageDropdwon = () => {
@@ -74,7 +74,7 @@ const MainMenu = () => {
                 {/* </p> */}
               </div>
               <div className="ml-10 flex items-baseline space-x-3 pt-2">
-                <Link id="frontpage" to="/eng/home" className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">
+                <Link id="home" to="/eng/home" className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">
                   <i className="text-gray-300">{'Jane\'s Total Wellness'}</i>
                 </Link>
                 <Link id="exercises" to="/eng/exercises" className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Exercise library</Link>

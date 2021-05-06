@@ -35,7 +35,7 @@ const SigninForm = () => {
     //     title: 'Success',
     //     show: true
     //   }))
-    //   history.push('/esp/frontpage')
+    //   history.push('/esp/home')
     // } catch (error) {
     //   //console.log('SIGN IN ERROR: ', error.response.data.error)
     //   dispatch(setNotification({
@@ -100,7 +100,7 @@ const SigninForm = () => {
         title: 'Sesión terminada',
         show: true
       }))
-      history.push('/esp/frontpage')
+      history.push('/esp/home')
     }, 1800000)
     setShowModal(!showModal)
   }
@@ -108,7 +108,7 @@ const SigninForm = () => {
   const handleLogout = () => {
     dispatch(userLogout())
     setShowModal(!showModal)
-    history.push('/esp/frontpage')
+    history.push('/esp/home')
   }
 
 

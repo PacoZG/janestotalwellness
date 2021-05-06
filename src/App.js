@@ -60,7 +60,6 @@ const App = () => {
         <Router>
           <MainMenu />
           <Switch>
-            <Redirect exact from="/" to="/eng/home" />
             <Route path="/eng/myclients/:id">
               <Client />
             </Route>

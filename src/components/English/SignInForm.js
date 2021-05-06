@@ -35,7 +35,7 @@ const SigninForm = () => {
     //     title: 'Success',
     //     show: true
     //   }))
-    //   history.push('/eng/frontpage')
+    //   history.push('/eng/home')
     // } catch (error) {
     //   //console.log('SIGN IN ERROR: ', error.response.data.error)
     //   dispatch(setNotification({
@@ -100,7 +100,7 @@ const SigninForm = () => {
         title: 'Session expired',
         show: true
       }))
-      history.push('/eng/frontpage')
+      history.push('/eng/home')
     }, 1800000)
     setShowModal(!showModal)
   }
@@ -108,7 +108,7 @@ const SigninForm = () => {
   const handleLogout = () => {
     dispatch(userLogout())
     setShowModal(!showModal)
-    history.push('/eng/frontpage')
+    history.push('/eng/home')
   }
 
 

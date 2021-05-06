@@ -37,7 +37,7 @@ const MainMenuFin = () => {
 
   const handleLogout = () => {
     dispatch(userLogout())
-    history.push('/fin/frontpage')
+    history.push('/fin/home')
   }
 
   const handleLanguageDropdwon = () => {
