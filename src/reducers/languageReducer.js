@@ -9,7 +9,6 @@ const languageReducer = (state = localdb.loadUserLanguage(), action) => {
   }
 }
 
-
 export const switchLanguage = (language) => {
   // console.log('LANGUAGE IN REDUCER: ', language)
   return async (dispatch) => {

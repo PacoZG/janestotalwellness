@@ -16,7 +16,7 @@ import MyProgram from './components/English/MyProgram'
 import SignInForm from './components/English/SignInForm'
 import SignUpForm from './components/English/SignUpForm'
 import UserProfile from './components/English/UserProfile'
-// import WelcomePage from './components/English/WelcomePage'
+import WarningLogout from './components/English/WarningLogout'
 
 // Components in Finnish
 import ClientFin from './components/Finnish/ClientFin'
@@ -30,6 +30,7 @@ import MyProgramFin from './components/Finnish/MyProgramFin'
 import SignInFormFin from './components/Finnish/SignInFormFin'
 import SignUpFormFin from './components/Finnish/SignUpFormFin'
 import UserProfileFin from './components/Finnish/UserProfileFin'
+import WarningLogoutFin from './components/Finnish/WarningLogoutFin'
 
 // Components in Spanish
 import ClientEsp from './components/Spanish/ClientEsp'
@@ -43,6 +44,7 @@ import MyProgramEsp from './components/Spanish/MyProgramEsp'
 import SignInFormEsp from './components/Spanish/SignInFormEsp'
 import SignUpFormEsp from './components/Spanish/SignUpFormEsp'
 import UserProfileEsp from './components/Spanish/UserProfileEsp'
+import WarningLogoutEsp from './components/Spanish/WarningLogoutEsp'
 
 const App = () => {
   const dispatch = useDispatch()
@@ -91,6 +93,9 @@ const App = () => {
               <MyClients />
             </Route>
           </Switch>
+          <Route >
+            <WarningLogout />
+          </Route>
         </Router>
         <Footer />
       </div >
@@ -132,6 +137,9 @@ const App = () => {
               <MyClientsFin />
             </Route>
           </Switch>
+          <Route >
+            <WarningLogoutFin />
+          </Route>
         </Router>
         <FooterFin />
       </div>
@@ -173,6 +181,9 @@ const App = () => {
               <MyClientsEsp />
             </Route>
           </Switch>
+          <Route >
+            <WarningLogoutEsp />
+          </Route>
         </Router>
         <FooterEsp />
       </div>
