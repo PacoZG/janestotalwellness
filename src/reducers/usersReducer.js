@@ -51,7 +51,7 @@ export const getUser = (id) => {
 }
 
 export const updateUser = (user) => {
-  console.log('USER IN REDUCER: ', user)
+  // console.log('USER IN REDUCER: ', user)
   return async (dispatch) => {
     const updatedUser = await usersService.updateUser(user)
     dispatch({
@@ -62,7 +62,7 @@ export const updateUser = (user) => {
 }
 
 export const deleteUser = (user) => {
-  console.log('USER TO DELETE IN REDUCER: ', user)
+  // console.log('USER TO DELETE IN REDUCER: ', user)
   return async (dispatch) => {
     await usersService.removeUser(user)
     dispatch({

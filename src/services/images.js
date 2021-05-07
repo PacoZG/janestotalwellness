@@ -3,7 +3,7 @@ const baseUrl = '/api/images'
 
 const postImage = async (data) => {
   const response = await axios.post(baseUrl, data)
-  console.log('RESPONSE: ', response.data)
+  // console.log('RESPONSE: ', response.data)
   return response.data
 }
 

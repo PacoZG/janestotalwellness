@@ -362,16 +362,16 @@ const Client = () => {
                         {client.address && client.zipCode && client.city ? `${client.zipCode}, ${client.city}. ${client.country.toUpperCase()}` : <span className="text-red-400">La dirección no ha sido proporcionada</span>}
                       </p>
                     </div>
-                    <div className=" col-span-3">
+                    <div className=" col-span-6">
                       <p className="border-transparent text-left w-auto"><span className="text-left font-semibold pr-2">Email: </span>{client.email}</p>
                     </div>
-                    <div className=" col-span-3">
+                    <div className=" col-span-6">
                       <p className="border-transparent text-left"><span className="text-left font-semibold pr-2">Número de móbil: </span>
                         {client.mobileNumber ? client.mobileNumber : <span className="text-red-400">no ha sido proporcionado</span>}
                       </p>
                     </div>
                     <div className=" col-span-3">
-                      <p className="border-transparent text-left"><span className="text-left font-semibold pr-2">Genero: </span>{client.gender}</p>
+                      <p className="border-transparent text-left capitalize"><span className="text-left font-semibold pr-2">Genero: </span>{client.gender}</p>
                     </div>
                     <div className=" col-span-3">
                       <p className="border-transparent text-left"><span className="text-left font-semibold pr-2">Edad: </span>{getAge(client.age)}</p>

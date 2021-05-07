@@ -29,7 +29,7 @@ const getUser = async (id) => {
 const updateUser = async (user) => {
   // console.log('USER TO UPDATE ID: ', user.id)
   const response = await axios.put(`${baseUrl}/${user.id}`, user)
-  console.log('RESPONSE: ', response)
+  // console.log('RESPONSE: ', response)
   return response.data
 }
 

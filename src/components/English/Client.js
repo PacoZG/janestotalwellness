@@ -212,16 +212,14 @@ const Client = () => {
                 {client.address && client.zipCode && client.city ? `${client.zipCode}, ${client.city}. ${client.country.toUpperCase()}` : <span className="text-red-400">{'Address hasn\'t been provided yet'}</span>}</p>
             </div>
             <div className="block col-span-6">
-              <p className="text-md"><span className="font-semibold">Email: </span>
-                {client.email}</p>
+              <p className="text-md"><span className="font-semibold">Email: </span>{client.email}</p>
             </div>
             <div className="block col-span-6">
               <p className="text-md"><span className="font-semibold">Mobile: </span>
                 {client.mobileNumber ? client.mobileNumber : <span className="text-red-400">{'hasn\'t been provided yet'}</span>}</p>
             </div>
-            <div className="block col-span-3 capitalize">
-              <p className="text-md"><span className="font-semibold">Gender: </span>
-                {client.gender}</p>
+            <div className="block col-span-3 ">
+              <p className="text-md capitalize"><span className="font-semibold">Gender: </span>{client.gender}</p>
             </div>
             <div className="block col-span-3">
               <p className="text-md"><span className="font-semibold">Age: </span>{getAge()} years old</p>
@@ -363,16 +361,16 @@ const Client = () => {
                         {client.address && client.zipCode && client.city ? `${client.zipCode}, ${client.city}. ${client.country.toUpperCase()}` : <span className="text-red-400">{'Address hasn\'t been provided yet'}</span>}
                       </p>
                     </div>
-                    <div className=" col-span-3">
+                    <div className=" col-span-6">
                       <p className="border-transparent text-left w-auto"><span className="text-left font-semibold pr-2">Email: </span>{client.email}</p>
                     </div>
-                    <div className=" col-span-3">
+                    <div className=" col-span-6">
                       <p className="border-transparent text-left"><span className="text-left font-semibold pr-2">Mobile: </span>
                         {client.mobileNumber ? client.mobileNumber : <span className="text-red-400">Not yet provided</span>}
                       </p>
                     </div>
                     <div className=" col-span-3">
-                      <p className="border-transparent text-left"><span className="text-left font-semibold pr-2">Gender: </span>{client.gender}</p>
+                      <p className="border-transparent text-left capitalize"><span className="text-left font-semibold pr-2">Gender: </span>{client.gender}</p>
                     </div>
                     <div className=" col-span-3">
                       <p className="border-transparent text-left"><span className="text-left font-semibold pr-2">Age: </span>{getAge(client.age)} years old</p>

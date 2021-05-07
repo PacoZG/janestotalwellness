@@ -368,16 +368,16 @@ const ClientFin = () => {
                         {client.address && client.zipCode && client.city ? `${client.zipCode}, ${client.city}. ${client.country.toUpperCase()}` : <span className="text-red-400">Osoitetta ei ole vielä annettu</span>}
                       </p>
                     </div>
-                    <div className=" col-span-3">
+                    <div className=" col-span-6">
                       <p className="border-transparent text-left w-auto"><span className="text-left font-semibold pr-2">Sähköposti: </span>{client.email}</p>
                     </div>
-                    <div className=" col-span-3">
+                    <div className=" col-span-6">
                       <p className="border-transparent text-left"><span className="text-left font-semibold pr-2">Matkapuhelinnumero: </span>
                         {client.mobileNumber ? client.mobileNumber : <span className="text-red-400">Ei ole vielä toimitettu</span>}
                       </p>
                     </div>
                     <div className=" col-span-3">
-                      <p className="border-transparent text-left"><span className="text-left font-semibold pr-2">Sukupuoli: </span>{client.gender}</p>
+                      <p className="border-transparent text-left capitalize"><span className="text-left font-semibold pr-2">Sukupuoli: </span>{client.gender}</p>
                     </div>
                     <div className=" col-span-3">
                       <p className="border-transparent text-left"><span className="text-left font-semibold pr-2">Ikä: </span>{getAge(client.age)} years old</p>

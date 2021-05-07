@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import { useHistory } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
 import { useField } from '../../hooks/index'
 import { createUser } from '../../reducers/usersReducer'
@@ -46,6 +47,9 @@ const SignUpFormFin = () => {
       }
     }
 
+    const checkBox = document.getElementById('terms-and-conditions')
+    // console.log('CHECKBOX: ', checkBox.checked)
+
     const newUser = {
       firstName: firstName.params.value,
       lastName: lastName.params.value,
@@ -82,31 +86,40 @@ const SignUpFormFin = () => {
           show: true
         }))
       } else {
-        const createdUser = await userService.createUser(newUser)
-        // console.log('CREATED USER: ', createdUser)
-        dispatch(createUser(createdUser))
-        dispatch(setNotification({
-          message: `Käyttäjä ${username.params.value} on luotu.`,
-          title: 'Menestys',
-          show: true
-        }))
-        firstName.reset()
-        lastName.reset()
-        username.reset()
-        email.reset()
-        emailConfirm.reset()
-        password.reset()
-        passwordConfirm.reset()
-        background.reset()
-        dateOfBirth.reset()
-        height.reset()
-        weight.reset()
-        goals.reset()
-        setCountry('')
-        for (var i = 0; i < genders.length; i++) {
-          if (genders[i].checked) {
-            genders[i].value = false
+        if (checkBox.checked) {
+          const createdUser = await userService.createUser(newUser)
+          // console.log('CREATED USER: ', createdUser)
+          dispatch(createUser(createdUser))
+          dispatch(setNotification({
+            message: `Käyttäjä ${username.params.value} on luotu.`,
+            title: 'Menestys',
+            show: true
+          }))
+          firstName.reset()
+          lastName.reset()
+          username.reset()
+          email.reset()
+          emailConfirm.reset()
+          password.reset()
+          passwordConfirm.reset()
+          background.reset()
+          dateOfBirth.reset()
+          height.reset()
+          weight.reset()
+          goals.reset()
+          setCountry('')
+          for (var i = 0; i < genders.length; i++) {
+            if (genders[i].checked) {
+              genders[i].value = false
+            }
           }
+          history.push('/fin/signIn')
+        } else {
+          dispatch(setNotification({
+            message: 'Sinun on hyväksyttävä käyttöehdot rekisteröityäksesi',
+            title: 'Tarkista käyttöehdot -ruutu',
+            show: true
+          }))
         }
       }
     } catch (error) {
@@ -148,12 +161,12 @@ const SignUpFormFin = () => {
                   <div className="col-span-6 md:col-span-3">
                     <label className="p-0 bottom-12 ml-2 bg-transparent text-gray-200 ">Etunimi</label>
                     <input className="block border border-transparent focus:outline-none focus:ring-1 focus:ring-gray-200 focus:border-transparent rounded-sm p-2 pl-3 h-12 w-full shadow-sm text-md border-gray-100 placeholder-gray-200"
-                      pattern="([a-zA-Z]+\s){2,})" placeholder="John" {...firstName.params} required />
+                      placeholder="John" {...firstName.params} required />
                   </div>
                   <div className="col-span-6 md:col-span-3">
                     <label className="p-0 bottom-12 ml-2 bg-transparent text-gray-200">Sukunimi</label>
                     <input className="block border border-transparent focus:outline-none focus:ring-1 focus:ring-gray-200 focus:border-transparent rounded-sm p-2 pl-3 h-12 w-full shadow-sm text-md border-gray-100 placeholder-gray-200"
-                      pattern="([a-zA-Z]+\s){2,})" placeholder="Smith" {...lastName.params} required />
+                      placeholder="Smith" {...lastName.params} required />
                   </div>
                   <div className="col-span-6 md:col-span-3">
                     <label className="p-0 bottom-12 ml-2 bg-transparent text-gray-200 ">Käyttäjätunnus</label>
