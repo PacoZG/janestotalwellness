@@ -59,6 +59,7 @@ const SignUpFormFin = () => {
       weight: parseInt(weight.params.value),
       country: country,
       goals: goals.params.value,
+      userType: 'client'
     }
     //console.log('NEW_USER: ', newUser)
     try {
@@ -240,7 +241,7 @@ const SignUpFormFin = () => {
                       {...height.params} required />
                   </div>
                   <div className="col-span-6 md:col-span-3">
-                    <label className="p-0 bottom-12 ml-2 bg-transparent text-gray-200 ">Piano (kg)</label>
+                    <label className="p-0 bottom-12 ml-2 bg-transparent text-gray-200 ">Paino (kg)</label>
                     <input className="block border border-transparent focus:outline-none focus:ring-1 focus:ring-gray-200 focus:border-transparent rounded-sm p-2 pl-3 h-12 w-full shadow-sm text-md border-gray-100 placeholder-gray-200"
                       {...weight.params} required />
                   </div><div className="col-span-6 md:col-span-6">
@@ -259,11 +260,11 @@ const SignUpFormFin = () => {
 
                   <div className="flex items-center space-x-2 pl-3 pt-3">
                     <input id="terms-and-conditions" name="terms-and-conditions" type="checkbox"
-                      className="h-4 w-4 rounded border-gray-500 text-gray-500 focus:ring-gray-500" />
-                    <p className="text-gray-200">Hyväksyn</p>
-                    <a href="#" className="text-indigo-400 hover:text-indigo-300">ehdot</a>
+                      className="h-3 w-3 md:h-4 md:w-4 rounded border-gray-500 text-gray-500 focus:ring-gray-500" />
+                    <p className="text-xs md:text-md text-gray-200">Hyväksyn</p>
+                    <a href="#" className="text-xs md:text-md text-indigo-400 hover:text-indigo-300">ehdot</a>
                     <p className="text-gray-200">ja</p>
-                    <a href="#" className="text-indigo-400 hover:text-indigo-300">tietosuojaehdot</a>
+                    <a href="#" className="text-xs md:text-md text-indigo-400 hover:text-indigo-300">tietosuojaehdot</a>
                   </div>
                   <button className="mt-4 mb-6 h-12 w-full bg-gray-500 text-white rounded hover:bg-gray-400
                     focus:ring focus:ring-offset-1 focus:ring-gray-800 transform transition active:bg-gray-800" type="submit">Sign up</button>

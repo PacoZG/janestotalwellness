@@ -268,7 +268,7 @@ const EditFormFin = () => {
                   <div className="shadow md:rounded-md md:overflow-hidden rounded-b-md ">
                     <div className="p-4 space-y-5 bg-gradient-to-br from-gray-300 via-white to-gray-300 ">
                       <div>
-                        <label className="block text-sm font-medium text-gray-700 pl-2">Health information
+                        <label className="block text-sm font-medium text-gray-700 pl-2">Terveystiedot
                           {healthInfo.params.value.length > 29 ?
                             <span className="pl-1 text-xs font-normal">{`(${healthInfo.params.value.length}/500)`}</span>
                             :

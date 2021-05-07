@@ -47,6 +47,9 @@ const SignUpForm = () => {
       }
     }
 
+    const checkBox = document.getElementById('terms-and-conditions')
+    console.log('CHECKBOX: ', checkBox)
+
     const newUser = {
       firstName: firstName.params.value,
       lastName: lastName.params.value,
@@ -167,7 +170,7 @@ const SignUpForm = () => {
                       <div name="country" type="text"
                         className="h-12 w-full border border-gray-300 focus:ring-0 bg-white rounded-sm shadow-sm md:text-md text-left">
                         {country ?
-                          <div className="p-2 text-lg pl-3 text-gray-500">
+                          <div className="p-0 text-lg pl-1 text-gray-500">
                             {country}<span onClick={() => setCountry(null)}
                               className="absolute pt-0 opacity-50 inset-y-0 right-11 mt-2 z-30 cursor-pointer">X</span>
                           </div> :
@@ -258,13 +261,13 @@ const SignUpForm = () => {
                       {...goals.params} id="goals" required />
                   </div>
 
-                  <div className="flex items-center space-x-2 pl-3 pt-3">
+                  <div className="flex items-center space-x-2 pl-4 pt-3">
                     <input id="terms-and-conditions" name="terms-and-conditions" type="checkbox"
-                      className="h-4 w-4 rounded border-gray-500 text-gray-500 focus:ring-gray-500" />
-                    <p className="text-gray-200">I agree to the</p>
-                    <a href="#" className="text-indigo-400 hover:text-indigo-300">Terms</a>
-                    <p className="text-gray-200">and</p>
-                    <a href="#" className="text-indigo-400 hover:text-indigo-300">Privacy Conditions</a>
+                      className="h-3 w-3 md:h-4 md:w-4 rounded border-gray-500 text-gray-500 focus:ring-gray-500" />
+                    <p className="text-xs md:text-md text-gray-200">I agree to the</p>
+                    <a href="#" className="text-xs md:text-md text-indigo-400 hover:text-indigo-300">Terms</a>
+                    <p className="text-xs md:text-md text-gray-200">and</p>
+                    <a href="#" className="text-xs md:text-md text-indigo-400 hover:text-indigo-300">Privacy Conditions</a>
                   </div>
                   <button type="submit" id="subscribe-button" className="mt-4 mb-6 h-12 w-full bg-gray-500 text-white rounded hover:bg-gray-400
                     focus:ring focus:ring-offset-1 focus:ring-gray-800 transform transition active:bg-gray-800"

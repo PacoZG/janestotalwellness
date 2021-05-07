@@ -2,8 +2,7 @@ name: Wellness project healthcheck
 
 on:
   schedule:
-    - cron: '* * * * *'
-    # - cron: '0 0 * * MON' # “At 00:00 on every Monday.”
+    - cron: '0 0 * * MON' # “At 00:00 on every Monday.”
 
 jobs:
   healthcheck:

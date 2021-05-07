@@ -59,6 +59,7 @@ const SignUpForm = () => {
       weight: parseInt(weight.params.value),
       country: country,
       goals: goals.params.value,
+      userType: 'client'
     }
     //console.log('NEW_USER: ', newUser)
     try {
@@ -70,7 +71,7 @@ const SignUpForm = () => {
         }))
       } else if (email.params.value !== emailConfirm.params.value) {
         dispatch(setNotification({
-          message: 'Email fields don\'t match, please check and fulfill all the field in the form.',
+          message: 'Los email no coinciden por favor, por favor verifica and completa todos los campos.',
           title: 'Email erroneo',
           show: true
         }))
@@ -257,13 +258,13 @@ const SignUpForm = () => {
                       {...goals.params} required />
                   </div>
 
-                  <div className="flex items-center space-x-2 pl-3 pt-3">
+                  <div className="flex items-center space-x-2 pl-2 pt-3">
                     <input id="terms-and-conditions" name="terms-and-conditions" type="checkbox"
-                      className="h-4 w-4 rounded border-gray-500 text-gray-500 focus:ring-gray-500" />
-                    <p className="text-gray-200">Acepto los</p>
-                    <a href="#" className="text-indigo-400 hover:text-indigo-300">términos</a>
-                    <p className="text-gray-200">y</p>
-                    <a href="#" className="text-indigo-400 hover:text-indigo-300">condiciones de privacidad</a>
+                      className="h-3 w-3 md:h-4 md:w-4 rounded border-gray-500 text-gray-500 focus:ring-gray-500" />
+                    <p className="text-gray-200 text-xs md:text-md">Acepto los</p>
+                    <a href="#" className="text-xs md:text-md text-indigo-400 hover:text-indigo-300">términos</a>
+                    <p className="text-xs text-gray-200">y</p>
+                    <a href="#" className="text-xs md:text-md text-indigo-400 hover:text-indigo-300">condiciones de privacidad</a>
                   </div>
                   <button className="mt-4 mb-6 h-12 w-full bg-gray-500 text-white rounded hover:bg-gray-400
                     focus:ring focus:ring-offset-1 focus:ring-gray-800 transform transition active:bg-gray-800" type="submit">Subscribirme</button>

@@ -2,18 +2,16 @@ POST http://localhost:3001/api/users
 Content-Type: application/json
 
 {
-    "createdAt": "",
-    "userType": "admin",
-    "username": "barbarella",
-    "firstName": "Jane",
-    "lastName": "Pokkinen",
-    "password": "123chamaco",
-    "email": "jane.pokkinen@gmail.com",
+    "username": "pacozg",
+    "firstName": "Francsico",
+    "lastName": "Zavala",
+    "password": "fullstack_2021",
+    "email": "pako.zavala@gmail.com",
     "dateOfBirth": "1976-10-17",
-    "height": 160,
-    "weight": 61,
-    "gender": "female",
+    "height": 170,
+    "weight": 74,
+    "gender": "male",
     "country": "Finland",
-    "background": "cooking, movies, wine",
-    "motivation": "Wanna feel stronger"
+    "goals": "Basketball, fitness, karate",
+    "motivation": "I want to be tech PRO"
 }
