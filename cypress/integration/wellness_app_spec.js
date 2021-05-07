@@ -105,6 +105,7 @@ describe('Wellness app', function () {
       cy.get('#weight').type('87')
       cy.get('#background').type('Lots of movies and stunt work')
       cy.get('#goals').type('Be richer and even more famous')
+      cy.get('#terms-and-conditions').click()
       cy.get('#subscribe-button').click()
       cy.get('#title').contains('Success')
       cy.get('#modal-ok').click()
