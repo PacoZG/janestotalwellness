@@ -23,10 +23,9 @@ const MyClients = () => {
 
   return (
     <div className="bg-gray-200 min-h-screen">
-      <div className="bg-gray-200 p-2">
-
+      <div className="bg-gray-200 p-2 ">
         <div className="min-h-screen shadow md:rounded-md md:overflow-hidden rounded-b-md bg-gradient-to-br
-          from-gray-300 via-white to-gray-200 p-3">
+          from-gray-300 via-white to-gray-200 p-3 pb-5">
           <h3 className=" text-2xl leading-snug tracking-wide uppercase text-center font-bold border-b-2 pb-2 " >My clients</h3>
           <ul className="space-y-8 md:space-y-1 md:flex md:flex-wrap pt-9 md:pt-9">
             {users.map(user =>

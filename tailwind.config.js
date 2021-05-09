@@ -1,10 +1,25 @@
 const colors = require('tailwindcss/colors')
 
 module.exports = {
-  purge:['./src/**/*.{js,jsx,ts,tsx}', './public/index.html'],
+  purge: ['./src/**/*.{js,jsx,ts,tsx}', './public/index.html'],
   presets: [],
   darkMode: false, // or 'media' or 'class'
   theme: {
+    extend: {
+      typography: {
+        DEFAULT: {
+          css: {
+            color: '#333',
+            a: {
+              color: '#3182ce',
+              '&:hover': {
+                color: '#2c5282',
+              },
+            },
+          },
+        },
+      }
+    },
     screens: {
       sm: '640px',
       md: '768px',
@@ -851,8 +866,12 @@ module.exports = {
     width: ['responsive'],
     wordBreak: ['responsive'],
     zIndex: ['responsive', 'focus-within', 'focus'],
+    extend: {
+      justifyContent: ['hover', 'focus'],
+    }
   },
   plugins: [
-    require('@tailwindcss/forms')
+    require('@tailwindcss/forms'),
+    require('@tailwindcss/typography'),
   ],
 }

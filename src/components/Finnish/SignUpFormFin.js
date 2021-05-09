@@ -275,9 +275,9 @@ const SignUpFormFin = () => {
                     <input id="terms-and-conditions" name="terms-and-conditions" type="checkbox"
                       className="h-3 w-3 md:h-4 md:w-4 rounded border-gray-500 text-gray-500 focus:ring-gray-500" />
                     <p className="text-xs md:text-md text-gray-200">Hyväksyn</p>
-                    <a href="#" className="text-xs md:text-md text-indigo-400 hover:text-indigo-300">ehdot</a>
+                    <a href="https://www.websitepolicies.com/policies/view/wahdskSn" target='blank' className="text-xs md:text-md text-indigo-400 hover:text-indigo-300">ehdot</a>
                     <p className="text-gray-200">ja</p>
-                    <a href="#" className="text-xs md:text-md text-indigo-400 hover:text-indigo-300">tietosuojaehdot</a>
+                    <a href="https://www.websitepolicies.com/policies/view/wahdskSn" target='blank' className="text-xs md:text-md text-indigo-400 hover:text-indigo-300">tietosuojaehdot</a>
                   </div>
                   <button className="mt-4 mb-6 h-12 w-full bg-gray-500 text-white rounded hover:bg-gray-400
                     focus:ring focus:ring-offset-1 focus:ring-gray-800 transform transition active:bg-gray-800" type="submit">Sign up</button>

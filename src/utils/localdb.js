@@ -17,5 +17,4 @@ const setUserLanguage = (language) => {
 const loadUserLanguage = () => {
   return JSON.parse(localStorage.getItem('userLanguage'))
 }
-
 export default { saveUser, loadUser, removeUser, setUserLanguage, loadUserLanguage }
