@@ -58,7 +58,6 @@ const App = () => {
     null
   }
 
-  // if (UILanguage === 'eng') {
   return (
     <div >
       <Router>
