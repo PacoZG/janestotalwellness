@@ -30,6 +30,7 @@ import MyClientsFin from './components/Finnish/MyClientsFin'
 import MyProgramFin from './components/Finnish/MyProgramFin'
 import SignInFormFin from './components/Finnish/SignInFormFin'
 import SignUpFormFin from './components/Finnish/SignUpFormFin'
+// import TermsConditionsFin from './components/Finnish/TermsConditions'
 import UserProfileFin from './components/Finnish/UserProfileFin'
 
 // Components in Spanish
@@ -42,6 +43,7 @@ import MyClientsEsp from './components/Spanish/MyClientsEsp'
 import MyProgramEsp from './components/Spanish/MyProgramEsp'
 import SignInFormEsp from './components/Spanish/SignInFormEsp'
 import SignUpFormEsp from './components/Spanish/SignUpFormEsp'
+// import TermsConditionsEsp from './components/Spanish/TermsConditions'
 import UserProfileEsp from './components/Spanish/UserProfileEsp'
 
 const App = () => {
@@ -124,14 +126,16 @@ const App = () => {
           <Route path="/fin/myprogram">
             <MyProgramFin />
           </Route>
-          <Route path="/fin/profile">
-            <UserProfileFin />
-          </Route>
           <Route path="/fin/signUp" >
             <SignUpFormFin />
           </Route>
           <Route path="/fin/signIn" >
             <SignInFormFin />
+          </Route><Route path='/fin/terms'>
+            <TermsConditions />
+          </Route>
+          <Route path="/fin/profile">
+            <UserProfileFin />
           </Route>
 
           {/* Spanish UI */}
@@ -156,14 +160,16 @@ const App = () => {
           <Route path="/esp/myprogram">
             <MyProgramEsp />
           </Route>
-          <Route path="/esp/profile">
-            <UserProfileEsp />
-          </Route>
           <Route path="/esp/signUp" >
             <SignUpFormEsp />
           </Route>
           <Route path="/esp/signIn" >
             <SignInFormEsp />
+          </Route><Route path='/esp/terms'>
+            <TermsConditions />
+          </Route>
+          <Route path="/esp/profile">
+            <UserProfileEsp />
           </Route>
 
         </Switch>
