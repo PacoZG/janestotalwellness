@@ -16,6 +16,11 @@ module.exports = {
                 color: '#2c5282',
               },
             },
+            h1: {
+              backgroundColor: '#6B7280',
+              padding: '16px',
+              textAlign: 'center'
+            },
           },
         },
       }
