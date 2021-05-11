@@ -17,13 +17,13 @@ const tokenExtractor = (request, response, next) => {
 }
 
 const unknownEndpoint = (request, response) => {
-  response.status(404).send({ error: 'unknown path' })
+  response.status(404).send({ error: 'Unknown path' })
 }
 
 const errorHandler = (error, request, response, next) => {
   if (error.name === 'CastError') {
     return response.status(400).send({
-      error: 'malformatted id'
+      error: 'Malformatted id'
     })
   } else if (error.name === 'ValidationError') {
     return response.status(400).json({
@@ -32,6 +32,10 @@ const errorHandler = (error, request, response, next) => {
   } else if (error.name === 'JsonWebTokenError') {
     return response.status(401).json({
       error: 'Invalid token'
+    })
+  } else if (error.name === 'TokenExpiredError') {
+    return response.status(401).json({
+      error: 'Token expired'
     })
   }
 
