@@ -32,16 +32,16 @@ loginRouter.post('/', async (request, response) => {
 })
 
 loginRouter.put('/', async (request, response) => {
-  console.log('BODY: ', request)
+  // console.log('BODY: ', request)
   const decodedToken = jwt.verify(request.token, process.env.SECRET)
-  console.log('DECODED TOKEN: ', decodedToken)
+  // console.log('DECODED TOKEN: ', decodedToken)
   const user = await User.findById(decodedToken.id)
-  console.log('USER_FOUND: ', user)
+  // console.log('USER_FOUND: ', user)
   // verifying passord matching
   const passwordCorrect = user === null
     ? false
     : await bcrypt.compare(request.body.oldPassword, user.passwordHash)
-  console.log('PASSWORD CORRECT: ', passwordCorrect)
+  // console.log('PASSWORD CORRECT: ', passwordCorrect)
   // if password is correct we proceed to update the user's password
   if (passwordCorrect) {
     const saltRounds = 10
