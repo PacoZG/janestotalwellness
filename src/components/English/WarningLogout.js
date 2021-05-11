@@ -21,6 +21,7 @@ const WarningLogout = () => {
   useEffect(() => {
     if (loggedUser && loggedUser.userType === 'client') {
       logoutTimeout = setTimeout(() => {
+        history.push(`/${UILanguage}/home`)
         dispatch(userLogout())
         setShowModal(!showModal)
       }, 1800000)
