@@ -9,7 +9,7 @@ notesRouter.get('/', async (request, response) => {
 
 notesRouter.post('/', async (request, response) => {
   const body = request.body
-  console.log('BODY: ', body)
+  // console.log('BODY: ', body)
   const user = await User.findById(body.clientId)
   const note = new Note({
     user: user._id,
@@ -35,7 +35,7 @@ notesRouter.delete('/:id', async (request, response) => {
     response.status(204).json().end()
   }
   else {
-    return response.status(401).json({ error: 'Note no longer in the db' })
+    return response.status(400).json({ error: 'Note no longer in the db' })
   }
 })
 

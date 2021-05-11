@@ -6,19 +6,19 @@ const cloudinary = require('../utils/cloudinary')
 imageRouter.post('/', multer.singleUploadControl, async (request, response) => {
   const file = request.file
   try {
-    if (!request.file) { throw new Error('Image is not present') }
+    if (!request.file) {
+      response.status(400).send({ message: 'Image is not present' })
+    }
     //console.log('REQUEST FILE IN SERVER: ', file)
     const file64 = converter.formatBufferTo64(file)
     //console.log('CONVERTED FILE: ', file64)
     const uploadResponse = await cloudinary.cloudinaryUpload(file64.content)
     //console.log('CLOUDINARY RESPONSE: ', uploadResponse)
-    return response.json({
+    return response.status(201).json({
       cloudinaryId: uploadResponse.public_id, url: uploadResponse.secure_url
     })
   } catch (error) {
-    return response.status(404).send({
-      message: error.message
-    })
+    return response.status(404).send({ message: error.message })
   }
 })
 
