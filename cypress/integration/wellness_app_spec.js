@@ -1,8 +1,7 @@
 describe('Wellness app', function () {
-
   beforeEach(function () {
     cy.request('POST', 'http://localhost:3001/api/testing/reset')
-    cy.visit('http://localhost:3000/eng/home')
+    cy.visit('http://localhost:3000/home')
     const adminUser = {
       username: 'rocky',
       firstName: 'Silvester',
@@ -15,7 +14,7 @@ describe('Wellness app', function () {
       country: 'United States',
       background: 'cooking, movies, wine',
       goals: 'Wanna be rich like a bitch',
-      password: 'superSecret'
+      password: 'superSecret',
     }
 
     const clientUser = {
@@ -31,12 +30,12 @@ describe('Wellness app', function () {
       country: 'United States',
       background: 'cooking, movies, wine',
       goals: 'Wanna feel stronger',
-      password: 'superSecret'
+      password: 'superSecret',
     }
 
     cy.request('POST', 'http://localhost:3001/api/users/', adminUser)
     cy.request('POST', 'http://localhost:3001/api/users/', clientUser)
-    cy.visit('http://localhost:3000/eng/home')
+    cy.visit('http://localhost:3000/home')
   })
 
   it('front page can be opened', function () {
@@ -51,19 +50,20 @@ describe('Wellness app', function () {
       cy.contains('Tervetuloa Jane Total Wellness app')
       cy.get('#language-menuShow').click()
       cy.get('#ESP').click()
-      cy.contains('Bienvenido a Jane Total Wellness app')
+      cy.contains('Bienvenido a la aplicación Jane Total Wellness')
       cy.get('#language-menuShow').click()
       cy.get('#ENG').click()
       cy.contains('Welcome to Jane Total Wellness app')
     })
 
-    it('check different pages visibility', function () { // temporary test, will expand over time
+    it('check different pages visibility', function () {
+      // temporary test, will expand over time
       cy.get('#exercises').click()
       cy.contains('Page under construction')
     })
 
     it('Sign up form is shown', function () {
-      cy.visit('http://localhost:3000/eng/signUp')
+      cy.visit('http://localhost:3000/signUp')
       cy.contains('First name')
       cy.contains('Last name')
       cy.contains('Username')
@@ -114,7 +114,7 @@ describe('Wellness app', function () {
 
   describe('User goes to sign in page and...', function () {
     it('...fails to login because of wrong credentials', function () {
-      cy.visit('http://localhost:3000/eng/signIn')
+      cy.visit('http://localhost:3000/signIn')
       cy.contains('Sign in to your account')
       cy.get('#username').type('bruce')
       cy.get('#password').type('wrongPassword')
@@ -189,7 +189,7 @@ describe('Wellness app', function () {
       cy.get('#health-report').type('The most anthologized poem of the last 25 years for a reason.')
       cy.get('.grid > .cursor-pointer').click()
       cy.get('#save-health-button').click()
-      cy.get('#modal-message').contains('Your health information has been successfully updated.')
+      cy.get('#modal-message').contains('Your health information has been successfully updated')
       cy.get('#modal-ok').click()
 
       cy.get('#street-address').type('Main Street 6 B')
@@ -219,13 +219,15 @@ describe('Wellness app', function () {
       cy.get('#oldPasswordConfirm').type('superSecret')
       cy.get('#newPassword').type('secret')
       cy.get('#save-updated-password-button').click()
-      cy.get('#modal-message').contains('Your password has been successfully updated, new password will be valid next time you login.')
+      cy.get('#modal-message').contains(
+        'Your password has been successfully updated, new password will be valid next time you login'
+      )
       cy.get('#modal-ok').click()
       cy.get('#user-menu').click()
       cy.get('#signout-button').click()
       cy.get('#background-button').click()
 
-      cy.visit('http://localhost:3000/eng/signIn')
+      cy.visit('http://localhost:3000/signIn')
       cy.get('#username').type('bruce')
       cy.get('#password').type('secret')
       cy.get('#login-button').click()
@@ -239,7 +241,7 @@ describe('Wellness app', function () {
 
   describe('Checking admins accessibility', function () {
     beforeEach('When an admin logs in...', function () {
-      cy.visit('http://localhost:3000/eng/signIn')
+      cy.visit('http://localhost:3000/signIn')
       cy.get('#username').type('rocky')
       cy.get('#password').type('superSecret')
       cy.get('#login-button').click()
@@ -258,12 +260,37 @@ describe('Wellness app', function () {
     it('...makes a new note on the clients page', function () {
       cy.get('#myclients').click()
       cy.get('#client-link').click()
-      cy.get('#web-title').type('The Moose')
       cy.get('#web-content').type('Moonlight as we enter the New Brunswick woods, hairy, scratchy, splintery')
       cy.get('#web-saveNote').click()
       cy.get('#modal-message').contains('Note has been added')
       cy.get('#modal-ok').click()
-      cy.contains('The Moose')
+      cy.get('#show-note').click()
+      cy.contains('Moonlight as we enter the New Brunswick woods,')
+    })
+
+    it('...the note can be updated', function () {
+      cy.get('#myclients').click()
+      cy.get('#client-link').click()
+      cy.get('#web-content').type('Moonlight as we enter the New Brunswick woods, hairy, scratchy, splintery')
+      cy.get('#web-saveNote').click()
+      cy.get('#modal-ok').click()
+      cy.get('#show-note').click()
+      cy.get('#web-updateNote').click()
+      cy.get('#web-aditContent').type('Note has to be updated right away')
+      cy.get('#web-saveUpdate').click()
+      cy.get('#modal-message').contains('Note has been updated')
+      cy.get('#modal-ok').click()
+      cy.get('#show-note').click()
+    })
+
+    it('...the note can be deleted', function () {
+      cy.get('#myclients').click()
+      cy.get('#client-link').click()
+      cy.get('#web-content').type('Moonlight as we enter the New Brunswick woods, hairy, scratchy, splintery')
+      cy.get('#web-saveNote').click()
+      cy.get('#modal-ok').click()
+      cy.get('#show-note').click()
+      cy.get('#web-deleteNote').click()
     })
   })
 })

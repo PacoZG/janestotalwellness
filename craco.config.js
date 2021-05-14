@@ -3,16 +3,13 @@ module.exports = {
   jest: {
     configure: {
       globals: {
-        'CONFIG': true
-      }
-    }
+        CONFIG: true,
+      },
+    },
   },
   style: {
     postcss: {
-      plugins: [
-        require('tailwindcss'),
-        require('autoprefixer'),
-      ],
+      plugins: [require('tailwindcss'), require('autoprefixer')],
     },
   },
 }

@@ -19,7 +19,8 @@ const users = [
     background: 'cooking, movies, wine',
     goals: 'Wanna feel stronger',
   },
-  { // user with same username and email
+  {
+    // user with same username and email
     username: 'wick',
     firstName: 'John',
     lastName: 'Wick',
@@ -31,9 +32,10 @@ const users = [
     country: 'United States',
     background: 'cooking, movies, wine',
     goals: 'Wanna feel stronger',
-    password: 'secret'
+    password: 'secret',
   },
-  { // user with the same email
+  {
+    // user with the same email
     username: 'bruce',
     firstName: 'Bruce',
     lastName: 'Willis',
@@ -45,7 +47,7 @@ const users = [
     country: 'United States',
     background: 'cooking, movies, wine',
     goals: 'Wanna feel stronger',
-    password: 'secret'
+    password: 'secret',
   },
   {
     createdAt: date,
@@ -61,19 +63,17 @@ const users = [
     country: 'United States',
     background: 'cooking, movies, wine',
     goals: 'Wanna be rich like a bitch',
-    password: 'secret'
+    password: 'secret',
   },
 ]
 
 const notes = [
   {
-    title: 'It was exciting',
     content: 'When I was a child the walls were filled with bees. Burr and sugar.',
   },
   {
-    title: 'The client didn\'t want to move his ass',
     content: 'First, study lungs. See lungs in trees, bronchial the limbs, packed',
-  }
+  },
 ]
 
 const usersInDB = async () => {
