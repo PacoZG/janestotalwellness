@@ -5,8 +5,8 @@ const userSchema = new mongoose.Schema({
   notes: [
     {
       type: mongoose.Schema.Types.ObjectId,
-      ref: 'Note'
-    }
+      ref: 'Note',
+    },
   ],
   createdAt: Date,
   updatedAt: Date,
@@ -27,15 +27,15 @@ const userSchema = new mongoose.Schema({
   email: {
     type: String,
     unique: true,
-    required: true
+    required: true,
   },
   country: {
     type: String,
-    required: true
+    required: true,
   },
   gender: {
     type: String,
-    required: true
+    required: true,
   },
   dateOfBirth: {
     type: Date,
@@ -49,7 +49,10 @@ const userSchema = new mongoose.Schema({
     type: Number,
     required: true,
   },
-  background: String,
+  background: {
+    type: String,
+    required: true,
+  },
   goals: {
     type: String,
     required: true,
@@ -73,7 +76,7 @@ userSchema.set('toJSON', {
     delete returnedObject._id
     delete returnedObject.__v
     delete returnedObject.passwordHash
-  }
+  },
 })
 
 const User = mongoose.model('User', userSchema)

@@ -9,23 +9,19 @@ notesRouter.get('/', async (request, response) => {
 
 notesRouter.post('/', async (request, response) => {
   const body = request.body
-  // console.log('BODY: ', body)
-  const user = await User.findById(body.clientId)
+  const user = await User.findById(body.user.id)
   const note = new Note({
     user: user._id,
-    title: body.note.title,
-    content: body.note.content,
-    date: new Date()
+    content: body.content,
+    date: new Date(),
   })
-
-  if (body.loggedUserType === 'admin') {
-    const savedNote = await note.save()
-    user.notes = user.notes.concat(savedNote._id)
-    await user.save()
-    response.status(201).json(savedNote.toJSON())
-  } else {
+  if (body.loggedUserType !== 'admin') {
     response.status(401).json({ error: 'Only admins can write a note' })
   }
+  const savedNote = await note.save()
+  user.notes = user.notes.concat(savedNote._id)
+  await user.save()
+  response.status(201).json(savedNote.toJSON())
 })
 
 notesRouter.delete('/:id', async (request, response) => {
@@ -33,8 +29,7 @@ notesRouter.delete('/:id', async (request, response) => {
   if (note) {
     await Note.findByIdAndRemove(request.params.id)
     response.status(204).json().end()
-  }
-  else {
+  } else {
     return response.status(400).json({ error: 'Note no longer in the db' })
   }
 })
@@ -43,9 +38,8 @@ notesRouter.put('/:id', async (request, response) => {
   const body = request.body
   const note = {
     user: body.user.id,
-    title: body.title,
     content: body.content,
-    date: new Date()
+    date: new Date(),
   }
   await Note.findByIdAndUpdate(request.params.id, note, { new: true })
     .then(updatedNote => updatedNote.toJSON())

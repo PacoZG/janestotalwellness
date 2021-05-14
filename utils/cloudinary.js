@@ -8,14 +8,14 @@ const api_secret = process.env.API_SECRET
 cloudinary.config({
   cloud_name: cloud_name,
   api_key: api_key,
-  api_secret: api_secret
+  api_secret: api_secret,
 })
 
-const cloudinaryUpload = (file) => {
+const cloudinaryUpload = file => {
   return cloudinary.uploader.upload(file)
 }
 
-const cloudinaryDelete = (public_id) => {
+const cloudinaryDelete = public_id => {
   cloudinary.uploader.destroy(public_id)
 }
 

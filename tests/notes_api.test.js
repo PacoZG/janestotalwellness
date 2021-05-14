@@ -33,48 +33,52 @@ describe('Now let us test the notes logic', () => {
   test('Test that only admin can make notes', async () => {
     const allNotesBefore = await helper.notesInDB()
     const user = await User.findOne({ username: 'rocky' })
-    // console.log('FOUND USER: ', user._id)
 
     const loggedUser = await api.post('/api/login').send({ username: 'wick', password: 'secret' })
-    // console.log('LOGGED USER: ', loggedUser.body.userType)
 
     const data = {
-      clientId: user._id,
-      note: {
-        ...helper.notes[0]
+      user: {
+        id: user._id,
+        username: user.username,
       },
-      loggedUserType: loggedUser.body.userType
+      content: helper.notes[0].content,
+      loggedUserType: loggedUser.body.userType,
     }
-    // console.log('data: ', data)
-    const response = await api.post('/api/notes').send(data)
+    console.log('data: ', data)
+    const response = await api
+      .post('/api/notes')
+      .send(data)
       .expect(201)
       .expect('Content-Type', /application\/json/)
-    // console.log('RESPONSE AFTER SAVING NOTE: ', response.body)
-    expect(response.body.title).toContain(helper.notes[0].title)
+    expect(response.body.content).toContain(helper.notes[0].content)
     const allNotesAfter = await helper.notesInDB()
     expect(allNotesAfter).toHaveLength(allNotesBefore.length + 1)
   })
 
   test('Test the client cannot make a note', async () => {
     const allNotesBefore = await helper.notesInDB()
+    console.log('NOTE BEFORE: ', allNotesBefore.length)
     const loggedUser = await api.post('/api/login').send({ username: 'rocky', password: 'secret' })
-    console.log('LOGGED USER: ', loggedUser.body.userType)
+    console.log('LOGGED USER: ', loggedUser.body)
 
     const data = {
-      clientId: loggedUser.body.id,
-      note: {
-        ...helper.notes[0]
+      user: {
+        id: loggedUser.body.id,
+        username: loggedUser.body.username,
       },
-      loggedUserType: loggedUser.body.userType
+      content: helper.notes[0].content,
+      loggedUserType: loggedUser.body.userType,
     }
-    const response = await api.post('/api/notes').send(data)
+    const response = await api
+      .post('/api/notes')
+      .send(data)
       .expect(401)
       .expect('Content-Type', /application\/json/)
     console.log('RESPONSE AFTER SAVING NOTE: ', response.body.error)
     expect(response.body.error).toContain('Only admins can write a note')
-    const allNotesAfter = await helper.notesInDB()
-    expect(allNotesAfter).toHaveLength(allNotesBefore.length)
   })
 })
 
-afterAll(() => { mongoose.connection.close() })
+afterAll(() => {
+  mongoose.connection.close()
+})

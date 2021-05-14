@@ -2,3 +2,16 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+
+@layer components {
+  .signup-input {
+    @apply block border border-transparent focus:outline-none focus:ring-1 focus:ring-gray-200 focus:border-transparent rounded-sm p-2 pl-3 h-12 w-full shadow-sm text-base border-gray-100 placeholder-gray-200;
+  }
+  .signup-label {
+    @apply p-0 bottom-12 ml-2 bg-transparent text-gray-200;
+  }
+  .edit-form-label {
+    @apply block text-sm font-medium text-gray-700 pl-2;
+  }
+}

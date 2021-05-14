@@ -4,7 +4,10 @@ const User = require('../models/user')
 const jwt = require('jsonwebtoken')
 
 usersRouter.get('/', async (request, response) => {
-  const users = await User.find({}).populate('notes', { title: 1, content: 1, date: 1 })
+  const users = await User.find({}).populate('notes', {
+    content: 1,
+    date: 1,
+  })
   response.status(201).json(users.map(user => user.toJSON()))
 })
 
@@ -16,9 +19,8 @@ usersRouter.post('/', async (request, response) => {
     ...body,
     createdAt: new Date(),
     userType: body.userType ? body.userType : 'admin',
-    passwordHash
+    passwordHash,
   })
-  // console.log('USER TO SAVE: ', user)
   try {
     const savedUser = await user.save()
     response.status(201).json({
@@ -27,21 +29,16 @@ usersRouter.post('/', async (request, response) => {
       isRegisteredNew: true,
     })
   } catch (error) {
-    // console.log('ERROR IN SERVER:', error.message)
     response.status(400).send(error)
-
   }
 })
 
 usersRouter.put('/:id', async (request, response) => {
   const body = request.body
-  // console.log('ID: ', request.params.id)
   const user = {
     ...body,
-    updatedAt: new Date()
+    updatedAt: new Date(),
   }
-
-  // console.log('UPDATED USER IN SERVER: ', user)
   await User.findByIdAndUpdate(request.params.id, user, { new: true })
     .then(updatedUser => updatedUser.toJSON())
     .then(savedAndUpdatedUser => {
@@ -51,11 +48,10 @@ usersRouter.put('/:id', async (request, response) => {
 
 usersRouter.get('/:id', async (request, response) => {
   const user = await User.findById(request.params.id)
-  if (user) {
-    response.json(user.toJSON())
-  } else {
+  if (!user) {
     response.status(400).end()
   }
+  response.json(user.toJSON())
 })
 
 usersRouter.delete('/:id', async (request, response) => {

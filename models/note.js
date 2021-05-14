@@ -3,12 +3,7 @@ const mongoose = require('mongoose')
 let noteSchema = mongoose.Schema({
   user: {
     type: mongoose.Schema.Types.ObjectId,
-    ref: 'User'
-  },
-  title: {
-    type: String,
-    required: true,
-    minlength: [5, 'Title needs at least 5 characters']
+    ref: 'User',
   },
   content: {
     type: String,
@@ -22,7 +17,7 @@ noteSchema.set('toJSON', {
     returnedObject.id = returnedObject._id.toString()
     delete returnedObject._id
     delete returnedObject.__v
-  }
+  },
 })
 
 module.exports = mongoose.model('Note', noteSchema)

@@ -29,7 +29,10 @@ describe('Now let us save some users and test it', () => {
   test('We can succesfully create another user', async () => {
     const usersBeforeSaving = await helper.usersInDB()
     const newUser = helper.users[3]
-    const response = await api.post('/api/users').send(newUser).expect(201)
+    const response = await api
+      .post('/api/users')
+      .send(newUser)
+      .expect(201)
       .expect('Content-Type', /application\/json/)
 
     const usersAfterSaving = await helper.usersInDB()
@@ -40,7 +43,10 @@ describe('Now let us save some users and test it', () => {
   test('Username is already in the database', async () => {
     const usersInDBBefore = await helper.usersInDB()
     const newUser = helper.users[1]
-    const response = await api.post('/api/users').send(newUser).expect(400)
+    const response = await api
+      .post('/api/users')
+      .send(newUser)
+      .expect(400)
       .expect('Content-Type', /application\/json/)
 
     // console.log('ERROR RECEVED IN TEST: ', response.body.message)
@@ -53,7 +59,10 @@ describe('Now let us save some users and test it', () => {
   test('Email is already in the data base', async () => {
     const usersInDBBefore = await helper.usersInDB()
     const newUser = helper.users[2]
-    const response = await api.post('/api/users').send(newUser).expect(400)
+    const response = await api
+      .post('/api/users')
+      .send(newUser)
+      .expect(400)
       .expect('Content-Type', /application\/json/)
 
     // console.log('ERROR RECEVED IN TEST: ', response.body.message)
@@ -64,7 +73,9 @@ describe('Now let us save some users and test it', () => {
   })
 
   test('User can login', async () => {
-    const response = await api.post('/api/login').send({ username: 'wick', password: 'secret' })
+    const response = await api
+      .post('/api/login')
+      .send({ username: 'wick', password: 'secret' })
       .expect(201)
       .expect('Content-Type', /application\/json/)
     // console.log('RESPONSE IN LOGIN: ', response.body)
@@ -73,8 +84,11 @@ describe('Now let us save some users and test it', () => {
   })
 
   test('User fails to login with wrong password or username', async () => {
-    const response = await api.post('/api/login').send({ username: 'wick', password: 'wrongPassword' })
-      .expect(401).expect('Content-Type', /application\/json/)
+    const response = await api
+      .post('/api/login')
+      .send({ username: 'wick', password: 'wrongPassword' })
+      .expect(401)
+      .expect('Content-Type', /application\/json/)
     // console.log('RESPONSE ON WRONG PASSWORD: ', response.body.error)
 
     expect(response.body.error).toContain('Invalid username or password')
@@ -84,7 +98,10 @@ describe('Now let us save some users and test it', () => {
     const usersInDB = await helper.usersInDB()
     // console.log('Length 1 ', usersInDB.length)
     const testUser = helper.users[3]
-    await api.post('/api/users').send(testUser).expect(201)
+    await api
+      .post('/api/users')
+      .send(testUser)
+      .expect(201)
       .expect('Content-Type', /application\/json/)
 
     const usersAfterSaving = await helper.usersInDB()
@@ -102,4 +119,6 @@ describe('Now let us save some users and test it', () => {
   })
 })
 
-afterAll(() => { mongoose.connection.close() })
+afterAll(() => {
+  mongoose.connection.close()
+})

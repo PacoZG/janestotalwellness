@@ -17,7 +17,13 @@ const notesRouter = require('./controllers/notes')
 const url = config.MONGODB_URI
 console.log('Connected to MongoDB')
 
-mongoose.connect(url, { useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false, useCreateIndex: true })
+mongoose
+  .connect(url, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+    useFindAndModify: false,
+    useCreateIndex: true,
+  })
   .then(() => {
     logger.info('Connected to MongoDB')
   })
@@ -52,7 +58,7 @@ app.get('/version', (req, res) => {
   res.send('0') // change this string to ensure a new version deployed
 })
 
-app.get('/*', function(req,res) {
+app.get('/*', function (req, res) {
   res.sendFile(path.join(__dirname, 'build', 'index.html'))
 })
 
