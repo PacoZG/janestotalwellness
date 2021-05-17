@@ -72,37 +72,29 @@ const MainMenu = () => {
                 <img className="h-12 w-12 rounded-full" src={threes} alt="Workflow" />
               </div>
               <div className="ml-10 flex items-baseline space-x-3 pt-2">
-                <Link
-                  id="home"
-                  to={'/home'}
-                  className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
-                >
+                <Link id="home" to={'/home'} className="web-link">
                   <i className="text-gray-300 text-base">Jane&lsquo;s Total Wellness</i>
                 </Link>
-                <Link
-                  id="exercises"
-                  to={'/salon'}
-                  className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
-                >
+                <Link id="exercises" to={'/salon'} className="web-link">
                   {t('MainMenu.ForumLabel')}
                 </Link>
+                <Link id="blogs" to={'/blogs'} className="web-link">
+                  {t('MainMenu.BlogLabel')}
+                </Link>
                 {loggedUser ? (
-                  <Link
-                    id="myprogram"
-                    to={'/myprogram'}
-                    className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
-                  >
+                  <Link id="myprogram" to={'/myprogram'} className="web-link">
                     {t('MainMenu.ProgramLabel')}
                   </Link>
                 ) : null}
                 {loggedUser && loggedUser.userType === 'admin' ? (
-                  <Link
-                    id="myclients"
-                    to={'/myclients'}
-                    className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
-                  >
-                    {t('MainMenu.ClientsLabel')}
-                  </Link>
+                  <div>
+                    <Link id="myclients" to={'/myclients'} className="web-link">
+                      {t('MainMenu.ClientsLabel')}
+                    </Link>
+                    <Link id="create-blog" to={'/createblog'} className="web-link">
+                      {t('MainMenu.CreateBlogLabel')}
+                    </Link>
+                  </div>
                 ) : null}
               </div>
             </div>
@@ -591,33 +583,29 @@ const MainMenu = () => {
         </div>
         <div style={mobileMenu} className="md:hidden border-t pt-2 pb-2">
           <div className="space-y-3">
-            <Link
-              to={'/home'}
-              className="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 rounded-md text-base font-medium"
-            >
+            <Link to={'/home'} className="mobile-link">
               Jane&lsquo;s Total Wellness
             </Link>
-            <Link
-              to={'/salon'}
-              className="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 rounded-md text-base font-medium"
-            >
+            <Link to={'/salon'} className="mobile-link">
               {t('MainMenu.ForumLabel')}
             </Link>
+            <Link to={'/blogs'} className="mobile-link">
+              {t('MainMenu.BlogLabel')}
+            </Link>
             {loggedUser ? (
-              <Link
-                to={'/myprogram'}
-                className="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 rounded-md text-base font-medium"
-              >
+              <Link to={'/myprogram'} className="mobile-link">
                 {t('MainMenu.ProgramLabel')}
               </Link>
             ) : null}
             {loggedUser && loggedUser.userType === 'admin' ? (
-              <Link
-                to={'/myclients'}
-                className="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 rounded-md text-base font-medium"
-              >
-                {t('MainMenu.ClientsLabel')}
-              </Link>
+              <div className="space-y-3">
+                <Link to={'/myclients'} className="mobile-link">
+                  {t('MainMenu.ClientsLabel')}
+                </Link>
+                <Link to={'/createblog'} className="mobile-link">
+                  {t('MainMenu.CreateBlogLabel')}
+                </Link>
+              </div>
             ) : null}
           </div>
         </div>

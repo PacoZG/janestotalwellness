@@ -375,7 +375,7 @@ const SignUpForm = () => {
                       )}
                     </p>
                     <textarea
-                      className="md:h-40 h-32 block border border-transparent focus:outline-none focus:ring-1 focus:ring-gray-400 focus:border-transparent w-full rounded-md p-2 text-sm placeholder-gray-200"
+                      className="md:h-40 text-area"
                       placeholder={t('Signup.GoalsPlaceholder')}
                       {...goals.params}
                       minLength="30"

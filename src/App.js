@@ -3,9 +3,12 @@ import { useDispatch } from 'react-redux'
 import { BrowserRouter as Router, Switch, Route, Redirect } from 'react-router-dom'
 import { initializeUsers } from './reducers/usersReducer'
 import { getAllNotes } from './reducers/noteReducer'
+import { initializeBlogs } from './reducers/blogReducer'
 
 // Components in english
 import About from './components/About'
+import Blog from './components/blogs/CreateBlog'
+import BlogList from './components/blogs/BlogList'
 import Client from './components/Client'
 import Editform from './components/EditForm'
 import ExerciseLibrary from './components/ExerciseLibrary'
@@ -26,6 +29,7 @@ const App = () => {
   useEffect(() => {
     dispatch(initializeUsers())
     dispatch(getAllNotes())
+    dispatch(initializeBlogs())
   }, [dispatch])
 
   return (
@@ -41,6 +45,12 @@ const App = () => {
           </Route>
           <Route path="/about">
             <About />
+          </Route>
+          <Route path="/createblog">
+            <Blog />
+          </Route>
+          <Route path="/blogs">
+            <BlogList />
           </Route>
           <Route path="/editForm">
             <Editform />

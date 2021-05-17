@@ -14,4 +14,16 @@
   .edit-form-label {
     @apply block text-sm font-medium text-gray-700 pl-2;
   }
+  .editform-input {
+    @apply block border border-gray-300 focus:outline-none focus:ring-1 focus:ring-gray-400 focus:border-transparent w-full rounded-md h-8 pl-2 text-sm placeholder-gray-200;
+  }
+  .text-area {
+    @apply h-32 block border border-gray-300 focus:outline-none focus:ring-1 focus:ring-gray-400 focus:border-transparent w-full rounded-md p-2 text-sm placeholder-gray-200;
+  }
+  .mobile-link {
+    @apply text-gray-300 hover:bg-gray-700 hover:text-white block px-3 rounded-md text-base font-medium;
+  }
+  .web-link {
+    @apply text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium;
+  }
 }

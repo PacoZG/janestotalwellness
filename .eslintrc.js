@@ -24,7 +24,7 @@ module.exports = {
   plugins: ['react', 'jest', 'cypress', 'prettier'],
   rules: {
     'linebreak-style': ['error', 'unix'],
-    quotes: ['error', 'single'],
+    // quotes: ['error', 'single'],
     semi: ['error', 'never'],
     eqeqeq: 'error',
     'no-trailing-spaces': 'error',

@@ -13,18 +13,9 @@
     "ShowNote": "Mostrar nota",
     "HideNote": "Ocultar nota"
   },
-  "Countries": {
-    "fi": "Finlandia",
-    "swe": "Suecia",
-    "nor": "Noruega",
-    "est": "Estonia",
-    "ge": "Alemania",
-    "es": "España",
-    "it": "Italia",
-    "ne": "Holand",
-    "swi": "Suiza",
-    "mx": "México"
-  },
+  "Countries": "Finlandia,Suecia,Noruega,Estonia,Alemania,España,Italia,Holanda,Suiza,México",
+  "Months": "Ene,Feb,Mar,Abr,May,Jun,Jul,Ago,Sep,Oct,Nov,Dic",
+  "Weekdays": "Lun,Mar,Mié,Jue,Vie,Sáb,Dom",
   "MainMenu": {
     "ForumLabel": "Jane's Salon",
     "ProgramLabel": "Mi Programa",
