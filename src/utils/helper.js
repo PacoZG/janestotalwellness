@@ -50,17 +50,6 @@ export const getDate = objectDate => {
 
 export const getCountries = () => {
   const { t } = useTranslation()
-  const countries = [
-    t('Countries.fi'),
-    t('Countries.swe'),
-    t('Countries.nor'),
-    t('Countries.est'),
-    t('Countries.ge'),
-    t('Countries.es'),
-    t('Countries.it'),
-    t('Countries.ne'),
-    t('Countries.swi'),
-    t('Countries.mx'),
-  ]
-  return countries
+  const countries = t('Countries')
+  return countries.split(',')
 }

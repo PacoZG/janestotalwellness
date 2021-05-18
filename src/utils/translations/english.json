@@ -13,18 +13,9 @@
     "ShowNote": "Show note",
     "HideNote": "Hide note"
   },
-  "Countries": {
-    "fi": "Finland",
-    "swe": "Sweden",
-    "nor": "Norway",
-    "est": "Estonia",
-    "ge": "Germany",
-    "es": "Spain",
-    "it": "Italy",
-    "ne": "Netherland",
-    "swi": "Switzerland",
-    "mx": "Mexico"
-  },
+  "Countries": "Finland,Sweden,Norway,Estonia,Germany,Spain,Italy,Netherland,Switzerland,Mexico",
+  "Months": "Jan,Feb,Mar,Apr,May,Jun,Jul,Aug,Sep,Oct,Nov,Dec",
+  "Weekdays": "Mon,Tue,Wed,Thu,Fri,Sat,Sun",
   "MainMenu": {
     "ForumLabel": "Jane's Salon",
     "ProgramLabel": "My Program",
@@ -33,7 +24,9 @@
     "EditProfileLabel": "Edit profile",
     "SignoutLabel": "Sign out",
     "SigninLabel": "Sign in",
-    "SignupLabel": "Sign up"
+    "SignupLabel": "Sign up",
+    "CreateBlogLabel": "Create blog",
+    "BlogLabel": "Blogs"
   },
   "Client": {
     "InfoUpdate": "Your profile has been successfully updated.",

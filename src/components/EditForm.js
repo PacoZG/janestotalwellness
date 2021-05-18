@@ -429,7 +429,7 @@ const EditForm = () => {
                             id="street-address"
                             autoComplete="street-address"
                             {...address.params}
-                            className="block border border-transparent focus:outline-none focus:ring-1 focus:ring-gray-400 focus:border-transparent w-full rounded-sm h-8 pl-2 text-sm"
+                            className="editform-input"
                           />
                         </div>
                         <div className="col-span-6 md:col-span-2">
@@ -439,17 +439,12 @@ const EditForm = () => {
                             id="postal-code"
                             autoComplete="postal-code"
                             {...zipCode.params}
-                            className="block border border-transparent focus:outline-none focus:ring-1 focus:ring-gray-400 focus:border-transparent w-full rounded-sm h-8 pl-2 text-sm"
+                            className="editform-input"
                           />
                         </div>
                         <div className="col-span-6 md:col-span-2">
                           <label className="edit-form-label">{t('EditForm.City')}</label>
-                          <input
-                            name="city"
-                            id="city"
-                            {...city.params}
-                            className="block border border-transparent focus:outline-none focus:ring-1 focus:ring-gray-400 focus:border-transparent w-full rounded-sm h-8 pl-2 text-sm"
-                          />
+                          <input name="city" id="city" {...city.params} className="editform-input" />
                         </div>
                         <div className="col-span-6 md:col-span-2">
                           <label className="edit-form-label">{t('EditForm.Mobile')}</label>
@@ -458,7 +453,7 @@ const EditForm = () => {
                             id="mobile"
                             {...mobileNumber.params}
                             placeholder="044123456"
-                            className="block border border-transparent focus:outline-none focus:ring-1 focus:ring-gray-400 focus:border-transparent w-full rounded-sm h-8 pl-2 text-sm placeholder-gray-200"
+                            className="editform-input placeholder-gray-200"
                           />
                         </div>
                         <div className="col-span-6">

@@ -13,18 +13,9 @@
     "ShowNote": "Näytä",
     "HideNote": "Piilottaa"
   },
-  "Countries": {
-    "fi": "Suomi'",
-    "swe": "Ruotsi",
-    "nor": "Norja",
-    "est": "Viro",
-    "ge": "Saksa",
-    "es": "Espanja",
-    "it": "Italia",
-    "ne": "Alankimaat",
-    "swi": "Sveitsi",
-    "mx": "Meksiko"
-  },
+  "Countries": "Suomi,Ruotsi,Norja,Viro,Saksa,Espanja,Italia,Alankomaat,Sveitsi,Meksiko",
+  "Months": "Tam,Hel,Maa,Huh,Tou,Kes,Hei,Elo,Syy,Lok,Mar,Jou",
+  "Weekdays": "Ma,Ti,Ke,To,Pe,La,Su",
   "MainMenu": {
     "ForumLabel": "Jane's Salon",
     "ProgramLabel": "Oma ohjelma",

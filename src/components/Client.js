@@ -7,7 +7,7 @@ import { useField } from '../hooks/index'
 import { setNotification } from '../reducers/notificationReducer'
 import { updateUser } from '../reducers/usersReducer'
 import { createNote, updateNote, deleteNote } from '../reducers/noteReducer'
-import { getAge, getBMI, getDate } from '../utils/helper'
+import { getAge, getBMI } from '../utils/helper'
 import noteService from '../services/notes'
 import Note from './Note'
 
@@ -21,6 +21,20 @@ const Client = () => {
   const height = useField('text')
   const weight = useField('text')
   const content = useField('text')
+
+  const getDate = objectDate => {
+    const months = t('Months').split(',')
+    const weekDays = t('Weekdays').split(',')
+    const date = new Date(objectDate)
+    const day = date.getDate() < 10 ? '0' + date.getDate() : date.getDate()
+    const hours = date.getHours() < 10 ? '0' + date.getHours() : date.getHours()
+    const minutes = date.getMinutes() < 10 ? '0' + date.getMinutes() : date.getMinutes()
+    const seconds = date.getSeconds() < 10 ? '0' + date.getSeconds() : date.getSeconds()
+    const time = hours + ':' + minutes + ':' + seconds
+    const creationDate =
+      weekDays[date.getDay()] + ', ' + day + '.' + months[date.getMonth()] + '.' + date.getFullYear() + ' @' + time
+    return creationDate
+  }
 
   const handleClientsInfo = event => {
     event.preventDefault()
@@ -291,7 +305,7 @@ const Client = () => {
                   maxLength="500"
                   placeholder="2 characters minimum"
                   {...content.params}
-                  className="h-32 block border border-transparent focus:outline-none focus:ring-1 focus:ring-gray-400 focus:border-transparent w-full rounded-md p-2 text-sm placeholder-gray-200"
+                  className="text-area"
                 />
               </div>
             </div>
@@ -456,21 +470,11 @@ const Client = () => {
                       <div className="grid grid-cols-6 gap-3">
                         <div className="col-span-3">
                           <label className="block text-sm font-medium text-gray-700 pl-2">{t('Client.Height')}</label>
-                          <input
-                            name="wem-height"
-                            id="web-height"
-                            {...height.params}
-                            className="block border border-transparent focus:outline-none focus:ring-1 focus:ring-gray-400 focus:border-transparent w-full rounded-sm h-8 pl-2 text-sm "
-                          />
+                          <input name="wem-height" id="web-height" {...height.params} className="editform-input " />
                         </div>
                         <div className="col-span-3">
                           <label className="block text-sm font-medium text-gray-700 pl-2">{t('Client.Weight')}</label>
-                          <input
-                            name="web-weight"
-                            id="web-weight"
-                            {...weight.params}
-                            className="block border border-transparent focus:outline-none focus:ring-1 focus:ring-gray-400 focus:border-transparent w-full rounded-sm h-8 pl-2 text-sm "
-                          />
+                          <input name="web-weight" id="web-weight" {...weight.params} className="editform-input " />
                         </div>
                       </div>
                     </div>
@@ -517,7 +521,7 @@ const Client = () => {
                           maxLength="500"
                           placeholder="2 characters minimum"
                           {...content.params}
-                          className="h-32 block border border-transparent focus:outline-none focus:ring-1 focus:ring-gray-400 focus:border-transparent w-full rounded-md p-2 text-sm placeholder-gray-200"
+                          className="text-area"
                         />
                       </div>
                     </div>
