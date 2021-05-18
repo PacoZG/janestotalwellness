@@ -1,21 +1,65 @@
-import React from 'react'
+import React, { useState } from 'react'
+import { useTranslation } from 'react-i18next'
 import { useDispatch } from 'react-redux'
 import { useField } from '../../hooks/index'
 import ReactMarkdown from 'react-markdown'
 import { createBlog } from '../../reducers/blogReducer'
+import { setNotification } from '../../reducers/notificationReducer'
+import imageService from '../../services/images'
 
-const Blog = () => {
+const CreateBlog = () => {
+  const { t } = useTranslation()
   const dispatch = useDispatch()
   const author = useField('text')
   const content = useField('text')
+  const title = useField('text')
+  // handle image and health info information
+  const [imageMessage, setImageMessage] = useState(null)
+  const [selectedFile, setSelecteFile] = useState('')
+  const [imagePreview, setImagePreview] = useState()
 
-  const handleCreateBlog = () => {
-    const blog = {
-      author: author.params.value,
-      content: content.params.value,
+  const handleImageInput = event => {
+    event.preventDefault()
+    const image = event.target.files[0]
+    if (image.size > 3000000) {
+      setImageMessage(t('EditForm.ImageWarning'))
+    } else {
+      setImageMessage(t('EditForm.ImageRequirement'))
     }
-    console.log('BLOG: ', blog)
-    dispatch(createBlog(blog))
+    setSelecteFile(image)
+    previewImage(image)
+  }
+
+  const previewImage = img => {
+    const reader = new FileReader()
+    reader.readAsDataURL(img)
+    reader.onloadend = () => {
+      setImagePreview(reader.result)
+    }
+  }
+
+  const handleCreateBlog = async event => {
+    event.preventDefault()
+    let image
+    if (imagePreview) {
+      const data = new FormData()
+      data.append('image', selectedFile)
+      try {
+        image = await imageService.postImage(data)
+      } catch (error) {
+        console.log('ERROR: ', error.response.data)
+      }
+      console.log('IMAGE: ', image)
+      const blog = {
+        title: title.params.value,
+        author: author.params.value,
+        content: content.params.value,
+        imageURL: image.url,
+        imageID: image.cloudinaryId,
+      }
+      console.log('BLOG: ', blog)
+      dispatch(createBlog(blog))
+    }
   }
 
   const reset = () => {
@@ -28,45 +72,88 @@ const Blog = () => {
     from-gray-300 via-white to-gray-200 "
     >
       <div
-        className="prose prose-red prose-md md:prose-sm mx-auto max-w-5xl p-5 pb-5 shadow md:rounded-md md:overflow-hidden rounded-b-md bg-gradient-to-br
+        className="prose prose-red prose-sm md:prose-sm mx-auto max-w-5xl p-3 md:p-5 md:pb-5 shadow md:rounded-md md:overflow-hidden rounded-b-md bg-gradient-to-br
     from-gray-300 via-white to-gray-200 "
       >
-        <h3>Author: {author.params.value}</h3>
-        <h3 className="border-b-2 border-gray-400 pb-2 ">Content</h3>
-        {content.params.value.length > 0 ? (
+        <h3 className="border-b-2 border-gray-400 pb-2 pl-2 md:pl-0 md:text-center text-xl ">
+          {t('Blog.Author') + author.params.value}{' '}
+        </h3>
+        <h1>{title.params.value}</h1>
+        <div className="flex flex-col items-center justify-center">
+          {imagePreview ? (
+            <div className="flex flex-col flex-grow items-center">
+              <label className="text-sm font-medium text-gray-700">{t('EditForm.PhotoLabel')}</label>
+              <img
+                src={imagePreview}
+                alt="chosen"
+                className="inline-block h-auto w-auto md:h-28 md:w-28 overflow-hidden"
+              />
+              <p className="text-xs text-gray-500 w-36 pt-2 md:pt-2">{imageMessage}</p>
+            </div>
+          ) : (
+            <div className="flex flex-col items-center">
+              <label className="text-sm font-medium text-gray-700">{t('EditForm.PhotoLabel')}</label>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                className="h-32 w-32 text-gray-500"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"
+                />
+              </svg>
+              <p className="text-xs text-gray-500 w-auto">{t('EditForm.ImageRequirement')}</p>
+            </div>
+          )}
+          <div className="">
+            <label
+              className="transition duration-100 cursor-pointer bg-gray-500 border-white border-2 hover:bg-gray-400 px-3 py-2 h-30 w-auto rounded-md
+                text-xs text-white md:w-auto md:text-base"
+            >
+              <span>{selectedFile ? t('EditForm.ImgBtnLabel_2') : t('EditForm.ImgBtnLabel_1')}</span>
+              <input
+                id="image-input"
+                type="file"
+                name="image"
+                accept="image/*"
+                onChange={handleImageInput}
+                className="sr-only"
+              />
+            </label>
+          </div>
+        </div>
+        {content.params.value.length > 0 || title.params.value.length > 0 ? (
           <ReactMarkdown>{content.params.value}</ReactMarkdown>
         ) : (
-          <h2 className="text-center">You will see your blog here once your start typing</h2>
+          <h2 className="text-center">{t('Blog.Instructions')}</h2>
         )}
-
         <div className="flex flex-col space-y-1 border-t-2 pt-2 border-gray-400">
-          <label className="edit-form-label">Author</label>
+          <label className="edit-form-label -mb-1">{t('Blog.Author')}</label>
           <input {...author.params} className="editform-input" />
-          <label className="edit-form-label">Content</label>
+          <label className="edit-form-label">{t('Blog.Title')}</label>
+          <input {...title.params} className="editform-input" />
+          <label className="edit-form-label">{t('Blog.Content')}</label>
           <textarea
             {...content.params}
             className="h-24 md:h-40 block border focus:outline-none focus:ring-1 focus:ring-gray-400 focus:border-transparent w-full rounded-md p-2 text-sm placeholder-gray-200"
           />
           <div className="flex px-3 py-2 bg-gray-400 text-right rounded-b-sm space-x-2">
-            <button
-              onClick={reset}
-              className="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm font-medium rounded-md
-                      bg-gray-500 text-sm text-white hover:bg-gray-400 focus-within:outline-none focus-within:ring-1 "
-            >
-              Clear fields
+            <button onClick={reset} className="buttons-web">
+              {t('Blog.Clear')}
             </button>
-            <button
-              onClick={handleCreateBlog}
-              className="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm font-medium rounded-md
-              bg-gray-500 text-sm text-white hover:bg-gray-400 focus-within:outline-none focus-within:ring-1"
-            >
-              Post blog
+            <button onClick={handleCreateBlog} className="buttons-web">
+              {t('Blog.Post')}
             </button>
           </div>
         </div>
       </div>
       <div
-        className=" mx-auto max-w-5xl p-5 pb-5 shadow md:rounded-md md:overflow-hidden rounded-b-md bg-gradient-to-br
+        className=" mx-auto max-w-5xl p-3 md:p-5 md:pb-5 shadow md:rounded-md md:overflow-hidden rounded-b-md bg-gradient-to-br
     from-gray-300 via-white to-gray-200"
       >
         <p>
@@ -88,7 +175,6 @@ const Blog = () => {
           Emphasis, aka italics, with *asterisks* or _underscores_.<br></br>
           Strong emphasis, aka bold, with **asterisks** or __underscores__.<br></br>
           Combined emphasis with **asterisks and _underscores_**.<br></br>
-          Strikethrough uses two tildes. ~~Scratch this.~~<br></br>
           1. First ordered list item 2. Another item<br></br>
           ⋅⋅* Unordered sub-list. <br></br>
           1. Actual numbers don&lsquo;t matter, just that it&lsquo;s a number<br></br>
@@ -152,4 +238,4 @@ const Blog = () => {
   )
 }
 
-export default Blog
+export default CreateBlog

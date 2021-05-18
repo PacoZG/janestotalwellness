@@ -10,13 +10,10 @@ blogsRouter.post('/', async (request, response) => {
   const body = request.body
   console.log('BLOG IN CONTROLLER: ', body)
   const blog = new Blog({
-    content: body.content,
-    author: body.author,
+    ...body,
     likes: body.likes || 0,
     dislikes: body.dislikes || 0,
   })
-
-  console.log('BLOG IN CONTROLLER: ', blog)
 
   const savedBlog = await blog.save()
   response.status(201).json(savedBlog.toJSON())
@@ -46,7 +43,7 @@ blogsRouter.put('/:id', (request, response) => {
     dislikes: body.dislikes,
     comments: body.comments,
   }
-  Blog.findByIdAndUpdate(body.id, blog, { new: true })
+  Blog.findByIdAndUpdate(request.params.id, blog, { new: true })
     .then(updatedBlog => updatedBlog.toJSON())
     .then(savedAndUpdatedBlog => {
       response.status(201).json(savedAndUpdatedBlog)
@@ -62,7 +59,7 @@ blogsRouter.post('/:id/comments', async (request, response) => {
     likes: body.likes,
     comments: body.comments,
   }
-  Blog.findByIdAndUpdate(body.id, blog, { new: true })
+  Blog.findByIdAndUpdate(request.params.id, blog, { new: true })
     .then(updatedBlog => updatedBlog.toJSON())
     .then(savedAndUpdatedBlog => {
       response.status(201).json(savedAndUpdatedBlog)

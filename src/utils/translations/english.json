@@ -175,5 +175,22 @@
       "ObesityII": "  (Obesity class II)",
       "ObesityIII": "  (Obesity class III)"
     }
+  },
+  "Blog": {
+    "Notification": {
+      "Title": "Error",
+      "Message": "Please write you name"
+    },
+    "Author": "Author: ",
+    "Instructions": "You will see your blog here once your start typing",
+    "PostingDate": "Posting date: ",
+    "Comments": "Comments",
+    "NoComments": "No comments yet",
+    "Name": "Name",
+    "WriteComment": "Write your comment",
+    "Clear": "Clear fields",
+    "Post": "Post blog",
+    "Title": "Title:",
+    "Content": "Content: "
   }
 }

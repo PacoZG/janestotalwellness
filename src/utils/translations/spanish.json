@@ -24,7 +24,9 @@
     "EditProfileLabel": "Editar perfil",
     "SignoutLabel": "Cerrar sesión",
     "SigninLabel": "Iniciar sesión",
-    "SignupLabel": "Registrarme"
+    "SignupLabel": "Registrarme",
+    "CreateBlogLabel": "Crear blog",
+    "BlogLabel": "Blogs"
   },
   "Client": {
     "InfoUpdate": "Tú perfil ha sido actualizado satisfactoriamente.",
@@ -173,5 +175,22 @@
       "ObesityII": "  (Obesidad clase II)",
       "ObesityIII": "  (Obesidad clase III)"
     }
+  },
+  "Blog": {
+    "Notification": {
+      "Title": "Error",
+      "Message": "Por favor escriba su nombre"
+    },
+    "Author": "Autor: ",
+    "Instructions": "Verás su blog aquí una vez que comience a escribir",
+    "PostingDate": "Fecha de publicación: ",
+    "Comments": "Comentarios",
+    "NoComments": "Sin comentarios aún",
+    "Name": "Nimi",
+    "WriteComment": "Escribe tu comentario",
+    "Clear": "Liampiar campos",
+    "Post": "Publicar blog",
+    "Title": "Título:",
+    "Content": "Contenido: "
   }
 }

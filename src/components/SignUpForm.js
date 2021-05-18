@@ -412,8 +412,8 @@ const SignUpForm = () => {
                   <button
                     type="submit"
                     id="subscribe-button"
-                    className="mt-4 mb-6 h-12 w-full bg-gray-500 text-white rounded hover:bg-gray-400
-                    focus:ring focus:ring-offset-1 focus:ring-gray-800 transform transition active:bg-gray-800"
+                    className="mt-4 mb-6 h-12 w-full bg-gray-500 text-white rounded hover:bg-gray-400 border
+                    focus:ring focus:ring-offset-1 focus:ring-gray-800 transform transition duration-500  active:bg-gray-800"
                   >
                     {t('Signup.SignupButton')}
                   </button>
