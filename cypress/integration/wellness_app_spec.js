@@ -80,7 +80,7 @@ describe('Wellness app', function () {
       cy.contains('Weight (kg)')
       cy.contains('Background')
       cy.contains('Goals')
-      cy.contains('Sign up')
+      cy.contains('SIGN UP')
     })
   })
 
@@ -89,7 +89,7 @@ describe('Wellness app', function () {
       cy.get('#user-menu').click()
       cy.get('#signup-button').click()
       cy.get('#background-button').click()
-      cy.contains('Sign up')
+      cy.contains('SIGN UP')
       cy.get('#first-name').type('John')
       cy.get('#last-name').type('Wick')
       cy.get('#username').type('wick')

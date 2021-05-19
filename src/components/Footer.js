@@ -2,6 +2,7 @@ import React from 'react'
 import { useTranslation } from 'react-i18next'
 import { Link } from 'react-router-dom'
 import facebook from '../img/f-icon.jpg'
+import { FacebookShareButton, FacebookShareCount, FacebookIcon } from 'react-share'
 
 const Footer = () => {
   const { t } = useTranslation()
@@ -78,7 +79,7 @@ const Footer = () => {
             {t('Footer.About')}
           </Link>
         </div>
-        <div className="" id="like-share">
+        <div className="flex flex-col items-center" id="like-share">
           <li className="flex flex-row">
             <a
               className="flex items-center px-2 text-xs uppercase font-bold leading-snug text-gray-200 hover:text-gray-400"
@@ -88,7 +89,7 @@ const Footer = () => {
               <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
                 <path d="M2 10.5a1.5 1.5 0 113 0v6a1.5 1.5 0 01-3 0v-6zM6 10.333v5.43a2 2 0 001.106 1.79l.05.025A4 4 0 008.943 18h5.416a2 2 0 001.962-1.608l1.2-6A2 2 0 0015.56 8H12V4a2 2 0 00-2-2 1 1 0 00-1 1v.667a4 4 0 01-.8 2.4L6.8 7.933a4 4 0 00-.8 2.4z" />
               </svg>
-              <span className="ml-2">LIKE</span>
+              <span className="ml-2 text-xs font-semibold">LIKE</span>
             </a>
             <p className="pr-2 py-2 flex items-center text-xs uppercase font-bold leading-snug text-gray-200 ">
               {'& '}
@@ -99,11 +100,22 @@ const Footer = () => {
               target="blank"
               data-layout="button_count"
             >
-              <img className="relative h-5 w-5 md:h-7 md:w-7 rounded-full" src={facebook} alt="Workflow" />
-              <i className="text-lg leading-lg text-gray-200 opacity-75"></i>
-              <span className="ml-1">SHARE</span>
+              <img className="h-6 w-6 md:h-7 md:w-7 rounded-full" src={facebook} alt="Workflow" />
+              <span className="ml-1 text-xs font-semibold">SHARE MY FB PAGE </span>
             </a>
           </li>
+          <div className="flex items-center justify-center ">
+            <FacebookShareCount url={'http://janestotalwellness.com'}>
+              {shareCount => <span className="text-2xl text-black">{console.log('SHARE COUNT: ', shareCount)}</span>}
+            </FacebookShareCount>
+            <FacebookShareButton
+              url={'http://janestotalwellness.com'}
+              className="inline-flex justify-center py-1 px-3 -ml-4 font-medium focus-within:outline-none "
+            >
+              <FacebookIcon size={28} round={true} />
+              <span className="text-gray-200 text-xs font-semibold pt-1 pl-1">SHARE THIS PAGE</span>
+            </FacebookShareButton>
+          </div>
         </div>
       </div>
     </div>
