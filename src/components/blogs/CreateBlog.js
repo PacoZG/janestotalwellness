@@ -121,7 +121,7 @@ const CreateBlog = () => {
             >
               <span>{selectedFile ? t('EditForm.ImgBtnLabel_2') : t('EditForm.ImgBtnLabel_1')}</span>
               <input
-                id="image-input"
+                id="blog-image-input"
                 type="file"
                 name="image"
                 accept="image/*"
@@ -138,11 +138,12 @@ const CreateBlog = () => {
         )}
         <div className="flex flex-col space-y-1 border-t-2 pt-2 border-gray-400">
           <label className="edit-form-label -mb-1">{t('Blog.Author')}</label>
-          <input {...author.params} className="editform-input" />
+          <input id="blog-author-input" {...author.params} className="editform-input" />
           <label className="edit-form-label">{t('Blog.Title')}</label>
-          <input {...title.params} className="editform-input" />
+          <input id="blog-title-input" {...title.params} className="editform-input" />
           <label className="edit-form-label">{t('Blog.Content')}</label>
           <textarea
+            id="blog-content"
             {...content.params}
             className="h-24 md:h-40 block border focus:outline-none focus:ring-1 focus:ring-gray-400 focus:border-transparent w-full rounded-md p-2 text-sm placeholder-gray-200"
           />
@@ -150,7 +151,7 @@ const CreateBlog = () => {
             <button onClick={reset} className="buttons-web">
               {t('Blog.Clear')}
             </button>
-            <button onClick={handleCreateBlog} className="buttons-web">
+            <button id="create-post" onClick={handleCreateBlog} className="buttons-web">
               {t('Blog.Post')}
             </button>
           </div>
