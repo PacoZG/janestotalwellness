@@ -328,8 +328,8 @@ const EditForm = () => {
                           )}
                           <div className="grid grid-row-3">
                             <label
-                              className="cursor-pointer bg-gray-500 hover:bg-gray-400 px-3 py-2 h-30 w-auto rounded-md
-                            text-xs text-white md:w-auto md:text-base md:hover:bg-gray-300 focus-within:ring-offset-2 focus-within:ring-red-600"
+                              className="transition duration-500 cursor-pointer bg-gray-500 hover:bg-gray-400 px-3 py-2 h-30 w-auto rounded-md
+                            text-xs text-white md:w-auto md:text-base md:hover:bg-gray-400 focus-within:ring-offset-2 focus-within:ring-red-600"
                             >
                               <span>{selectedFile ? t('EditForm.ImgBtnLabel_2') : t('EditForm.ImgBtnLabel_1')}</span>
                               <input
@@ -346,12 +346,7 @@ const EditForm = () => {
                       </div>
                     </div>
                     <div className="px-4 py-3 bg-gray-400 text-right sm:px-6 rounded-b-md">
-                      <button
-                        id="save-health-button"
-                        type="submit"
-                        className="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm font-medium rounded-md
-                      bg-gray-500 text-sm text-white hover:bg-gray-300 focus-within:outline-none focus-within:ring-1"
-                      >
+                      <button id="save-health-button" type="submit" className="buttons-web">
                         {t('ButtonLabel.Save')}
                       </button>
                     </div>
@@ -522,8 +517,7 @@ const EditForm = () => {
                         id="save-personal-info-button"
                         type="button"
                         onClick={handletPersonalInfo}
-                        className="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm font-medium rounded-md
-                      bg-gray-500 text-sm text-white hover:bg-gray-300 focus-within:outline-none focus-within:ring-1"
+                        className="buttons-web"
                       >
                         {t('ButtonLabel.Save')}
                       </button>
@@ -604,8 +598,7 @@ const EditForm = () => {
                         id="save-updated-password-button"
                         type="button"
                         onClick={handlePasswordChange}
-                        className="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm font-medium rounded-md
-                      bg-gray-500 text-sm text-white hover:bg-gray-300 focus-within:outline-none focus-within:ring-1"
+                        className="buttons-web"
                       >
                         {t('ButtonLabel.Save')}
                       </button>
@@ -635,12 +628,7 @@ const EditForm = () => {
                     </div>
                   </div>
                   <div className="px-4 py-3 bg-gray-400 text-right md:px-6">
-                    <button
-                      type="button"
-                      onClick={() => setShowModal(!showModal)}
-                      className="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm font-medium rounded-md
-                      bg-gray-500 text-sm text-white hover:bg-gray-300 focus-within:outline-none focus-within:ring-1"
-                    >
+                    <button type="button" onClick={() => setShowModal(!showModal)} className="buttons-web">
                       {t('ButtonLabel.Remove')}
                     </button>
                   </div>

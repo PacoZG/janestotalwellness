@@ -58,10 +58,8 @@ export const createBlog = blog => {
 export const likeBlog = blog => {
   console.log('BLOG: ', blog)
   const updatedBlog = { ...blog, likes: blog.likes + 1 }
-  console.log('LIKED BLOG: ', updatedBlog)
   return async dispatch => {
     const changedBlog = await blogService.update(updatedBlog)
-    console.log('CHANGEDBLOG: ', changedBlog)
     dispatch({
       type: 'LIKE',
       data: changedBlog,
@@ -72,10 +70,8 @@ export const likeBlog = blog => {
 export const dislikeBlog = blog => {
   console.log('BLOG: ', blog)
   const updatedBlog = { ...blog, dislikes: blog.dislikes + 1 }
-  console.log('DISLIKED BLOG: ', updatedBlog)
   return async dispatch => {
     const changedBlog = await blogService.update(updatedBlog)
-    console.log('CHANGEDBLOG: ', changedBlog)
     dispatch({
       type: 'DISLIKE',
       data: changedBlog,

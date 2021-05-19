@@ -7,7 +7,8 @@ import { initializeBlogs } from './reducers/blogReducer'
 
 // Components in english
 import About from './components/About'
-import Blog from './components/blogs/CreateBlog'
+import Blog from './components/blogs/Blog'
+import CreateBlog from './components/blogs/CreateBlog'
 import BlogList from './components/blogs/BlogList'
 import Client from './components/Client'
 import Editform from './components/EditForm'
@@ -40,6 +41,9 @@ const App = () => {
           <Route exact path="/">
             <Redirect to="/home" />
           </Route>
+          <Route path="/blogs/:id">
+            <Blog />
+          </Route>
           <Route path="/myclients/:id">
             <Client />
           </Route>
@@ -47,7 +51,7 @@ const App = () => {
             <About />
           </Route>
           <Route path="/createblog">
-            <Blog />
+            <CreateBlog />
           </Route>
           <Route path="/blogs">
             <BlogList />

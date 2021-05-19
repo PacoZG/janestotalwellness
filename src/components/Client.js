@@ -276,8 +276,7 @@ const Client = () => {
                 type="button"
                 id="mobile-saveInfo"
                 onClick={handleClientsInfo}
-                className="inline-flex justify-center py-1 px-4 border border-transparent shadow-sm font-medium rounded-md
-                      bg-gray-500 text-sm text-white hover:bg-gray-300 focus-within:outline-none focus-within:ring-1"
+                className="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm font-medium rounded-md bg-gray-500 text-sm text-white hover:bg-gray-300 focus-within:outline-none focus-within:ring-1"
               >
                 {t('ButtonLabel.Save')}
               </button>
@@ -314,8 +313,7 @@ const Client = () => {
                 type="button"
                 id="mobile-saveNote"
                 onClick={handleSaveNote}
-                className="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm font-medium rounded-md
-                  bg-gray-500 text-sm text-white hover:bg-gray-300 focus-within:outline-none focus-within:ring-1"
+                className="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm font-medium rounded-md bg-gray-500 text-sm text-white hover:bg-gray-300 focus-within:outline-none focus-within:ring-1"
               >
                 {t('ButtonLabel.Save')}
               </button>
@@ -479,13 +477,7 @@ const Client = () => {
                       </div>
                     </div>
                     <div className="px-4 py-3 bg-gray-400 text-right md:px-6">
-                      <button
-                        type="button"
-                        id="web-saveInfo"
-                        onClick={handleClientsInfo}
-                        className="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm font-medium rounded-md
-                      bg-gray-500 text-sm text-white hover:bg-gray-300 focus-within:outline-none focus-within:ring-1"
-                      >
+                      <button type="button" id="web-saveInfo" onClick={handleClientsInfo} className="buttons-web">
                         {t('ButtonLabel.Save')}
                       </button>
                     </div>
@@ -527,13 +519,7 @@ const Client = () => {
                     </div>
                   </div>
                   <div className="px-4 py-3 bg-gray-400 text-right md:px-6">
-                    <button
-                      type="button"
-                      id="web-saveNote"
-                      onClick={handleSaveNote}
-                      className="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm font-medium rounded-md
-                      bg-gray-500 text-sm text-white hover:bg-gray-300 focus-within:outline-none focus-within:ring-1"
-                    >
+                    <button type="button" id="web-saveNote" onClick={handleSaveNote} className="buttons-web">
                       {t('ButtonLabel.Save')}
                     </button>
                   </div>

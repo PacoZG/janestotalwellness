@@ -24,7 +24,9 @@
     "EditProfileLabel": "Muokkaa profiilia",
     "SignoutLabel": "Kirjaudu ulos",
     "SigninLabel": "Kirjaudu sisään",
-    "SignupLabel": "Kirjaudu"
+    "SignupLabel": "Kirjaudu",
+    "CreateBlogLabel": "Luo blogi",
+    "BlogLabel": "Blogi"
   },
   "Client": {
     "InfoUpdate": "Profiilisi on onnistuneesti päivitetty",
@@ -173,5 +175,22 @@
       "ObesityII": " (Lihavuusluokka II)",
       "ObesityIII": " (Lihavuusluokka III)"
     }
-  }  
+  },
+  "Blog": {
+    "Notification": {
+      "Title": "Virhe",
+      "Message": "Kirjoita nimesi"
+    },
+    "Author": "Kirjoittaja: ",
+    "Instructions": "Näet blogisi täällä, kun aloitat kirjoittamisen",
+    "PostingDate": "Julkaisupäivä:",
+    "Comments": "Kommentit",
+    "NoComments": "Ei vielä kommentteja",
+    "Name": "Name",
+    "WriteComment": "Kirjoita kommenttisi",
+    "Clear": "Tyhjennä kentät",
+    "Post": "Lähetä blogi",
+    "Title": "Otsikko:",
+    "Content": "Sisältö: "
+  }
 }

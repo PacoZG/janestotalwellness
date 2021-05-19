@@ -10,6 +10,7 @@ module.exports = {
         DEFAULT: {
           css: {
             color: '#333',
+            fontSize: '1.125rem',
             a: {
               color: '#3182ce',
               '&:hover': {
@@ -17,9 +18,27 @@ module.exports = {
               },
             },
             h1: {
-              backgroundColor: '#6B7280',
-              padding: '16px',
+              backgroundColor: '#B2BABB',
+              padding: '20px',
               textAlign: 'center',
+              borderRadius: '4px',
+            },
+            h2: {
+              marginLeft: '20px',
+            },
+            blockquote: {
+              padding: '20px',
+              marginLeft: '30px',
+            },
+            ul: {
+              marginLeft: '20px',
+              fontSize: '1rem',
+            },
+            li: {
+              fontSize: '1rem',
+            },
+            p: {
+              fontSize: '1rem',
             },
           },
         },
@@ -861,7 +880,7 @@ module.exports = {
     transformOrigin: ['responsive'],
     transitionDelay: ['responsive'],
     transitionDuration: ['responsive'],
-    transitionProperty: ['responsive'],
+    transitionProperty: ['responsive', 'motion-safe', 'motion-reduce'],
     transitionTimingFunction: ['responsive'],
     translate: ['responsive', 'hover', 'focus'],
     userSelect: ['responsive'],

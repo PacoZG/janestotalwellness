@@ -118,7 +118,7 @@ const SigninForm = () => {
             <button
               id="login-button"
               type="submit"
-              className="mt-1 mb-6 h-12 w-full bg-gray-500 text-white rounded hover:bg-gray-400 focus:ring focus:ring-offset-1 focus:ring-red-800 transform transition active:bg-red-800"
+              className="transition duration-500 mt-1 mb-6 h-12 w-full border bg-gray-500 text-white rounded hover:bg-gray-400 focus:ring focus:ring-offset-1 focus:ring-red-800 transform active:bg-red-800"
             >
               <span className="absolute left-0 inset-y-0 flex items-center pl-3">
                 <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">

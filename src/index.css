@@ -18,12 +18,18 @@
     @apply block border border-gray-300 focus:outline-none focus:ring-1 focus:ring-gray-400 focus:border-transparent w-full rounded-md h-8 pl-2 text-sm placeholder-gray-200;
   }
   .text-area {
-    @apply h-32 block border border-gray-300 focus:outline-none focus:ring-1 focus:ring-gray-400 focus:border-transparent w-full rounded-md p-2 text-sm placeholder-gray-200;
+    @apply h-32 block border border-gray-300 rounded-sm focus:outline-none focus:ring-1 focus:ring-gray-400 focus:border-transparent w-full p-2 text-sm placeholder-gray-200;
   }
   .mobile-link {
     @apply text-gray-300 hover:bg-gray-700 hover:text-white block px-3 rounded-md text-base font-medium;
   }
   .web-link {
-    @apply text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium;
+    @apply transition duration-500 text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium;
+  }
+  .buttons-web {
+    @apply transition duration-500 inline-flex justify-center py-2 px-4 border shadow-sm font-medium rounded-md bg-gray-500 text-sm text-white hover:bg-gray-400 focus-within:outline-none focus-within:ring-1;
+  }
+  .buttons-mobile {
+    @apply transition duration-1000 inline-flex justify-center py-1 px-3 border shadow-sm font-medium rounded-md bg-gray-500 text-sm text-white hover:bg-gray-300 focus-within:outline-none focus-within:ring-1;
   }
 }
