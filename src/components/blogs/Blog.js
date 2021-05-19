@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { useHistory } from 'react-router-dom'
+import { Link, useHistory } from 'react-router-dom'
 import { Transition } from '@tailwindui/react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useParams } from 'react-router-dom'
@@ -162,6 +162,13 @@ const Blog = () => {
             </FacebookShareButton>
           </div>
         </div>
+        <p className="text-center text-gray-600 bg-gray-400 p-2 border-b-2">
+          Wanna to talk about it? Go to{' '}
+          <Link to="/salon" className="hover:text-red-600">
+            Jane&lsquo;s Salon&nbsp;
+          </Link>
+          and open a discussion
+        </p>
         {loggedUser && loggedUser.userType === 'admin' ? (
           <div className="px-4 py-3 bg-gray-400 text-center rounded-b-md md:px-6">
             <button onClick={handleDelete} className="buttons-web">
