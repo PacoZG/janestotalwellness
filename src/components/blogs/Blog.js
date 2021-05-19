@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import { useHistory } from 'react-router-dom'
 import { Transition } from '@tailwindui/react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useParams } from 'react-router-dom'
@@ -11,7 +12,9 @@ import { setNotification } from '../../reducers/notificationReducer'
 
 const Blog = () => {
   const id = useParams().id
+  const history = useHistory()
   const blog = useSelector(state => state.blogs.find(b => b.id === id))
+  const loggedUser = useSelector(state => state.loggedUser)
   const { t } = useTranslation()
   const dispatch = useDispatch()
   const comment = useField('text')
@@ -62,6 +65,11 @@ const Blog = () => {
   const handleDislikes = () => {
     dispatch(dislikeBlog(blog))
   }
+
+  const handleDelete = () => {
+    dispatch(deleteBlog(blog))
+    history.push('/blogs')
+  }
   if (!blog) {
     return (
       <div className="justify-center items-center flex outline-none bg-gray-100 min-h-screen">
@@ -104,7 +112,7 @@ const Blog = () => {
               <span>{` by ${blog.author}`}</span>
             </label>
           </div>
-          <div className="flex flex-rowitems-center">
+          <div className="flex flex-row items-center">
             <div className="flex flex-row items-center">
               <label className="text-xl -mr-3 mt-2 font-semibold text-white">{blog.dislikes}</label>
               <button
@@ -154,6 +162,13 @@ const Blog = () => {
             </FacebookShareButton>
           </div>
         </div>
+        {loggedUser && loggedUser.userType === 'admin' ? (
+          <div className="px-4 py-3 bg-gray-400 text-center rounded-b-md md:px-6">
+            <button onClick={handleDelete} className="buttons-web">
+              {t('ButtonLabel.Delete')}
+            </button>
+          </div>
+        ) : null}
       </div>
       <div
         className="flex flex-col mx-auto max-w-auto md:p-5 p-3 pb-5 shadow md:rounded-b-md md:overflow-hidden rounded-b-md bg-gradient-to-br
@@ -180,8 +195,8 @@ const Blog = () => {
           <button
             className={
               isOpen
-                ? 'transition duration-500 transform rotate-180 focus-within:outline-none p-1'
-                : 'transition duration-500 focus-within:outline-none p-1'
+                ? 'transition duration-150 transform rotate-180 focus-within:outline-none p-1'
+                : 'transition duration-150 focus-within:outline-none p-1'
             }
             onClick={() => setIsOpen(!isOpen)}
           >
@@ -199,11 +214,11 @@ const Blog = () => {
 
         <Transition
           show={isOpen}
-          enter="transition-opacity duration-500"
+          enter="transition-opacity duration-150"
           enterFrom="opacity-0"
           enterTo="opacity-100"
           leave="transition-opacity duration-150"
-          leaveFrom="opacity-500"
+          leaveFrom="opacity-700"
           leaveTo="opacity-0"
         >
           <label className="edit-form-label text-base pt-2 border-t-2 border-gray-300 mt-4 ">{t('Blog.Name')}</label>

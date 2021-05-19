@@ -33,8 +33,8 @@ const Note = ({ note, handleRemoveNote, handleUpdateNote, view }) => {
   if (view === 'web') {
     return (
       <div className="border rounded-md m-2">
-        <div className="flex items-center justify-between border-b pl-3 p-2">
-          <p className="text-base text-gray-500">{getDate(note.date)}</p>
+        <div className="flex items-center justify-between bg-gray-200 shadow-md rounded-t-md border-b pl-3 p-2">
+          <p className="text-base text-black">{getDate(note.date)}</p>
           <button className="buttons-web" onClick={() => setVisibleNote(!visibleNote)} id="show-note">
             {visibleNote ? t('ButtonLabel.HideNote') : t('ButtonLabel.ShowNote')}
           </button>
@@ -53,10 +53,10 @@ const Note = ({ note, handleRemoveNote, handleUpdateNote, view }) => {
 
             <Transition
               show={update}
-              enter="transition-opacity duration-75 duration-1000"
+              enter="transition-opacity duration-300"
               enterFrom="opacity-0"
               enterTo="opacity-100"
-              leave="transition-opacity duration-500"
+              leave="transition-opacity duration-300"
               leaveFrom="opacity-100"
               leaveTo="opacity-0"
             >
@@ -86,10 +86,10 @@ const Note = ({ note, handleRemoveNote, handleUpdateNote, view }) => {
             </Transition>
             <Transition
               show={!update}
-              enter="transition-opacity duration-75 duration-1000"
+              enter="transition-opacity duration-300"
               enterFrom="opacity-0"
               enterTo="opacity-100"
-              leave="transition-opacity duration-500"
+              leave="transition-opacity duration-300"
               leaveFrom="opacity-100"
               leaveTo="opacity-0"
             >

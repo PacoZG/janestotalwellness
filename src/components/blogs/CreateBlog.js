@@ -59,6 +59,10 @@ const CreateBlog = () => {
       }
       console.log('BLOG: ', blog)
       dispatch(createBlog(blog))
+      author.reset()
+      title.reset()
+      content.reset()
+      setImagePreview(!imagePreview)
     }
   }
 
@@ -86,7 +90,7 @@ const CreateBlog = () => {
               <img
                 src={imagePreview}
                 alt="chosen"
-                className="inline-block h-auto w-auto md:h-28 md:w-28 overflow-hidden"
+                className="inline-block h-60 w-auto md:h-96 md:w-auto overflow-hidden"
               />
               <p className="text-xs text-gray-500 w-36 pt-2 md:pt-2">{imageMessage}</p>
             </div>
@@ -112,7 +116,7 @@ const CreateBlog = () => {
           )}
           <div className="">
             <label
-              className="transition duration-100 cursor-pointer bg-gray-500 border-white border-2 hover:bg-gray-400 px-3 py-2 h-30 w-auto rounded-md
+              className="transition duration-500 cursor-pointer bg-gray-500 border-white border-2 hover:bg-gray-400 px-3 py-2 h-30 w-auto rounded-md
                 text-xs text-white md:w-auto md:text-base"
             >
               <span>{selectedFile ? t('EditForm.ImgBtnLabel_2') : t('EditForm.ImgBtnLabel_1')}</span>
@@ -142,7 +146,7 @@ const CreateBlog = () => {
             {...content.params}
             className="h-24 md:h-40 block border focus:outline-none focus:ring-1 focus:ring-gray-400 focus:border-transparent w-full rounded-md p-2 text-sm placeholder-gray-200"
           />
-          <div className="flex px-3 py-2 bg-gray-400 text-right rounded-b-sm space-x-2">
+          <div className="px-3 py-2 bg-gray-400 text-right rounded-b-sm space-x-2">
             <button onClick={reset} className="buttons-web">
               {t('Blog.Clear')}
             </button>
@@ -162,7 +166,7 @@ const CreateBlog = () => {
         </p>
         <br></br>
         <div>
-          <b>Headers</b>
+          <b>## Headers</b>
           <br></br> # H1 <br></br> ## H2<br></br> ### H3<br></br> #### H4<br></br> ##### H5<br></br> ###### H6<br></br>
           <b>Alternatively, for H1 and H2, an underline-ish style:</b>
           <br></br>
@@ -170,22 +174,22 @@ const CreateBlog = () => {
           ======<br></br>
           Alt-H2<br></br>
           ------<br></br>
-          <b>Emphasis</b>
+          <b>## Emphasis</b>
           <br></br>
           Emphasis, aka italics, with *asterisks* or _underscores_.<br></br>
           Strong emphasis, aka bold, with **asterisks** or __underscores__.<br></br>
           Combined emphasis with **asterisks and _underscores_**.<br></br>
-          1. First ordered list item 2. Another item<br></br>
-          ⋅⋅* Unordered sub-list. <br></br>
+          1. First ordered list item<br></br> 2. Another item<br></br>* Unordered sub-list. <br></br>
           1. Actual numbers don&lsquo;t matter, just that it&lsquo;s a number<br></br>
-          ⋅⋅1. Ordered sub-list<br></br>
+          ⋅⋅⋅1. Ordered sub-list<br></br>
           4. And another item.<br></br>
           <br></br>
           ⋅⋅⋅You can have properly indented paragraphs within list items. Notice the blank line above, and the leading
           spaces (at least one, but we&lsquo;ll use three here to also align the raw Markdown).<br></br>
+          <br></br>the dot (⋅) represents one space
           <br></br>
           <br></br>
-          <b># Unordered list</b>
+          <b>## Unordered list</b>
           <br></br>
           <br></br>* Unordered list can use asterisks<br></br>- Or minuses<br></br>+ Or pluses<br></br>
           <br></br>+ Create a list by starting a line with `+`, `-`, or `*`<br></br>+ Sub-lists are made by indenting 2
@@ -195,7 +199,7 @@ const CreateBlog = () => {
           &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- Nulla volutpat aliquam velit
           <br></br>+ Very easy!<br></br>
           <br></br>
-          <b># Blockquotes</b>
+          <b>## Blockquotes</b>
           <br></br>
           {'> blockquote _italic text_'}
           <br></br>
@@ -204,7 +208,7 @@ const CreateBlog = () => {
           {'>>> blockquote normal text'}
           <br></br>
           <br></br>
-          <b>Links</b>
+          <b>## Links</b>
           <br></br>
           {'[I am an inline-style link](https://www.google.com)'}
           <br></br>
