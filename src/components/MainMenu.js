@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { Link, useHistory } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
-import { Menu, Transition } from '@headlessui/react'
+import { Transition } from '@headlessui/react'
 import i18n from 'i18next'
 import { useTranslation } from 'react-i18next'
 import threes from '../img/threes.png'
