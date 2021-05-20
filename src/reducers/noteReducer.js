@@ -1,8 +1,6 @@
 import noteService from '../services/notes'
 
 const noteReducer = (state = [], action) => {
-  // console.log('NOTES STATE IN NOTEREDUCER:', state)
-  // console.log('NOTES ACTION.TYPE IN NOTEREDUCER:', action)
   switch (action.type) {
     case 'GET_NOTES':
       return action.data

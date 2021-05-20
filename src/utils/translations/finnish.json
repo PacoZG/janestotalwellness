@@ -191,6 +191,8 @@
     "Clear": "Tyhjennä kentät",
     "Post": "Lähetä blogi",
     "Title": "Otsikko:",
-    "Content": "Sisältö: "
+    "Content": "Sisältö: ",
+    "Posted": "Blogisi viesti on julkaistu",
+    "Deleted": "Blogikirjoitus on poistettu"
   }
 }

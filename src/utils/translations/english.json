@@ -109,7 +109,7 @@
   "Signup": {
     "AcceptTerms": "Please accept terms and conditions in order to sign up",
     "AcceptTermsTitle": "Check terms and conditions box",
-    "CreatedUserSuccess": " has been successfully create",
+    "CreatedUserSuccess": " has been successfully created",
     "UsedUsername": " has been used, try with a different username",
     "UsedEmail": " is already in our database, try with a different email",
     "SignupHeader": "SIGN UP",
@@ -191,6 +191,8 @@
     "Clear": "Clear fields",
     "Post": "Post blog",
     "Title": "Title:",
-    "Content": "Content: "
+    "Content": "Content: ",
+    "Posted": "Your blog post has been published",
+    "Deleted": "The blog post has been deleted"
   }
 }

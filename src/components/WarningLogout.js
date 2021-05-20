@@ -21,7 +21,7 @@ const WarningLogout = () => {
         setShowModal(!showModal)
       }, 1800000)
     }
-  })
+  }, [])
 
   const handleLogin = () => {
     history.push('/signIn')

@@ -30,7 +30,7 @@ const EditForm = () => {
   // handle image and health info information
   const [imageMessage, setImageMessage] = useState(null)
   const [selectedFile, setSelecteFile] = useState('')
-  const [imagePreview, setImagePreview] = useState()
+  const [imagePreview, setImagePreview] = useState(null)
 
   const healthInfo = useField('text')
 
@@ -68,6 +68,9 @@ const EditForm = () => {
       } catch (error) {
         console.log('ERROR: ', error.response.data)
       }
+      if (user.imageID) {
+        imageService.removeImage(user.imageID)
+      }
       updatedUser = {
         ...updatedUser,
         imageURL: image.url,
@@ -80,10 +83,8 @@ const EditForm = () => {
           imageID: image.cloudinaryId,
         })
       )
-      if (user.imageID) {
-        imageService.removeImage(user.imageID)
-      }
       handleUpdateLoggedUser(updatedUser)
+      setImagePreview(null)
       dispatch(
         setNotification({
           message: t('EditForm.ImageSaved'),
@@ -225,8 +226,11 @@ const EditForm = () => {
 
   // handle profile removal
   const handleProfileRemoval = () => {
-    history.push('/eng/home')
+    history.push('/home')
     setShowModal(!showModal)
+    if (user.imageID) {
+      imageService.removeImage(user.imageID)
+    }
     dispatch(deleteUser(user))
     dispatch(
       setNotification({

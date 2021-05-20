@@ -185,12 +185,14 @@
     "Instructions": "Verás su blog aquí una vez que comience a escribir",
     "PostingDate": "Fecha de publicación: ",
     "Comments": "Comentarios",
-    "NoComments": "Sin comentarios aún",
+    "NoComments": "Aún sin comentarios",
     "Name": "Nombre",
     "WriteComment": "Escribe tu comentario",
     "Clear": "Liampiar campos",
     "Post": "Publicar blog",
     "Title": "Título:",
-    "Content": "Contenido: "
+    "Content": "Contenido: ",
+    "Posted": "Se ha publicado la entrada de tu blog.",
+    "Deleted": "La publicación del blog ha sido eliminada."
   }
 }

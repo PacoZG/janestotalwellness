@@ -74,7 +74,7 @@ const SigninForm = () => {
                 id="username"
                 name="username"
                 autoComplete="off"
-                pattern="[a-z]{1,15}"
+                pattern="[a-z0-9]{4,}"
                 {...username.params}
                 className="block border border-transparent focus:outline-none focus:ring-1 focus:ring-gray-400 focus:border-transparent w-full px-3 py-2 rounded-t-md placeholder-gray-200 "
                 placeholder={t('Signin.Username')}
