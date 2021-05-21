@@ -3,7 +3,6 @@
 @tailwind components;
 @tailwind utilities;
 
-
 @layer components {
   .signup-input {
     @apply block border border-transparent focus:outline-none focus:ring-1 focus:ring-gray-200 focus:border-transparent rounded-sm p-2 pl-3 h-12 w-full shadow-sm text-base border-gray-100 placeholder-gray-200;
@@ -24,7 +23,7 @@
     @apply text-gray-300 hover:bg-gray-700 hover:text-white block px-3 rounded-md text-base font-medium;
   }
   .web-link {
-    @apply transition duration-500 text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium;
+    @apply relative flex flex-shrink-0 items-center transition duration-1000 text-gray-300 hover:bg-transparent hover:text-gray-400 px-4  rounded-md text-sm font-medium;
   }
   .buttons-web {
     @apply transition duration-500 inline-flex justify-center py-2 px-4 border shadow-sm font-medium rounded-md bg-gray-500 text-sm text-white hover:bg-gray-400 focus-within:outline-none;

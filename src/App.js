@@ -11,6 +11,8 @@ import Blog from './components/blogs/Blog'
 import CreateBlog from './components/blogs/CreateBlog'
 import BlogList from './components/blogs/BlogList'
 import Client from './components/Client'
+import CookiesBanner from './components/CookiesBanner'
+import CookiesPolicy from './components/CookiesPolicy'
 import Editform from './components/EditForm'
 import ExerciseLibrary from './components/ExerciseLibrary'
 import Footer from './components/Footer'
@@ -50,11 +52,14 @@ const App = () => {
           <Route path="/about">
             <About />
           </Route>
+          <Route path="/blogs">
+            <BlogList />
+          </Route>
           <Route path="/createblog">
             <CreateBlog />
           </Route>
-          <Route path="/blogs">
-            <BlogList />
+          <Route path="/cookiespolicy">
+            <CookiesPolicy />
           </Route>
           <Route path="/editForm">
             <Editform />
@@ -90,6 +95,7 @@ const App = () => {
         <Route>
           <WarningLogout />
         </Route>
+        <CookiesBanner />
         <Footer />
       </Router>
     </div>

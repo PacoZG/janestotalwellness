@@ -3,7 +3,7 @@ import { useHistory } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
 import { useTranslation } from 'react-i18next'
 import { useField } from '../hooks/index'
-import { createUser } from '../reducers/usersReducer'
+import { createUser, initializeUsers } from '../reducers/usersReducer'
 import { setNotification } from '../reducers/notificationReducer'
 import userService from '../services/user'
 import { getCountries } from '../utils/helper'
@@ -107,6 +107,8 @@ const SignUpForm = () => {
             genders[i].value = false
           }
         }
+
+        dispatch(initializeUsers())
         history.push('/signIn')
       }
     } catch (error) {
@@ -165,8 +167,8 @@ const SignUpForm = () => {
                     <label className="signup-label ">{t('Signup.Username')}</label>
                     <input
                       className="signup-input"
-                      pattern="[A-Za-z0-9]+"
-                      placeholder="example: jhon1"
+                      pattern="[a-z0-9]{4,}"
+                      placeholder="example: john1"
                       id="username"
                       title="User has to be at least 4 characters long"
                       {...username.params}

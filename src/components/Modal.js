@@ -31,7 +31,7 @@ const Modal = () => {
                 </svg>
               </button>
               <div className="flex items-start justify-between p-1 pl-4 border-b border-solid border-blueGray-200 rounded-t">
-                <h3 id="title" className="text-xl font-semibold text-gray-700">
+                <h3 id="title" className="text-xl font-semibold text-gray-700 w-auto">
                   {messageData.title}
                 </h3>
               </div>

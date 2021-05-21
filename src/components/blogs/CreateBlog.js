@@ -16,7 +16,7 @@ const CreateBlog = () => {
   // handle image and health info information
   const [imageMessage, setImageMessage] = useState(null)
   const [selectedFile, setSelecteFile] = useState('')
-  const [imagePreview, setImagePreview] = useState()
+  const [imagePreview, setImagePreview] = useState(null)
 
   const handleImageInput = event => {
     event.preventDefault()
@@ -59,15 +59,23 @@ const CreateBlog = () => {
       }
       console.log('BLOG: ', blog)
       dispatch(createBlog(blog))
+      dispatch(
+        setNotification({
+          message: t('Blog.Posted'),
+          title: 'Sucess',
+          show: true,
+        })
+      )
+      setImagePreview(null)
       author.reset()
       title.reset()
       content.reset()
-      setImagePreview(!imagePreview)
     }
   }
 
   const reset = () => {
     author.reset()
+    title.reset()
     content.reset()
   }
   return (
@@ -85,14 +93,14 @@ const CreateBlog = () => {
         <h1>{title.params.value}</h1>
         <div className="flex flex-col items-center justify-center">
           {imagePreview ? (
-            <div className="flex flex-col flex-grow items-center">
+            <div className="flex flex-col flex-grow items-center ">
               <label className="text-sm font-medium text-gray-700">{t('EditForm.PhotoLabel')}</label>
               <img
                 src={imagePreview}
                 alt="chosen"
-                className="inline-block h-60 w-auto md:h-96 md:w-auto overflow-hidden"
+                className="inline-block h-60 w-auto md:h-96 md:w-auto overflow-hidden rounded-sm shadow-lg border-2 border-black m-4 p-3"
               />
-              <p className="text-xs text-gray-500 w-36 pt-2 md:pt-2">{imageMessage}</p>
+              <p className="text-xs text-gray-500 pt-2 w-auto">{t('EditForm.ImageRequirement')}</p>
             </div>
           ) : (
             <div className="flex flex-col items-center">
@@ -132,7 +140,9 @@ const CreateBlog = () => {
           </div>
         </div>
         {content.params.value.length > 0 || title.params.value.length > 0 ? (
-          <ReactMarkdown>{content.params.value}</ReactMarkdown>
+          <div className="md:pl-16 md:pr-16 text-justify">
+            <ReactMarkdown>{content.params.value}</ReactMarkdown>
+          </div>
         ) : (
           <h2 className="text-center">{t('Blog.Instructions')}</h2>
         )}

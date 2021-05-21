@@ -1,6 +1,7 @@
 # Wellness-app-workflow
 
 You can login to the [application](https://jane-wellness-app.herokuapp.com/) using username: pacozg, password: fullstack_2021 as en administrator and username: rocky, username: Rocky12345 as a client
+Or also check the [application](https://janestotalwellness.com) at .com or [application](https://janestotalwellness.fi) at .fi with the same user.
 
 # Working hours count (the time is an approximation )
 
@@ -36,4 +37,13 @@ You can login to the [application](https://jane-wellness-app.herokuapp.com/) usi
 |         |        | the useless comments, removing all the else statements and use of the guard claus instead|
 |         |        | and last but not least installing and configuring Prettier which needed some configuring |
 |         |        | to resolve conflicts with Eslint                                                         |
-|  Total  |  193   |                                                                                          |
+|  17.05  |  48    | This week I was able to setup the logic in the back and front end for blog posts using   |
+|         |        | react-markdown and stylising with prose tools from tailwind css, one page to see the list|
+|         |        | of blogs, one for the rendering of an specific blog and another for the creation of it   |
+|         |        | with the tools that allows the creator to see how it will look in real time.             |
+|         |        | Also I was able to buy the domains, configure the DNS on the respective DNS provider and |
+|         |        | with the domain provider, and also setting up the domains on Heroku.                     |
+|         |        | I was also able to add the cookies banner on it's own component file along with the      |
+|         |        | cookies policy. And finally better funtionality in the user menu with smoother           |
+|         |        | transitions.                                                                             |
+|  Total  |  241   |                                                                                          |

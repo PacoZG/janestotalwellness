@@ -9,6 +9,7 @@ import { useField } from '../../hooks/index'
 import { FacebookShareButton, FacebookShareCount, FacebookIcon } from 'react-share'
 import { likeBlog, dislikeBlog, deleteBlog, commentBlog } from '../../reducers/blogReducer'
 import { setNotification } from '../../reducers/notificationReducer'
+import imageService from '../../services/images'
 
 const Blog = () => {
   const id = useParams().id
@@ -52,7 +53,6 @@ const Blog = () => {
         content: comment.params.value,
         date: new Date(),
       }
-      console.log('COMMENT:', newComment)
       const commentedBlog = { ...blog, comments: blog.comments.concat(newComment) }
       dispatch(commentBlog(commentedBlog))
     }
@@ -67,7 +67,15 @@ const Blog = () => {
   }
 
   const handleDelete = () => {
+    imageService.removeImage(blog.imageID)
     dispatch(deleteBlog(blog))
+    dispatch(
+      setNotification({
+        message: t('Blog.Deleted'),
+        title: 'Sucess',
+        show: true,
+      })
+    )
     history.push('/blogs')
   }
   if (!blog) {
@@ -100,9 +108,11 @@ const Blog = () => {
         <div className="prose prose-red prose-sm md:prose-sm mx-auto md:max-w-7xl pl-3 pr-3 p-3 md:pl-10 md:pr-10">
           <div className="flex flex-col items-center">
             <h1>{blog.title}</h1>
-            <img src={blog.imageURL} className="md:h-80 md:w-auto" />
+            <img src={blog.imageURL} className="md:h-96 md:w-auto rounded-sm shadow-lg border-2 border-black m-4 p-3" />
           </div>
-          <ReactMarkdown>{blog.content}</ReactMarkdown>
+          <div className="md:pl-16 md:pr-16 text-justify">
+            <ReactMarkdown>{blog.content}</ReactMarkdown>
+          </div>
         </div>
         <div className="flex flex-col md:flex-row items-center justify-between text-center md:px-4 md:py-3 bg-blue-200 md:text-right rounded-sm md:space-x-2">
           <div>
@@ -162,7 +172,7 @@ const Blog = () => {
             </FacebookShareButton>
           </div>
         </div>
-        <p className="text-center text-gray-600 bg-gray-400 p-2 border-b-2">
+        <p className="text-center text-gray-600 bg-gray-400 p-2 border-b-2 rounded-b-md">
           Wanna to talk about it? Go to{' '}
           <Link to="/salon" className="hover:text-red-600">
             Jane&lsquo;s Salon&nbsp;

@@ -27,15 +27,19 @@ module.exports = {
               marginLeft: '20px',
             },
             blockquote: {
-              padding: '20px',
-              marginLeft: '30px',
+              padding: '10px',
+              marginLeft: '40px',
+              marginRight: '40px',
             },
             ul: {
-              marginLeft: '20px',
               fontSize: '1rem',
+              marginLeft: '20px',
+              marginRight: '20px',
             },
             li: {
               fontSize: '1rem',
+              marginLeft: '20px',
+              marginRight: '20px',
             },
             p: {
               fontSize: '1rem',
@@ -619,6 +623,7 @@ module.exports = {
       150: '1.5',
     },
     skew: {
+      '-25': '-25deg',
       '-12': '-12deg',
       '-6': '-6deg',
       '-3': '-3deg',
@@ -630,6 +635,7 @@ module.exports = {
       3: '3deg',
       6: '6deg',
       12: '12deg',
+      25: '25deg',
     },
     space: (theme, { negative }) => ({
       ...theme('spacing'),

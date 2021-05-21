@@ -4,8 +4,8 @@ import { useDispatch, useSelector } from 'react-redux'
 import { Transition } from '@headlessui/react'
 import i18n from 'i18next'
 import { useTranslation } from 'react-i18next'
-import threes from '../img/threes.png'
 import { userLogout } from '../reducers/loginReducer'
+import localDB from '../utils/localdb'
 import Modal from './Modal'
 
 const MainMenu = () => {
@@ -14,8 +14,8 @@ const MainMenu = () => {
   const dispatch = useDispatch()
   const loggedUser = useSelector(state => state.loggedUser)
 
+  const [language, setLanguage] = useState(localDB.loadUserLanguage())
   const [dropdown, setDropdown] = useState(false)
-  const [mobileDropdown, setMobileDropdown] = useState(false)
   const [visibleMobileMenu, setVisibleMobileMenu] = useState(false)
   const [showLanguageMenu, setShowLanguageMenu] = useState(false)
   const [languageBackground, setLanguageBackground] = useState(false)
@@ -29,7 +29,7 @@ const MainMenu = () => {
   }
 
   const handleMobileDropdown = () => {
-    setMobileDropdown(!mobileDropdown)
+    setDropdown(!dropdown)
     if (visibleMobileMenu) {
       setVisibleMobileMenu(!visibleMobileMenu)
     }
@@ -41,11 +41,14 @@ const MainMenu = () => {
 
   const handleLogout = () => {
     dispatch(userLogout())
+    setDropdown(!dropdown)
     history.push('/home')
   }
 
-  const handleSetLanguage = language => {
-    i18n.changeLanguage(language)
+  const handleSetLanguage = lang => {
+    i18n.changeLanguage(lang)
+    setLanguage(lang)
+    localDB.setUserLanguage(lang)
     setShowLanguageMenu(!showLanguageMenu)
     setLanguageBackground(!languageBackground)
   }
@@ -54,48 +57,44 @@ const MainMenu = () => {
     <div>
       <div className="bg-gray-600 w-full">
         {/* Desktop menu,. */}
-        <div className="flex items-top justify-between px-2 pl-4 pr-4 pt-3 md:pt-6 md:pb-5">
-          <div className="flex items-center">
-            <div className="hidden md:flex">
-              <div className="flex-shrink-0">
-                <img className="h-12 w-12 rounded-full" src={threes} alt="Workflow" />
-              </div>
-              <div className="ml-10 flex items-baseline space-x-3 pt-2">
-                <Link id="home" to={'/home'} className="web-link">
-                  <i className="text-gray-300 text-base">Jane&lsquo;s Total Wellness</i>
+        <div className="flex items-top justify-between ">
+          <div className="hidden md:flex md:items-center  md:pb-1 md:pt-1">
+            <div className="flex items-stretch ">
+              <Link id="home" to={'/home'} className="web-link">
+                <i className="web-link text-base my-6">Jane&lsquo;s Total Wellness</i>
+              </Link>
+              <Link id="exercises" to={'/salon'} className="web-link">
+                {t('MainMenu.ForumLabel')}
+              </Link>
+              <Link id="blogs" to={'/blogs'} className="web-link">
+                {t('MainMenu.BlogLabel')}
+              </Link>
+              {loggedUser ? (
+                <Link id="myprogram" to={'/myprogram'} className="web-link">
+                  {t('MainMenu.ProgramLabel')}
                 </Link>
-                <Link id="exercises" to={'/salon'} className="web-link">
-                  {t('MainMenu.ForumLabel')}
-                </Link>
-                <Link id="blogs" to={'/blogs'} className="web-link">
-                  {t('MainMenu.BlogLabel')}
-                </Link>
-                {loggedUser ? (
-                  <Link id="myprogram" to={'/myprogram'} className="web-link">
-                    {t('MainMenu.ProgramLabel')}
+              ) : null}
+              {loggedUser && loggedUser.userType === 'admin' ? (
+                <div className="flex items-stretch">
+                  <Link id="myclients" to={'/myclients'} className="web-link">
+                    {t('MainMenu.ClientsLabel')}
                   </Link>
-                ) : null}
-                {loggedUser && loggedUser.userType === 'admin' ? (
-                  <div>
-                    <Link id="myclients" to={'/myclients'} className="web-link">
-                      {t('MainMenu.ClientsLabel')}
-                    </Link>
-                    <Link id="create-blog" to={'/createblog'} className="web-link">
-                      {t('MainMenu.CreateBlogLabel')}
-                    </Link>
-                  </div>
-                ) : null}
-              </div>
+                  <Link id="create-blog" to={'/createblog'} className="web-link">
+                    {t('MainMenu.CreateBlogLabel')}
+                  </Link>
+                </div>
+              ) : null}
             </div>
           </div>
-          <div className="hidden md:block">
-            <div className="ml-4 flex items-center md:ml-6">
+
+          <div className="hidden md:block py-3 pr-3">
+            <div className="ml-1 flex items-center md:ml-3">
               <Transition
                 show={showLanguageMenu}
-                enter="transition-opacity duration-100"
+                enter="transition-opacity duration-75"
                 enterFrom="opacity-0"
                 enterTo="opacity-100"
-                leave="transition-opacity duration-100"
+                leave="transition-opacity duration-75"
                 leaveFrom="opacity-100"
                 leaveTo="opacity-0"
               >
@@ -106,14 +105,14 @@ const MainMenu = () => {
                   <p
                     id="ENG"
                     className="text-center p-1 hover:bg-gray-500 cursor-pointer "
-                    onClick={() => handleSetLanguage('en')}
+                    onClick={() => handleSetLanguage('EN')}
                   >
                     <img src="https://flagcdn.com/40x30/gb.png" className="h-5 w-7" width="80" height="60" alt="UK" />
                   </p>
                   <p
                     id="FIN"
                     className="text-center p-1 hover:bg-gray-500 cursor-pointer "
-                    onClick={() => handleSetLanguage('fi')}
+                    onClick={() => handleSetLanguage('FI')}
                   >
                     <img
                       src="https://flagcdn.com/80x60/fi.png"
@@ -126,7 +125,7 @@ const MainMenu = () => {
                   <p
                     id="ESP"
                     className="text-center p-1 hover:bg-gray-500 cursor-pointer "
-                    onClick={() => handleSetLanguage('es')}
+                    onClick={() => handleSetLanguage('ES')}
                   >
                     <img
                       src="https://flagcdn.com/40x30/es.png"
@@ -145,24 +144,27 @@ const MainMenu = () => {
               </Transition>
               <button
                 id="language-menuShow"
-                className="pr-3 text-xl text-gray-300 rounded-full focus:outline-none z-40 "
+                className="transition duration-1000 pr-1 text-xl text-gray-300 hover:text-gray-400 rounded-full focus:outline-none z-40 "
                 type="button"
                 onClick={handleLanguageDropdwon}
               >
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  className="h-8 w-8"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth="2"
-                    d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9"
-                  />
-                </svg>
+                <div className="flex items-center space-x-1">
+                  <label className="text-sm pt-2">{language ? language : 'EN'}</label>
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    className="h-7 w-7"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth="2"
+                      d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9"
+                    />
+                  </svg>
+                </div>
               </button>
 
               <div className="ml-3 relative">
@@ -177,7 +179,7 @@ const MainMenu = () => {
                 >
                   {loggedUser && loggedUser.imageURL ? (
                     <img
-                      className="h-12 w-12 rounded-full p-1 bg-gray-200 transform hover:rotate-6 transition"
+                      className="h-14 w-14 rounded-full p-1 bg-gray-200 transform hover:rotate-6 transition"
                       src={loggedUser.imageURL}
                       alt=""
                     />
@@ -212,6 +214,7 @@ const MainMenu = () => {
                           to={'/profile'}
                           className="block text-base text-gray-800 hover:bg-gray-100 p-1 "
                           role="menuitem"
+                          onClick={() => setDropdown(!dropdown)}
                         >
                           <div className="flex items-center pl-1">
                             <svg
@@ -236,6 +239,7 @@ const MainMenu = () => {
                           to={'/editForm'}
                           className="block text-base text-gray-800 hover:bg-gray-100 p-1"
                           role="menuitem"
+                          onClick={() => setDropdown(!dropdown)}
                         >
                           <div className="flex items-center pl-1">
                             <svg
@@ -287,6 +291,7 @@ const MainMenu = () => {
                           to={'/signIn'}
                           className="block text-base text-gray-800 hover:bg-gray-100 p-1"
                           role="menuitem"
+                          onClick={() => setDropdown(!dropdown)}
                         >
                           <div className="flex items-center pl-1">
                             <svg
@@ -311,6 +316,7 @@ const MainMenu = () => {
                           to={'/signUp'}
                           className="block text-base text-gray-800 hover:bg-gray-100 pl-1 pt-1 pb-1"
                           role="menuitem"
+                          onClick={() => setDropdown(!dropdown)}
                         >
                           <div className="flex items-center pl-1 ">
                             <svg
@@ -345,7 +351,7 @@ const MainMenu = () => {
         </div>
 
         {/* Mobile menu, show/hide based on menu state. */}
-        <div className="flex flex-row relative mt-0 md:hidden pb-2 " id="mobile-menu">
+        <div className="flex flex-row relative mt-0 p-2 pt-3 pb-3 md:hidden " id="mobile-menu">
           <div>
             <div className="flex-shrink-0 ml-3 mt-0 mb-2">
               <button
@@ -372,8 +378,8 @@ const MainMenu = () => {
             </div>
           </div>
 
-          <div className="absolute inset-y-0 right-0 border-gray-700">
-            <div className="flex items-center px-4 right-0">
+          <div className="absolute inset-y-0 right-0 border-gray-700 p-2 pt-3 pb-3">
+            <div className="flex items-center px-3 right-0">
               <Transition
                 show={showLanguageMenu}
                 enter="transition-opacity duration-100"
@@ -387,10 +393,10 @@ const MainMenu = () => {
                   className="absolute bg-gray-200 top-8 right-24 h-auto w-auto rounded-sm z-40 origin-top-right mt-2
               shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none divide-y divide-gray-300"
                 >
-                  <p className="p-1 " onClick={() => handleSetLanguage('en')}>
+                  <p className="p-1 " onClick={() => handleSetLanguage('EN')}>
                     <img src="https://flagcdn.com/40x30/gb.png" className="h-5 w-7" width="80" height="60" alt="UK" />
                   </p>
-                  <p className="p-1 " onClick={() => handleSetLanguage('fi')}>
+                  <p className="p-1 " onClick={() => handleSetLanguage('FI')}>
                     <img
                       src="https://flagcdn.com/80x60/fi.png"
                       className="h-5 w-7"
@@ -399,7 +405,7 @@ const MainMenu = () => {
                       alt="Finland"
                     />
                   </p>
-                  <p className="p-1 " onClick={() => handleSetLanguage('es')}>
+                  <p className="p-1 " onClick={() => handleSetLanguage('ES')}>
                     <img
                       src="https://flagcdn.com/40x30/es.png"
                       className="h-5 w-7"
@@ -446,7 +452,7 @@ const MainMenu = () => {
                 text-sm focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-gray-300"
               >
                 {loggedUser && loggedUser.imageURL ? (
-                  <img className="h-12 w-12 rounded-full" src={loggedUser.imageURL} />
+                  <img className="h-14 w-14 rounded-full" src={loggedUser.imageURL} />
                 ) : (
                   <span className="inline-block rounded-full h-10 w-10 md:rounded-full overflow-hidden bg-gray-100">
                     <svg className="h-full w-full text-gray-300" fill="currentColor" viewBox="0 0 24 24">
@@ -458,7 +464,7 @@ const MainMenu = () => {
             </div>
 
             <Transition
-              show={mobileDropdown}
+              show={dropdown}
               enter="transition-opacity duration-100"
               enterFrom="opacity-0"
               enterTo="opacity-100"
@@ -478,6 +484,7 @@ const MainMenu = () => {
                       to={'/profile'}
                       className="block text-base text-gray-800 hover:bg-gray-100 pl-2 p-1"
                       role="menuitem"
+                      onClick={() => setDropdown(!dropdown)}
                     >
                       <div id="profile" className="flex items-center pl-1 pb-1">
                         <svg
@@ -504,6 +511,7 @@ const MainMenu = () => {
                       to={'/editForm'}
                       className="block text-base text-gray-800 hover:bg-gray-100 pl-2 p-1"
                       role="menuitem"
+                      onClick={() => setDropdown(!dropdown)}
                     >
                       <div id="edit-profile" className="flex items-center pl-1 p-1">
                         <svg
@@ -555,6 +563,7 @@ const MainMenu = () => {
                       to={'/signIn'}
                       className="block text-base text-gray-800 hover:bg-gray-100 p-1"
                       role="menuitem"
+                      onClick={() => setDropdown(!dropdown)}
                     >
                       <div className="flex items-center pl-1 pb-1 ">
                         <svg
@@ -579,6 +588,7 @@ const MainMenu = () => {
                       to={'/signUp'}
                       className="block text-base text-gray-800 hover:bg-gray-100 pl-1 pt-1 pb-1"
                       role="menuitem"
+                      onClick={() => setDropdown(!dropdown)}
                     >
                       <div className="flex items-center pl-1 pt-1 ">
                         <svg

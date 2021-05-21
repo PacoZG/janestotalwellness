@@ -88,7 +88,6 @@ describe('Wellness app', function () {
     it('Succesfully creates a new user', function () {
       cy.get('#user-menu').click()
       cy.get('#signup-button').click()
-      cy.get('#background-button').click()
       cy.contains('SIGN UP')
       cy.get('#first-name').type('John')
       cy.get('#last-name').type('Wick')
@@ -126,7 +125,6 @@ describe('Wellness app', function () {
     it('...signs in successfully', function () {
       cy.get('#user-menu').click()
       cy.get('#signin-button').click()
-      cy.get('#user-menu').click()
       cy.contains('Sign in to your account')
       cy.get('#username').type('bruce')
       cy.get('#password').type('superSecret')
@@ -141,7 +139,6 @@ describe('Wellness app', function () {
     beforeEach('...signs in and...', function () {
       cy.get('#user-menu').click()
       cy.get('#signin-button').click()
-      cy.get('#user-menu').click()
       cy.contains('Sign in to your account')
       cy.get('#username').type('bruce')
       cy.get('#password').type('superSecret')
@@ -185,7 +182,6 @@ describe('Wellness app', function () {
 
     it('...edits his/her profile and check changes in the profile page', function () {
       cy.get('#editprofile-button').click()
-      cy.get('#background-button').click()
       cy.get('#health-report').type('The most anthologized poem of the last 25 years for a reason.')
       cy.get('.grid > .cursor-pointer').click()
       cy.get('#save-health-button').click()
@@ -202,7 +198,6 @@ describe('Wellness app', function () {
 
       cy.get('#user-menu').click()
       cy.get('#profile-button').click()
-      cy.get('#user-menu').click()
       cy.contains('Postal address')
       cy.contains('Main Street 6 B, 00100, New York')
       cy.contains('Mobile number')
@@ -214,7 +209,6 @@ describe('Wellness app', function () {
 
     it('...changes password and checks by signing out and signin in with the new password', function () {
       cy.get('#editprofile-button').click()
-      cy.get('#user-menu').click()
       cy.get('#oldPassword').type('superSecret')
       cy.get('#oldPasswordConfirm').type('superSecret')
       cy.get('#newPassword').type('secret')
@@ -225,7 +219,6 @@ describe('Wellness app', function () {
       cy.get('#modal-ok').click()
       cy.get('#user-menu').click()
       cy.get('#signout-button').click()
-      cy.get('#background-button').click()
 
       cy.visit('http://localhost:3000/signIn')
       cy.get('#username').type('bruce')
@@ -235,7 +228,6 @@ describe('Wellness app', function () {
       cy.get('#modal-ok').click()
       cy.get('#user-menu').click()
       cy.get('#signout-button').click()
-      cy.get('#background-button').click()
     })
   })
 
