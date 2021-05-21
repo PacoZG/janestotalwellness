@@ -24,10 +24,7 @@
     @apply text-gray-300 hover:bg-gray-700 hover:text-white block px-3 rounded-md text-base font-medium;
   }
   .web-link {
-    @apply relative flex flex-shrink-0 items-center transition duration-1000 text-gray-300 hover:bg-transparent hover:text-gray-400 px-4  rounded-md text-xs font-medium;
-  }
-  .division-bars {
-    @apply absolute transform -skew-x-25 top-0 left-0 w-0.5 h-full bg-gray-300;
+    @apply relative flex flex-shrink-0 items-center transition duration-1000 text-gray-300 hover:bg-transparent hover:text-gray-400 px-4  rounded-md text-sm font-medium;
   }
   .buttons-web {
     @apply transition duration-500 inline-flex justify-center py-2 px-4 border shadow-sm font-medium rounded-md bg-gray-500 text-sm text-white hover:bg-gray-400 focus-within:outline-none;

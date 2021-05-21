@@ -11,7 +11,8 @@
     "Delete": "Borrar",
     "Remove": "Remover",
     "ShowNote": "Mostrar nota",
-    "HideNote": "Ocultar nota"
+    "HideNote": "Ocultar nota",
+    "Forget": "Olvidar la configuración"
   },
   "Countries": "Finlandia,Suecia,Noruega,Estonia,Alemania,España,Italia,Holanda,Suiza,México",
   "Months": "Ene,Feb,Mar,Abr,May,Jun,Jul,Ago,Sep,Oct,Nov,Dic",
@@ -86,8 +87,8 @@
     "PasswordMatched": "(Las contraseñas coinciden)",
     "PasswordWarning": "(Se requiere confirmar contraseña)",
     "NewPassword": "Nueva contraseña",
-    "EraseProfile": "Eliminar perfil",
-    "EraseLegend": "Indique que realmente necesita o desea que se elimine su perfil, todos los datos se perderán después de hacerlo y no se podrán recuperar.",
+    "EraseProfile": "Borrar mi perfil u olvidar la configuración de mi página",
+    "EraseLegend": "Aquí puede olvidar todas sus configuraciones predeterminadas, como las contraseñas y las preferencias de idioma, y ​​también eliminar completamente su perfil. Por favor, asegúrese de que realmente necesita o desea que se elimine su perfil, todos los datos se perderán y no se podrán recuperar.",
     "RemovingTitle": "Eliminando perfil",
     "RemovingConfirmation": "¿Estás seguro de que deseas eliminar tu cuenta? Todos sus datos se eliminarán de forma permanente. Esta acción no se puede deshacer."
   },

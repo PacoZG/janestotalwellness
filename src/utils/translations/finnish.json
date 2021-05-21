@@ -11,7 +11,8 @@
     "Delete": "Poistaa",
     "Remove": "Poista",
     "ShowNote": "Näytä",
-    "HideNote": "Piilottaa"
+    "HideNote": "Piilottaa",
+    "Forget": "Unohda asetukset"
   },
   "Countries": "Suomi,Ruotsi,Norja,Viro,Saksa,Espanja,Italia,Alankomaat,Sveitsi,Meksiko",
   "Months": "Tam,Hel,Maa,Huh,Tou,Kes,Hei,Elo,Syy,Lok,Mar,Jou",
@@ -86,8 +87,8 @@
     "PasswordMatched": "(Salasanat vastaavat)",
     "PasswordWarning": "(Vahvista salasana vaaditaan)",
     "NewPassword": "Uusi salasana",
-    "EraseProfile": "Poista profiilini",
-    "EraseLegend": "Varmista, että todella tarvitset tai haluat profiilisi poistettavan, kaikki tiedot menetetään sen tekemisen jälkeen.",
+    "EraseProfile": "Poista profiilini tai unohda sivun asetukset",
+    "EraseLegend": "Täällä voit unohtaa kaikki oletusasetukset, kuten salasanat ja kieliasetukset, ja myös poistaa profiilisi kokonaan. Varmista, että todella tarvitset tai haluat profiilisi poistettavan, kaikki tiedot menetetään eikä niitä voi palauttaa.",
     "RemovingTitle": "Poistetaan profiilia",
     "RemovingConfirmation": "Haluatko varmasti poistaa tilisi? Kaikki tietosi poistetaan pysyvästi. Tätä toimintoa ei voi kumota."
   },

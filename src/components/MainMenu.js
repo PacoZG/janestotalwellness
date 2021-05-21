@@ -4,8 +4,8 @@ import { useDispatch, useSelector } from 'react-redux'
 import { Transition } from '@headlessui/react'
 import i18n from 'i18next'
 import { useTranslation } from 'react-i18next'
-import threes from '../img/threes.png'
 import { userLogout } from '../reducers/loginReducer'
+import localDB from '../utils/localdb'
 import Modal from './Modal'
 
 const MainMenu = () => {
@@ -14,8 +14,8 @@ const MainMenu = () => {
   const dispatch = useDispatch()
   const loggedUser = useSelector(state => state.loggedUser)
 
+  const [language, setLanguage] = useState(localDB.loadUserLanguage())
   const [dropdown, setDropdown] = useState(false)
-  const [mobileDropdown, setMobileDropdown] = useState(false)
   const [visibleMobileMenu, setVisibleMobileMenu] = useState(false)
   const [showLanguageMenu, setShowLanguageMenu] = useState(false)
   const [languageBackground, setLanguageBackground] = useState(false)
@@ -45,8 +45,10 @@ const MainMenu = () => {
     history.push('/home')
   }
 
-  const handleSetLanguage = language => {
-    i18n.changeLanguage(language)
+  const handleSetLanguage = lang => {
+    i18n.changeLanguage(lang)
+    setLanguage(lang)
+    localDB.setUserLanguage(lang)
     setShowLanguageMenu(!showLanguageMenu)
     setLanguageBackground(!languageBackground)
   }
@@ -62,27 +64,22 @@ const MainMenu = () => {
                 <i className="web-link text-base my-6">Jane&lsquo;s Total Wellness</i>
               </Link>
               <Link id="exercises" to={'/salon'} className="web-link">
-                <span className="division-bars "></span>
                 {t('MainMenu.ForumLabel')}
               </Link>
               <Link id="blogs" to={'/blogs'} className="web-link">
-                <span className="division-bars"></span>
                 {t('MainMenu.BlogLabel')}
               </Link>
               {loggedUser ? (
                 <Link id="myprogram" to={'/myprogram'} className="web-link">
-                  <span className="division-bars"></span>
                   {t('MainMenu.ProgramLabel')}
                 </Link>
               ) : null}
               {loggedUser && loggedUser.userType === 'admin' ? (
                 <div className="flex items-stretch">
                   <Link id="myclients" to={'/myclients'} className="web-link">
-                    <span className="division-bars"></span>
                     {t('MainMenu.ClientsLabel')}
                   </Link>
                   <Link id="create-blog" to={'/createblog'} className="web-link">
-                    <span className="division-bars"></span>
                     {t('MainMenu.CreateBlogLabel')}
                   </Link>
                 </div>
@@ -94,10 +91,10 @@ const MainMenu = () => {
             <div className="ml-1 flex items-center md:ml-3">
               <Transition
                 show={showLanguageMenu}
-                enter="transition-opacity duration-100"
+                enter="transition-opacity duration-75"
                 enterFrom="opacity-0"
                 enterTo="opacity-100"
-                leave="transition-opacity duration-100"
+                leave="transition-opacity duration-75"
                 leaveFrom="opacity-100"
                 leaveTo="opacity-0"
               >
@@ -108,14 +105,14 @@ const MainMenu = () => {
                   <p
                     id="ENG"
                     className="text-center p-1 hover:bg-gray-500 cursor-pointer "
-                    onClick={() => handleSetLanguage('en')}
+                    onClick={() => handleSetLanguage('EN')}
                   >
                     <img src="https://flagcdn.com/40x30/gb.png" className="h-5 w-7" width="80" height="60" alt="UK" />
                   </p>
                   <p
                     id="FIN"
                     className="text-center p-1 hover:bg-gray-500 cursor-pointer "
-                    onClick={() => handleSetLanguage('fi')}
+                    onClick={() => handleSetLanguage('FI')}
                   >
                     <img
                       src="https://flagcdn.com/80x60/fi.png"
@@ -128,7 +125,7 @@ const MainMenu = () => {
                   <p
                     id="ESP"
                     className="text-center p-1 hover:bg-gray-500 cursor-pointer "
-                    onClick={() => handleSetLanguage('es')}
+                    onClick={() => handleSetLanguage('ES')}
                   >
                     <img
                       src="https://flagcdn.com/40x30/es.png"
@@ -151,20 +148,23 @@ const MainMenu = () => {
                 type="button"
                 onClick={handleLanguageDropdwon}
               >
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  className="h-7 w-7"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth="2"
-                    d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9"
-                  />
-                </svg>
+                <div className="flex items-center space-x-1">
+                  <label className="text-sm pt-2">{language ? language : 'EN'}</label>
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    className="h-7 w-7"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth="2"
+                      d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9"
+                    />
+                  </svg>
+                </div>
               </button>
 
               <div className="ml-3 relative">
@@ -393,10 +393,10 @@ const MainMenu = () => {
                   className="absolute bg-gray-200 top-8 right-24 h-auto w-auto rounded-sm z-40 origin-top-right mt-2
               shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none divide-y divide-gray-300"
                 >
-                  <p className="p-1 " onClick={() => handleSetLanguage('en')}>
+                  <p className="p-1 " onClick={() => handleSetLanguage('EN')}>
                     <img src="https://flagcdn.com/40x30/gb.png" className="h-5 w-7" width="80" height="60" alt="UK" />
                   </p>
-                  <p className="p-1 " onClick={() => handleSetLanguage('fi')}>
+                  <p className="p-1 " onClick={() => handleSetLanguage('FI')}>
                     <img
                       src="https://flagcdn.com/80x60/fi.png"
                       className="h-5 w-7"
@@ -405,7 +405,7 @@ const MainMenu = () => {
                       alt="Finland"
                     />
                   </p>
-                  <p className="p-1 " onClick={() => handleSetLanguage('es')}>
+                  <p className="p-1 " onClick={() => handleSetLanguage('ES')}>
                     <img
                       src="https://flagcdn.com/40x30/es.png"
                       className="h-5 w-7"

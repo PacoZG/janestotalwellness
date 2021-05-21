@@ -11,7 +11,8 @@
     "Delete": "Delete",
     "Remove": "Remove",
     "ShowNote": "Show note",
-    "HideNote": "Hide note"
+    "HideNote": "Hide note",
+    "Forget": "Forget settings"
   },
   "Countries": "Finland,Sweden,Norway,Estonia,Germany,Spain,Italy,Netherland,Switzerland,Mexico",
   "Months": "Jan,Feb,Mar,Apr,May,Jun,Jul,Aug,Sep,Oct,Nov,Dec",
@@ -86,8 +87,8 @@
     "PasswordMatched": "(Passwords matched)",
     "PasswordWarning": "(Confirm password is required)",
     "NewPassword": "New password",
-    "EraseProfile": "Erase my profile",
-    "EraseLegend": "Please make that you really need or want your profile to be removed, all the data will be lost after doing so and cannot be recovered.",
+    "EraseProfile": "Erase my profile or forget my page settings",
+    "EraseLegend": "Here you can forget all your default settings, like passwords and language preference, also completely remove your profile. Please make that you really need or want your profile to be removed, all the data will be lost and cannot be recovered.",
     "RemovingTitle": "Removing profile",
     "RemovingConfirmation": "Are you sure you want to remove your account? All of your data will be permanently removed. This action cannot be undone."
   },

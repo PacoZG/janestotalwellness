@@ -9,6 +9,7 @@ import { userLogin, userLogout } from '../reducers/loginReducer'
 import { useField } from '../hooks/index'
 import { setNotification } from '../reducers/notificationReducer'
 import { getCountries } from '../utils/helper'
+import localdb from '../utils/localdb'
 
 const EditForm = () => {
   const { t } = useTranslation()
@@ -17,6 +18,7 @@ const EditForm = () => {
   const loggedUser = useSelector(state => state.loggedUser)
   const users = useSelector(state => state.users)
   const user = users.find(user => user.id === loggedUser.id)
+  // console.log('USER: ', user.username)
 
   // countries menu visibility control
   const [dropdown, setDropdown] = useState(false)
@@ -234,7 +236,7 @@ const EditForm = () => {
     dispatch(deleteUser(user))
     dispatch(
       setNotification({
-        message: t('EditForm.ProfileDelete'),
+        message: t('EditForm.ProfileDeleted'),
         title: t('EditForm.DeletedTitle'),
         show: true,
       })
@@ -631,7 +633,10 @@ const EditForm = () => {
                       <p className="col-span-6 mt-1 p-2 text-lg text-gray-600">{t('EditForm.EraseLegend')}</p>
                     </div>
                   </div>
-                  <div className="px-4 py-3 bg-gray-400 text-right md:px-6">
+                  <div className="px-4 py-3 bg-gray-400 text-right md:px-6 space-x-2">
+                    <button type="button" onClick={() => localdb.forgetSettings(user.username)} className="buttons-web">
+                      {t('ButtonLabel.Forget')}
+                    </button>
                     <button type="button" onClick={() => setShowModal(!showModal)} className="buttons-web">
                       {t('ButtonLabel.Remove')}
                     </button>

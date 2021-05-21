@@ -6,6 +6,7 @@ import { useField } from '../hooks/index'
 import { setNotification } from '../reducers/notificationReducer'
 import { userLogin } from '../reducers/loginReducer'
 import loginService from '../services/login'
+import localdb from '../utils/localdb'
 
 const SigninForm = () => {
   const { t } = useTranslation()
@@ -14,6 +15,14 @@ const SigninForm = () => {
   const username = useField('text')
   const password = useField('password')
 
+  const loginAgain = localdb.loadUserInfo(username.params.value)
+  if (loginAgain) {
+    console.log('LOGIN AGAIN: ', loginAgain)
+    if (username.params.value === loginAgain.username) {
+      password.params.value = loginAgain.password
+    }
+  }
+
   const credentials = {
     username: username.params.value.toLowerCase(),
     password: password.params.value,
@@ -21,6 +30,15 @@ const SigninForm = () => {
 
   const handleLogin = async event => {
     event.preventDefault()
+
+    var remember = document.getElementById('remember_me').checked
+    console.log('REMEBER: ', remember)
+    if (remember) {
+      localdb.rememberUser({
+        username: username.params.value,
+        password: password.params.value,
+      })
+    }
 
     try {
       var user = await loginService.login(credentials)
@@ -73,7 +91,7 @@ const SigninForm = () => {
               <input
                 id="username"
                 name="username"
-                autoComplete="off"
+                autoComplete="on"
                 pattern="[a-z0-9]{4,}"
                 {...username.params}
                 className="block border border-transparent focus:outline-none focus:ring-1 focus:ring-gray-400 focus:border-transparent w-full px-3 py-2 rounded-t-md placeholder-gray-200 "
@@ -118,7 +136,7 @@ const SigninForm = () => {
             <button
               id="login-button"
               type="submit"
-              className="transition duration-500 mt-1 mb-6 h-12 w-full border bg-gray-500 text-white rounded hover:bg-gray-400 focus:ring focus:ring-offset-1 focus:ring-red-800 transform active:bg-red-800"
+              className="transition duration-500 mt-1 mb-6 h-12 w-full border bg-gray-500 text-white rounded hover:bg-gray-400 focus:ring focus:ring-offset-0 focus:ring-red-800 transform active:bg-red-800"
             >
               <span className="absolute left-0 inset-y-0 flex items-center pl-3">
                 <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">

@@ -3,7 +3,7 @@ import { useHistory } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
 import { useTranslation } from 'react-i18next'
 import { useField } from '../hooks/index'
-import { createUser } from '../reducers/usersReducer'
+import { createUser, initializeUsers } from '../reducers/usersReducer'
 import { setNotification } from '../reducers/notificationReducer'
 import userService from '../services/user'
 import { getCountries } from '../utils/helper'
@@ -107,6 +107,8 @@ const SignUpForm = () => {
             genders[i].value = false
           }
         }
+
+        dispatch(initializeUsers())
         history.push('/signIn')
       }
     } catch (error) {
