@@ -3,7 +3,6 @@
 @tailwind components;
 @tailwind utilities;
 
-
 @layer components {
   .signup-input {
     @apply block border border-transparent focus:outline-none focus:ring-1 focus:ring-gray-200 focus:border-transparent rounded-sm p-2 pl-3 h-12 w-full shadow-sm text-base border-gray-100 placeholder-gray-200;
