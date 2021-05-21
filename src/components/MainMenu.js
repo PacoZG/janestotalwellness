@@ -69,11 +69,11 @@ const MainMenu = () => {
               <Link id="blogs" to={'/blogs'} className="web-link">
                 {t('MainMenu.BlogLabel')}
               </Link>
-              {loggedUser ? (
+              {/* {loggedUser ? (
                 <Link id="myprogram" to={'/myprogram'} className="web-link">
                   {t('MainMenu.ProgramLabel')}
                 </Link>
-              ) : null}
+              ) : null} */}
               {loggedUser && loggedUser.userType === 'admin' ? (
                 <div className="flex items-stretch">
                   <Link id="myclients" to={'/myclients'} className="web-link">
@@ -99,7 +99,7 @@ const MainMenu = () => {
                 leaveTo="opacity-0"
               >
                 <div
-                  className="absolute bg-gray-200 top-14 right-28 h-auto w-auto rounded-sm z-40 origin-top-right mt-2
+                  className="absolute bg-gray-200 top-13 right-22 h-auto w-auto rounded-sm z-40 origin-top-right mt-2
                             shadow-lg  ring-1 ring-black ring-opacity-5 focus:outline-none divide-y divide-gray-500"
                 >
                   <p
@@ -107,7 +107,7 @@ const MainMenu = () => {
                     className="text-center p-1 hover:bg-gray-500 cursor-pointer "
                     onClick={() => handleSetLanguage('EN')}
                   >
-                    <img src="https://flagcdn.com/40x30/gb.png" className="h-5 w-7" width="80" height="60" alt="UK" />
+                    <img src="https://flagcdn.com/40x30/gb.png" className="h-6 w-8" width="80" height="60" alt="UK" />
                   </p>
                   <p
                     id="FIN"
@@ -116,7 +116,7 @@ const MainMenu = () => {
                   >
                     <img
                       src="https://flagcdn.com/80x60/fi.png"
-                      className="h-5 w-7"
+                      className="h-6 w-8"
                       width="80"
                       height="60"
                       alt="Finland"
@@ -129,7 +129,7 @@ const MainMenu = () => {
                   >
                     <img
                       src="https://flagcdn.com/40x30/es.png"
-                      className="h-5 w-7"
+                      className="h-6 w-8"
                       width="80"
                       height="60"
                       alt="Spain"
@@ -139,9 +139,10 @@ const MainMenu = () => {
                 <button
                   id="langBackground-button"
                   onClick={handleLanguageDropdwon}
-                  className="transition duration-500 fixed inset-0 w-full bg-black opacity-25 z-30 cursor-wait"
+                  className="fixed inset-0 w-full bg-black opacity-25 z-30 cursor-wait"
                 ></button>
               </Transition>
+              <label className="text-base text-gray-300 pt-2 pr-1">{language ? language : 'EN'}</label>
               <button
                 id="language-menuShow"
                 className="transition duration-1000 pr-1 text-xl text-gray-300 hover:text-gray-400 rounded-full focus:outline-none z-40 "
@@ -149,7 +150,6 @@ const MainMenu = () => {
                 onClick={handleLanguageDropdwon}
               >
                 <div className="flex items-center space-x-1">
-                  <label className="text-sm pt-2">{language ? language : 'EN'}</label>
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     className="h-7 w-7"
@@ -390,16 +390,16 @@ const MainMenu = () => {
                 leaveTo="opacity-0"
               >
                 <div
-                  className="absolute bg-gray-200 top-8 right-24 h-auto w-auto rounded-sm z-40 origin-top-right mt-2
+                  className="absolute bg-gray-200 top-14 right-26 h-auto w-auto rounded-sm z-40 origin-top-right mt-2
               shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none divide-y divide-gray-300"
                 >
                   <p className="p-1 " onClick={() => handleSetLanguage('EN')}>
-                    <img src="https://flagcdn.com/40x30/gb.png" className="h-5 w-7" width="80" height="60" alt="UK" />
+                    <img src="https://flagcdn.com/40x30/gb.png" className="h-6 w-8" width="80" height="60" alt="UK" />
                   </p>
                   <p className="p-1 " onClick={() => handleSetLanguage('FI')}>
                     <img
                       src="https://flagcdn.com/80x60/fi.png"
-                      className="h-5 w-7"
+                      className="h-6 w-8"
                       width="80"
                       height="60"
                       alt="Finland"
@@ -408,7 +408,7 @@ const MainMenu = () => {
                   <p className="p-1 " onClick={() => handleSetLanguage('ES')}>
                     <img
                       src="https://flagcdn.com/40x30/es.png"
-                      className="h-5 w-7"
+                      className="h-6 w-8"
                       width="80"
                       height="60"
                       alt="Spain"
@@ -420,6 +420,7 @@ const MainMenu = () => {
                   className="fixed inset-0 w-full bg-black opacity-20 z-30"
                 ></button>
               </Transition>
+              <label className="text-base text-gray-300 pt-2 pr-1">{language ? language : 'EN'}</label>
               <button
                 className="pr-3 text-xl text-gray-300 rounded-full focus:outline-none "
                 type="button"
@@ -635,11 +636,11 @@ const MainMenu = () => {
               <Link to={'/blogs'} className="mobile-link">
                 {t('MainMenu.BlogLabel')}
               </Link>
-              {loggedUser ? (
+              {/* {loggedUser ? (
                 <Link to={'/myprogram'} className="mobile-link">
                   {t('MainMenu.ProgramLabel')}
                 </Link>
-              ) : null}
+              ) : null} */}
               {loggedUser && loggedUser.userType === 'admin' ? (
                 <div className="space-y-3">
                   <Link to={'/myclients'} className="mobile-link">

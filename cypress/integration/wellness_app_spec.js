@@ -131,7 +131,7 @@ describe('Wellness app', function () {
       cy.get('#login-button').click()
       cy.get('#modal-message').contains('Welcome back bruce, your session will automatically expire in 30 minutes')
       cy.get('#modal-ok').click()
-      cy.contains('Page under construction')
+      cy.contains('Welcome to Jane Total Wellness app')
     })
   })
 
