@@ -62,7 +62,7 @@ const SigninForm = () => {
           })
         )
       }
-      history.push('/myprogram')
+      history.push('/home')
     } catch (error) {
       dispatch(
         setNotification({
