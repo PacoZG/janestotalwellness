@@ -73,9 +73,9 @@ const App = () => {
           <Route path="/myclients/">
             <MyClients />
           </Route>
-          <Route path="/myprogram">
+          {/* <Route path="/myprogram">
             <MyProgram />
-          </Route>
+          </Route> */}
           <Route path="/salon">
             <Salon />
           </Route>
