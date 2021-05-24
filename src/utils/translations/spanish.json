@@ -55,6 +55,12 @@
     "NotesLabel": "Notas",
     "NoNotes": "No hay notas publicadas en el historial de este cliente."
   },
+  "CookiesBanner": {
+    "Message": "Este sitio web utiliza cookies, utilizamos cookies para proporcionar funciones de redes sociales, para analizar nuestro tráfico y auto publicidad. Por favor lea nuestra ",
+    "Cookies": "política de cookies",
+    "Decline": "Rechazar",
+    "Accept": "Aceptar"
+  },
   "EditForm": {
     "ImageWarning": "La imagen es mas grande de 3MB",
     "ImageRequirement": "PNG, JPG, JPEG hasta 3MB",
@@ -96,6 +102,10 @@
     "UnderConst": "Página web en construcción",
     "About": "Acerca de mí",
     "Terms": "Términos & condiciones"
+  },
+  "Salon":{
+    "Welcome": "Bienvenido a Jane's Salon, un foro donde puedes abrir discusiones amigables e interesantes sobre los temas que podrían ser de tu interés o que quieras compartir, que te preocupen, te gustaría preguntar o que simplemente quieres compartir con nuestra comunidad. no dude en expresarse, pero siga nuestro",
+    "Code": " código de conducta"
   },
   "Signin": {
     "Welcome": "Bienvenido de nuevo ",

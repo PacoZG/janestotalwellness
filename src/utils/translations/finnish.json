@@ -55,6 +55,12 @@
     "NotesLabel": "Huomautuksia",
     "NoNotes": "Tässä asiakashistoriassa ei ole yhtään muistiinpanoas"
   },
+  "CookiesBanner": {
+    "Message": "Tämä verkkosivusto käyttää evästeitä. Käytämme evästeitä sosiaalisen median ominaisuuksien tarjoamiseen, liikenteen ja itse mainostamisen analysointiin. Lue ",
+    "Cookies": "evästekäytäntömme",
+    "Decline": "Hyväksyä",
+    "Accept": "Hylätä"
+  },
   "EditForm": {
     "ImageWarning": "Kuva on suurempi kuin 3 Mt",
     "ImageRequirement": "PNG, JPG, JPEG enintään 3 Mt",
@@ -96,6 +102,10 @@
     "UnderConst": "Verkkosivusto rakenteilla",
     "About": "Minusta",
     "Terms": "käyttöehdot"
+  },
+  "Salon":{
+    "Welcome": "Tervetuloa Jane's Salon -foorumiin, jossa voit avata ystävällisiä ja mielenkiintoisia keskusteluja aiheista, jotka saattavat kiinnostaa sinua tai haluat ehkä jakaa, huolestuttaa sinua, haluaa kysyä tai haluat yksinkertaisesti jakaa yhteisömme kanssa, ilmaise itseäsi, mutta noudata käytännesääntöjämme, mutta noudata",
+    "Code": "  käytännesääntöjämme"
   },
   "Signin": {
     "Welcome": "Tervetuloa takaisin ",

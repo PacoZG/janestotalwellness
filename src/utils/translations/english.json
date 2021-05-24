@@ -55,6 +55,12 @@
     "NotesLabel": "Notes",
     "NoNotes": "There are no notes posted in this clients history"
   },
+  "CookiesBanner": {
+    "Message": "This website uses cookies, We use cookies to provide social media features, to analyse our traffic and self advertisement. Please read our ",
+    "Cookies": "cookies policy",
+    "Decline": "Decline",
+    "Accept": "Accept"
+  },
   "EditForm": {
     "ImageWarning": "Image is larger than 3MB",
     "ImageRequirement": "PNG, JPG, JPEG up to 3MB",
@@ -96,6 +102,10 @@
     "UnderConst": "Website under construction",
     "About": "About me",
     "Terms": "Terms & conditions"
+  },
+  "Salon":{
+    "Welcome": "Welcome to Jane‘s Salon, a forum where you can open friendly and interesting discussions about the topics that might be of your interest or you might want to share, concern you, would like ask or that you simply want to share with our community, feel free to express yourself but please follow our",
+    "Code": " code of conduct"
   },
   "Signin": {
     "Welcome": "Welcome back ",

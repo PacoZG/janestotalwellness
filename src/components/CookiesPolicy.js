@@ -44,6 +44,10 @@ const CookiesPolicy = () => {
           <strong>Website</strong> refers to janestotalwellness, accessible from{' '}
           <a href="janestotalwellness.com" rel="external nofollow noopener" target="blank">
             janestotalwellness.com
+          </a>{' '}
+          or{' '}
+          <a href="janestotalwellness.fi" rel="external nofollow noopener" target="blank">
+            janestotalwellness.fi
           </a>
         </li>
         <li>
@@ -156,12 +160,16 @@ const CookiesPolicy = () => {
         .
       </p>
       <h2>Contact Us</h2>
-      <p>If you have any questions about this Cookies Policy, You can contact us:</p>
+      <p>If you have any questions about this Cookies Policy, You can contact us: </p>
       <ul>
         <li>
           By visiting this page on our website:{' '}
           <a href="janestotalwellness.com/home" rel="external nofollow noopener" target="blank">
             janestotalwellness.com/home
+          </a>{' '}
+          or{' '}
+          <a href="janestotalwellness.fi/home" rel="external nofollow noopener" target="blank">
+            janestotalwellness.fi/home
           </a>
         </li>
       </ul>

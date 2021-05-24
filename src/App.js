@@ -11,7 +11,6 @@ import Blog from './components/blogs/Blog'
 import CreateBlog from './components/blogs/CreateBlog'
 import BlogList from './components/blogs/BlogList'
 import Client from './components/Client'
-import CookiesBanner from './components/CookiesBanner'
 import CookiesPolicy from './components/CookiesPolicy'
 import Editform from './components/EditForm'
 import ExerciseLibrary from './components/ExerciseLibrary'
@@ -20,7 +19,7 @@ import Home from './components/Home'
 import MainMenu from './components/MainMenu'
 import MyClients from './components/MyClients'
 import MyProgram from './components/MyProgram'
-import Salon from './components/Salon'
+import Salon from './components/Forum/Salon'
 import SignInForm from './components/SignInForm'
 import SignUpForm from './components/SignUpForm'
 import UserProfile from './components/UserProfile'
@@ -95,7 +94,6 @@ const App = () => {
         <Route>
           <WarningLogout />
         </Route>
-        <CookiesBanner />
         <Footer />
       </Router>
     </div>

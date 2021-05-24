@@ -6,7 +6,6 @@ import { Link } from 'react-router-dom'
 const BlogList = () => {
   const blogs = useSelector(state => state.blogs)
   const { t } = useTranslation()
-  console.log('BLOGS: ', blogs.length)
 
   const getDate = objectDate => {
     const months = t('Months').split(',')
