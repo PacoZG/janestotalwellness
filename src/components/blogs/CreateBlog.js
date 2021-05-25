@@ -15,6 +15,7 @@ const CreateBlog = () => {
   const content = useField('text')
   const title = useField('text')
   // handle image and health info information
+  // eslint-disable-next-line
   const [imageMessage, setImageMessage] = useState(null)
   const [selectedFile, setSelecteFile] = useState('')
   const [imagePreview, setImagePreview] = useState(null)

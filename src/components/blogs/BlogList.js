@@ -31,7 +31,7 @@ const BlogList = () => {
           <div key={i} className="bg-blue-100 border-b-2 border-t-2">
             <Link to={`/blogs/${blog.id}`} className="transition duration-500 text-gray-700 hover:text-red-700">
               <div className="flex items-center space-x-2 justify-evenly p-4">
-                <img src={blog.imageURL} className="h-24 w-28 rounded-2xl" />
+                <img src={blog.imageURL} alt="profile" className="h-24 w-28 rounded-2xl" />
                 <div>
                   <b className="text-sm md:text-base">{blog.title}</b>
                   <p>

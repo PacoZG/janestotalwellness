@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { useHistory } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
+import { Transition } from '@tailwindui/react'
 import { useTranslation } from 'react-i18next'
 import { updateUser, deleteUser } from '../reducers/usersReducer'
 import imageService from '../services/images'
@@ -18,11 +19,9 @@ const EditForm = () => {
   const loggedUser = useSelector(state => state.loggedUser)
   const users = useSelector(state => state.users)
   const user = users.find(user => user.id === loggedUser.id)
-  // console.log('USER: ', user.username)
 
   // countries menu visibility control
   const [dropdown, setDropdown] = useState(false)
-  const visibleDrop = { display: dropdown ? '' : 'none' }
   const countries = getCountries()
 
   // visibility control of remove profile confirmation modal
@@ -469,7 +468,7 @@ const EditForm = () => {
                               {country ? (
                                 <div className="text-gray-500 md:text-base pl-1">{country}</div>
                               ) : (
-                                <div className="opacity-25 text-lg pl-1">{t('EditForm.SelectCountry')}</div>
+                                <div className="opacity-25 text-base pl-1">{t('EditForm.SelectCountry')}</div>
                               )}
                               <div className="flex ">
                                 {country ? (
@@ -500,21 +499,28 @@ const EditForm = () => {
                               </div>
                             </div>
                           </div>
-                          <div
-                            style={visibleDrop}
-                            className="border rounded-sm col-span-6 bg-white mt-4 divide-y divide-gray-50 "
+                          <Transition
+                            show={dropdown}
+                            enter="transition ease-out duration-150"
+                            enterFrom="transform opacity-0 scale-95"
+                            enterTo="transform opacity-100 scale-100"
+                            leave="transition ease-in duration-75"
+                            leaveFrom="transform opacity-100 scale-100"
+                            leaveTo="transform opacity-0 scale-95"
                           >
-                            {countries.sort().map(country => (
-                              <p
-                                id={`${country}`}
-                                className="p-1 pl-2 text-gray-700 hover:bg-gray-500 hover:text-white cursor-pointer"
-                                onClick={() => handleCountry(country)}
-                                key={country}
-                              >
-                                {country}
-                              </p>
-                            ))}
-                          </div>
+                            <div className="absolute border rounded-sm bg-white mt-4 divide-y divide-gray-50 w-48 ">
+                              {countries.sort().map(country => (
+                                <p
+                                  id={`${country}`}
+                                  className="p-1 pl-2 text-gray-700 hover:bg-gray-500 hover:text-white cursor-pointer"
+                                  onClick={() => handleCountry(country)}
+                                  key={country}
+                                >
+                                  {country}
+                                </p>
+                              ))}
+                            </div>
+                          </Transition>
                         </div>
                       </div>
                     </div>

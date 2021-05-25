@@ -1,35 +1,36 @@
 import React, { useState } from 'react'
+// eslint-disable-next-line
 import { useDispatch, useSelector } from 'react-redux'
 import { useTranslation } from 'react-i18next'
 import { Transition } from '@tailwindui/react'
 import { useField } from '../../hooks/index'
-import { Link } from 'react-router-dom'
+
+import Comment from './Comment'
 
 const Discussion = d => {
   const { t } = useTranslation()
   const loggedUser = useSelector(state => state.loggedUser)
   const [showContent, setShowContent] = useState(false)
-  const [showReplies, setShowReplies] = useState(false)
-  const [showInputReply, setShowInputReply] = useState(false)
-
+  const [showComments, setShowComments] = useState(false)
+  const [showCommentInput, setShowCommentInput] = useState(false)
   const author = useField('text')
-  const reply = useField('text')
+  const comment = useField('text')
 
   const handleShowContent = () => {
     setShowContent(!showContent)
-    if (showReplies) {
-      setShowReplies(!showReplies)
+    if (showComments) {
+      setShowComments(!showComments)
     }
-    if (showInputReply) {
-      setShowInputReply(!showInputReply)
+    if (showCommentInput) {
+      setShowCommentInput(!showCommentInput)
     }
   }
 
-  const handleShowReplies = () => {
-    setShowReplies(!showReplies)
-    if (showInputReply) {
-      setShowInputReply(!showInputReply)
+  const handleShowComments = () => {
+    if (showCommentInput && showComments) {
+      setShowCommentInput(!showCommentInput)
     }
+    setShowComments(!showComments)
   }
 
   const getDate = objectDate => {
@@ -47,23 +48,39 @@ const Discussion = d => {
   }
   // console.log('DISCUSSION: ', d)
   return (
-    <div className="relative bg-blue-100 ">
+    <div className="relative w-full bg-blue-100 ">
       <div>
-        <p className="h-4 bg-blue-200 border-white"></p>
+        <p className="h-4 bg-blue-100 border-white"></p>
         <div className="flex justify-between bg-gradient-to-r from-gray-300 to-gray-200 p-2">
           <div className="md:pl-4">
-            <h3 className="">
-              <b>Topic: </b> {d.discussion.topic}
-            </h3>
-            <p>
-              <b>Author: </b>
-              {d.discussion.author}
-            </p>
-            <p>
-              <b>Title: </b>
-              {d.discussion.title}
-            </p>
-            <p className="text-xs">{getDate(d.discussion.date)}</p>
+            <table className="table-auto">
+              <tbody>
+                <tr>
+                  <td className="text-sm w-24">
+                    <b>{t('Discussion.Topic')}</b>
+                  </td>
+                  <td className="text-sm">{d.discussion.topic}</td>
+                </tr>
+                <tr>
+                  <td className="text-sm">
+                    <b className="text-sm">{t('Discussion.Author')}</b>
+                  </td>
+                  <td className="text-sm">{d.discussion.author}</td>
+                </tr>
+                <tr>
+                  <td className="text-sm">
+                    <b className="text-sm">{t('Discussion.Title')}</b>
+                  </td>
+                  <td className="text-sm">{d.discussion.title}</td>
+                </tr>
+                <tr>
+                  <td className="text-sm">
+                    <b className="text-sm">{t('Discussion.Date')}</b>
+                  </td>
+                  <td className="text-sm">{getDate(d.discussion.date)}</td>
+                </tr>
+              </tbody>
+            </table>
           </div>
 
           <div className="flex flex-col items-end justify-between">
@@ -123,13 +140,17 @@ const Discussion = d => {
                   </svg>
                 </button>
               </div>
-              <label className="font-semibold text-xs justify-end">{showContent ? 'Hide' : 'Show'}</label>
+              <label className="font-semibold text-sm justify-end">
+                {showContent ? t('Discussion.Hide') : t('Discussion.Show')}
+              </label>
             </div>
           </div>
         </div>
       </div>
+
       <Transition
         show={showContent}
+        // show={true}
         enter="transition-opacity duration-1000"
         enterFrom="opacity-0"
         enterTo="opacity-100"
@@ -137,102 +158,100 @@ const Discussion = d => {
         leaveFrom="opacity-700"
         leaveTo="opacity-0"
       >
-        <div>
-          <div className="px-3">
-            <p className="md:px-8 md:py-2 md:text-justify">{d.discussion.content}</p>
-          </div>
+        <div className="px-3">
+          <p className="md:px-8 md:py-2 text-sm md:text-justify">{d.discussion.content}</p>
         </div>
 
-        <div className="flex items-center border-t-2 pl-2 border-gray-300 w-full">
-          <label className="transition duration-500 font-semibold md:pl-4 pt-1 text-xs">
-            {showReplies ? 'Hide replies' : 'Show replies'}
+        <div className="flex flex-row border-t-2 pl-2 p-1 border-gray-300 w-full">
+          <label className="text-sm pl-2 pt-1 ">
+            {showComments ? t('Discussion.HideComments') : t('Discussion.ShowComments')}
           </label>
-          <div>
-            <button
-              className={
-                showReplies
-                  ? 'transition duration-300 transform rotate-90 focus-within:outline-none p-1'
-                  : 'transition duration-150 focus-within:outline-none p-1'
-              }
-              onClick={handleShowReplies}
-            >
-              <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" viewBox="0 0 20 20" fill="currentColor">
-                <path
-                  fillRule="evenodd"
-                  d="M10.293 15.707a1 1 0 010-1.414L14.586 10l-4.293-4.293a1 1 0 111.414-1.414l5 5a1 1 0 010 1.414l-5 5a1 1 0 01-1.414 0z"
-                  clipRule="evenodd"
-                />
-                <path
-                  fillRule="evenodd"
-                  d="M4.293 15.707a1 1 0 010-1.414L8.586 10 4.293 5.707a1 1 0 011.414-1.414l5 5a1 1 0 010 1.414l-5 5a1 1 0 01-1.414 0z"
-                  clipRule="evenodd"
-                />
-              </svg>
-            </button>
-          </div>
+          <button
+            className={
+              showComments
+                ? 'transition duration-300 transform rotate-90 focus-within:outline-none p-1'
+                : 'transition duration-150 focus-within:outline-none p-1'
+            }
+            onClick={handleShowComments}
+          >
+            <svg xmlns="http://www.w3.org/2000/svg" className="h-3 w-3" viewBox="0 0 20 20" fill="currentColor">
+              <path
+                fillRule="evenodd"
+                d="M10.293 15.707a1 1 0 010-1.414L14.586 10l-4.293-4.293a1 1 0 111.414-1.414l5 5a1 1 0 010 1.414l-5 5a1 1 0 01-1.414 0z"
+                clipRule="evenodd"
+              />
+              <path
+                fillRule="evenodd"
+                d="M4.293 15.707a1 1 0 010-1.414L8.586 10 4.293 5.707a1 1 0 011.414-1.414l5 5a1 1 0 010 1.414l-5 5a1 1 0 01-1.414 0z"
+                clipRule="evenodd"
+              />
+            </svg>
+          </button>
+          <button
+            className="text-sm pl-1 pb-1 transition duration-300 hover:text-blue-600 focus-within:outline-none"
+            onClick={() => setShowCommentInput(!showCommentInput)}
+          >
+            <span>{showCommentInput ? t('Discussion.Cancel') : t('Discussion.MakeAComment')}</span>
+          </button>
         </div>
-      </Transition>
-      <Transition
-        show={showReplies}
-        enter="transition-opacity duration-1000"
-        enterFrom="opacity-0"
-        enterTo="opacity-100"
-        leave="transition-opacity duration-75"
-        leaveFrom="opacity-700"
-        leaveTo="opacity-0"
-      >
-        <div className=" border-t-2 border-gray-200 bg-blue-100 pl-2 pr-2">
-          {d.discussion.responses.map((response, i) => (
-            <div key={i} className="md:pl-16">
-              <h3 className="border-b border-gray-300 bg-gray-300 text-black pl-2 md:p-1">
-                {response.author}
-                {' - '} <span className="text-xs"> {getDate(response.date)}</span>
-              </h3>
-              <p className="text-sm pl-3 pr-2 bg-blue-200">{response.content}</p>
-            </div>
-          ))}
-          <div className="md:pl-16">
-            <div className="pl-2 bg-gray-300">
-              <button
-                onClick={() => setShowInputReply(!showInputReply)}
-                className="flex items-center space-x-1 p-1 hover:text-gray-500 focus-within:outline-none"
-              >
-                <span className="font-semibold text-xs">Reply</span>
-                <svg xmlns="http://www.w3.org/2000/svg" className="h-3 w-3" viewBox="0 0 20 20" fill="currentColor">
-                  <path
-                    fillRule="evenodd"
-                    d="M7.707 3.293a1 1 0 010 1.414L5.414 7H11a7 7 0 017 7v2a1 1 0 11-2 0v-2a5 5 0 00-5-5H5.414l2.293 2.293a1 1 0 11-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z"
-                    clipRule="evenodd"
-                  />
-                </svg>
+        <Transition
+          show={showCommentInput}
+          // show={true}
+          enter="transition-opacity duration-500"
+          enterFrom="opacity-0"
+          enterTo="opacity-100"
+          leave="transition-opacity duration-75"
+          leaveFrom="opacity-700"
+          leaveTo="opacity-0"
+        >
+          <div className="flex flex-col pl-2 pr-2 justify-end w-full">
+            {loggedUser ? (
+              <label className="bg-gray-300  rounded-t-md border-t-2 border-gray-500 pl-2 p-1 mb-0  text-sm">
+                {t('Discussion.Author')}: <span className="italic font-semibold">{loggedUser.username}</span>{' '}
+              </label>
+            ) : (
+              <input
+                id="author-comment"
+                {...author.params}
+                className="editform-input rounded-b-none"
+                placeholder={t('Discussion.Author')}
+              />
+            )}
+
+            <textarea
+              id="content-comment"
+              {...comment.params}
+              className="text-area rounded-b-md max-h-14"
+              placeholder={t('Discussion.CommentPlaceholder')}
+            />
+            <div className="flex items-center justify-end space-x-2 pr-3">
+              <button id="cancel-post-comment" className="buttons-web text-black bg-gray-200 p-1 m-1">
+                {t('Discussion.Cancel')}
+              </button>
+              <button id="post-comment" className="buttons-web text-black bg-gray-200 p-1 m-1">
+                {t('Discussion.PostComment')}
               </button>
             </div>
-            <Transition
-              show={showInputReply}
-              enter="transition-opacity duration-75"
-              enterFrom="opacity-0"
-              enterTo="opacity-100"
-              leave="transition-opacity duration-75"
-              leaveFrom="opacity-700"
-              leaveTo="opacity-0"
-            >
-              <div className="">
-                {loggedUser ? (
-                  <label className="bg-gray-300 border-t-2 border-gray-500 pl-2 p-1 mb-0 w-full text-sm">
-                    Author: <span className="italic font-semibold">{loggedUser.username}</span>{' '}
-                  </label>
-                ) : (
-                  <input {...author.params} className="editform-input" placeholder="Author" />
-                )}
-
-                <textarea {...reply.params} className="text-area max-h-14" placeholder="Write your response..." />
-              </div>
-            </Transition>
           </div>
-        </div>
+        </Transition>
       </Transition>
 
-      <div className="h-4 bg-blue-200 border-b-4 border-white"></div>
+      <Transition
+        show={showComments}
+        enter="transition-opacity duration-1000"
+        enterFrom="opacity-0"
+        enterTo="opacity-100"
+        leave="transition-opacity duration-75"
+        leaveFrom="opacity-700"
+        leaveTo="opacity-0"
+      >
+        <div className=" border-t-2 border-gray-200 divide-solid divide-y-2 divide-gray-400 bg-blue-100 pl-2 pr-2">
+          {d.discussion.comments.map((comment, i) => (
+            <Comment key={i} comment={comment} showComments={showComments} />
+          ))}
+        </div>
+      </Transition>
+      <div className="h-4 bg-blue-100 border-b-4 border-white"></div>
     </div>
   )
 }

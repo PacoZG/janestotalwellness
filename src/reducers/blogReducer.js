@@ -1,5 +1,4 @@
 import blogService from '../services/blogs'
-import localdb from '../utils/localdb'
 
 const blogReducer = (state = [], action) => {
   switch (action.type) {

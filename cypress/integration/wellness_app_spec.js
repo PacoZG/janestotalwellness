@@ -58,8 +58,8 @@ describe('Wellness app', function () {
 
     it('check different pages visibility', function () {
       // temporary test, will expand over time
-      cy.get('#exercises').click()
-      cy.contains('Page under construction')
+      cy.get('#salon').click()
+      cy.contains('Welcome to Jane‘s Salon')
     })
 
     it('Sign up form is shown', function () {

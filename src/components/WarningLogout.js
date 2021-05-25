@@ -12,10 +12,9 @@ const WarningLogout = () => {
   const [showModal, setShowModal] = useState(false)
   const showConfirmationModal = { display: showModal ? '' : 'none' }
 
-  let logoutTimeout
   useEffect(() => {
     if (loggedUser && loggedUser.userType === 'client') {
-      logoutTimeout = setTimeout(() => {
+      setTimeout(() => {
         history.push('/home')
         dispatch(userLogout())
         setShowModal(!showModal)

@@ -40,17 +40,17 @@ const Client = () => {
     event.preventDefault()
     let clientToUpdate = { ...client }
     let userUpdated = false
-    if (parseInt(height.params.value) !== client.height && height.params.value.length > 1) {
+    if (parseInt(height.params.value, 10) !== client.height && height.params.value.length > 1) {
       clientToUpdate = {
         ...clientToUpdate,
-        height: parseInt(height.params.value),
+        height: parseInt(height.params.value, 10),
       }
       userUpdated = true
     }
-    if (parseInt(weight.params.value) !== client.weight && weight.params.value.length > 0) {
+    if (parseInt(weight.params.value, 10) !== client.weight && weight.params.value.length > 0) {
       clientToUpdate = {
         ...clientToUpdate,
-        weight: parseInt(weight.params.value),
+        weight: parseInt(weight.params.value, 10),
       }
       userUpdated = true
     }
@@ -114,7 +114,7 @@ const Client = () => {
         dispatch(updateNote(updatedNote))
         client.notes = client.notes.map(note => (note.id !== updatedNote.id ? note : updatedNote))
         dispatch(setNotification({ message: t('Client.UpdateNote'), title: 'Sucess', show: true }))
-        title.reset()
+        // title.reset()
         content.reset()
       } catch (error) {
         console.log(error.message)
@@ -152,7 +152,7 @@ const Client = () => {
           <div className="flex flex-col items-center pb-2">
             <label className="tracking-wide border-b pb-2">{`${client.username}`}</label>
             {client.imageURL ? (
-              <img src={client.imageURL} className="h-40 w-40 md:h-40 md:w-40 border rounded-full" />
+              <img src={client.imageURL} alt="profile" className="h-40 w-40 md:h-40 md:w-40 border rounded-full" />
             ) : (
               <span className="inline-block rounded-full h-28 w-28 md:h-32 md:w-32 md:rounded-full overflow-hidden bg-gray-100">
                 <svg className="h-full w-full text-gray-300" fill="currentColor" viewBox="0 0 24 24">
@@ -348,7 +348,11 @@ const Client = () => {
                 <div className="flex flex-col items-center space-y-3 border-gray-700 p-9 ">
                   <label className="tracking-wide border-b pb-2">{`${client.username}`}</label>
                   {client.imageURL ? (
-                    <img src={client.imageURL} className="h-40 w-40 md:h-40 md:w-40 border rounded-full" />
+                    <img
+                      src={client.imageURL}
+                      alt="profile"
+                      className="h-40 w-40 md:h-40 md:w-40 border rounded-full"
+                    />
                   ) : (
                     <span className="inline-block rounded-full h-28 w-28 md:h-32 md:w-32 md:rounded-full overflow-hidden bg-gray-100">
                       <svg className="h-full w-full text-gray-300" fill="currentColor" viewBox="0 0 24 24">

@@ -108,7 +108,11 @@ const Blog = () => {
         <div className="prose prose-red prose-sm md:prose-sm mx-auto md:max-w-7xl pl-3 pr-3 p-3 md:pl-10 md:pr-10">
           <div className="flex flex-col items-center">
             <h1>{blog.title}</h1>
-            <img src={blog.imageURL} className="md:h-96 md:w-auto rounded-sm shadow-lg border-2 border-black m-4 p-3" />
+            <img
+              src={blog.imageURL}
+              alt="profile"
+              className="md:h-96 md:w-auto rounded-sm shadow-lg border-2 border-black m-4 p-3"
+            />
           </div>
           <div className="md:pl-16 md:pr-16 text-justify">
             <ReactMarkdown>{blog.content}</ReactMarkdown>

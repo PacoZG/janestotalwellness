@@ -4,7 +4,6 @@ import { Link } from 'react-router-dom'
 import facebook from '../img/f-icon.jpg'
 import { FacebookShareButton, FacebookShareCount, FacebookIcon } from 'react-share'
 import CookiesBanner from './CookiesBanner'
-import CookiesPolicy from './CookiesPolicy'
 
 const Footer = () => {
   const { t } = useTranslation()
