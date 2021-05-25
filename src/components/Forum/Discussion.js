@@ -4,7 +4,6 @@ import { useDispatch, useSelector } from 'react-redux'
 import { useTranslation } from 'react-i18next'
 import { Transition } from '@tailwindui/react'
 import { useField } from '../../hooks/index'
-
 import Comment from './Comment'
 
 const Discussion = d => {
