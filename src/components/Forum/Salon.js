@@ -194,7 +194,6 @@ const Salon = () => {
         </h1>
 
         <div className="relative">
-          {/* side menu */}
           <div className="absolute inset-y-0 left-0 h-screen z-40 bg-gray-400 bg-gradient-to-br from-gray-400 via-gray-200 to-transparent border-r-1 bg-opacity-10 border-gray-300 border-opacity-10">
             <button
               className={
@@ -273,7 +272,6 @@ const Salon = () => {
             </div>
           </Transition>
 
-          {/* Discussion inputs */}
           <div className="ml-6">
             <button
               onClick={() => setShowDiscussionInput(!showDiscussionInput)}
@@ -284,7 +282,6 @@ const Salon = () => {
 
             <Transition
               show={showDiscussionInput}
-              // show={true}
               enter="transition transform duration-500 ease-out"
               enterFrom="-translate-y-4 z-0 opacity-0"
               enterTo="translate-y-0 z-40 opacity-100"
