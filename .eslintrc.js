@@ -5,6 +5,9 @@ module.exports = {
     es2021: true,
     'jest/globals': true,
     'cypress/globals': true,
+    'commonjs': true,
+    'es2021': true,
+    'node': true,
   },
   extends: ['plugin:react/recommended', 'plugin:cypress/recommended', 'prettier'],
   globals: {
@@ -32,7 +35,6 @@ module.exports = {
     'arrow-spacing': ['error', { before: true, after: true }],
     'no-console': 0,
     'prettier/prettier': 'error',
-    // 'react/prop-types': 'off',
   },
   settings: {
     react: {
