@@ -1,5 +1,6 @@
 import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
+import { Transition } from '@tailwindui/react'
 import { setNotification } from '../reducers/notificationReducer'
 const Modal = () => {
   const messageData = useSelector(state => state.notification)
@@ -11,7 +12,15 @@ const Modal = () => {
   if (!messageData.show) return <div></div>
 
   return (
-    <div>
+    <Transition
+      show={messageData.show}
+      enter="transition transform duration-1000 ease-out"
+      enterFrom="-translate-x-4 z-0 opacity-0"
+      enterTo="translate-x-0 z-40 opacity-100"
+      leave="transition transform duration-1000 ease-in"
+      leaveFrom="translate-x-0 z-40 opacity-100"
+      leaveTo="-translate-x-4 z-0 opacity-0"
+    >
       <div id="modal">
         <div className="justify-center items-center flex overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none">
           <div className="relative w-auto my-6 mx-auto max-w-sm">
@@ -56,7 +65,7 @@ const Modal = () => {
         </div>
         <div className="opacity-25 fixed inset-0 z-40 bg-black"></div>
       </div>
-    </div>
+    </Transition>
   )
 }
 

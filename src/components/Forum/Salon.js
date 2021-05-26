@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import Discussion from './Discussion'
+import { Transition } from '@tailwindui/react'
 import { Link } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { useTranslation } from 'react-i18next'
@@ -8,12 +8,14 @@ import { setNotification } from '../../reducers/notificationReducer'
 import { userLogin } from '../../reducers/loginReducer'
 import loginService from '../../services/login'
 import localdb from '../../utils/localdb'
-import { Transition } from '@tailwindui/react'
+import Discussion from './Discussion'
+import { createDiscussion } from '../../reducers/discussionReducer'
 
 const Salon = () => {
   const { t } = useTranslation()
   const dispatch = useDispatch()
   const loggedUser = useSelector(state => state.loggedUser)
+  const discussions = useSelector(state => state.discussions)
   const [showSideMenu, setShowSideMenu] = useState(false)
   const [showTopicMenu, setShowTopicMenu] = useState(false)
   const [showDiscussionInput, setShowDiscussionInput] = useState(false)
@@ -25,11 +27,83 @@ const Salon = () => {
   const discussionTitle = useField('text')
   const typedTopic = useField('text')
 
-  const topics = ['Exercise', 'Nutrition', 'Other']
-  const handleTopic = topic => {
-    setTopic(topic)
-    setShowTopicMenu(!showTopicMenu)
-  }
+  // let discussionsjson = [
+  //   {
+  //     createdAt: '2021-05-18T12:01:15.056+00:00',
+  //     author: 'Paco Zavala',
+  //     topic: 'Nutrition',
+  //     title: 'I want to know more about Lorem',
+  //     content:
+  //       "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
+  //     likes: 12,
+  //     dislikes: 2,
+  //     comments: [
+  //       {
+  //         author: 'Paco',
+  //         content:
+  //           'Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC,',
+  //         createdAt: '2021-05-07T09:27:00.733+00:00',
+  //         replies: [],
+  //       },
+  //       {
+  //         author: 'Samu',
+  //         content:
+  //           'It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters',
+  //         createdAt: '2021-05-21T09:27:00.733+00:00',
+  //         replies: [
+  //           {
+  //             author: 'Paco',
+  //             content: 'Yeah, yeah, sure.',
+  //             createdAt: '2021-07-04T13:01:15.056+00:00',
+  //           },
+  //           {
+  //             author: 'Jane',
+  //             content: 'This sounds bien sucio',
+  //             createdAt: '2021-07-10T12:30:15.056+00:00',
+  //           },
+  //         ],
+  //       },
+  //     ],
+  //   },
+  //   {
+  //     createdAt: '2021-06-30T12:01:15.056+00:00',
+  //     author: 'Jane Pokkinen',
+  //     topic: 'Exercise',
+  //     title: 'I have some issues with my pito',
+  //     content:
+  //       'It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters',
+  //     likes: 25,
+  //     dislikes: 1,
+  //     comments: [
+  //       {
+  //         author: 'Samu',
+  //         content:
+  //           "Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy",
+  //         createdAt: '2021-07-04T12:01:15.056+00:00',
+  //         replies: [
+  //           {
+  //             author: 'Paco',
+  //             content: 'Yeah, yeah, sure.',
+  //             createdAt: '2021-07-04T13:01:15.056+00:00',
+  //           },
+  //           {
+  //             author: 'Jane',
+  //             content: 'This sounds bien sucio',
+  //             createdAt: '2021-07-10T12:30:15.056+00:00',
+  //           },
+  //         ],
+  //       },
+  //       {
+  //         author: 'Jane',
+  //         content:
+  //           ' Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).',
+  //         createdAt: '2021-07-05T12:01:15.056+00:00',
+  //         replies: [],
+  //       },
+  //     ],
+  //   },
+  // ]
+  // console.log('DISCUSSIONS: ', discussions)
 
   const loginAgain = localdb.loadUserInfo(username.params.value)
   if (loginAgain) {
@@ -38,86 +112,6 @@ const Salon = () => {
       password.params.value = loginAgain.password
     }
   }
-
-  const salon = 1
-
-  const discussions = [
-    {
-      date: '2021-05-18T12:01:15.056+00:00',
-      author: 'Paco Zavala',
-      topic: 'Nutrition',
-      title: 'I want to know more about Lorem',
-      content:
-        "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
-      likes: 12,
-      dislikes: 2,
-      comments: [
-        {
-          author: 'Paco',
-          content:
-            'Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC,',
-          date: '2021-05-07T09:27:00.733+00:00',
-          replies: [],
-        },
-        {
-          author: 'Samu',
-          content:
-            'It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters',
-          date: '2021-05-21T09:27:00.733+00:00',
-          replies: [
-            {
-              author: 'Paco',
-              content: 'Yeah, yeah, sure.',
-              date: '2021-07-04T13:01:15.056+00:00',
-            },
-            {
-              author: 'Jane',
-              content: 'This sounds bien sucio',
-              date: '2021-07-10T12:30:15.056+00:00',
-            },
-          ],
-        },
-      ],
-    },
-    {
-      date: '2021-06-30T12:01:15.056+00:00',
-      author: 'Jane Pokkinen',
-      topic: 'Exercise',
-      title: 'I have some issues with my pito',
-      content:
-        'It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters',
-      likes: 25,
-      dislikes: 1,
-      comments: [
-        {
-          author: 'Samu',
-          content:
-            "Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy",
-          date: '2021-07-04T12:01:15.056+00:00',
-          replies: [
-            {
-              author: 'Paco',
-              content: 'Yeah, yeah, sure.',
-              date: '2021-07-04T13:01:15.056+00:00',
-            },
-            {
-              author: 'Jane',
-              content: 'This sounds bien sucio',
-              date: '2021-07-10T12:30:15.056+00:00',
-            },
-          ],
-        },
-        {
-          author: 'Jane',
-          content:
-            ' Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).',
-          date: '2021-07-05T12:01:15.056+00:00',
-          replies: [],
-        },
-      ],
-    },
-  ]
-  // console.log('DISCUSSIONS: ', discussions)
 
   const handleLogin = async event => {
     event.preventDefault()
@@ -160,7 +154,59 @@ const Salon = () => {
     }
   }
 
-  if (!salon) {
+  const topics = ['Exercise', 'Nutrition', 'Other']
+  const handleTopic = topic => {
+    setTopic(topic)
+    setShowTopicMenu(!showTopicMenu)
+  }
+
+  const handleClearFields = () => {
+    author.reset()
+    discussionContent.reset()
+    discussionTitle.reset()
+    setTopic(null)
+  }
+
+  const handlePostDiscussion = () => {
+    // console.log('LENGTH: ', typedTopic.params.value.length)
+    // console.log('LENGTH: ', author.params.value.length)
+    // console.log('LENGTH: ', discussionTitle.params.value.length)
+    // console.log('LENGTH: ', discussionContent.params.value.length)
+    const newDiscussion = {
+      topic: topic === 'Other' ? typedTopic.params.value : topic,
+      author: loggedUser ? loggedUser.username : author.params.value,
+      title: discussionTitle.params.value,
+      content: discussionContent.params.value,
+    }
+    if (
+      newDiscussion.author.length > 3 &&
+      newDiscussion.topic.length > 4 &&
+      discussionTitle.params.value.length > 9 &&
+      discussionContent.params.value.length > 49
+    ) {
+      console.log('NEW DISCUSSION: ', newDiscussion)
+      try {
+        dispatch(createDiscussion(newDiscussion))
+        setShowDiscussionInput(!showDiscussionInput)
+        dispatch(
+          setNotification({
+            message: 'Your discussion has been succesfully created',
+            title: 'Sucess',
+            show: true,
+          })
+        )
+        setTopic(null)
+        typedTopic.reset()
+        author.reset()
+        discussionTitle.reset()
+        discussionContent.reset()
+      } catch (error) {
+        console.log('ERROR:', error.response.data)
+      }
+    }
+  }
+
+  if (!discussions) {
     return (
       <div className="justify-center items-center flex outline-none bg-gray-100 min-h-screen">
         <div className="flex flex-row space-x-1">
@@ -194,7 +240,7 @@ const Salon = () => {
         </h1>
 
         <div className="relative">
-          <div className="absolute inset-y-0 left-0 h-screen z-40 bg-gray-400 bg-gradient-to-br from-gray-400 via-gray-200 to-transparent border-r-1 bg-opacity-10 border-gray-300 border-opacity-10">
+          <div className="absolute inset-y-0 left-0 h-screen bg-gray-400 bg-gradient-to-br from-gray-400 via-gray-200 to-transparent border-r-0 bg-opacity-10 border-gray-300 border-opacity-10">
             <button
               className={
                 showSideMenu
@@ -226,7 +272,7 @@ const Salon = () => {
             leaveFrom="translate-x-0 z-40 opacity-100"
             leaveTo="-translate-x-4 z-0 opacity-0"
           >
-            <div className="absolute left-6 w-60 md:w-80 z-40 bg-gray-400 h-screen p-1 bg-gradient-to-br from-gray-300 via-gray-100 to-gray-400 border-r-2 border-gray-400">
+            <div className="absolute left-6 w-60 md:w-80 z-30 bg-gray-400 h-screen p-1 bg-gradient-to-br from-gray-300 via-gray-100 to-gray-400 border-r-2 border-gray-400">
               {loggedUser ? (
                 <div>
                   <h3 className="text-base p-1 border-b-2">
@@ -290,82 +336,114 @@ const Salon = () => {
               leaveTo="-translate-y-4 z-0 opacity-0"
             >
               <div className="p-3 bg-gray-200">
-                <div className="relative mb-1 w-60">
-                  <div className=" space-x-3">
-                    <div
-                      name="topic"
-                      type="text"
-                      className="h-10 w-60 border border-gray-300 focus:ring-0 bg-white rounded-md shadow-sm md:text-base text-left"
-                    >
-                      <div className="flex justify-between ">
-                        {topic ? (
-                          <div className="flex text-sm text-gray-500 pr-2">
-                            <div className="pr-28">{topic}</div>
-                            <div onClick={() => setTopic(null)} className="opacity-50 z-30 cursor-pointer">
-                              X
+                <div>
+                  <div className="relative md:mb-1 w-full">
+                    <div className="md:flex md:items-center md:space-x-2 w-full">
+                      <div
+                        name="topic"
+                        type="text"
+                        className="h-9 w-60 border border-gray-300 focus:ring-0 bg-white rounded-md shadow-sm md:text-base text-left"
+                      >
+                        <div className="flex justify-between ">
+                          {topic ? (
+                            <div className="flex justify-between  w-48 text-sm text-gray-500 pr-2">
+                              <div className="">{topic}</div>
+                              <div onClick={() => setTopic(null)} className="opacity-50 z-30 cursor-pointer">
+                                X
+                              </div>
                             </div>
-                          </div>
-                        ) : (
-                          <div className="opacity-25 text-sm ">Select your topic</div>
-                        )}
-                        <div>
-                          <span
-                            className="flex items-center border-l pl-2 cursor-pointer"
-                            id="country-menu"
-                            onClick={() => setShowTopicMenu(!showTopicMenu)}
-                          >
-                            <svg
-                              xmlns="http://www.w3.org/2000/svg"
-                              className="h-5 w-5"
-                              viewBox="0 0 20 20"
-                              fill="currentColor"
+                          ) : (
+                            <div className="opacity-25 text-sm ">Select your topic</div>
+                          )}
+                          <div>
+                            <span
+                              className="flex items-center border-l pl-1 cursor-pointer"
+                              id="country-menu"
+                              onClick={() => setShowTopicMenu(!showTopicMenu)}
                             >
-                              <path
-                                fillRule="evenodd"
-                                d="M10 3a1 1 0 01.707.293l3 3a1 1 0 01-1.414 1.414L10 5.414 7.707 7.707a1 1 0 01-1.414-1.414l3-3A1 1 0 0110 3zm-3.707 9.293a1 1 0 011.414 0L10 14.586l2.293-2.293a1 1 0 011.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 010-1.414z"
-                                clipRule="evenodd"
-                              />
-                            </svg>
-                          </span>
+                              <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                className="h-5 w-5"
+                                viewBox="0 0 20 20"
+                                fill="currentColor"
+                              >
+                                <path
+                                  fillRule="evenodd"
+                                  d="M10 3a1 1 0 01.707.293l3 3a1 1 0 01-1.414 1.414L10 5.414 7.707 7.707a1 1 0 01-1.414-1.414l3-3A1 1 0 0110 3zm-3.707 9.293a1 1 0 011.414 0L10 14.586l2.293-2.293a1 1 0 011.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 010-1.414z"
+                                  clipRule="evenodd"
+                                />
+                              </svg>
+                            </span>
+                          </div>
                         </div>
                       </div>
-                    </div>
-                    <div className="">
+                      <div className="">
+                        {topic === 'Other' ? (
+                          <input
+                            className="border border-gray-300 focus:outline-none focus:ring-1 focus:ring-gray-400 focus:border-transparent focus-within:outline-none rounded-md h-9 w-60 text-sm placeholder-gray-200"
+                            {...typedTopic.params}
+                            placeholder="Type you topic in one word"
+                            title="A topic is required"
+                            minLength="5"
+                            required
+                          />
+                        ) : null}
+                      </div>
                       {topic === 'Other' ? (
-                        <input
-                          className=" border border-gray-300 focus:outline-none focus:ring-1 focus:ring-gray-400 focus:border-transparent focus-within:outline-none rounded-md h-10 w-60 pl-2 text-sm placeholder-gray-200"
-                          {...typedTopic.params}
-                          placeholder="Type you topic"
-                        />
+                        <div className="">
+                          {typedTopic.params.value.length < 5 ? (
+                            <span className="text-red-900 text-xs ">
+                              {`Topic characters ${typedTopic.params.value.length}/10 minimum`}
+                            </span>
+                          ) : (
+                            <p className="flex items-center">
+                              <span className="text-sm">{'Topic'} </span>
+                              <span className="transition duration-1000 text-sm text-green-500 ml-2 p-1 ">
+                                <svg
+                                  xmlns="http://www.w3.org/2000/svg"
+                                  className="h-3 w-3"
+                                  viewBox="0 0 20 20"
+                                  fill="currentColor"
+                                >
+                                  <path
+                                    fillRule="evenodd"
+                                    d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                                    clipRule="evenodd"
+                                  />
+                                </svg>
+                              </span>
+                            </p>
+                          )}
+                        </div>
                       ) : null}
                     </div>
-                  </div>
 
-                  <Transition
-                    show={showTopicMenu}
-                    enter="transition transform duration-75 ease-out"
-                    enterFrom="-translate-x-4 z-0 opacity-0"
-                    enterTo="translate-x-0 z-40 opacity-100"
-                    leave="transition transform duration-75 ease-out"
-                    leaveFrom="translate-x-0 z-40 opacity-100"
-                    leaveTo="-translate-x-4 z-0 opacity-0"
-                  >
-                    <div
-                      id="topic-dropdown"
-                      className="absolute border rounded-b-md rounded-sm bg-white z-50 divide-y divide-gray-50 w-48"
+                    <Transition
+                      show={showTopicMenu}
+                      enter="transition transform duration-75 ease-out"
+                      enterFrom="-translate-x-4 z-0 opacity-0"
+                      enterTo="translate-x-0 z-40 opacity-100"
+                      leave="transition transform duration-75 ease-out"
+                      leaveFrom="translate-x-0 z-40 opacity-100"
+                      leaveTo="-translate-x-4 z-0 opacity-0"
                     >
-                      {topics.sort().map(topic => (
-                        <p
-                          className="p-1 pl-2 text-sm text-gray-500 hover:bg-gray-500 hover:text-white cursor-pointer "
-                          id={`${topic}`}
-                          onClick={() => handleTopic(topic)}
-                          key={topic}
-                        >
-                          {topic}
-                        </p>
-                      ))}
-                    </div>
-                  </Transition>
+                      <div
+                        id="topic-dropdown"
+                        className="absolute border rounded-b-md rounded-sm bg-white z-50 divide-y divide-gray-50 w-60"
+                      >
+                        {topics.sort().map(topic => (
+                          <p
+                            className="p-1 pl-2 text-sm text-gray-500 hover:bg-gray-500 hover:text-white cursor-pointer "
+                            id={`${topic}`}
+                            onClick={() => handleTopic(topic)}
+                            key={topic}
+                          >
+                            {topic}
+                          </p>
+                        ))}
+                      </div>
+                    </Transition>
+                  </div>
                 </div>
                 <div className="">
                   {loggedUser ? (
@@ -378,6 +456,9 @@ const Salon = () => {
                       {...author.params}
                       className="editform-input rounded-b-none"
                       placeholder={t('Discussion.Author')}
+                      title="Author is required"
+                      minLength="3"
+                      required
                     />
                   )}
                   <input
@@ -385,22 +466,104 @@ const Salon = () => {
                     {...discussionTitle.params}
                     className="editform-input rounded-none "
                     placeholder={t('Discussion.Title')}
+                    title="Title is required"
+                    minLength="10"
+                    required
                   />
 
                   <textarea
                     id="content-discussion"
                     {...discussionContent.params}
-                    className="text-area rounded-b-md max-h-14"
+                    className="text-area rounded-b-md"
                     placeholder="Write a reply..."
+                    title="Content is required and minimum 50 characters"
+                    minLength="50"
+                    required
                   />
+                </div>
+                <div className="flex justify-between items-center w-full p-1 pl-2 pb-0 space-x-2">
+                  <div className="flex items-center space-x-2">
+                    <div>
+                      {discussionTitle.params.value.length < 10 ? (
+                        <span className="text-red-900 text-xs">
+                          {`Title characters ${discussionTitle.params.value.length}/10 minimum`}
+                        </span>
+                      ) : (
+                        <p className="flex items-center">
+                          <span className="text-sm">{'Title'} </span>
+                          <span className="transition duration-1000 text-sm text-green-500 ml-2 p-1 ">
+                            <svg
+                              xmlns="http://www.w3.org/2000/svg"
+                              className="h-3 w-3"
+                              viewBox="0 0 20 20"
+                              fill="currentColor"
+                            >
+                              <path
+                                fillRule="evenodd"
+                                d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                                clipRule="evenodd"
+                              />
+                            </svg>
+                          </span>
+                        </p>
+                      )}
+                    </div>
+                    <div>
+                      {discussionContent.params.value.length < 50 ? (
+                        <span className="text-red-900 text-xs">
+                          {`Content characters ${discussionContent.params.value.length}/50 minimum`}
+                        </span>
+                      ) : (
+                        <p className="flex items-center">
+                          <span className="text-sm">{'Content'} </span>
+                          <span className="transition duration-1000 text-sm text-green-500 ml-2 p-1">
+                            <svg
+                              xmlns="http://www.w3.org/2000/svg"
+                              className="h-3 w-3"
+                              viewBox="0 0 20 20"
+                              fill="currentColor"
+                            >
+                              <path
+                                fillRule="evenodd"
+                                d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                                clipRule="evenodd"
+                              />
+                            </svg>
+                          </span>
+                        </p>
+                      )}
+                    </div>
+                  </div>
+                  <div>
+                    <button
+                      className="buttons-web text-black bg-blue-100 p-2 "
+                      id="clear-discussion-button"
+                      onClick={handleClearFields}
+                    >
+                      Clear fields
+                    </button>
+                    <button
+                      className="buttons-web text-black bg-blue-100 p-2 "
+                      id="post-discussion-button"
+                      onClick={handlePostDiscussion}
+                    >
+                      Post
+                    </button>
+                  </div>
                 </div>
               </div>
             </Transition>
 
             <div className="border-separate border-r-2 border-gray-300">
-              {discussions.map((discussion, i) => (
-                <Discussion key={i} discussion={discussion} />
-              ))}
+              {discussions.length > 0 ? (
+                discussions.map((discussion, i) => <Discussion key={i} discussion={discussion} />)
+              ) : (
+                <div className="flex flex-row items-center justify-around h-screen">
+                  <h1 className="text-center text-xl text-gray-500 shadow-md rounded-3xl bg-opacity-0 p-6">
+                    No discussion have been created yet
+                  </h1>
+                </div>
+              )}
             </div>
           </div>
         </div>

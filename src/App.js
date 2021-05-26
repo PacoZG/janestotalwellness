@@ -4,6 +4,8 @@ import { BrowserRouter as Router, Switch, Route, Redirect } from 'react-router-d
 import { initializeUsers } from './reducers/usersReducer'
 import { getAllNotes } from './reducers/noteReducer'
 import { initializeBlogs } from './reducers/blogReducer'
+import { initializeDiscussions } from './reducers/discussionReducer'
+import { initializeComments } from './reducers/commentReducers'
 
 // Components in english
 import About from './components/About'
@@ -32,6 +34,8 @@ const App = () => {
     dispatch(initializeUsers())
     dispatch(getAllNotes())
     dispatch(initializeBlogs())
+    dispatch(initializeDiscussions())
+    dispatch(initializeComments())
   }, [dispatch])
 
   return (

@@ -8,7 +8,7 @@ import CookiesBanner from './CookiesBanner'
 const Footer = () => {
   const { t } = useTranslation()
   return (
-    <div className="relative inset-x-0 bottom-0 p-4 pt-5 pb-5 bg-gray-600">
+    <div className="relative inset-x-0 bottom-0 z-40 p-4 pt-5 pb-5 bg-gray-600">
       <p className="text-sm font-bold text-gray-200 text-center pb-4">{t('Footer.UnderConst')}</p>
       <div className="flex flex-col md:flex-row justify-between items-center md:items-start space-y-2 md:space-y-0 md:p-2">
         <div className="flex flex-col items-center  md:items-start space-y-2">

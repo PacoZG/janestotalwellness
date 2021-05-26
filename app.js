@@ -14,6 +14,8 @@ const loginRouter = require('./controllers/login')
 const imageRouter = require('./controllers/images')
 const notesRouter = require('./controllers/notes')
 const blogsRouter = require('./controllers/blogs')
+const discussionsRouter = require('./controllers/discussions')
+const commentsRouter = require('./controllers/comments')
 
 const url = config.MONGODB_URI
 console.log('Connected to MongoDB')
@@ -46,6 +48,8 @@ app.use('/api/users', usersRouter)
 app.use('/api/login', loginRouter)
 app.use('/api/notes', notesRouter)
 app.use('/api/blogs', blogsRouter)
+app.use('/api/discussions', discussionsRouter)
+app.use('/api/comments', commentsRouter)
 
 if (process.env.NODE_ENV === 'test') {
   const testingRouter = require('./controllers/testing')

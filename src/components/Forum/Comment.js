@@ -1,11 +1,12 @@
 import React, { useState } from 'react'
+import PropTypes from 'prop-types'
 import { useSelector } from 'react-redux'
 import { useTranslation } from 'react-i18next'
 import { Transition } from '@tailwindui/react'
 import { useField } from '../../hooks/index'
 
 const Comment = props => {
-  const comment = props
+  const { comment } = props
   const { t } = useTranslation()
   const loggedUser = useSelector(state => state.loggedUser)
   const [showReplies, setShowReplies] = useState(false)
@@ -42,14 +43,18 @@ const Comment = props => {
     }
   }
 
+  if (!comment) {
+    return null
+  }
+
   return (
     <div>
-      <h3 className="border-b border-gray-300 bg-gray-300  text-black pl-2 md:p-1">
+      <h3 className="border-b rounded-t-md border-gray-300 bg-gray-300  text-black pl-2 md:p-1">
         {comment.author}
-        {' - '} <span className="text-xs"> {getDate(comment.date)}</span>
+        {' - '} <span className="text-xs"> {getDate(comment.createdAt)}</span>
       </h3>
       <p className="text-xs pl-4 p-2 bg-blue-100">{comment.content}</p>
-      <div className="flex items-center justify-end space-x-1 pr-2 bg-gray-300">
+      <div className="flex items-center justify-end rounded-b-md space-x-1 pr-2 bg-gray-300">
         <div className="flex items-center space-y-1">
           <button
             className="text-xs transition duration-300 hover:text-blue-600 focus-within:outline-none"
@@ -127,7 +132,7 @@ const Comment = props => {
                 <p className="text-xs p-1 pl-2 rounded-t-md bg-gray-300">
                   {reply.author}
                   {' - '}
-                  <span className="text-xs">{getDate(reply.date)}</span>
+                  <span className="text-xs">{getDate(reply.createdAt)}</span>
                 </p>
                 <p className="text-xs text-right p-1 pl-2 pr-2 rounded-b-md bg-blue-100">{reply.content}</p>
               </div>
@@ -143,6 +148,10 @@ const Comment = props => {
       </Transition>
     </div>
   )
+}
+
+Comment.propTypes = {
+  comment: PropTypes.object.isRequired,
 }
 
 export default Comment
