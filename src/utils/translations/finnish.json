@@ -12,7 +12,8 @@
     "Remove": "Poista",
     "ShowNote": "Näytä",
     "HideNote": "Piilottaa",
-    "Forget": "Unohda asetukset"
+    "Forget": "Unohda asetukset",
+    "Post": "Lähettää"
   },
   "Countries": "Suomi,Ruotsi,Norja,Viro,Saksa,Espanja,Italia,Alankomaat,Sveitsi,Meksiko",
   "Months": "Tam,Hel,Maa,Huh,Tou,Kes,Hei,Elo,Syy,Lok,Mar,Jou",
@@ -81,8 +82,7 @@
     "ShowComments": "Näytä kommentit",
     "Cancel": "Peruuttaa",
     "MakeAComment": "Tee kommentti",
-    "CommentPlaceholder": "Kirjoita kommentti...",
-    "PostComment": "Lähettää"
+    "CommentPlaceholder": "Kirjoita kommentti..."
   },
   "EditForm": {
     "ImageWarning": "Kuva on suurempi kuin 3 Mt",

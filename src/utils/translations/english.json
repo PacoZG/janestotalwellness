@@ -12,7 +12,8 @@
     "Remove": "Remove",
     "ShowNote": "Show note",
     "HideNote": "Hide note",
-    "Forget": "Forget settings"
+    "Forget": "Forget settings",
+    "Post": "Post"
   },
   "Countries": "Finland,Sweden,Norway,Estonia,Germany,Spain,Italy,Netherland,Switzerland,Mexico",
   "Months": "Jan,Feb,Mar,Apr,May,Jun,Jul,Aug,Sep,Oct,Nov,Dec",
@@ -81,8 +82,7 @@
     "ShowComments": "Show comments",
     "Cancel": "Cancel",
     "MakeAComment": "Make a comment",
-    "CommentPlaceholder": "Write a comment...",
-    "PostComment": "Post"
+    "CommentPlaceholder": "Write a comment..."
   },
   "EditForm": {
     "ImageWarning": "Image is larger than 3MB",

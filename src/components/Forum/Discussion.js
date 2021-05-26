@@ -1,19 +1,36 @@
 import React, { useState } from 'react'
+import PropTypes from 'prop-types'
 // eslint-disable-next-line
 import { useDispatch, useSelector } from 'react-redux'
 import { useTranslation } from 'react-i18next'
 import { Transition } from '@tailwindui/react'
 import { useField } from '../../hooks/index'
+import { createComment } from '../../reducers/commentReducers'
 import Comment from './Comment'
 
-const Discussion = d => {
+const Discussion = ({ discussion }) => {
   const { t } = useTranslation()
+  const dispatch = useDispatch()
   const loggedUser = useSelector(state => state.loggedUser)
   const [showContent, setShowContent] = useState(false)
   const [showComments, setShowComments] = useState(false)
   const [showCommentInput, setShowCommentInput] = useState(false)
   const author = useField('text')
-  const comment = useField('text')
+  const content = useField('text')
+
+  const getDate = objectDate => {
+    const months = t('Months').split(',')
+    const weekDays = t('Weekdays').split(',')
+    const date = new Date(objectDate)
+    const day = date.getDate() < 10 ? '0' + date.getDate() : date.getDate()
+    const hours = date.getHours() < 10 ? '0' + date.getHours() : date.getHours()
+    const minutes = date.getMinutes() < 10 ? '0' + date.getMinutes() : date.getMinutes()
+    const seconds = date.getSeconds() < 10 ? '0' + date.getSeconds() : date.getSeconds()
+    const time = hours + ':' + minutes + ':' + seconds
+    const creationDate =
+      weekDays[date.getDay()] + ', ' + day + '.' + months[date.getMonth()] + '.' + date.getFullYear() + ' @' + time
+    return creationDate
+  }
 
   const handleShowContent = () => {
     setShowContent(!showContent)
@@ -32,19 +49,23 @@ const Discussion = d => {
     setShowComments(!showComments)
   }
 
-  const getDate = objectDate => {
-    const months = t('Months').split(',')
-    const weekDays = t('Weekdays').split(',')
-    const date = new Date(objectDate)
-    const day = date.getDate() < 10 ? '0' + date.getDate() : date.getDate()
-    const hours = date.getHours() < 10 ? '0' + date.getHours() : date.getHours()
-    const minutes = date.getMinutes() < 10 ? '0' + date.getMinutes() : date.getMinutes()
-    const seconds = date.getSeconds() < 10 ? '0' + date.getSeconds() : date.getSeconds()
-    const time = hours + ':' + minutes + ':' + seconds
-    const creationDate =
-      weekDays[date.getDay()] + ', ' + day + '.' + months[date.getMonth()] + '.' + date.getFullYear() + ' @' + time
-    return creationDate
+  const handlePostComment = () => {
+    const newComment = {
+      discussion: discussion.id,
+      author: loggedUser ? loggedUser.username : author.params.value,
+      content: content.params.value,
+    }
+
+    if (content.params.value.length > 1 && newComment.author.length > 3) {
+      console.log('NEW COMMENT: ', newComment)
+      try {
+        dispatch(createComment(newComment))
+      } catch (error) {
+        console.log('ERROR: ', error.response.data)
+      }
+    }
   }
+
   // console.log('DISCUSSION: ', d)
   return (
     <div className="relative w-full bg-blue-100 ">
@@ -55,28 +76,28 @@ const Discussion = d => {
             <table className="table-auto">
               <tbody>
                 <tr>
-                  <td className="text-sm w-24">
+                  <td className="text-sm w-16 md:w-24">
                     <b>{t('Discussion.Topic')}</b>
                   </td>
-                  <td className="text-sm">{d.discussion.topic}</td>
+                  <td className="text-sm">{discussion.topic}</td>
                 </tr>
                 <tr>
                   <td className="text-sm">
                     <b className="text-sm">{t('Discussion.Author')}</b>
                   </td>
-                  <td className="text-sm">{d.discussion.author}</td>
+                  <td className="text-sm">{discussion.author}</td>
                 </tr>
                 <tr>
                   <td className="text-sm">
                     <b className="text-sm">{t('Discussion.Title')}</b>
                   </td>
-                  <td className="text-sm">{d.discussion.title}</td>
+                  <td className="text-sm">{discussion.title}</td>
                 </tr>
                 <tr>
                   <td className="text-sm">
                     <b className="text-sm">{t('Discussion.Date')}</b>
                   </td>
-                  <td className="text-sm">{getDate(d.discussion.date)}</td>
+                  <td className="text-sm">{getDate(discussion.createdAt)}</td>
                 </tr>
               </tbody>
             </table>
@@ -84,12 +105,12 @@ const Discussion = d => {
 
           <div className="flex flex-col items-end justify-between">
             <div className="flex flex-row items-center">
-              <label className="text-sm -mr-3 mt-2 pr-2 font-semibold text-gray-600">{d.discussion.dislikes}</label>
+              <label className="text-sm -mr-3 mt-2 pr-3 font-semibold text-gray-600">{discussion.dislikes}</label>
               <button
                 type="button"
                 id="mobile-updateNote"
                 // onClick={handleDislikes}
-                className="inline-flex justify-center py-1 px-1 font-medium rounded-full bg-transparent text-sm
+                className="inline-flex justify-center pr-3 font-medium rounded-full bg-transparent text-sm
                 text-gray-600 hover:text-gray-400 focus-within:outline-none"
               >
                 <svg
@@ -102,12 +123,12 @@ const Discussion = d => {
                 </svg>
               </button>
 
-              <label className="text-sm -mr-3 mt-2 pr-3 font-semibold text-gray-600">{d.discussion.likes}</label>
+              <label className="text-sm -mr-3 mt-2 pr-3  font-semibold text-gray-600">{discussion.likes}</label>
               <button
                 type="button"
                 id="mobile-updateNote"
                 // onClick={handleLikes}
-                className="inline-flex justify-center py-1 pr-1 font-medium rounded-full bg-transparent text-sm
+                className="inline-flex justify-center pr-2 font-medium rounded-full bg-transparent text-sm
                 text-gray-600 hover:text-gray-400 hover:bg-gray-300 focus-within:outline-none"
               >
                 <svg
@@ -158,7 +179,7 @@ const Discussion = d => {
         leaveTo="opacity-0"
       >
         <div className="px-3">
-          <p className="md:px-8 md:py-2 text-sm md:text-justify">{d.discussion.content}</p>
+          <p className="md:px-8 md:py-2 text-sm md:text-justify">{discussion.content}</p>
         </div>
 
         <div className="flex flex-row border-t-2 pl-2 p-1 border-gray-300 w-full">
@@ -219,16 +240,24 @@ const Discussion = d => {
 
             <textarea
               id="content-comment"
-              {...comment.params}
+              {...content.params}
               className="text-area rounded-b-md max-h-14"
               placeholder={t('Discussion.CommentPlaceholder')}
             />
             <div className="flex items-center justify-end space-x-2 pr-3">
-              <button id="cancel-post-comment" className="buttons-web text-black bg-gray-200 p-1 m-1">
-                {t('Discussion.Cancel')}
+              <button
+                id="delete-comment"
+                className="buttons-web text-sm text-black w-auto pl-1 pr-1 bg-gray-200 p-1 m-1"
+                // onClick={handleDeleteComment}
+              >
+                {t('ButtonLabel.Cancel')}
               </button>
-              <button id="post-comment" className="buttons-web text-black bg-gray-200 p-1 m-1">
-                {t('Discussion.PostComment')}
+              <button
+                id="post-comment"
+                className="buttons-web text-sm text-black w-auto pl-1 pr-1 bg-gray-200 p-1 m-1"
+                onClick={handlePostComment}
+              >
+                {t('ButtonLabel.Post')}
               </button>
             </div>
           </div>
@@ -245,14 +274,20 @@ const Discussion = d => {
         leaveTo="opacity-0"
       >
         <div className=" border-t-2 border-gray-200 divide-solid divide-y-2 divide-gray-400 bg-blue-100 pl-2 pr-2">
-          {d.discussion.comments.map((comment, i) => (
-            <Comment key={i} comment={comment} showComments={showComments} />
-          ))}
+          {discussion.comments.length > 0 ? (
+            discussion.comments.map((comment, i) => <Comment key={i} comment={comment} />)
+          ) : (
+            <p className="text-xs pl-4 p-2 bg-gray-200">No comments yet</p>
+          )}
         </div>
       </Transition>
       <div className="h-4 bg-blue-100 border-b-4 border-white"></div>
     </div>
   )
+}
+
+Discussion.propTypes = {
+  discussion: PropTypes.object.isRequired,
 }
 
 export default Discussion
