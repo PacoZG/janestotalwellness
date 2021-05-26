@@ -55,6 +55,35 @@
     "NotesLabel": "Notas",
     "NoNotes": "No hay notas publicadas en el historial de este cliente."
   },
+  "Comment": {
+    "HideReplies": "Ocultar respuestas",
+    "ShowReplies": "Mostrar respuestas",
+    "Cancel": "Cancelar",
+    "Reply": "Responder",
+    "Author": "Autor",
+    "NoReplies": "No hay respuestas",
+    "WriteReply": "Escribe una respuesta..."
+  },
+  "CookiesBanner": {
+    "Message": "Este sitio web utiliza cookies, utilizamos cookies para proporcionar funciones de redes sociales, para analizar nuestro tráfico y auto publicidad. Por favor lea nuestra ",
+    "Cookies": "política de cookies",
+    "Decline": "Rechazar",
+    "Accept": "Aceptar"
+  },
+  "Discussion": {
+    "Author": "Autor",
+    "Title": "Título",
+    "Date": "Fecha",
+    "Topic": "Tema",
+    "Hide": "Ocultar",
+    "Show": "Mostrar",
+    "HideComments": "Ocultar comentarios",
+    "ShowComments": "Mostrar comentarios",
+    "Cancel": "Cancelar",
+    "MakeAComment": "Hacer un comentario",
+    "CommentPlaceholder": "Escribe un comentario...",
+    "PostComment": "Publicar"
+  },
   "EditForm": {
     "ImageWarning": "La imagen es mas grande de 3MB",
     "ImageRequirement": "PNG, JPG, JPEG hasta 3MB",
@@ -96,6 +125,17 @@
     "UnderConst": "Página web en construcción",
     "About": "Acerca de mí",
     "Terms": "Términos & condiciones"
+  },
+  "Salon":{
+    "Welcome": "Bienvenido a Jane's Salon, un foro donde puedes abrir discusiones amigables e interesantes sobre los temas que podrían ser de tu interés o que quieras compartir, que te preocupen, te gustaría preguntar o que simplemente quieres compartir con nuestra comunidad. no dude en expresarse, pero siga nuestro",
+    "Code": " código de conducta",
+    "LoggedAs": "Estás conectado como ",
+    "FindByTopics": "Buscar por temas",
+    "AsLoggedUser": "Cree una discusión o escriba sus comentarios como usuario registrado iniciando sesión",
+    "Topics": "Temas",
+    "Author": "Autor",
+    "Title": "Título",
+    "Date": "Fecha"
   },
   "Signin": {
     "Welcome": "Bienvenido de nuevo ",

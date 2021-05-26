@@ -3,6 +3,7 @@ import { useTranslation } from 'react-i18next'
 import { Link } from 'react-router-dom'
 import facebook from '../img/f-icon.jpg'
 import { FacebookShareButton, FacebookShareCount, FacebookIcon } from 'react-share'
+import CookiesBanner from './CookiesBanner'
 
 const Footer = () => {
   const { t } = useTranslation()
@@ -118,6 +119,7 @@ const Footer = () => {
           </div>
         </div>
       </div>
+      <CookiesBanner />
     </div>
   )
 }

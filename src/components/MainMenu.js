@@ -63,7 +63,7 @@ const MainMenu = () => {
               <Link id="home" to={'/home'} className="web-link">
                 <i className="web-link text-base my-6">Jane&lsquo;s Total Wellness</i>
               </Link>
-              <Link id="exercises" to={'/salon'} className="web-link">
+              <Link id="salon" to={'/salon'} className="web-link">
                 {t('MainMenu.ForumLabel')}
               </Link>
               <Link id="blogs" to={'/blogs'} className="web-link">
@@ -453,7 +453,7 @@ const MainMenu = () => {
                 text-sm focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-gray-300"
               >
                 {loggedUser && loggedUser.imageURL ? (
-                  <img className="h-14 w-14 rounded-full" src={loggedUser.imageURL} />
+                  <img className="h-14 w-14 rounded-full" alt="profile" src={loggedUser.imageURL} />
                 ) : (
                   <span className="inline-block rounded-full h-10 w-10 md:rounded-full overflow-hidden bg-gray-100">
                     <svg className="h-full w-full text-gray-300" fill="currentColor" viewBox="0 0 24 24">

@@ -55,6 +55,35 @@
     "NotesLabel": "Huomautuksia",
     "NoNotes": "Tässä asiakashistoriassa ei ole yhtään muistiinpanoas"
   },
+  "Comment": {
+    "HideReplies": "Piilota vastaukset",
+    "ShowReplies": "Näytä vastaukset",
+    "Cancel": "Peruuttaa",
+    "Reply": "Vastaa",
+    "Author": "Kirjoittaja",
+    "NoReplies": "Ei vastauksia",
+    "WriteReply": "Kirjoita vastaus..."
+  },
+  "CookiesBanner": {
+    "Message": "Tämä verkkosivusto käyttää evästeitä. Käytämme evästeitä sosiaalisen median ominaisuuksien tarjoamiseen, liikenteen ja itse mainostamisen analysointiin. Lue ",
+    "Cookies": "evästekäytäntömme",
+    "Decline": "Hyväksyä",
+    "Accept": "Hylätä"
+  },
+  "Discussion": {
+    "Author": "Kirjoittaja",
+    "Title": "Otsikko",
+    "Date": "Päivämäärä",
+    "Topic": "Aihe",
+    "Hide": "Piilottaa",
+    "Show": "Näytä",
+    "HideComments": "Piilota kommentit",
+    "ShowComments": "Näytä kommentit",
+    "Cancel": "Peruuttaa",
+    "MakeAComment": "Tee kommentti",
+    "CommentPlaceholder": "Kirjoita kommentti...",
+    "PostComment": "Lähettää"
+  },
   "EditForm": {
     "ImageWarning": "Kuva on suurempi kuin 3 Mt",
     "ImageRequirement": "PNG, JPG, JPEG enintään 3 Mt",
@@ -96,6 +125,17 @@
     "UnderConst": "Verkkosivusto rakenteilla",
     "About": "Minusta",
     "Terms": "käyttöehdot"
+  },
+  "Salon":{
+    "Welcome": "Tervetuloa Jane's Salon -foorumiin, jossa voit avata ystävällisiä ja mielenkiintoisia keskusteluja aiheista, jotka saattavat kiinnostaa sinua tai haluat ehkä jakaa, huolestuttaa sinua, haluaa kysyä tai haluat yksinkertaisesti jakaa yhteisömme kanssa, ilmaise itseäsi, mutta noudata käytännesääntöjämme, mutta noudata",
+    "Code": "  käytännesääntöjämme",
+    "LoggedAs": "Olet kirjautunut sisään ",
+    "FindByTopics": "Etsi aiheiden mukaan",
+    "AsLoggedUser": "Luo keskustelu tai kirjoita kommenttisi rekisteröityneenä käyttäjänä kirjautumalla sisään",
+    "Topics": "Aiheet",
+    "Author": "Kirjoittaja",
+    "Title": "Otsikko",
+    "Date": "Päivämäärä"
   },
   "Signin": {
     "Welcome": "Tervetuloa takaisin ",

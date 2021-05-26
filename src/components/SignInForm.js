@@ -32,7 +32,7 @@ const SigninForm = () => {
     event.preventDefault()
 
     var remember = document.getElementById('remember_me').checked
-    console.log('REMEBER: ', remember)
+    console.log('REMEMBER: ', remember)
     if (remember) {
       localdb.rememberUser({
         username: username.params.value,
@@ -80,6 +80,7 @@ const SigninForm = () => {
         <div>
           <img
             className="mx-auto h-12 w-auto rounded"
+            alt="profile"
             src="https://res.cloudinary.com/dbn5gpgi5/image/upload/v1618604826/sample.jpg"
           />
           <h2 className="mt-6 text-center text-3xl font-extrabold text-gray-700">{t('Signin.Header')}</h2>

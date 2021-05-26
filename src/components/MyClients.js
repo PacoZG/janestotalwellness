@@ -50,6 +50,7 @@ const MyClients = () => {
                   {user.imageURL ? (
                     <img
                       className="transition transform hover:-translate-y-1 hover:scale-110 hover:rotate-6 duration-500 ease-in-out h-28 w-28 md:h-32 md:w-32 rounded-full bg-white p-1"
+                      alt="profile"
                       src={user.imageURL}
                     />
                   ) : (

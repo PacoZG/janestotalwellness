@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import { useHistory } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
 import { useTranslation } from 'react-i18next'
+import { Transition } from '@tailwindui/react'
 import { useField } from '../hooks/index'
 import { createUser, initializeUsers } from '../reducers/usersReducer'
 import { setNotification } from '../reducers/notificationReducer'
@@ -13,7 +14,6 @@ const SignUpForm = () => {
   const dispatch = useDispatch()
   const history = useHistory()
   const [dropdown, setDropdown] = useState(false)
-  const visibleDrop = { display: dropdown ? '' : 'none' }
 
   const firstName = useField('text')
   const lastName = useField('text')
@@ -58,8 +58,8 @@ const SignUpForm = () => {
       background: background.params.value,
       gender: selectedGender,
       dateOfBirth: dateOfBirth.params.value,
-      height: parseInt(height.params.value),
-      weight: parseInt(weight.params.value),
+      height: parseInt(height.params.value, 10),
+      weight: parseInt(weight.params.value, 10),
       country: country,
       goals: goals.params.value,
       userType: 'client',
@@ -102,9 +102,9 @@ const SignUpForm = () => {
         weight.reset()
         goals.reset()
         setCountry('')
-        for (var i = 0; i < genders.length; i++) {
-          if (genders[i].checked) {
-            genders[i].value = false
+        for (var j = 0; j < genders.length; j++) {
+          if (genders[j].checked) {
+            genders[j].value = false
           }
         }
 
@@ -220,22 +220,31 @@ const SignUpForm = () => {
                           </svg>
                         </span>
                       </div>
-                      <div
-                        id="menu"
-                        style={visibleDrop}
-                        className="absolute border rounded-b-md rounded-sm mt-2 col-span-6 w-full bg-white z-50 divide-y divide-gray-50 "
+                      <Transition
+                        show={dropdown}
+                        enter="transition ease-out duration-100"
+                        enterFrom="transform opacity-0 scale-95"
+                        enterTo="transform opacity-100 scale-100"
+                        leave="transition ease-in duration-75"
+                        leaveFrom="transform opacity-100 scale-100"
+                        leaveTo="transform opacity-0 scale-95"
                       >
-                        {countries.sort().map(country => (
-                          <p
-                            className="p-1 pl-2 text-gray-500 hover:bg-gray-500 hover:text-white cursor-pointer "
-                            id={`${country}`}
-                            onClick={() => handleCountry(country)}
-                            key={country}
-                          >
-                            {country}
-                          </p>
-                        ))}
-                      </div>
+                        <div
+                          id="menu"
+                          className="absolute border rounded-b-md rounded-sm mt-1 col-span-6 w-full bg-white z-50 divide-y divide-gray-50 "
+                        >
+                          {countries.sort().map(country => (
+                            <p
+                              className="p-1 pl-2 text-gray-500 hover:bg-gray-500 hover:text-white cursor-pointer "
+                              id={`${country}`}
+                              onClick={() => handleCountry(country)}
+                              key={country}
+                            >
+                              {country}
+                            </p>
+                          ))}
+                        </div>
+                      </Transition>
                     </div>
                   </div>
                   <div className="col-span-6 md:col-span-3">

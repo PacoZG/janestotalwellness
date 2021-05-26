@@ -5,6 +5,9 @@ module.exports = {
     es2021: true,
     'jest/globals': true,
     'cypress/globals': true,
+    'commonjs': true,
+    'es2021': true,
+    'node': true,
   },
   extends: ['plugin:react/recommended', 'plugin:cypress/recommended', 'prettier'],
   globals: {

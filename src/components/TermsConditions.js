@@ -1,8 +1,8 @@
 import React from 'react'
-import { useTranslation } from 'react-i18next'
+// import { useTranslation } from 'react-i18next'
 
 const TermsConditions = () => {
-  const { t } = useTranslation()
+  // const { t } = useTranslation()
   return (
     <article className="prose prose-red prose-md md:prose-sm mx-auto max-w-4xl p-5 text-justify ">
       <h1>Acceptable use policy</h1>
