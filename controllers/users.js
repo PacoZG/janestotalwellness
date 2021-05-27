@@ -40,7 +40,6 @@ usersRouter.put('/:id', async (request, response) => {
     ...body,
     updatedAt: new Date(),
   }
-  console.log('USER:', request.params.id)
   await User.findByIdAndUpdate(request.params.id, user, { new: true })
     .then(updatedUser => updatedUser.toJSON())
     .then(savedAndUpdatedUser => {

@@ -34,7 +34,7 @@ const UserProfile = () => {
 
   return (
     <div>
-      <div className="bg-gray-100 min-h-screen">
+      <div className="bg-gray-100 pt-22 min-h-screen">
         <h3 className="p-2 md:p-6 text-2xl text-center md:text-3xl font-medium text-gray-700 ">
           {t('UserProfile.Profile')}
         </h3>

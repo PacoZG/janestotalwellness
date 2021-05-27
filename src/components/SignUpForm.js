@@ -231,7 +231,7 @@ const SignUpForm = () => {
                       >
                         <div
                           id="menu"
-                          className="absolute border rounded-b-md rounded-sm mt-1 col-span-6 w-full bg-white z-50 divide-y divide-gray-50 "
+                          className="absolute border rounded-b-md rounded-sm col-span-6 w-full bg-white divide-y divide-gray-50 "
                         >
                           {countries.sort().map(country => (
                             <p

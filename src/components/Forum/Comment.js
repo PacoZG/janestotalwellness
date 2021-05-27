@@ -5,8 +5,7 @@ import { useTranslation } from 'react-i18next'
 import { Transition } from '@tailwindui/react'
 import { useField } from '../../hooks/index'
 
-const Comment = props => {
-  const { comment } = props
+const Comment = ({ comment }) => {
   const { t } = useTranslation()
   const loggedUser = useSelector(state => state.loggedUser)
   const [showReplies, setShowReplies] = useState(false)

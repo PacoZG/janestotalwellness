@@ -5,7 +5,7 @@ const AboutMe = () => {
 
   if (!exercise) {
     return (
-      <div className="justify-center items-center flex outline-none bg-gray-100 min-h-screen">
+      <div className="justify-center items-center flex outline-none bg-gray-100 min-h-screen pt-22">
         <div className="flex flex-row space-x-1">
           <svg
             xmlns="http://www.w3.org/2000/svg"

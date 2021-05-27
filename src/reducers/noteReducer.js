@@ -18,7 +18,7 @@ const noteReducer = (state = [], action) => {
 
 export const getAllNotes = () => {
   return async dispatch => {
-    const notes = await noteService.getAll()
+    const notes = await noteService.getAllNotes()
     dispatch({
       type: 'GET_NOTES',
       data: notes,
@@ -37,7 +37,7 @@ export const createNote = createdNote => {
 
 export const updateNote = updatedNote => {
   return async dispatch => {
-    await noteService.update(updatedNote)
+    await noteService.updateNote(updatedNote)
     dispatch({
       type: 'UPDATE_NOTE',
       data: updatedNote,
@@ -47,7 +47,7 @@ export const updateNote = updatedNote => {
 
 export const deleteNote = id => {
   return async dispatch => {
-    await noteService.remove(id)
+    await noteService.removeNote(id)
     dispatch({
       type: 'DELETE',
       data: id,

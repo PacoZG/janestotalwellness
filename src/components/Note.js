@@ -8,7 +8,7 @@ const Note = ({ note, handleRemoveNote, handleUpdateNote, view }) => {
   const [visibleNote, setVisibleNote] = useState(false)
   const showNote = { display: visibleNote ? '' : 'none' }
   const [update, setToUpdate] = useState(false)
-  const newContent = useField('text')
+  const [textareaState, setTextAreaState] = useState(note.content)
 
   const getDate = objectDate => {
     const months = t('Months').split(',')
@@ -24,10 +24,14 @@ const Note = ({ note, handleRemoveNote, handleUpdateNote, view }) => {
     return creationDate
   }
 
+  const handleTextareaChange = event => {
+    event.preventDefault()
+    setTextAreaState(event.target.value)
+  }
+
   const handleNoteUpdate = () => {
-    handleUpdateNote(newContent.params.value, note.id)
+    handleUpdateNote(textareaState, note.id)
     setToUpdate(!update)
-    newContent.reset()
   }
 
   if (view === 'web') {
@@ -49,26 +53,25 @@ const Note = ({ note, handleRemoveNote, handleUpdateNote, view }) => {
           leaveTo="opacity-0"
         >
           <div>
-            <p className="p-2 pl-3 text-justify">{note.content}</p>
+            {!update ? <p className="p-2 pl-3 text-justify">{note.content}</p> : null}
 
             <Transition
               show={update}
               enter="transition-opacity duration-300"
               enterFrom="opacity-0"
               enterTo="opacity-100"
-              leave="transition-opacity duration-300"
+              leave="transition-opacity duration-75"
               leaveFrom="opacity-100"
               leaveTo="opacity-0"
             >
               <textarea
-                name="height"
+                className="h-16 block border border-transparent focus:outline-none focus:ring-1 focus:ring-gray-400 focus:border-transparent w-full p-2 pl-3 text-sm placeholder-gray-200"
                 id="web-aditContent"
-                rows="10"
                 minLength="2"
                 maxLength="500"
                 placeholder="2 characters minimum"
-                {...newContent.params}
-                className="h-28 block border border-transparent focus:outline-none focus:ring-1 focus:ring-gray-400 focus:border-transparent w-full p-2 pl-3 text-sm placeholder-gray-200"
+                value={textareaState}
+                onChange={handleTextareaChange}
               />
               <div className="px-3 py-2 bg-gray-400 text-right rounded-b-md space-x-2">
                 <button
@@ -130,14 +133,13 @@ const Note = ({ note, handleRemoveNote, handleUpdateNote, view }) => {
           <p className="p-2 text-justify">{note.content}</p>
           {update ? (
             <textarea
-              name="height"
+              className="h-24 block border border-transparent focus:outline-none focus:ring-1 focus:ring-gray-400 focus:border-transparent w-full p-2 text-sm placeholder-gray-200"
               id="mobile-editContent"
-              rows="10"
               minLength="2"
               maxLength="500"
               placeholder="2 characters minimum"
-              {...newContent.params}
-              className="h-24 block border border-transparent focus:outline-none focus:ring-1 focus:ring-gray-400 focus:border-transparent w-full p-2 text-sm placeholder-gray-200"
+              value={textareaState}
+              onChange={handleTextareaChange}
             />
           ) : null}
           {update ? (

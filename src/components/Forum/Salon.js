@@ -27,84 +27,6 @@ const Salon = () => {
   const discussionTitle = useField('text')
   const typedTopic = useField('text')
 
-  // let discussionsjson = [
-  //   {
-  //     createdAt: '2021-05-18T12:01:15.056+00:00',
-  //     author: 'Paco Zavala',
-  //     topic: 'Nutrition',
-  //     title: 'I want to know more about Lorem',
-  //     content:
-  //       "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
-  //     likes: 12,
-  //     dislikes: 2,
-  //     comments: [
-  //       {
-  //         author: 'Paco',
-  //         content:
-  //           'Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC,',
-  //         createdAt: '2021-05-07T09:27:00.733+00:00',
-  //         replies: [],
-  //       },
-  //       {
-  //         author: 'Samu',
-  //         content:
-  //           'It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters',
-  //         createdAt: '2021-05-21T09:27:00.733+00:00',
-  //         replies: [
-  //           {
-  //             author: 'Paco',
-  //             content: 'Yeah, yeah, sure.',
-  //             createdAt: '2021-07-04T13:01:15.056+00:00',
-  //           },
-  //           {
-  //             author: 'Jane',
-  //             content: 'This sounds bien sucio',
-  //             createdAt: '2021-07-10T12:30:15.056+00:00',
-  //           },
-  //         ],
-  //       },
-  //     ],
-  //   },
-  //   {
-  //     createdAt: '2021-06-30T12:01:15.056+00:00',
-  //     author: 'Jane Pokkinen',
-  //     topic: 'Exercise',
-  //     title: 'I have some issues with my pito',
-  //     content:
-  //       'It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters',
-  //     likes: 25,
-  //     dislikes: 1,
-  //     comments: [
-  //       {
-  //         author: 'Samu',
-  //         content:
-  //           "Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy",
-  //         createdAt: '2021-07-04T12:01:15.056+00:00',
-  //         replies: [
-  //           {
-  //             author: 'Paco',
-  //             content: 'Yeah, yeah, sure.',
-  //             createdAt: '2021-07-04T13:01:15.056+00:00',
-  //           },
-  //           {
-  //             author: 'Jane',
-  //             content: 'This sounds bien sucio',
-  //             createdAt: '2021-07-10T12:30:15.056+00:00',
-  //           },
-  //         ],
-  //       },
-  //       {
-  //         author: 'Jane',
-  //         content:
-  //           ' Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).',
-  //         createdAt: '2021-07-05T12:01:15.056+00:00',
-  //         replies: [],
-  //       },
-  //     ],
-  //   },
-  // ]
-  // console.log('DISCUSSIONS: ', discussions)
-
   const loginAgain = localdb.loadUserInfo(username.params.value)
   if (loginAgain) {
     // console.log('LOGIN AGAIN: ', loginAgain)
@@ -168,10 +90,6 @@ const Salon = () => {
   }
 
   const handlePostDiscussion = () => {
-    // console.log('LENGTH: ', typedTopic.params.value.length)
-    // console.log('LENGTH: ', author.params.value.length)
-    // console.log('LENGTH: ', discussionTitle.params.value.length)
-    // console.log('LENGTH: ', discussionContent.params.value.length)
     const newDiscussion = {
       topic: topic === 'Other' ? typedTopic.params.value : topic,
       author: loggedUser ? loggedUser.username : author.params.value,
@@ -184,7 +102,6 @@ const Salon = () => {
       discussionTitle.params.value.length > 9 &&
       discussionContent.params.value.length > 49
     ) {
-      console.log('NEW DISCUSSION: ', newDiscussion)
       try {
         dispatch(createDiscussion(newDiscussion))
         setShowDiscussionInput(!showDiscussionInput)
@@ -201,7 +118,7 @@ const Salon = () => {
         discussionTitle.reset()
         discussionContent.reset()
       } catch (error) {
-        console.log('ERROR:', error.response.data)
+        console.log('ERROR:', error.response.data.error)
       }
     }
   }
@@ -230,7 +147,7 @@ const Salon = () => {
 
   return (
     <div>
-      <div className="bg-gray-100 min-h-screen ">
+      <div className="bg-gray-100 min-h-screen pt-20 md:pt-20 ">
         <h1 className="text-sm text-justify bg-blue-100 p-3 md:pl-5 md:pr-5 border-b-2 border-gray-600">
           {t('Salon.Welcome')}
           <Link className="transition duration-300 text-indigo-500 hover:text-red-400" to="#">
@@ -323,7 +240,7 @@ const Salon = () => {
               onClick={() => setShowDiscussionInput(!showDiscussionInput)}
               className="w-full bg-gray-300 focus-within:outline-none hover:text-gray-500"
             >
-              {showDiscussionInput ? 'Cancel' : 'Click here to open a discussion'}
+              {showDiscussionInput ? t('ButtonLabel.Cancel') : t('Salon.ClickToOpen')}
             </button>
 
             <Transition
@@ -353,7 +270,7 @@ const Salon = () => {
                               </div>
                             </div>
                           ) : (
-                            <div className="opacity-25 text-sm ">Select your topic</div>
+                            <div className="opacity-25 text-sm text-center ">{t('Salon.SelectTopic')}</div>
                           )}
                           <div>
                             <span
@@ -382,7 +299,7 @@ const Salon = () => {
                           <input
                             className="border border-gray-300 focus:outline-none focus:ring-1 focus:ring-gray-400 focus:border-transparent focus-within:outline-none rounded-md h-9 w-60 text-sm placeholder-gray-200"
                             {...typedTopic.params}
-                            placeholder="Type you topic in one word"
+                            placeholder={t('Salon.TopicPlaceholder')}
                             title="A topic is required"
                             minLength="5"
                             required
@@ -393,11 +310,11 @@ const Salon = () => {
                         <div className="">
                           {typedTopic.params.value.length < 5 ? (
                             <span className="text-red-900 text-xs ">
-                              {`Topic characters ${typedTopic.params.value.length}/10 minimum`}
+                              {t('Salon.TopicCharac') + `${typedTopic.params.value.length}/5` + t('Salon.Minimum')}
                             </span>
                           ) : (
                             <p className="flex items-center">
-                              <span className="text-sm">{'Topic'} </span>
+                              <span className="text-sm pl-2 ">{'Topic'} </span>
                               <span className="transition duration-1000 text-sm text-green-500 ml-2 p-1 ">
                                 <svg
                                   xmlns="http://www.w3.org/2000/svg"
@@ -475,18 +392,18 @@ const Salon = () => {
                     id="content-discussion"
                     {...discussionContent.params}
                     className="text-area rounded-b-md"
-                    placeholder="Write a reply..."
-                    title="Content is required and minimum 50 characters"
+                    placeholder={t('Salon.ContentPlaceholder')}
+                    title={t('Salon.ContentRequired')}
                     minLength="50"
                     required
                   />
                 </div>
-                <div className="flex justify-between items-center w-full p-1 pl-2 pb-0 space-x-2">
-                  <div className="flex items-center space-x-2">
+                <div className="flex md:flex-row flex-col justify-between items-end md:items-center w-full p-1 pl-2 pb-0 space-x-2">
+                  <div className="flex flex-col items-end md:flex-row md:items-center space-x-2">
                     <div>
                       {discussionTitle.params.value.length < 10 ? (
                         <span className="text-red-900 text-xs">
-                          {`Title characters ${discussionTitle.params.value.length}/10 minimum`}
+                          {t('Salon.TitleCharac') + `${discussionTitle.params.value.length}/10` + t('Salon.Minimum')}
                         </span>
                       ) : (
                         <p className="flex items-center">
@@ -511,7 +428,9 @@ const Salon = () => {
                     <div>
                       {discussionContent.params.value.length < 50 ? (
                         <span className="text-red-900 text-xs">
-                          {`Content characters ${discussionContent.params.value.length}/50 minimum`}
+                          {t('Salon.ContentCharac') +
+                            `${discussionContent.params.value.length}/50` +
+                            t('Salon.Minimum')}
                         </span>
                       ) : (
                         <p className="flex items-center">
@@ -540,14 +459,14 @@ const Salon = () => {
                       id="clear-discussion-button"
                       onClick={handleClearFields}
                     >
-                      Clear fields
+                      {t('ButtonLabel.Discard')}
                     </button>
                     <button
                       className="buttons-web text-black bg-blue-100 p-2 "
                       id="post-discussion-button"
                       onClick={handlePostDiscussion}
                     >
-                      Post
+                      {t('ButtonLabel.Post')}
                     </button>
                   </div>
                 </div>
@@ -560,7 +479,7 @@ const Salon = () => {
               ) : (
                 <div className="flex flex-row items-center justify-around h-screen">
                   <h1 className="text-center text-xl text-gray-500 shadow-md rounded-3xl bg-opacity-0 p-6">
-                    No discussion have been created yet
+                    {t('Salon.NoDiscussions')}
                   </h1>
                 </div>
               )}

@@ -13,7 +13,7 @@ const commentReducer = (state = [], action) => {
 
 export const initializeComments = () => {
   return async dispatch => {
-    const comments = await commentService.getAll()
+    const comments = await commentService.getAllComments()
     dispatch({
       type: 'INIT_COMMENTS',
       data: comments,
@@ -24,7 +24,7 @@ export const initializeComments = () => {
 export const createComment = comment => {
   console.log('COMMENT IN REDUCER :', comment)
   return async dispatch => {
-    const newComment = await commentService.create(comment)
+    const newComment = await commentService.createComment(comment)
     dispatch({
       type: 'NEW_COMMENT',
       data: newComment,

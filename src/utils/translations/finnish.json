@@ -13,7 +13,10 @@
     "ShowNote": "Näytä",
     "HideNote": "Piilottaa",
     "Forget": "Unohda asetukset",
-    "Post": "Lähettää"
+    "Post": "Lähettää",
+    "Discard": "Hylkää",
+    "Edit": "Muokata",
+    "Submit": "Lähetä"
   },
   "Countries": "Suomi,Ruotsi,Norja,Viro,Saksa,Espanja,Italia,Alankomaat,Sveitsi,Meksiko",
   "Months": "Tam,Hel,Maa,Huh,Tou,Kes,Hei,Elo,Syy,Lok,Mar,Jou",
@@ -133,9 +136,16 @@
     "FindByTopics": "Etsi aiheiden mukaan",
     "AsLoggedUser": "Luo keskustelu tai kirjoita kommenttisi rekisteröityneenä käyttäjänä kirjautumalla sisään",
     "Topics": "Aiheet",
-    "Author": "Kirjoittaja",
-    "Title": "Otsikko",
-    "Date": "Päivämäärä"
+    "SelectTopic": "Valitse aihe",
+    "TopicCharac": "Aiheen merkkien pituus ",
+    "Minimum": " vähintään",
+    "TopicPlaceholder": "Kirjoita aihe yhdellä sanalla",
+    "ContentPlaceholder": "Kirjoita keskustelun sisältö...",
+    "ClickToOpen":"Aloita keskustelu napsauttamalla tätä",
+    "ContentRequired": "Sisältö on pakollinen ja siinä on vähintään 50 merkkiä",
+    "TitleCharac": "Otsikkomerkkien pituus ",
+    "ContentCharac": "Sisällön merkkien pituus ",
+    "NoDiscussions": "Keskustelua ei ole vielä luotu"
   },
   "Signin": {
     "Welcome": "Tervetuloa takaisin ",

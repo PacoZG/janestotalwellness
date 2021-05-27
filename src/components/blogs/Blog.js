@@ -7,7 +7,7 @@ import { useTranslation } from 'react-i18next'
 import ReactMarkdown from 'react-markdown'
 import { useField } from '../../hooks/index'
 import { FacebookShareButton, FacebookShareCount, FacebookIcon } from 'react-share'
-import { likeBlog, dislikeBlog, deleteBlog, commentBlog } from '../../reducers/blogReducer'
+import { editBlog, likeBlog, dislikeBlog, deleteBlog, commentBlog } from '../../reducers/blogReducer'
 import { setNotification } from '../../reducers/notificationReducer'
 import imageService from '../../services/images'
 
@@ -22,6 +22,8 @@ const Blog = () => {
   const author = useField('text')
   const url = String(window.location)
   const [isOpen, setIsOpen] = useState(false)
+  const [showEditBlog, setShowEditBlog] = useState(false)
+  const [textareaState, setTextAreaState] = useState(null)
 
   const getDate = objectDate => {
     const months = t('Months').split(',')
@@ -55,6 +57,31 @@ const Blog = () => {
       }
       const commentedBlog = { ...blog, comments: blog.comments.concat(newComment) }
       dispatch(commentBlog(commentedBlog))
+    }
+  }
+
+  const handleTextareaChange = event => {
+    event.preventDefault()
+    setTextAreaState(event.target.value)
+  }
+
+  const handleSetEditblog = () => {
+    setTextAreaState(blog.content)
+    setShowEditBlog(!showEditBlog)
+  }
+
+  const handleSubmitEditedBlog = () => {
+    const editedBlog = {
+      ...blog,
+      content: textareaState,
+    }
+    try {
+      console.log('EDITED BLOG: ', editedBlog)
+      dispatch(editBlog(editedBlog))
+      setShowEditBlog(!showEditBlog)
+      location.reload()
+    } catch (error) {
+      console.log('ERROR: ', error.response.data.error)
     }
   }
 
@@ -99,12 +126,10 @@ const Blog = () => {
       </div>
     )
   }
+
   return (
-    <div className="min-h-screen shadow md:rounded-md md:overflow-hidden rounded-b-md bg-gradient-to-br from-gray-300 via-white to-gray-200 ">
-      <div
-        className=" p-2 md:p-5 md:pb-5 shadow md:rounded-t-md md:overflow-hidden rounded-t-md bg-gradient-to-br
-        from-gray-300 via-white to-gray-200  "
-      >
+    <div className="min-h-screen  pt-22 shadow md:rounded-md md:overflow-hidden rounded-b-md bg-gradient-to-br from-gray-300 via-white to-gray-200 ">
+      <div className=" p-2 md:p-5 md:pb-5 shadow md:rounded-t-md md:overflow-hidden rounded-t-md bg-gradient-to-br from-gray-300 via-white to-gray-200 ">
         <div className="prose prose-red prose-sm md:prose-sm mx-auto md:max-w-7xl pl-3 pr-3 p-3 md:pl-10 md:pr-10">
           <div className="flex flex-col items-center">
             <h1>{blog.title}</h1>
@@ -115,7 +140,16 @@ const Blog = () => {
             />
           </div>
           <div className="md:pl-16 md:pr-16 text-justify">
-            <ReactMarkdown>{blog.content}</ReactMarkdown>
+            {!showEditBlog ? (
+              <ReactMarkdown>{blog.content}</ReactMarkdown>
+            ) : (
+              <textarea
+                className="text-area h-96 rounded-lg m-1"
+                id="input-edit-blog"
+                value={textareaState}
+                onChange={handleTextareaChange}
+              />
+            )}
           </div>
         </div>
         <div className="flex flex-col md:flex-row items-center justify-between text-center md:px-4 md:py-3 bg-blue-200 md:text-right rounded-sm md:space-x-2">
@@ -184,7 +218,21 @@ const Blog = () => {
           and open a discussion
         </p>
         {loggedUser && loggedUser.userType === 'admin' ? (
-          <div className="px-4 py-3 bg-gray-400 text-center rounded-b-md md:px-6">
+          <div className="flex items-center justify-center space-x-2 px-4 py-3 bg-gray-400 rounded-b-md md:px-6">
+            {!showEditBlog ? (
+              <button onClick={handleSetEditblog} className="buttons-web">
+                {t('ButtonLabel.Edit')}
+              </button>
+            ) : (
+              <div className="flex items-center space-x-2">
+                <button onClick={() => setShowEditBlog(!showEditBlog)} className="buttons-web">
+                  {t('ButtonLabel.Cancel')}
+                </button>
+                <button onClick={handleSubmitEditedBlog} className="buttons-web">
+                  {t('ButtonLabel.Submit')}
+                </button>
+              </div>
+            )}
             <button onClick={handleDelete} className="buttons-web">
               {t('ButtonLabel.Delete')}
             </button>

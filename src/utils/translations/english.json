@@ -13,7 +13,10 @@
     "ShowNote": "Show note",
     "HideNote": "Hide note",
     "Forget": "Forget settings",
-    "Post": "Post"
+    "Post": "Post",
+    "Discard": "Discard",
+    "Edit": "Edit",
+    "Submit": "Submit"
   },
   "Countries": "Finland,Sweden,Norway,Estonia,Germany,Spain,Italy,Netherland,Switzerland,Mexico",
   "Months": "Jan,Feb,Mar,Apr,May,Jun,Jul,Aug,Sep,Oct,Nov,Dec",
@@ -132,7 +135,17 @@
     "LoggedAs": "Your are logged in as ",
     "FindByTopics": "Find by topics",
     "AsLoggedUser": "Create a discussion or write your comments as a registered user by signing in",
-    "Topics": "Topics"
+    "Topics": "Topics",
+    "SelectTopic": "Select your topic",
+    "TopicCharac": "Topic characters length ",
+    "Minimum": " minimum",
+    "TopicPlaceholder": "Type you topic in one word",
+    "ContentPlaceholder": "Type the content of your discussion...",
+    "ClickToOpen":"Click here to start a discussion",
+    "ContentRequired": "Content is required and minimum 50 characters",
+    "TitleCharac": "Title characters length ",
+    "ContentCharac": "Content characters length ",
+    "NoDiscussions": "No discussion have been created yet"
   },
   "Signin": {
     "Welcome": "Welcome back ",

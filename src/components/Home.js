@@ -7,7 +7,7 @@ const Home = () => {
 
   if (!home) {
     return (
-      <div className="flex justify-center items-center outline-none bg-gray-100 min-h-screen md:p-60 p-6">
+      <div className="flex justify-center items-center outline-none bg-gray-100 min-h-screen md:p-60 p-6 pt-24">
         <div className="flex flex-col items-center space-x-1">
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -28,7 +28,7 @@ const Home = () => {
   }
   return (
     <div>
-      <div className="bg-gray-100 min-h-screen pt-4">Home</div>
+      <div className="bg-gray-100 min-h-screen pt-24">Home</div>
     </div>
   )
 }

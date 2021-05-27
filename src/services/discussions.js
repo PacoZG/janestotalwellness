@@ -1,15 +1,25 @@
 import axios from 'axios'
 const baseUrl = '/api/discussions'
 
-const getAll = async () => {
+const getAllDiscussions = async () => {
   const response = await axios.get(baseUrl)
   return response.data
 }
 
-const create = async newDiscussion => {
+const createDiscussion = async newDiscussion => {
   console.log('NEW DISCUSSION; ', newDiscussion)
   const response = await axios.post(baseUrl, newDiscussion)
   return response.data
 }
 
-export default { getAll, create }
+const updateDiscussion = async updatedObject => {
+  const response = await axios.put(`${baseUrl}/${updatedObject.id}`, updatedObject)
+  return response.data
+}
+
+const removeDiscussion = async id => {
+  const response = await axios.delete(`${baseUrl}/${id}`)
+  return response.data
+}
+
+export default { getAllDiscussions, createDiscussion, updateDiscussion, removeDiscussion }

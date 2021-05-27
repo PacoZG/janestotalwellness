@@ -8,10 +8,17 @@ jobs:
   healthcheck:
     runs-on: ubuntu-18.04
     steps:
-      - name: Check the deployed service URL
+      - name: Check the deployed service URL .com
         uses: jtalk/url-health-check-action@v1.4
         with:
-          url: https://janetotalwellness.com/
+          url: https://janestotalwellness.com/
+          follow-redirect: no
+          max-attempts: 3
+          retry-delay: 5s
+      - name: Check the deployed service URL .fi
+        uses: jtalk/url-health-check-action@v1.4
+        with:
+          url: https://janestotalwellness.fi/
           follow-redirect: no
           max-attempts: 3
           retry-delay: 5s
