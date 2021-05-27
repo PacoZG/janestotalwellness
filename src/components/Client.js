@@ -83,7 +83,7 @@ const Client = () => {
     }
     if (content.params.value.length > 2) {
       try {
-        const newNote = await noteService.create(data)
+        const newNote = await noteService.createNote(data)
         const createdNote = {
           ...newNote,
           user: { username: client.username, id: client.id },
@@ -165,7 +165,7 @@ const Client = () => {
           <div className="grid grid-cols-6 gap-4 place-items-center border-b pb-3">
             <div className="block col-span-6">
               <p className="text-base">
-                {client.address ? client.address : <span className="text-red-400">{t('Client.Address')}</span>}
+                {client.address ? client.address : <span className="text-red-400">{t('Client.NotProvided')}</span>}
               </p>
             </div>
             <div className="block col-span-6">
@@ -173,7 +173,7 @@ const Client = () => {
                 {client.address && client.zipCode && client.city ? (
                   `${client.zipCode}, ${client.city}. ${client.country.toUpperCase()}`
                 ) : (
-                  <span className="text-red-400">{t('Client.Address')}</span>
+                  <span className="text-red-400">{t('Client.NotProvided')}</span>
                 )}
               </p>
             </div>
@@ -186,7 +186,11 @@ const Client = () => {
             <div className="block col-span-6">
               <p className="text-base">
                 <span className="font-semibold">{t('Client.Mobile')}</span>
-                {client.mobileNumber ? client.mobileNumber : <span className="text-red-400">{t('Client.Weight')}</span>}
+                {client.mobileNumber ? (
+                  client.mobileNumber
+                ) : (
+                  <span className="text-red-400">{t('Client.NotProvided')}</span>
+                )}
               </p>
             </div>
             <div className="block col-span-3 ">

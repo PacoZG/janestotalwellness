@@ -22,10 +22,7 @@ const BlogList = () => {
   }
 
   return (
-    <div
-      className="min-h-screen shadow md:rounded-md md:overflow-hidden rounded-b-md bg-gradient-to-br
-    from-gray-300 via-white to-gray-200 "
-    >
+    <div className="min-h-screen shadow md:rounded-md md:overflow-hidden rounded-b-md bg-gradient-to-br from-gray-300 via-white to-gray-200 pt-22 ">
       {blogs.length > 0 ? (
         blogs.map((blog, i) => (
           <div key={i} className="bg-blue-100 border-b-2 border-t-2">

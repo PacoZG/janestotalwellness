@@ -30,7 +30,7 @@ const MyClients = () => {
   }
 
   return (
-    <div className="bg-gray-200 min-h-screen">
+    <div className="bg-gray-200 pt-22 min-h-screen">
       <div className="bg-gray-200 p-2 ">
         <div
           className="min-h-screen shadow md:rounded-md md:overflow-hidden rounded-b-md bg-gradient-to-br

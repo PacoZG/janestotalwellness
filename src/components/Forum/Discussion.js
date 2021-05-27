@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { useTranslation } from 'react-i18next'
 import { Transition } from '@tailwindui/react'
 import { useField } from '../../hooks/index'
+import { likeDiscussion, dislikeDiscussion, editDiscussion, deleteDiscussion } from '../../reducers/discussionReducer'
 import { createComment } from '../../reducers/commentReducers'
 import Comment from './Comment'
 
@@ -15,8 +16,10 @@ const Discussion = ({ discussion }) => {
   const [showContent, setShowContent] = useState(false)
   const [showComments, setShowComments] = useState(false)
   const [showCommentInput, setShowCommentInput] = useState(false)
-  const author = useField('text')
-  const content = useField('text')
+  const [showEditInput, setShowEditInput] = useState(false)
+  const commentAuthor = useField('text')
+  const commentContent = useField('text')
+  const [textareaState, setTextAreaState] = useState(discussion.content)
 
   const getDate = objectDate => {
     const months = t('Months').split(',')
@@ -42,6 +45,36 @@ const Discussion = ({ discussion }) => {
     }
   }
 
+  const handleTextareaChange = event => {
+    event.preventDefault()
+    setTextAreaState(event.target.value)
+  }
+
+  const handleSubmitEditDiscussion = async () => {
+    const editedDiscussion = {
+      ...discussion,
+      content: textareaState,
+    }
+    try {
+      dispatch(editDiscussion(editedDiscussion))
+      setShowEditInput(!showEditInput)
+    } catch (error) {
+      console.log('ERROR: ', error.response.data.error)
+    }
+  }
+
+  const handleLikes = () => {
+    dispatch(likeDiscussion(discussion))
+  }
+
+  const handleDislikes = () => {
+    dispatch(dislikeDiscussion(discussion))
+  }
+
+  const handleDeleteDiscussion = () => {
+    dispatch(deleteDiscussion(discussion))
+  }
+
   const handleShowComments = () => {
     if (showCommentInput && showComments) {
       setShowCommentInput(!showCommentInput)
@@ -52,18 +85,30 @@ const Discussion = ({ discussion }) => {
   const handlePostComment = () => {
     const newComment = {
       discussion: discussion.id,
-      author: loggedUser ? loggedUser.username : author.params.value,
-      content: content.params.value,
+      author: loggedUser ? loggedUser.username : commentAuthor.params.value,
+      content: commentContent.params.value,
     }
 
-    if (content.params.value.length > 1 && newComment.author.length > 3) {
-      console.log('NEW COMMENT: ', newComment)
+    if (commentContent.params.value.length > 1 && newComment.author.length > 3) {
       try {
         dispatch(createComment(newComment))
+        discussion.comments = discussion.comments.concat({ ...newComment, createdAt: new Date(), replies: [] })
+        commentAuthor.reset()
+        commentContent.reset()
+        setShowCommentInput(!showCommentInput)
+        if (!showComments) {
+          setShowComments(!showComments)
+        }
       } catch (error) {
-        console.log('ERROR: ', error.response.data)
+        console.log('ERROR: ', error.response.data.error)
       }
     }
+  }
+
+  const handleDiscardComment = () => {
+    setShowCommentInput(!showCommentInput)
+    commentAuthor.reset()
+    commentContent.reset()
   }
 
   // console.log('DISCUSSION: ', d)
@@ -109,7 +154,7 @@ const Discussion = ({ discussion }) => {
               <button
                 type="button"
                 id="mobile-updateNote"
-                // onClick={handleDislikes}
+                onClick={handleDislikes}
                 className="inline-flex justify-center pr-3 font-medium rounded-full bg-transparent text-sm
                 text-gray-600 hover:text-gray-400 focus-within:outline-none"
               >
@@ -127,7 +172,7 @@ const Discussion = ({ discussion }) => {
               <button
                 type="button"
                 id="mobile-updateNote"
-                // onClick={handleLikes}
+                onClick={handleLikes}
                 className="inline-flex justify-center pr-2 font-medium rounded-full bg-transparent text-sm
                 text-gray-600 hover:text-gray-400 hover:bg-gray-300 focus-within:outline-none"
               >
@@ -141,7 +186,10 @@ const Discussion = ({ discussion }) => {
                 </svg>
               </button>
             </div>
-            <div className="flex flow-row items-center md:pr-3 ">
+            <div>
+              <p className="text-xs md:text-sm w-full mr-2">{`${discussion.comments.length} comments`}</p>
+            </div>
+            <div className="flex flow-row items-center pr-2 md:pr-3 ">
               <div className="pb-1 pr-1 ">
                 <button
                   className={
@@ -179,40 +227,89 @@ const Discussion = ({ discussion }) => {
         leaveTo="opacity-0"
       >
         <div className="px-3">
-          <p className="md:px-8 md:py-2 text-sm md:text-justify">{discussion.content}</p>
+          {showEditInput ? (
+            <textarea
+              className="text-area rounded-lg m-1"
+              id="input-edit-discussion"
+              value={textareaState}
+              onChange={handleTextareaChange}
+            />
+          ) : (
+            <p className="md:px-8 md:py-2 text-sm md:text-justify">{discussion.content}</p>
+          )}
         </div>
 
-        <div className="flex flex-row border-t-2 pl-2 p-1 border-gray-300 w-full">
-          <label className="text-sm pl-2 pt-1 ">
-            {showComments ? t('Discussion.HideComments') : t('Discussion.ShowComments')}
-          </label>
-          <button
-            className={
-              showComments
-                ? 'transition duration-300 transform rotate-90 focus-within:outline-none p-1'
-                : 'transition duration-150 focus-within:outline-none p-1'
-            }
-            onClick={handleShowComments}
-          >
-            <svg xmlns="http://www.w3.org/2000/svg" className="h-3 w-3" viewBox="0 0 20 20" fill="currentColor">
-              <path
-                fillRule="evenodd"
-                d="M10.293 15.707a1 1 0 010-1.414L14.586 10l-4.293-4.293a1 1 0 111.414-1.414l5 5a1 1 0 010 1.414l-5 5a1 1 0 01-1.414 0z"
-                clipRule="evenodd"
-              />
-              <path
-                fillRule="evenodd"
-                d="M4.293 15.707a1 1 0 010-1.414L8.586 10 4.293 5.707a1 1 0 011.414-1.414l5 5a1 1 0 010 1.414l-5 5a1 1 0 01-1.414 0z"
-                clipRule="evenodd"
-              />
-            </svg>
-          </button>
-          <button
-            className="text-sm pl-1 pb-1 transition duration-300 hover:text-blue-600 focus-within:outline-none"
-            onClick={() => setShowCommentInput(!showCommentInput)}
-          >
-            <span>{showCommentInput ? t('Discussion.Cancel') : t('Discussion.MakeAComment')}</span>
-          </button>
+        <div className="flex flex-col items-start md:flex-row md:justify-between border-t-2 pl-2 p-1 border-gray-300 w-full">
+          <div className="flex items-center">
+            <button
+              className="text-sm md:pl-2 pb-1 transition duration-300 hover:text-blue-600 focus-within:outline-none"
+              onClick={() => setShowCommentInput(!showCommentInput)}
+            >
+              <span>{showCommentInput ? t('Discussion.Cancel') : t('Discussion.MakeAComment')}</span>
+            </button>
+            <div className=" flex items-center space-x-1 pl-2">
+              <label className="text-sm md;pl-2 pt-1 ">
+                {showComments ? t('Discussion.HideComments') : t('Discussion.ShowComments')}
+              </label>
+              <button
+                className={
+                  showComments
+                    ? 'transition duration-300 transform rotate-90 focus-within:outline-none'
+                    : 'transition duration-150 focus-within:outline-none'
+                }
+                onClick={handleShowComments}
+              >
+                <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" viewBox="0 0 20 20" fill="currentColor">
+                  <path
+                    fillRule="evenodd"
+                    d="M10.293 15.707a1 1 0 010-1.414L14.586 10l-4.293-4.293a1 1 0 111.414-1.414l5 5a1 1 0 010 1.414l-5 5a1 1 0 01-1.414 0z"
+                    clipRule="evenodd"
+                  />
+                  <path
+                    fillRule="evenodd"
+                    d="M4.293 15.707a1 1 0 010-1.414L8.586 10 4.293 5.707a1 1 0 011.414-1.414l5 5a1 1 0 010 1.414l-5 5a1 1 0 01-1.414 0z"
+                    clipRule="evenodd"
+                  />
+                </svg>
+              </button>
+            </div>
+          </div>
+          <div className="flex items-center space-x-3 pr-3">
+            {!showEditInput ? (
+              <button
+                className="text-sm transition duration-300 hover:text-blue-400 focus-within:outline-none"
+                id="delete-discussion"
+                onClick={() => setShowEditInput(!showEditInput)}
+              >
+                {t('ButtonLabel.Edit')}
+              </button>
+            ) : (
+              <div className="flex space-x-3 ">
+                <button
+                  className="text-sm transition duration-300 hover:text-blue-400 focus-within:outline-none"
+                  id="delete-discussion"
+                  onClick={() => setShowEditInput(!showEditInput)}
+                >
+                  {t('ButtonLabel.Cancel')}
+                </button>
+                <button
+                  className="text-sm transition duration-300 hover:text-blue-400 focus-within:outline-none"
+                  id="delete-discussion"
+                  onClick={handleSubmitEditDiscussion}
+                >
+                  {t('ButtonLabel.Submit')}
+                </button>
+              </div>
+            )}
+
+            <button
+              className="text-sm transition duration-300 hover:text-blue-400 focus-within:outline-none"
+              id="edit-discussion"
+              onClick={handleDeleteDiscussion}
+            >
+              {t('ButtonLabel.Delete')}
+            </button>
+          </div>
         </div>
         <Transition
           show={showCommentInput}
@@ -232,7 +329,7 @@ const Discussion = ({ discussion }) => {
             ) : (
               <input
                 id="author-comment"
-                {...author.params}
+                {...commentAuthor.params}
                 className="editform-input rounded-b-none"
                 placeholder={t('Discussion.Author')}
               />
@@ -240,7 +337,7 @@ const Discussion = ({ discussion }) => {
 
             <textarea
               id="content-comment"
-              {...content.params}
+              {...commentContent.params}
               className="text-area rounded-b-md max-h-14"
               placeholder={t('Discussion.CommentPlaceholder')}
             />
@@ -248,9 +345,9 @@ const Discussion = ({ discussion }) => {
               <button
                 id="delete-comment"
                 className="buttons-web text-sm text-black w-auto pl-1 pr-1 bg-gray-200 p-1 m-1"
-                // onClick={handleDeleteComment}
+                onClick={handleDiscardComment}
               >
-                {t('ButtonLabel.Cancel')}
+                {t('ButtonLabel.Discard')}
               </button>
               <button
                 id="post-comment"

@@ -55,7 +55,7 @@ const MainMenu = () => {
 
   return (
     <div>
-      <div className="bg-gray-600 w-full">
+      <div className="fixed z-40 bg-gray-600 w-full">
         {/* Desktop menu,. */}
         <div className="flex items-top justify-between ">
           <div className="hidden md:flex md:items-center  md:pb-1 md:pt-1">

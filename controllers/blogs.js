@@ -21,11 +21,10 @@ blogsRouter.post('/', async (request, response) => {
 
 blogsRouter.get('/:id', async (request, response) => {
   const blog = await Blog.findById(request.params.id)
-  if (blog) {
-    response.json(blog.toJSON())
-  } else {
+  if (!blog) {
     response.status(404).end()
   }
+  response.json(blog.toJSON())
 })
 
 blogsRouter.delete('/:id', async (request, response) => {
@@ -33,7 +32,7 @@ blogsRouter.delete('/:id', async (request, response) => {
   response.status(204).json().end()
 })
 
-blogsRouter.put('/:id', (request, response) => {
+blogsRouter.put('/:id', async (request, response) => {
   const body = request.body
   const blog = {
     title: body.title,
@@ -43,7 +42,7 @@ blogsRouter.put('/:id', (request, response) => {
     dislikes: body.dislikes,
     comments: body.comments,
   }
-  Blog.findByIdAndUpdate(request.params.id, blog, { new: true })
+  await Blog.findByIdAndUpdate(request.params.id, blog, { new: true })
     .then(updatedBlog => updatedBlog.toJSON())
     .then(savedAndUpdatedBlog => {
       response.status(201).json(savedAndUpdatedBlog)

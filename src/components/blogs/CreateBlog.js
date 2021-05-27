@@ -82,7 +82,7 @@ const CreateBlog = () => {
   }
   return (
     <div
-      className="min-h-screen shadow md:rounded-md md:overflow-hidden rounded-b-md bg-gradient-to-br
+      className="min-h-screen pt-22 shadow md:rounded-md md:overflow-hidden rounded-b-md bg-gradient-to-br
     from-gray-300 via-white to-gray-200 "
     >
       <Transition

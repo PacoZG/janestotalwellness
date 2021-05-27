@@ -67,7 +67,7 @@ const EditForm = () => {
       try {
         image = await imageService.postImage(data)
       } catch (error) {
-        console.log('ERROR: ', error.response.data)
+        console.log('ERROR: ', error.response.data.error)
       }
       if (user.imageID) {
         imageService.removeImage(user.imageID)
@@ -269,7 +269,7 @@ const EditForm = () => {
 
   return (
     <div>
-      <div className="bg-gray-100 min-h-screen static">
+      <div className="bg-gray-100 min-h-screen pt-22 static">
         <div className="bg-white m-2 md:m-8 mb-1 shadow overflow-hidden rounded-lg">
           <div>
             <div className="md:grid md:grid-cols-3 md:gap-6 bg-gray-100">
