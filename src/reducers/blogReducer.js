@@ -60,16 +60,14 @@ export const createBlog = blog => {
 export const editBlog = editedBlog => {
   return async dispatch => {
     const changedBlog = await blogService.updateBlog(editedBlog)
-    console.log('DISCUSSION IN REDUCER: ', changedBlog)
     dispatch({
-      type: 'UPDATE_DISCUSSION',
+      type: 'UPDATE_BLOG',
       data: changedBlog,
     })
   }
 }
 
 export const likeBlog = blog => {
-  console.log('BLOG: ', blog)
   const updatedBlog = { ...blog, likes: blog.likes + 1 }
   return async dispatch => {
     const changedBlog = await blogService.updateBlog(updatedBlog)
@@ -81,7 +79,6 @@ export const likeBlog = blog => {
 }
 
 export const dislikeBlog = blog => {
-  console.log('BLOG: ', blog)
   const updatedBlog = { ...blog, dislikes: blog.dislikes + 1 }
   return async dispatch => {
     const changedBlog = await blogService.updateBlog(updatedBlog)

@@ -13,6 +13,7 @@ const Discussion = ({ discussion }) => {
   const { t } = useTranslation()
   const dispatch = useDispatch()
   const loggedUser = useSelector(state => state.loggedUser)
+  const comments = useSelector(state => state.comments.filter(comment => comment.discussion === discussion.id))
   const [showContent, setShowContent] = useState(false)
   const [showComments, setShowComments] = useState(false)
   const [showCommentInput, setShowCommentInput] = useState(false)
@@ -20,6 +21,8 @@ const Discussion = ({ discussion }) => {
   const commentAuthor = useField('text')
   const commentContent = useField('text')
   const [textareaState, setTextAreaState] = useState(discussion.content)
+
+  console.log('COMMENTS IN DISCUSSION: ', comments)
 
   const getDate = objectDate => {
     const months = t('Months').split(',')
@@ -85,6 +88,7 @@ const Discussion = ({ discussion }) => {
   const handlePostComment = () => {
     const newComment = {
       discussion: discussion.id,
+      userID: loggedUser ? loggedUser.id : 'visitor',
       author: loggedUser ? loggedUser.username : commentAuthor.params.value,
       content: commentContent.params.value,
     }
@@ -153,7 +157,7 @@ const Discussion = ({ discussion }) => {
               <label className="text-sm -mr-3 mt-2 pr-3 font-semibold text-gray-600">{discussion.dislikes}</label>
               <button
                 type="button"
-                id="mobile-updateNote"
+                id="dislike-discussion"
                 onClick={handleDislikes}
                 className="inline-flex justify-center pr-3 font-medium rounded-full bg-transparent text-sm
                 text-gray-600 hover:text-gray-400 focus-within:outline-none"
@@ -171,7 +175,7 @@ const Discussion = ({ discussion }) => {
               <label className="text-sm -mr-3 mt-2 pr-3  font-semibold text-gray-600">{discussion.likes}</label>
               <button
                 type="button"
-                id="mobile-updateNote"
+                id="like-discussion"
                 onClick={handleLikes}
                 className="inline-flex justify-center pr-2 font-medium rounded-full bg-transparent text-sm
                 text-gray-600 hover:text-gray-400 hover:bg-gray-300 focus-within:outline-none"
@@ -187,7 +191,7 @@ const Discussion = ({ discussion }) => {
               </button>
             </div>
             <div>
-              <p className="text-xs md:text-sm w-full mr-2">{`${discussion.comments.length} comments`}</p>
+              <p className="text-xs md:text-sm w-full mr-2">{`${comments.length} comments`}</p>
             </div>
             <div className="flex flow-row items-center pr-2 md:pr-3 ">
               <div className="pb-1 pr-1 ">
@@ -235,7 +239,7 @@ const Discussion = ({ discussion }) => {
               onChange={handleTextareaChange}
             />
           ) : (
-            <p className="md:px-8 md:py-2 text-sm md:text-justify">{discussion.content}</p>
+            <p className="pt-3 pb-3 md:px-8 md:py-2 text-sm md:text-justify">{discussion.content}</p>
           )}
         </div>
 
@@ -274,42 +278,44 @@ const Discussion = ({ discussion }) => {
               </button>
             </div>
           </div>
-          <div className="flex items-center space-x-3 pr-3">
-            {!showEditInput ? (
-              <button
-                className="text-sm transition duration-300 hover:text-blue-400 focus-within:outline-none"
-                id="delete-discussion"
-                onClick={() => setShowEditInput(!showEditInput)}
-              >
-                {t('ButtonLabel.Edit')}
-              </button>
-            ) : (
-              <div className="flex space-x-3 ">
+          {discussion.userId === loggedUser.id || loggedUser.userType === 'admin' ? (
+            <div className="flex items-center space-x-3 pr-3">
+              {!showEditInput ? (
                 <button
                   className="text-sm transition duration-300 hover:text-blue-400 focus-within:outline-none"
                   id="delete-discussion"
                   onClick={() => setShowEditInput(!showEditInput)}
                 >
-                  {t('ButtonLabel.Cancel')}
+                  {t('ButtonLabel.Edit')}
                 </button>
-                <button
-                  className="text-sm transition duration-300 hover:text-blue-400 focus-within:outline-none"
-                  id="delete-discussion"
-                  onClick={handleSubmitEditDiscussion}
-                >
-                  {t('ButtonLabel.Submit')}
-                </button>
-              </div>
-            )}
+              ) : (
+                <div className="flex space-x-3 ">
+                  <button
+                    className="text-sm transition duration-300 hover:text-blue-400 focus-within:outline-none"
+                    id="delete-discussion"
+                    onClick={() => setShowEditInput(!showEditInput)}
+                  >
+                    {t('ButtonLabel.Cancel')}
+                  </button>
+                  <button
+                    className="text-sm transition duration-300 hover:text-blue-400 focus-within:outline-none"
+                    id="delete-discussion"
+                    onClick={handleSubmitEditDiscussion}
+                  >
+                    {t('ButtonLabel.Submit')}
+                  </button>
+                </div>
+              )}
 
-            <button
-              className="text-sm transition duration-300 hover:text-blue-400 focus-within:outline-none"
-              id="edit-discussion"
-              onClick={handleDeleteDiscussion}
-            >
-              {t('ButtonLabel.Delete')}
-            </button>
-          </div>
+              <button
+                className="text-sm transition duration-300 hover:text-blue-400 focus-within:outline-none"
+                id="edit-discussion"
+                onClick={handleDeleteDiscussion}
+              >
+                {t('ButtonLabel.Delete')}
+              </button>
+            </div>
+          ) : null}
         </div>
         <Transition
           show={showCommentInput}
@@ -371,10 +377,10 @@ const Discussion = ({ discussion }) => {
         leaveTo="opacity-0"
       >
         <div className=" border-t-2 border-gray-200 divide-solid divide-y-2 divide-gray-400 bg-blue-100 pl-2 pr-2">
-          {discussion.comments.length > 0 ? (
-            discussion.comments.map((comment, i) => <Comment key={i} comment={comment} />)
+          {comments.length > 0 ? (
+            comments.map((comment, i) => <Comment key={i} comment={comment} />)
           ) : (
-            <p className="text-xs pl-4 p-2 bg-gray-200">No comments yet</p>
+            <p className="text-xs pl-4 p-2 bg-gray-200">{t('Discussion.NoComments')}</p>
           )}
         </div>
       </Transition>

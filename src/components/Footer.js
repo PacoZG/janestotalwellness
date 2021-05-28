@@ -8,7 +8,19 @@ import CookiesBanner from './CookiesBanner'
 const Footer = () => {
   const { t } = useTranslation()
   return (
-    <div className="relative inset-x-0 bottom-0 z-30 p-4 pt-5 pb-5 bg-gray-600">
+    <div className="relative inset-x-0 bottom-0 z-30 p-4 pt-3 pb-3 bg-gray-600">
+      <div className="text-center">
+        <FacebookShareCount url={window.location.href}>
+          {shareCount => <span className="text-2xl text-black">{console.log('SHARE COUNT: ', shareCount)}</span>}
+        </FacebookShareCount>
+        <FacebookShareButton
+          url={window.location.href}
+          className="inline-flex justify-center py-1 px-3 -ml-4 font-medium focus-within:outline-none "
+        >
+          <FacebookIcon size={20} round={true} />
+          <span className="text-gray-200 text-xs font-semibold pt-0.5 pl-1">SHARE THIS PAGE</span>
+        </FacebookShareButton>
+      </div>
       <p className="text-sm font-bold text-gray-200 text-center pb-4">{t('Footer.UnderConst')}</p>
       <div className="flex flex-col md:flex-row justify-between items-center md:items-start space-y-2 md:space-y-0 md:p-2">
         <div className="flex flex-col items-center  md:items-start space-y-2">
@@ -106,15 +118,15 @@ const Footer = () => {
             </a>
           </li>
           <div className="flex items-center justify-center ">
-            <FacebookShareCount url={'http://janestotalwellness.com'}>
+            <FacebookShareCount url={window.location.origin}>
               {shareCount => <span className="text-2xl text-black">{console.log('SHARE COUNT: ', shareCount)}</span>}
             </FacebookShareCount>
             <FacebookShareButton
-              url={'http://janestotalwellness.com'}
+              url={window.location.origin}
               className="inline-flex justify-center py-1 px-3 -ml-4 font-medium focus-within:outline-none "
             >
               <FacebookIcon size={28} round={true} />
-              <span className="text-gray-200 text-xs font-semibold pt-1 pl-1">SHARE THIS PAGE</span>
+              <span className="text-gray-200 text-xs font-semibold pt-1 pl-1">SHARE OUR WEBSITE</span>
             </FacebookShareButton>
           </div>
         </div>

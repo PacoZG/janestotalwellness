@@ -3,12 +3,7 @@ const Discussion = require('../models/discussion')
 const Comment = require('../models/comment')
 
 discussionsRouter.get('/', async (request, response) => {
-  const discussions = await Discussion.find({}).populate('comments', {
-    replies: 1,
-    author: 1,
-    content: 1,
-    createdAt: 1,
-  })
+  const discussions = await Discussion.find({}).populate('comments', { discussion: 1 })
   response.status(201).json(discussions.map(discussion => discussion.toJSON()))
 })
 

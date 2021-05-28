@@ -1,6 +1,7 @@
 import usersService from '../services/user'
 
 const usersReducer = (state = [], action) => {
+  console.log('USER IN USER REDUCER: ', action.data)
   switch (action.type) {
     case 'INIT_USERS':
       return action.data
@@ -48,6 +49,7 @@ export const getUser = id => {
 }
 
 export const updateUser = user => {
+  console.log('USER: ', user)
   return async dispatch => {
     const updatedUser = await usersService.updateUser(user)
     dispatch({

@@ -41,7 +41,6 @@ export const initializeDiscussions = () => {
 }
 
 export const createDiscussion = discussion => {
-  console.log('DISCUSSION IN REDUCER :', discussion)
   return async dispatch => {
     const newDiscussion = await discussionService.createDiscussion(discussion)
     dispatch({
@@ -54,7 +53,6 @@ export const createDiscussion = discussion => {
 export const editDiscussion = editedDiscussion => {
   return async dispatch => {
     const changedDiscussion = await discussionService.updateDiscussion(editedDiscussion)
-    console.log('DISCUSSION IN REDUCER: ', editedDiscussion)
     dispatch({
       type: 'UPDATE_DISCUSSION',
       data: changedDiscussion,
@@ -63,7 +61,6 @@ export const editDiscussion = editedDiscussion => {
 }
 
 export const likeDiscussion = discussion => {
-  console.log('DISCUSSION: ', discussion)
   const updatedDiscussion = { ...discussion, likes: discussion.likes + 1 }
   return async dispatch => {
     const changedDiscussion = await discussionService.updateDiscussion(updatedDiscussion)
@@ -76,7 +73,6 @@ export const likeDiscussion = discussion => {
 }
 
 export const dislikeDiscussion = discussion => {
-  console.log('DISCUSSION: ', discussion)
   const updatedDiscussion = { ...discussion, dislikes: discussion.dislikes + 1 }
   return async dispatch => {
     const changedDiscussion = await discussionService.updateDiscussion(updatedDiscussion)

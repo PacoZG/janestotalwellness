@@ -13,6 +13,7 @@ const commentSchema = mongoose.Schema(
         createdAt: String,
       },
     ],
+    userId: String,
     author: String,
     content: String,
     likes: Number,
