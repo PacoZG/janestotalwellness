@@ -145,7 +145,7 @@ const Client = () => {
   }
 
   return (
-    <div className="bg-gray-200 min-h-screen">
+    <div className="bg-gray-200 pt-20 min-h-screen">
       {/* MOBILE VIEW */}
       <div className="md:hidden flex flex-col">
         <div className="shadow overflow-hidden rounded-md bg-gradient-to-br from-gray-300 via-white to-gray-300 p-3">

@@ -85,7 +85,8 @@
     "ShowComments": "Mostrar comentarios",
     "Cancel": "Cancelar",
     "MakeAComment": "Hacer un comentario",
-    "CommentPlaceholder": "Escribe un comentario..."
+    "CommentPlaceholder": "Escribe un comentario...",
+    "NoComments": "Sin comentarios aún"
   },
   "EditForm": {
     "ImageWarning": "La imagen es mas grande de 3MB",

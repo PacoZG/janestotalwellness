@@ -39,7 +39,7 @@ const Blog = () => {
     return creationDate
   }
 
-  const handleSaveComment = () => {
+  const handleSubmitComment = () => {
     if (author.params.value.length < 5) {
       dispatch(
         setNotification({
@@ -76,10 +76,8 @@ const Blog = () => {
       content: textareaState,
     }
     try {
-      console.log('EDITED BLOG: ', editedBlog)
       dispatch(editBlog(editedBlog))
       setShowEditBlog(!showEditBlog)
-      location.reload()
     } catch (error) {
       console.log('ERROR: ', error.response.data.error)
     }
@@ -167,8 +165,7 @@ const Blog = () => {
                 type="button"
                 id="mobile-updateNote"
                 onClick={handleDislikes}
-                className="inline-flex justify-center py-1 px-3 font-medium rounded-full bg-transparent text-sm
-              text-white hover:text-gray-200 focus-within:outline-none"
+                className="inline-flex justify-center py-1 px-3 font-medium rounded-full bg-transparent text-sm text-black hover:text-gray-300 focus-within:outline-none"
               >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -186,8 +183,7 @@ const Blog = () => {
                 type="button"
                 id="mobile-updateNote"
                 onClick={handleLikes}
-                className="inline-flex justify-center py-1 px-3 font-medium rounded-full bg-transparent text-sm
-              text-white hover:bg-gray-300 focus-within:outline-none"
+                className="inline-flex justify-center py-1 px-3 font-medium rounded-full bg-transparent text-sm text-black hover:text-gray-300 focus-within:outline-none"
               >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -295,7 +291,7 @@ const Blog = () => {
           <label className="edit-form-label text-base pt-2">{t('Blog.WriteComment')}</label>
           <textarea {...comment.params} className="text-area rounded-t-md " minLength="10" maxLength="500" />
           <div className="flex justify-end items-center px-3 py-2 bg-gray-400 text-right rounded-b-md space-x-2">
-            <button type="button" id="mobile-updateNote" onClick={handleSaveComment} className="buttons-web">
+            <button type="button" id="mobile-updateNote" onClick={handleSubmitComment} className="buttons-web">
               {t('ButtonLabel.Save')}
             </button>
           </div>

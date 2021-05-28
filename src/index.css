@@ -29,6 +29,9 @@
     @apply transition duration-500 inline-flex justify-center py-2 px-4 border shadow-sm font-medium rounded-md bg-gray-500 text-sm text-white hover:bg-gray-400 focus-within:outline-none;
   }
   .buttons-mobile {
-    @apply transition duration-1000 inline-flex justify-center py-1 px-3 border shadow-sm font-medium rounded-md bg-gray-500 text-sm text-white hover:bg-gray-300 focus-within:outline-none focus-within:ring-1;
+    @apply transition duration-1000 inline-flex justify-center py-1 px-3 border shadow-sm font-medium rounded-md bg-gray-500 text-sm text-white hover:bg-gray-300 focus-within:outline-none;
+  }
+  .button-comment {
+    @apply text-xs transition duration-300 hover:text-indigo-500 focus-within:outline-none;
   }
 }
