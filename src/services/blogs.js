@@ -7,7 +7,6 @@ const getAllBlogs = async () => {
 }
 
 const createBlog = async newBlog => {
-  console.log('BLOG IN SERVICE: ', newBlog)
   const response = await axios.post(baseUrl, newBlog)
   return response.data
 }

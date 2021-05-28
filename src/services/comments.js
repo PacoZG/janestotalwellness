@@ -7,7 +7,6 @@ const getAllComments = async () => {
 }
 
 const createComment = async newComment => {
-  console.log('NEW DISCUSSION; ', newComment)
   const response = await axios.post(baseUrl, newComment)
   return response.data
 }

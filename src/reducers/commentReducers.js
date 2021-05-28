@@ -1,7 +1,6 @@
 import commentService from '../services/comments'
 
 const commentReducer = (state = [], action) => {
-  console.log('ACTION IN COMMENT REDUCER: ', action.data)
   switch (action.type) {
     case 'INIT_COMMENTS':
       return action.data
