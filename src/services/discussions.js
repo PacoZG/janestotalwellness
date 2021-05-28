@@ -7,7 +7,6 @@ const getAllDiscussions = async () => {
 }
 
 const createDiscussion = async newDiscussion => {
-  console.log('NEW DISCUSSION; ', newDiscussion)
   const response = await axios.post(baseUrl, newDiscussion)
   return response.data
 }
