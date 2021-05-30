@@ -2,21 +2,14 @@ const multer = require('../utils/multer')
 const imageRouter = require('express').Router()
 const converter = require('../utils/fileConverter')
 const cloudinary = require('../utils/cloudinary')
-const sharp = require('sharp')
 
 imageRouter.post('/', multer.singleUploadControl, async (request, response) => {
   const file = request.file
-  const resizedImage = await sharp(request.file.buffer).resize({ height: 600 }).toBuffer()
-  const image = {
-    ...file,
-    buffer: resizedImage,
-    size: resizedImage.length,
-  }
   try {
     if (!request.file) {
       response.status(400).send({ message: 'Image is not present' })
     }
-    const file64 = converter.formatBufferTo64(image)
+    const file64 = converter.formatBufferTo64(file)
     const uploadResponse = await cloudinary.cloudinaryUpload(file64.content)
     return response.status(201).json({
       cloudinaryId: uploadResponse.public_id,
