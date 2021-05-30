@@ -6,13 +6,12 @@ const sharp = require('sharp')
 
 imageRouter.post('/', multer.singleUploadControl, async (request, response) => {
   const file = request.file
-  const resizedImage = await sharp(request.file.buffer).resize({ width: 200 }).toBuffer()
+  const resizedImage = await sharp(request.file.buffer).resize({ height: 600 }).toBuffer()
   const image = {
     ...file,
     buffer: resizedImage,
     size: resizedImage.length,
   }
-  // console.log('RESIZED IMAGE: ', image)
   try {
     if (!request.file) {
       response.status(400).send({ message: 'Image is not present' })

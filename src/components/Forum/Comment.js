@@ -32,6 +32,8 @@ const Comment = ({ comment }) => {
     return creationDate
   }
 
+  console.log('USER ID: ', comment.userId)
+
   const handleTextareaChange = event => {
     event.preventDefault()
     setTextAreaState(event.target.value)
@@ -157,7 +159,7 @@ const Comment = ({ comment }) => {
             />
           )}
         </div>
-        {loggedUser.id === comment.userId || loggedUser.userType === 'admin' ? (
+        {loggedUser && (comment.userId === loggedUser.id || loggedUser.userType === 'admin') ? (
           <div className="flex items-center space-x-2">
             {showCommentInput ? (
               <div className="flex items-center space-x-2 ml-3">
@@ -183,6 +185,7 @@ const Comment = ({ comment }) => {
       </div>
 
       <div className="flex items-center justify-end rounded-b-md space-x-1 pr-2 bg-gray-300">
+        <div className="text-xs pr-2">{comment.replies.length} replies</div>
         <div className="flex items-center space-y-1">
           <button className="button-comment" onClick={handleShowReplies}>
             {showReplies ? t('Comment.HideReplies') : t('Comment.ShowReplies')}

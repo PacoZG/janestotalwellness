@@ -1,5 +1,4 @@
-import React, { useState } from 'react'
-import { FacebookShareButton, FacebookShareCount, FacebookIcon } from 'react-share'
+import React, { useEffect, useState } from 'react'
 import { Transition } from '@tailwindui/react'
 import { Link } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
@@ -9,8 +8,9 @@ import { setNotification } from '../../reducers/notificationReducer'
 import { userLogin } from '../../reducers/loginReducer'
 import loginService from '../../services/login'
 import localdb from '../../utils/localdb'
-import Discussion from './Discussion'
+import DiscussionsList from './DiscussionsList'
 import { createDiscussion } from '../../reducers/discussionReducer'
+var _ = require('lodash')
 
 const Salon = () => {
   const { t } = useTranslation()
@@ -20,7 +20,10 @@ const Salon = () => {
   const [showSideMenu, setShowSideMenu] = useState(false)
   const [showTopicMenu, setShowTopicMenu] = useState(false)
   const [showDiscussionInput, setShowDiscussionInput] = useState(false)
-  const [topic, setTopic] = useState('')
+  const [topic, setTopic] = useState(null)
+  const [topicList, setTopicList] = useState([])
+  const [showTopicOptions, setShowTopicOptions] = useState(false)
+  const [filter, setFilter] = useState(null)
   const username = useField('text')
   const password = useField('password')
   const author = useField('text')
@@ -38,7 +41,6 @@ const Salon = () => {
 
   const handleLogin = async event => {
     event.preventDefault()
-
     const credentials = {
       username: username.params.value.toLowerCase(),
       password: password.params.value,
@@ -77,10 +79,23 @@ const Salon = () => {
     }
   }
 
-  const topics = ['Exercise', 'Nutrition', 'Other']
+  const topics = ['Other', 'Exercise', 'Nutrition']
+  useEffect(() => {
+    if (discussions.length > 0) {
+      setTopicList(_.uniq(_.map(discussions, 'topic')).sort())
+    }
+  }, [setTopicList])
+
+  console.log('FILTER: ', filter)
+
   const handleTopic = topic => {
     setTopic(topic)
     setShowTopicMenu(!showTopicMenu)
+  }
+
+  const handleFilter = topic => {
+    setFilter(topic)
+    setShowTopicOptions(!showTopicOptions)
   }
 
   const handleClearFields = () => {
@@ -199,7 +214,7 @@ const Salon = () => {
                     <span className="italic font-semibold"> {loggedUser.username}</span>
                   </h3>
                   <h2 className="text-center pt-1 bg-gray-400">{t('Salon.Topics')}</h2>
-                  <p className="text-sm pt-1 ">{t('Salon.FindByTopics')}</p>
+                  <p className="text-sm text-center pt-1 ">{t('Salon.FindByTopics')}</p>
                 </div>
               ) : (
                 <div className=" border-gray-500 pb-2">
@@ -231,9 +246,77 @@ const Salon = () => {
                     {t('Signin.SigninButton')}
                   </button>
                   <h2 className="text-center pt-1 border-t border-gray-600 ">{t('Salon.Topics')}</h2>
-                  <p className="text-sm pt-1 ">{t('Salon.FindByTopics')}</p>
+                  <p className="text-sm text-center pt-1 ">{t('Salon.FindByTopics')}</p>
                 </div>
               )}
+              <div className="relative md:mb-1 w-full">
+                <div className="md:flex md:items-center md:space-x-2 w-full">
+                  <div
+                    name="topic"
+                    type="text"
+                    className="h-9 w-full border border-gray-300 focus:ring-0 bg-white rounded-md shadow-sm md:text-base text-left"
+                  >
+                    <div className="flex justify-between ">
+                      {filter ? (
+                        <div className="flex justify-between w-full text-sm text-gray-500 pr-2">
+                          <div className="">{filter}</div>
+                          <div onClick={() => setFilter(null)} className="opacity-50 z-30 cursor-pointer">
+                            X
+                          </div>
+                        </div>
+                      ) : (
+                        <div className="opacity-25 text-sm text-center ">{t('Salon.SelectTopic')}</div>
+                      )}
+                      <div>
+                        <span
+                          className="flex items-center border-l pl-1 cursor-pointer"
+                          id="country-menu"
+                          onClick={() => setShowTopicOptions(!showTopicOptions)}
+                        >
+                          <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            className="h-5 w-5"
+                            viewBox="0 0 20 20"
+                            fill="currentColor"
+                          >
+                            <path
+                              fillRule="evenodd"
+                              d="M10 3a1 1 0 01.707.293l3 3a1 1 0 01-1.414 1.414L10 5.414 7.707 7.707a1 1 0 01-1.414-1.414l3-3A1 1 0 0110 3zm-3.707 9.293a1 1 0 011.414 0L10 14.586l2.293-2.293a1 1 0 011.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 010-1.414z"
+                              clipRule="evenodd"
+                            />
+                          </svg>
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <Transition
+                  show={showTopicOptions}
+                  enter="transition transform duration-75 ease-out"
+                  enterFrom="-translate-x-4 z-0 opacity-0"
+                  enterTo="translate-x-0 z-40 opacity-100"
+                  leave="transition transform duration-75 ease-out"
+                  leaveFrom="translate-x-0 z-40 opacity-100"
+                  leaveTo="-translate-x-4 z-0 opacity-0"
+                >
+                  <div
+                    id="topic-dropdown"
+                    className="absolute border rounded-b-md rounded-sm bg-white z-50 divide-y divide-gray-50 w-full"
+                  >
+                    {topicList.map(filter => (
+                      <p
+                        className="p-1 pl-2 text-sm text-gray-500 hover:bg-gray-500 hover:text-white cursor-pointer "
+                        id={`${filter}`}
+                        onClick={() => handleFilter(filter)}
+                        key={filter}
+                      >
+                        {filter}
+                      </p>
+                    ))}
+                  </div>
+                </Transition>
+              </div>
             </div>
           </div>
         </Transition>
@@ -476,7 +559,15 @@ const Salon = () => {
 
           <div className="border-separate border-r-2 border-gray-300">
             {discussions.length > 0 ? (
-              discussions.map((discussion, i) => <Discussion key={i} discussion={discussion} />)
+              filter ? (
+                <DiscussionsList
+                  discussions={discussions.filter(discussion =>
+                    discussion.topic.toLowerCase().includes(filter.toLowerCase())
+                  )}
+                />
+              ) : (
+                <DiscussionsList discussions={discussions} />
+              )
             ) : (
               <div className="flex flex-row items-center justify-around h-screen">
                 <h1 className="text-center text-xl text-gray-500 shadow-md rounded-3xl bg-opacity-0 p-6">
