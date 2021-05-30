@@ -38,7 +38,7 @@ const EditForm = () => {
   const handleImageInput = event => {
     event.preventDefault()
     const image = event.target.files[0]
-    if (image.size > 3000000) {
+    if (image && image.size > 3000000) {
       setImageMessage(t('EditForm.ImageWarning'))
     } else {
       setImageMessage(t('EditForm.ImageRequirement'))
