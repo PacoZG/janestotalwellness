@@ -65,12 +65,12 @@ const EditForm = () => {
       const data = new FormData()
       data.append('image', selectedFile)
       try {
+        if (loggedUser.imageID) {
+          imageService.removeImage(loggedUser.imageID)
+        }
         image = await imageService.postImage(data)
       } catch (error) {
         console.log('ERROR: ', error.response.data.error)
-      }
-      if (user.imageID) {
-        imageService.removeImage(user.imageID)
       }
       updatedUser = {
         ...updatedUser,
@@ -229,8 +229,8 @@ const EditForm = () => {
   const handleProfileRemoval = () => {
     history.push('/home')
     setShowModal(!showModal)
-    if (user.imageID) {
-      imageService.removeImage(user.imageID)
+    if (loggedUser.imageID) {
+      imageService.removeImage(loggedUser.imageID)
     }
     dispatch(deleteUser(user))
     dispatch(
@@ -508,7 +508,7 @@ const EditForm = () => {
                             leaveFrom="transform opacity-100 scale-100"
                             leaveTo="transform opacity-0 scale-95"
                           >
-                            <div className="absolute border rounded-sm bg-white mt-4 divide-y divide-gray-50 w-48 ">
+                            <div className="absolute border rounded-sm bg-white mt-4 divide-y divide-gray-50 w-1/2 ">
                               {countries.sort().map(country => (
                                 <p
                                   id={`${country}`}

@@ -30,9 +30,7 @@ const SigninForm = () => {
 
   const handleLogin = async event => {
     event.preventDefault()
-
     var remember = document.getElementById('remember_me').checked
-    console.log('REMEMBER: ', remember)
     if (remember) {
       localdb.rememberUser({
         username: username.params.value,
