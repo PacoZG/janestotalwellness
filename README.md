@@ -46,15 +46,17 @@ Or also check the [application](https://janestotalwellness.com) at .com or [appl
 |         |        | I was also able to add the cookies banner on it's own component file along with the      |
 |         |        | cookies policy. And finally better funtionality in the user menu with smoother           |
 |         |        | transitions.                                                                             |
-|  24.05  |  47    | This week I added a Forum call Jaen's Salon and manage to finish the logic to create     |
+|  24.05  |  47    | This week I added a Forum call Jane's Salon and manage to finish the logic to create     |
 |         |        | discussion, make comment and reply to the comments, this with the registriction of a     |
 |         |        | registered user, meaning that anyone can make comments or reply to the comments but only |
 |         |        | registered user can edit or delete their own comments or replies and the admins can      |
-|         |        |  do anything to avoid spam or bad conduct in the forum. I added the code of conduct      |
-|         |        | for the forum,  I spend many hours looking for an aficient way to optimize images so they|
-|         |        | don't use a lot of space in the cloud or take too long to download to the but I couldn't,|
-|         |        | find one that wouldn't present inconvenient issues. Fixed many bugs, added the share page|
-|         |        | website and personal fb page in facebook. I want to add an special page for the trainer  |
-|         |        | to can create a exercise program only with dropdown menus, but for that I need the       |
-|         |        | trainer's help so it will be done in the future amongs other pages to promote services.  |
-|  Total  |  288   |                                                                                          |
+|         |        | do anything to avoid spam or bad conduct in the forum. I spend many hours looking for an |
+|         |        | afficient way to optimize images so they don't use a lot of space in the cloud and do not|
+|         |        | take too long to download to the but I couldn't,find one that wouldn't present amongs    |
+|         |        | other pages to promote services. issues. Fixed many bugs, added the share page website   |
+|         |        | and personal fb page in facebook.  I want to add an special page for the trainer to can  |
+|         |        | create a exercise program only with dropdown menus, but for that I need the trainer's    |
+|         |        | help so it will be done in the future amongs other pages to promote services.            |
+|  31.05  |   7    | On Monday I added all the missing translations for the new pages, fixed few minor bugs on|
+|         |        | some of the components and finally added the code of conduct page for the forum          |
+|  Total  |  295   |                                                                                          |

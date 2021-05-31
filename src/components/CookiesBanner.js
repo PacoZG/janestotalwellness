@@ -37,7 +37,11 @@ const CookieBanner = () => {
         <div>
           <p className="text-xs">
             {t('CookiesBanner.Message')}
-            <Link className="transition duration-1000 text-indigo-400 hover:text-red-400" to="/cookiespolicy">
+            <Link
+              className="transition duration-1000 text-indigo-400 hover:text-red-400"
+              to="/cookiespolicy"
+              target="blank"
+            >
               {t('CookiesBanner.Cookies')}
             </Link>
           </p>
