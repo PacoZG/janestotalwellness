@@ -2,8 +2,8 @@ import React from 'react'
 
 const CookiesPolicy = () => {
   return (
-    <div className="pt-22">
-      <article className="prose prose-red prose-md md:prose-sm mx-auto max-w-4xl p-5 text-justify ">
+    <div className="min-h-screen pt-22 static">
+      <article className="prose prose-red prose-md md:prose-sm mx-auto max-w-4xl p-2 md:p-5 md:text-justify ">
         <h2>Cookies Policy</h2>
         <p>Last updated: May 21, 2021</p>
         <p>
