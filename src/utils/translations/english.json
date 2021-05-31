@@ -2,7 +2,7 @@
   "loading": "loading...",
   "homepage": {
     "description":
-    "Welcome to Jane Total Wellness app, we are working hard to bring the best experience possible for you and your journey to a healthy body, mind and soul."
+    "Welcome to Jane Total Wellness app, we are working hard to bring you the best experience possible for you and come along with you on the journey to a healthy body, mind and soul."
   },
   "ButtonLabel": {
     "Save": "Save",
@@ -63,7 +63,9 @@
     "HideReplies": "Hide replies",
     "ShowReplies": "Show replies",
     "Cancel": "Cancel",
-    "Reply": "Reply",
+    "ToReply": "Reply",
+    "Reply": " reply",
+    "Replies": " replies",
     "Author": "Author",
     "NoReplies": "No replies",
     "WriteReply": "Write a reply..."
@@ -83,14 +85,16 @@
     "Show": "Show",
     "HideComments": "Hide comments",
     "ShowComments": "Show comments",
+    "Comment": " comment",
+    "Comments": " comments",
     "Cancel": "Cancel",
     "MakeAComment": "Make a comment",
     "CommentPlaceholder": "Write a comment...",
     "NoComments": "No comments yet"
   },
   "EditForm": {
-    "ImageWarning": "Image is larger than 3MB",
-    "ImageRequirement": "PNG, JPG, JPEG up to 3MB",
+    "ImageWarning": "Image is larger than 2MB",
+    "ImageRequirement": "PNG, JPG, JPEG up to 2MB",
     "ImageSaved": "Your profile photo has been successfully updated",
     "ImgBtnLabel_1": "Upload a picture",
     "ImgBtnLabel_2": "Change image",
@@ -128,10 +132,15 @@
   "Footer": {
     "UnderConst": "Website under construction",
     "About": "About me",
-    "Terms": "Terms & conditions"
+    "Terms": "Terms & conditions",
+    "ShareFB": "SHARE MY FACEBOOK PAGE",
+    "SharePage": "SHARE THIS PAGE",
+    "ShareWebsite": "SHARE OUR WEBSITE",
+    "Code": "Code of conduct"
   },
   "Salon":{
     "Welcome": "Welcome to Jane‘s Salon, a forum where you can open friendly and interesting discussions about the topics that might be of your interest or you might want to share, concern you, would like ask or that you simply want to share with our community, feel free to express yourself but please follow our",
+    "Menu": "Show option menu",
     "Code": " code of conduct",
     "LoggedAs": "Your are logged in as ",
     "FindByTopics": "Find by topics",
@@ -245,6 +254,8 @@
     "Title": "Title:",
     "Content": "Content: ",
     "Posted": "Your blog post has been published",
-    "Deleted": "The blog post has been deleted"
+    "Deleted": "The blog post has been deleted",
+    "WannaTalk": "Wanna to talk more about this subject? Go to ",
+    "OpenDisc": " and open a discussion"
   }
 }

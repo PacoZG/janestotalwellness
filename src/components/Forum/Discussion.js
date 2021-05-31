@@ -211,7 +211,10 @@ const Discussion = ({ discussion }) => {
               </button>
             </div>
             <div>
-              <p className="text-xs md:text-sm w-full mr-2">{`${comments.length} comments`}</p>
+              <p className="text-xs md:text-sm w-full mr-2">
+                {comments.length}
+                <span> {comments.length === 1 ? t('Discussion.Comment') : t('Discussion.Comments')}</span>
+              </p>
             </div>
             <div className="flex flow-row items-center pr-2 md:pr-3 ">
               <div className="pb-1 pr-1 ">
@@ -242,7 +245,6 @@ const Discussion = ({ discussion }) => {
 
       <Transition
         show={showContent}
-        // show={true}
         enter="transition-opacity duration-1000"
         enterFrom="opacity-0"
         enterTo="opacity-100"

@@ -1,8 +1,6 @@
 import React from 'react'
-// import { useTranslation } from 'react-i18next'
 
 const TermsConditions = () => {
-  // const { t } = useTranslation()
   return (
     <div className="pt-22">
       <article className="prose prose-red prose-md md:prose-sm mx-auto max-w-4xl p-5 text-justify ">

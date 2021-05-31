@@ -18,7 +18,7 @@ const Footer = () => {
           className="inline-flex justify-center py-1 px-3 -ml-4 font-medium focus-within:outline-none "
         >
           <FacebookIcon size={20} round={true} />
-          <span className="text-gray-200 text-xs font-semibold pt-0.5 pl-1">SHARE THIS PAGE</span>
+          <span className="text-gray-200 text-xs font-semibold pt-0.5 pl-1">{t('Footer.SharePage')}</span>
         </FacebookShareButton>
       </div>
       <p className="text-sm font-bold text-gray-200 text-center pb-4">{t('Footer.UnderConst')}</p>
@@ -83,11 +83,12 @@ const Footer = () => {
           </div>
         </div>
         <div className="flex flex-col items-center md:items-start space-y-1">
-          <div className="flex flex-col items-center md:items-start space-y-1">
-            <Link to={'/terms'} target="blank" className="hover:text-gray-400 text-gray-200 text-sm">
-              {t('Footer.Terms')}
-            </Link>
-          </div>
+          <Link to={'/terms'} target="blank" className="hover:text-gray-400 text-gray-200 text-sm">
+            {t('Footer.Terms')}
+          </Link>
+          <Link to="/codeofconduct" target="blank" className="hover:text-gray-400 text-gray-200 text-sm">
+            {t('Footer.Code')}
+          </Link>
           <Link to={'/about'} className="hover:text-gray-400 text-gray-200 text-sm">
             {t('Footer.About')}
           </Link>
@@ -114,7 +115,7 @@ const Footer = () => {
               data-layout="button_count"
             >
               <img className="h-6 w-6 md:h-7 md:w-7 rounded-full" src={facebook} alt="Workflow" />
-              <span className="ml-1 text-xs font-semibold">SHARE MY FB PAGE </span>
+              <span className="ml-1 text-xs font-semibold">{t('Footer.ShareFB')}</span>
             </a>
           </li>
           <div className="flex items-center justify-center ">
@@ -126,12 +127,14 @@ const Footer = () => {
               className="inline-flex justify-center py-1 px-3 -ml-4 font-medium focus-within:outline-none "
             >
               <FacebookIcon size={28} round={true} />
-              <span className="text-gray-200 text-xs font-semibold pt-1 pl-1">SHARE OUR WEBSITE</span>
+              <span className="text-gray-200 text-xs font-semibold pt-1 pl-1">{t('Footer.ShareWebsite')}</span>
             </FacebookShareButton>
           </div>
         </div>
+        <div className="absolute inset-x-0 bottom-0">
+          <CookiesBanner />
+        </div>
       </div>
-      <CookiesBanner />
     </div>
   )
 }

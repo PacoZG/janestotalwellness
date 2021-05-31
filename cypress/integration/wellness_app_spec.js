@@ -47,7 +47,7 @@ describe('Wellness app', function () {
       cy.contains('Welcome to Jane Total Wellness app')
       cy.get('#language-menuShow').click()
       cy.get('#FIN').click()
-      cy.contains('Tervetuloa Jane Total Wellness app')
+      cy.contains('Tervetuloa Jane Total Wellness -sovellukseen')
       cy.get('#language-menuShow').click()
       cy.get('#ESP').click()
       cy.contains('Bienvenido a la aplicación Jane Total Wellness')

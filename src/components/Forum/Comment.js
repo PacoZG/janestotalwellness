@@ -185,7 +185,12 @@ const Comment = ({ comment }) => {
       </div>
 
       <div className="flex items-center justify-end rounded-b-md space-x-1 pr-2 bg-gray-300">
-        <div className="text-xs pr-2">{comment.replies.length} replies</div>
+        <div className="">
+          <p className="text-xs pr-2">
+            {comment.replies.length}
+            <span>{comment.replies.length === 1 ? t('Comment.Reply') : t('Comment.Replies')}</span>
+          </p>{' '}
+        </div>
         <div className="flex items-center space-y-1">
           <button className="button-comment" onClick={handleShowReplies}>
             {showReplies ? t('Comment.HideReplies') : t('Comment.ShowReplies')}
@@ -198,7 +203,7 @@ const Comment = ({ comment }) => {
               <span className="text-xs">{t('ButtonLabel.Cancel')}</span>
             ) : (
               <div className="flex items-center space-x-1">
-                <span className="text-xs">{t('Comment.Reply')}</span>
+                <span className="text-xs">{t('Comment.ToReply')}</span>
                 <svg xmlns="http://www.w3.org/2000/svg" className="h-3 w-3" viewBox="0 0 20 20" fill="currentColor">
                   <path
                     fillRule="evenodd"
