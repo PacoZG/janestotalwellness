@@ -2,7 +2,7 @@
   "loading": "cargando...",
   "homepage": {
     "description":
-    "Bienvenido a la aplicación Jane Total Wellness, estamos trabajando arduamente para brindar la mejor experiencia posible para usted y su viaje hacia un cuerpo, mente y alma saludables."
+    "Bienvenido a la aplicación Jane Total Wellness, estamos trabajando arduamente para brindarte la mejor experiencia posible y acompañarte en el viaje hacia un cuerpo, mente y alma saludables."
   },
   "ButtonLabel": {
     "Save": "Guardar",
@@ -63,7 +63,9 @@
     "HideReplies": "Ocultar respuestas",
     "ShowReplies": "Mostrar respuestas",
     "Cancel": "Cancelar",
-    "Reply": "Responder",
+    "ToReply": "Responder",
+    "Reply": " respuesta",
+    "Replies": " respuestas",
     "Author": "Autor",
     "NoReplies": "No hay respuestas",
     "WriteReply": "Escribe una respuesta..."
@@ -83,14 +85,16 @@
     "Show": "Mostrar",
     "HideComments": "Ocultar comentarios",
     "ShowComments": "Mostrar comentarios",
+    "Comment": " comentario",
+    "Comments": " commentarios",
     "Cancel": "Cancelar",
     "MakeAComment": "Hacer un comentario",
     "CommentPlaceholder": "Escribe un comentario...",
     "NoComments": "Sin comentarios aún"
   },
   "EditForm": {
-    "ImageWarning": "La imagen es mas grande de 3MB",
-    "ImageRequirement": "PNG, JPG, JPEG hasta 3MB",
+    "ImageWarning": "La imagen es mas grande de 2MB",
+    "ImageRequirement": "PNG, JPG, JPEG hasta 2MB",
     "ImageSaved": "Tu foto de perfil se ha actualizado correctamente",
     "ImgBtnLabel_1": "Sube una foto",
     "ImgBtnLabel_2": "Cambiar imagen",
@@ -128,10 +132,15 @@
   "Footer": {
     "UnderConst": "Página web en construcción",
     "About": "Acerca de mí",
-    "Terms": "Términos & condiciones"
+    "Terms": "Términos & condiciones",
+    "ShareFB": "COMPARTE MI PÁGINA DE FACEBOOK",
+    "SharePage": "COMPARTE ESTA PÁGINA",
+    "ShareWebsite": "COMPARTE NUESTRO SITIO WEB",
+    "Code": "Código de conducta"
   },
   "Salon":{
     "Welcome": "Bienvenido a Jane's Salon, un foro donde puedes abrir discusiones amigables e interesantes sobre los temas que podrían ser de tu interés o que quieras compartir, que te preocupen, te gustaría preguntar o que simplemente quieres compartir con nuestra comunidad. no dude en expresarse, pero siga nuestro",
+    "Menu": "Menu",
     "Code": " código de conducta",
     "LoggedAs": "Estás conectado como ",
     "FindByTopics": "Buscar por temas",
@@ -245,6 +254,8 @@
     "Title": "Título:",
     "Content": "Contenido: ",
     "Posted": "Se ha publicado la entrada de tu blog.",
-    "Deleted": "La publicación del blog ha sido eliminada."
+    "Deleted": "La publicación del blog ha sido eliminada.",
+    "WannaTalk": "¿Quieres hablar más sobre este tema? ve a ",
+    "OpenDisc": " y comienza una discusión"
   }
 }

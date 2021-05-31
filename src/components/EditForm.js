@@ -61,7 +61,7 @@ const EditForm = () => {
     let updatedUser = {
       ...user,
     }
-    if (imagePreview && selectedFile.size < 3000000) {
+    if (imagePreview && selectedFile.size < 2000000) {
       const data = new FormData()
       data.append('image', selectedFile)
       try {

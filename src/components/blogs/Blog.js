@@ -40,7 +40,12 @@ const Blog = () => {
   }
 
   const handleSubmitComment = () => {
-    if (author.params.value.length < 5) {
+    const newComment = {
+      author: loggedUser ? loggedUser.username : author.params.value,
+      content: comment.params.value,
+      date: new Date(),
+    }
+    if (newComment.author.length < 4) {
       dispatch(
         setNotification({
           message: t('Blog.Notification.Message'),
@@ -49,14 +54,11 @@ const Blog = () => {
         })
       )
     }
-    if (author.params.value.length >= 5) {
-      const newComment = {
-        author: author.params.value,
-        content: comment.params.value,
-        date: new Date(),
-      }
+    if (newComment.author.length >= 4) {
       const commentedBlog = { ...blog, comments: blog.comments.concat(newComment) }
       dispatch(commentBlog(commentedBlog))
+      comment.reset()
+      setIsOpen(!isOpen)
     }
   }
 
@@ -150,13 +152,13 @@ const Blog = () => {
             )}
           </div>
         </div>
-        <div className="flex flex-col md:flex-row items-center justify-between text-center md:px-4 md:py-3 bg-blue-200 md:text-right rounded-sm md:space-x-2">
-          <div>
+        <div className="flex flex-col md:flex-row items-center justify-between text-center md:px-4 md:py-3 bg-blue-100 md:text-right rounded-sm md:space-x-2">
+          <div className="flex flex-col md:flex-row items-center">
             <label className="font-bold text-gray-700 pt-2 md:pl-3">
               {t('Blog.PostingDate')}
-              <span className="text-gray-600">{getDate(blog.createdAt)}</span>
-              <span>{` by ${blog.author}`}</span>
+              <span className="font-bold text-gray-700 pl-1 pr-1">{getDate(blog.createdAt)}</span>
             </label>
+            <p className="font-bold text-gray-700 pl-1 pr-1">{`by ${blog.author}`}</p>
           </div>
           <div className="flex flex-row items-center">
             <div className="flex flex-row items-center">
@@ -207,11 +209,11 @@ const Blog = () => {
           </div>
         </div>
         <p className="text-center text-gray-600 bg-gray-400 p-2 border-b-2 rounded-b-md">
-          Wanna to talk about it? Go to{' '}
-          <Link to="/salon" className="hover:text-red-600">
+          {t('Blog.WannaTalk')}
+          <Link to="/salon" className="text-indigo-600 hover:text-red-600">
             Jane&lsquo;s Salon&nbsp;
           </Link>
-          and open a discussion
+          {t('Blog.OpenDisc')}
         </p>
         {loggedUser && loggedUser.userType === 'admin' ? (
           <div className="flex items-center justify-center space-x-2 px-4 py-3 bg-gray-400 rounded-b-md md:px-6">
@@ -244,7 +246,7 @@ const Blog = () => {
           blog.comments.map((comment, i) => (
             <div key={i} className="p-1 pt-2 md:p-3 md:pl-4 border-2 border-gray-300 divide-solid ">
               <div className="space-y-2">
-                <div className="md:flex md:space-x-2 border-b-2 border-blue-300 text-xs md:text-sm pb-2 pl-2 md:pl-3">
+                <div className="md:flex md:space-x-2 border-b-2 border-blue-200 text-xs md:text-sm pb-2 pl-2 md:pl-3">
                   <p className="font-semibold">{`${comment.author}`}</p>
                   <p className="text-indigo-400">{getDate(comment.date)}</p>
                 </div>
@@ -287,12 +289,18 @@ const Blog = () => {
           leaveTo="opacity-0"
         >
           <label className="edit-form-label text-base pt-2 border-t-2 border-gray-300 mt-4 ">{t('Blog.Name')}</label>
-          <input {...author.params} className="editform-input" />
+          {loggedUser ? (
+            <label className="bg-gray-300 rounded-md border-t-2 border-gray-500 pl-2 p-1 mb-0 h-7 text-xs w-full">
+              <span className="italic font-semibold">{loggedUser.username}</span>{' '}
+            </label>
+          ) : (
+            <input {...author.params} className="editform-input" />
+          )}
           <label className="edit-form-label text-base pt-2">{t('Blog.WriteComment')}</label>
           <textarea {...comment.params} className="text-area rounded-t-md " minLength="10" maxLength="500" />
           <div className="flex justify-end items-center px-3 py-2 bg-gray-400 text-right rounded-b-md space-x-2">
             <button type="button" id="mobile-updateNote" onClick={handleSubmitComment} className="buttons-web">
-              {t('ButtonLabel.Save')}
+              {t('ButtonLabel.Submit')}
             </button>
           </div>
         </Transition>

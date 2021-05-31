@@ -13,6 +13,7 @@ import Blog from './components/blogs/Blog'
 import CreateBlog from './components/blogs/CreateBlog'
 import BlogList from './components/blogs/BlogList'
 import Client from './components/Client'
+import CodeOfConduct from './components/CodeOfConduct'
 import CookiesPolicy from './components/CookiesPolicy'
 import Editform from './components/EditForm'
 import ExerciseLibrary from './components/ExerciseLibrary'
@@ -93,6 +94,9 @@ const App = () => {
           </Route>
           <Route path="/profile">
             <UserProfile />
+          </Route>
+          <Route patch="/codeofconduct">
+            <CodeOfConduct />
           </Route>
         </Switch>
         <Route>

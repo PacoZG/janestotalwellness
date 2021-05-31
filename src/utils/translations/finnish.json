@@ -2,7 +2,7 @@
   "loading": "ladataan...",
   "homepage": {
     "description":
-    "Tervetuloa Jane Total Wellness app, teemme kovasti töitä saadaksemme parhaan mahdollisen kokemuksen sinulle ja matkallesi terveelle ruumiille, mielelle ja sielulle."
+    "Tervetuloa Jane Total Wellness -sovellukseen, teemme kovasti töitä voidaksemme tarjota sinulle parhaan mahdollisen kokemuksen ja tulemaan mukaasi matkalla terveen kehon, mielen ja sielun eteen."
   },
   "ButtonLabel": {
     "Save": "Tallentaa",
@@ -63,7 +63,9 @@
     "HideReplies": "Piilota vastaukset",
     "ShowReplies": "Näytä vastaukset",
     "Cancel": "Peruuttaa",
-    "Reply": "Vastaa",
+    "ToReply":"Vastata",
+    "Reply": " vastaa",
+    "Replies": " vastauksia",
     "Author": "Kirjoittaja",
     "NoReplies": "Ei vastauksia",
     "WriteReply": "Kirjoita vastaus..."
@@ -77,20 +79,22 @@
   "Discussion": {
     "Author": "Kirjoittaja",
     "Title": "Otsikko",
-    "Date": "Päivämäärä",
+    "Date": "PVM",
     "Topic": "Aihe",
     "Hide": "Piilottaa",
     "Show": "Näytä",
     "HideComments": "Piilota kommentit",
     "ShowComments": "Näytä kommentit",
+    "Comment": " kommentti",
+    "Comments": " kommentteja",
     "Cancel": "Peruuttaa",
     "MakeAComment": "Tee kommentti",
     "CommentPlaceholder": "Kirjoita kommentti...",
     "NoComments": "Ei vielä kommentteja"
   },
   "EditForm": {
-    "ImageWarning": "Kuva on suurempi kuin 3 Mt",
-    "ImageRequirement": "PNG, JPG, JPEG enintään 3 Mt",
+    "ImageWarning": "Kuva on suurempi kuin 2 Mt",
+    "ImageRequirement": "PNG, JPG, JPEG enintään 2 Mt",
     "ImageSaved": "Profiilikuvasi on päivitetty",
     "ImgBtnLabel_1": "Lähetä kuva",
     "ImgBtnLabel_2": "Vaihda kuvaa",
@@ -128,10 +132,15 @@
   "Footer": {
     "UnderConst": "Verkkosivusto rakenteilla",
     "About": "Minusta",
-    "Terms": "käyttöehdot"
+    "Terms": "käyttöehdot",
+    "ShareFB": "JAA FACEBOOK-SIVUNI",
+    "SharePage": "JAA TÄMÄ SIVU",
+    "ShareWebsite": "JAA SIVUSTOMME",
+    "Code": "Menettelyohje"
   },
   "Salon":{
     "Welcome": "Tervetuloa Jane's Salon -foorumiin, jossa voit avata ystävällisiä ja mielenkiintoisia keskusteluja aiheista, jotka saattavat kiinnostaa sinua tai haluat ehkä jakaa, huolestuttaa sinua, haluaa kysyä tai haluat yksinkertaisesti jakaa yhteisömme kanssa, ilmaise itseäsi, mutta noudata käytännesääntöjämme, mutta noudata",
+    "Menu": "Menu",
     "Code": "  käytännesääntöjämme",
     "LoggedAs": "Olet kirjautunut sisään ",
     "FindByTopics": "Etsi aiheiden mukaan",
@@ -235,16 +244,18 @@
     },
     "Author": "Kirjoittaja: ",
     "Instructions": "Näet blogisi täällä, kun aloitat kirjoittamisen",
-    "PostingDate": "Julkaisupäivä:",
+    "PostingDate": "PVM: ",
     "Comments": "Kommentit",
     "NoComments": "Ei vielä kommentteja",
-    "Name": "Name",
+    "Name": "Nimi",
     "WriteComment": "Kirjoita kommenttisi",
     "Clear": "Tyhjennä kentät",
     "Post": "Lähetä blogi",
     "Title": "Otsikko:",
     "Content": "Sisältö: ",
     "Posted": "Blogisi viesti on julkaistu",
-    "Deleted": "Blogikirjoitus on poistettu"
+    "Deleted": "Blogikirjoitus on poistettu",
+    "WannaTalk": "Haluatko puhua lisää aiheesta? Mene ",
+    "OpenDisc": " ja avaa keskustelu"
   }
 }
