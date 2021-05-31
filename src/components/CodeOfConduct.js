@@ -3,8 +3,8 @@ import { Link } from 'react-router-dom'
 
 const CodeOfConduct = () => {
   return (
-    <div className="pt-22 h-screen">
-      <article className="prose prose-red prose-md md:prose-sm mx-auto max-w-4xl p-5 text-justify ">
+    <div className="min-h-screen pt-22">
+      <article className="prose prose-red prose-md md:prose-sm mx-auto max-w-4xl p-2 md:p-5 md:text-justify ">
         <h1>Forum rules and guidelines</h1>
         <h2>There is one guideline than you need to follow</h2>
         <blockquote>

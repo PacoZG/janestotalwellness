@@ -161,7 +161,7 @@ const Salon = () => {
   }
 
   return (
-    <div className="bg-gray-100 min-h-screen pt-20 md:pt-20 ">
+    <div className="min-h-screen bg-gradient-to-br from-gray-300 via-white to-gray-200 pt-20 md:pt-20 ">
       <h1 className="text-sm text-justify bg-blue-100 p-3 md:pl-5 md:pr-5 border-b-2 border-gray-600">
         {t('Salon.Welcome')}
         <Link to="/codeofconduct" target="blank" className="transition duration-300 text-indigo-500 hover:text-red-400">
@@ -423,7 +423,7 @@ const Salon = () => {
                 </div>
               </div>
             </div>
-            <div className="md:w-1/3 md:pt-2 border-gray-400">
+            <div className="md:w-1/3 pt-1 md:pt-0 border-gray-400">
               <div>
                 {loggedUser ? (
                   <div>
@@ -436,9 +436,8 @@ const Salon = () => {
                     </p>
                   </div>
                 ) : (
-                  <div className=" border-gray-500 pb-2">
+                  <div className=" border-gray-500">
                     <p className="text-sm text-center">{t('Salon.AsLoggedUser')}</p>
-                    <label className="text-sm border-t border-gray-500  w-full pt-2 pl-1">{t('Signin.Username')}</label>
                     <input
                       className="editform-input"
                       {...username.params}
@@ -450,7 +449,6 @@ const Salon = () => {
                       title="Username is required"
                       required
                     />
-                    <label className="text-sm pl-1">{t('Signin.Password')}</label>
                     <input
                       className="editform-input"
                       {...password.params}

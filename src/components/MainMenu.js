@@ -58,10 +58,10 @@ const MainMenu = () => {
       <div className="fixed z-40 bg-gray-600 w-full">
         {/* Desktop menu,. */}
         <div className="flex items-top justify-between ">
-          <div className="hidden md:flex md:items-center  md:pb-1 md:pt-1">
+          <div className="hidden md:flex md:items-center md:pb-1 md:pt-1">
             <div className="flex items-stretch ">
               <Link id="home" to={'/home'} className="web-link">
-                <i className="web-link text-base my-6">Jane&lsquo;s Total Wellness</i>
+                <i className="web-link text-base">Jane&lsquo;s Total Wellness</i>
               </Link>
               <Link id="salon" to={'/salon'} className="web-link">
                 {t('MainMenu.ForumLabel')}

@@ -2,8 +2,8 @@ import React from 'react'
 
 const TermsConditions = () => {
   return (
-    <div className="pt-22">
-      <article className="prose prose-red prose-md md:prose-sm mx-auto max-w-4xl p-5 text-justify ">
+    <div className="min-h-screen pt-22 static">
+      <article className="prose prose-red prose-md md:prose-sm mx-auto max-w-4xl p-2 md:p-5 md:text-justify ">
         <h1>Acceptable use policy</h1>
         <p>
           This acceptable use policy (&quot;Policy&quot;) sets forth the general guidelines and acceptable and
