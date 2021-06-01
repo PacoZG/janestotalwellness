@@ -428,7 +428,7 @@ const Salon = () => {
               <div>
                 {loggedUser ? (
                   <div className="md:pt-2">
-                    <p className="text-base text-center p-1">
+                    <p className="text-base text-center p-1 md:pt-10">
                       {t('Salon.LoggedAs')}
                       <span className="italic font-semibold"> {loggedUser.username}</span>
                     </p>
@@ -438,7 +438,7 @@ const Salon = () => {
                   </div>
                 ) : (
                   <div className=" border-gray-500">
-                    <p className="text-sm text-center">{t('Salon.AsLoggedUser')}</p>
+                    <p className="text-sm text-center 2xl:pt-5">{t('Salon.AsLoggedUser')}</p>
                     <input
                       className="editform-input"
                       {...username.params}
