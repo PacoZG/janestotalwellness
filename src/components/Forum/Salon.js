@@ -427,7 +427,7 @@ const Salon = () => {
             <div className="md:w-1/3 border-gray-400">
               <div>
                 {loggedUser ? (
-                  <div>
+                  <div className="md:pt-2">
                     <p className="text-base text-center p-1">
                       {t('Salon.LoggedAs')}
                       <span className="italic font-semibold"> {loggedUser.username}</span>
