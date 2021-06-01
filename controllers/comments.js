@@ -22,11 +22,6 @@ commentsRouter.post('/', async (request, response) => {
   response.status(201).json(savedComment.toJSON())
 })
 
-commentsRouter.delete('/:id', async (request, response) => {
-  await Comment.findByIdAndRemove(request.params.id)
-  response.status(204).json().end()
-})
-
 commentsRouter.put('/:id', async (request, response) => {
   const body = request.body
   const reply = {
@@ -41,6 +36,11 @@ commentsRouter.put('/:id', async (request, response) => {
     .then(savedAndUpdatedComment => {
       response.status(201).json(savedAndUpdatedComment)
     })
+})
+
+commentsRouter.delete('/:id', async (request, response) => {
+  await Comment.findByIdAndRemove(request.params.id)
+  response.status(204).json().end()
 })
 
 commentsRouter.post('/:id/replies', async (request, response) => {

@@ -39,23 +39,22 @@ loginRouter.put('/', async (request, response) => {
   const user = await User.findById(decodedToken.id)
   const passwordCorrect = user === null ? false : await bcrypt.compare(request.body.oldPassword, user.passwordHash)
   if (passwordCorrect) {
-    const saltRounds = 10
-    const newPasswordHash = await bcrypt.hash(request.body.newPassword, saltRounds)
-    const newPasswordUser = {
-      ...request.user,
-      updatedAt: new Date(),
-      passwordHash: newPasswordHash,
-    }
-    await User.findByIdAndUpdate(decodedToken.id, newPasswordUser, {
-      new: false,
-    })
-      .then(updatedUser => updatedUser.toJSON())
-      .then(savedAndUpdatedUser => {
-        response.status(201).json(savedAndUpdatedUser)
-      })
-  } else {
     return response.status(401).json({ error: 'Invalid password' })
   }
+  const saltRounds = 10
+  const newPasswordHash = await bcrypt.hash(request.body.newPassword, saltRounds)
+  const newPasswordUser = {
+    ...request.user,
+    updatedAt: new Date(),
+    passwordHash: newPasswordHash,
+  }
+  await User.findByIdAndUpdate(decodedToken.id, newPasswordUser, {
+    new: false,
+  })
+    .then(updatedUser => updatedUser.toJSON())
+    .then(savedAndUpdatedUser => {
+      response.status(201).json(savedAndUpdatedUser)
+    })
 })
 
 module.exports = loginRouter

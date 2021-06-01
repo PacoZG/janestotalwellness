@@ -59,4 +59,6 @@ Or also check the [application](https://janestotalwellness.com) at .com or [appl
 |         |        | help so it will be done in the future amongs other pages to promote services.            |
 |  31.05  |   7    | On Monday I added all the missing translations for the new pages, fixed few minor bugs on|
 |         |        | some of the components and finally added the code of conduct page for the forum          |
-|  Total  |  295   |                                                                                          |
+|  1.06   |   8    | Spent the whole day implementing local and E2E testing, plus fixing some bugs that I came|
+|         |        | during testing, and finally fixing some css styling                                      |
+|  Total  |  303   |                                                                                          |

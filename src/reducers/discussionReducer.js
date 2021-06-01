@@ -1,6 +1,8 @@
 import discussionService from '../services/discussions'
 
 const discussionReducer = (state = [], action) => {
+  console.log('ACTION IN DISCUSSION REDUCER: ', action)
+  console.log('STATE IN DISCUSSION REDUCER: ', state)
   switch (action.type) {
     case 'INIT_DISCUSSIONS':
       return action.data
@@ -83,12 +85,12 @@ export const dislikeDiscussion = discussion => {
   }
 }
 
-export const deleteDiscussion = discussion => {
+export const deleteDiscussion = id => {
   return async dispatch => {
-    await discussionService.removeDiscussion(discussion.id)
+    await discussionService.removeDiscussion(id)
     dispatch({
       type: 'DELETE_DISCUSSION',
-      data: discussion.id,
+      data: id,
     })
   }
 }

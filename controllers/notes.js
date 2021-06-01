@@ -24,16 +24,6 @@ notesRouter.post('/', async (request, response) => {
   response.status(201).json(savedNote.toJSON())
 })
 
-notesRouter.delete('/:id', async (request, response) => {
-  const note = await Note.findById(request.params.id)
-  if (note) {
-    await Note.findByIdAndRemove(request.params.id)
-    response.status(204).json().end()
-  } else {
-    return response.status(400).json({ error: 'Note no longer in the db' })
-  }
-})
-
 notesRouter.put('/:id', async (request, response) => {
   const body = request.body
   const note = {
@@ -46,6 +36,15 @@ notesRouter.put('/:id', async (request, response) => {
     .then(savedAndUpdatedNote => {
       response.status(201).json(savedAndUpdatedNote)
     })
+})
+
+notesRouter.delete('/:id', async (request, response) => {
+  const note = await Note.findById(request.params.id)
+  if (!note) {
+    return response.status(400).json({ error: 'Note no longer in the db' })
+  }
+  await Note.findByIdAndRemove(request.params.id)
+  response.status(204).json().end()
 })
 
 module.exports = notesRouter
