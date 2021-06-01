@@ -139,7 +139,8 @@
     "Code": "Código de conducta"
   },
   "Salon":{
-    "Welcome": "Bienvenido a Jane's Salon, un foro donde puedes abrir discusiones amigables e interesantes sobre los temas que podrían ser de tu interés o que quieras compartir, que te preocupen, te gustaría preguntar o que simplemente quieres compartir con nuestra comunidad. no dude en expresarse, pero siga nuestro",
+    "Welcome": "Bienvenido a Jane's Salon, un foro donde puedes abrir discusiones amigables e interesantes sobre los temas que podrían ser de tu interés o que quieras compartir, que te preocupen, te gustaría preguntar o que simplemente quieres compartir con nuestra comunidad. Siéntete libre de expresarte, pero sigue nuestro código de conducta.",
+    "KeepInMind": " Tenga en cuenta que cualquiera puede crear discusiones, hacer comentarios o responder, pero solo los usuarios registrados pueden editar/eliminar sus propias discusiones o comentarios, las respuestas no se pueden editar ni eliminar.",
     "Menu": "Mostrar menú de opciones",
     "Code": " código de conducta",
     "LoggedAs": "Estás conectado como ",

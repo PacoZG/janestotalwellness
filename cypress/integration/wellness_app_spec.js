@@ -172,7 +172,6 @@ describe('Wellness app', function () {
       cy.contains('Age')
       cy.contains('44 years old')
       cy.contains('Gender')
-      // cy.contains('Male')
       cy.contains('Height')
       cy.contains('180 cm')
       cy.contains('Weight')
@@ -283,6 +282,231 @@ describe('Wellness app', function () {
       cy.get('#modal-ok').click()
       cy.get('#show-note').click()
       cy.get('#web-deleteNote').click()
+    })
+  })
+
+  describe('Testing forum functionality as a visitor', function () {
+    beforeEach(function () {
+      cy.get('#salon').click()
+      cy.get('#show-menu-button').click()
+      cy.get('#topic-menu').click()
+      cy.get('#Exercise').click()
+      cy.get('#author-discussion-input').type('Micheal Jackson')
+      cy.get('#title-discussion-input').type('Can I see the dark side of the moon?')
+      cy.get('#content-discussion-input').type(
+        "There's nothing wrong don't be bothered they said It's just childish fantasies..."
+      )
+      cy.get('#post-discussion-button').click()
+      cy.get('#modal-ok').click()
+    })
+
+    it('Shows the welcome text', function () {
+      cy.contains('Welcome to Jane‘s Salon')
+    })
+
+    it('We can create a new discussion', function () {
+      cy.contains('Micheal Jackson')
+      cy.contains('0 comments')
+    })
+
+    it('The discussion can be liked', function () {
+      cy.get('#like-discussion').click()
+      cy.contains('1')
+    })
+
+    it('The discussion can be disliked', function () {
+      cy.get('#dislike-discussion').click().click()
+      cy.contains('2')
+    })
+
+    it('We can see the content of the discussion', function () {
+      cy.get('#show-discussion').click()
+      cy.contains("There's nothing wrong don't be bothered ")
+    })
+
+    it('We can make a comment in the discussion and like it', function () {
+      cy.get('#show-discussion').click()
+      cy.get('#show-comments-button').click()
+      cy.contains('No comments yet')
+      cy.get('#show-comment-input').click()
+      cy.get('#comment-author-input').type('Eddie')
+      cy.get('#comment-content-input').type('It is really scary')
+      cy.get('#post-comment-button').click()
+      cy.contains('It is really scary')
+      cy.contains('1 comment')
+      cy.get('#like-comment').click()
+      cy.contains('1')
+      cy.contains('0 replies')
+    })
+
+    it('We ca reply to the comment', function () {
+      cy.get('#show-discussion').click()
+      cy.get('#show-comments-button').click()
+      cy.get('#show-comment-input').click()
+      cy.get('#comment-author-input').type('Eddie')
+      cy.get('#comment-content-input').type('It is really scary')
+      cy.get('#post-comment-button').click()
+      cy.get('#show-replies-button').click()
+      cy.contains('No replies')
+      cy.get('#show-reply-fields-button').click()
+      cy.get('#author-reply-input').type('Micheal')
+      cy.get('#content-reply-input').type('Yes it is')
+      cy.get('#submit-reply-button').click()
+      cy.contains('1 reply')
+      cy.contains('Yes it is')
+    })
+  })
+
+  describe('Testing forum functionality as a user', function () {
+    beforeEach(function () {
+      cy.get('#salon').click()
+      cy.get('#show-menu-button').click()
+      cy.get('#forum-username-input').type('bruce')
+      cy.get('#forum-password-input').type('superSecret')
+      cy.get('#salon-login-button').click()
+      cy.get('#modal-ok').click()
+      cy.get('#salon').click()
+      cy.get('#topic-menu').click()
+      cy.get('#Exercise').click()
+      cy.get('#title-discussion-input').type('Can I see the dark side of the moon?')
+      cy.get('#content-discussion-input').type(
+        "There's nothing wrong don't be bothered they said It's just childish fantasies..."
+      )
+      cy.get('#post-discussion-button').click()
+      cy.get('#modal-ok').click()
+    })
+
+    it('Shows the welcome text', function () {
+      cy.contains('Welcome to Jane‘s Salon')
+    })
+
+    it('We can create a new discussion', function () {
+      cy.contains('bruce')
+      cy.contains('0 comments')
+    })
+
+    it('The discussion can be liked', function () {
+      cy.get('#like-discussion').click()
+      cy.contains('1')
+    })
+
+    it('The discussion can be disliked', function () {
+      cy.get('#dislike-discussion').click().click()
+      cy.contains('2')
+    })
+
+    it('We can see the content of the discussion', function () {
+      cy.get('#show-discussion').click()
+      cy.contains("There's nothing wrong don't be bothered ")
+    })
+
+    it('We can make a comment in the discussion and like it', function () {
+      cy.get('#show-discussion').click()
+      cy.get('#show-comments-button').click()
+      cy.contains('No comments yet')
+      cy.get('#show-comment-input').click()
+      cy.get('#comment-content-input').type('It is really scary')
+      cy.get('#post-comment-button').click()
+      cy.contains('It is really scary')
+      cy.contains('1 comment')
+      cy.get('#like-comment').click()
+      cy.contains('1')
+      cy.contains('0 replies')
+    })
+
+    it("We ca reply to the comment, but can't edit or delete comment", function () {
+      cy.get('#show-discussion').click()
+      cy.get('#show-comments-button').click()
+      cy.get('#show-comment-input').click()
+      cy.get('#comment-content-input').type('It is really scary')
+      cy.get('#post-comment-button').click()
+      cy.get('#show-replies-button').click()
+      cy.contains('No replies')
+      cy.get('#user-menu').click()
+      cy.get('#signout-button').click()
+      cy.get('#salon').click()
+      cy.get('#show-menu-button').click()
+      cy.get('#forum-username-input').type('rocky')
+      cy.get('#forum-password-input').type('superSecret')
+      cy.get('#salon-login-button').click()
+      cy.get('#modal-ok').click()
+      cy.get('#salon').click()
+      cy.get('#show-discussion').click()
+      cy.get('#show-comments-button').click()
+      cy.get('#show-reply-fields-button').click()
+      cy.get('#content-reply-input').type('Yes it is')
+      cy.get('#submit-reply-button').click()
+      cy.contains('1 reply')
+      cy.contains('Yes it is')
+      cy.contains('rocky')
+    })
+
+    // it('The user can edit the comment and then delete it', function () {
+    //   cy.get('#show-discussion').click()
+    //   cy.get('#show-comments-button').click()
+    //   cy.contains('No comments yet')
+    //   cy.get('#show-comment-input').click()
+    //   cy.get('#comment-content-input').type('It is really scary')
+    //   cy.get('#post-comment-button').click()
+    //   cy.get('#edit-comment-button').click()
+    //   cy.get('#edit-comment-input').type(', really scary')
+    //   cy.get('#submit-comment-edit').click()
+    //   cy.contains('It is really scary, really scary')
+    //   cy.get('#delete-comment-button').click()
+    //   cy.contains('No comments yet')
+    // })
+  })
+
+  describe('Testing forum functionality as an admin', function () {
+    beforeEach(function () {
+      cy.get('#salon').click()
+      cy.get('#show-menu-button').click()
+      cy.get('#forum-username-input').type('rocky')
+      cy.get('#forum-password-input').type('superSecret')
+      cy.get('#salon-login-button').click()
+      cy.get('#modal-ok').click()
+      cy.get('#salon').click()
+      cy.get('#topic-menu').click()
+      cy.get('#Exercise').click()
+      cy.get('#title-discussion-input').type('Can I see the dark side of the moon?')
+      cy.get('#content-discussion-input').type(
+        "There's nothing wrong don't be bothered they said It's just childish fantasies..."
+      )
+      cy.get('#post-discussion-button').click()
+      cy.get('#modal-ok').click()
+    })
+
+    it('Can delete user comments', function () {
+      cy.get('#user-menu').click()
+      cy.get('#signout-button').click()
+      cy.get('#salon').click()
+      cy.get('#show-menu-button').click()
+      cy.get('#forum-username-input').type('bruce')
+      cy.get('#forum-password-input').type('superSecret')
+      cy.get('#salon-login-button').click()
+      cy.get('#modal-ok').click()
+      cy.get('#salon').click()
+      cy.get('#show-discussion').click()
+      cy.get('#show-comments-button').click()
+      cy.get('#show-comment-input').click()
+      cy.get('#comment-content-input').type('It is really scary')
+      cy.get('#post-comment-button').click()
+      cy.get('#user-menu').click()
+      cy.get('#signout-button').click()
+      cy.get('#salon').click()
+      cy.get('#show-menu-button').click()
+      cy.get('#forum-username-input').type('rocky')
+      cy.get('#forum-password-input').type('superSecret')
+      cy.get('#salon-login-button').click()
+      cy.get('#modal-ok').click()
+      cy.get('#salon').click()
+      cy.get('#show-discussion').click()
+      cy.get('#show-comments-button').click()
+      cy.get('#delete-comment-button').click()
+      cy.contains('No comments yet')
+      cy.get('.space-x-3 > :nth-child(2)').click()
+      cy.get('#salon').click()
+      cy.contains('No discussion have been created yet')
     })
   })
 })

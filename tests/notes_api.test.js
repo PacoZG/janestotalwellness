@@ -19,7 +19,7 @@ describe('Before we load any notes in the database', () => {
   })
 })
 
-describe('Now let us test the notes logic', () => {
+describe('Now, let us test the notes logic', () => {
   beforeEach(async () => {
     await User.deleteMany({})
     await Note.deleteMany({})
@@ -44,7 +44,6 @@ describe('Now let us test the notes logic', () => {
       content: helper.notes[0].content,
       loggedUserType: loggedUser.body.userType,
     }
-    console.log('data: ', data)
     const response = await api
       .post('/api/notes')
       .send(data)
@@ -74,7 +73,6 @@ describe('Now let us test the notes logic', () => {
       .send(data)
       .expect(401)
       .expect('Content-Type', /application\/json/)
-    console.log('RESPONSE AFTER SAVING NOTE: ', response.body.error)
     expect(response.body.error).toContain('Only admins can write a note')
   })
 })

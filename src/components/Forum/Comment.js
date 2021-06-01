@@ -91,14 +91,9 @@ const Comment = ({ comment }) => {
     }
     if (newReply.author.length > 3 && replyContent.params.value.length > 1) {
       const repliedComment = { ...comment, replies: comment.replies.concat(newReply) }
-      console.log('REPLIED COMMENT: ', repliedComment)
       dispatch(replyComment(repliedComment))
       setShowInputReply(!showReplyInput)
     }
-  }
-
-  if (!comment) {
-    return null
   }
 
   return (
@@ -153,7 +148,7 @@ const Comment = ({ comment }) => {
           ) : (
             <input
               className="text-area text-xs w-full h-6 rounded-lg"
-              id="input-edit-blog"
+              id="edit-comment-input"
               value={textareaState}
               onChange={handleTextareaChange}
             />
@@ -163,19 +158,23 @@ const Comment = ({ comment }) => {
           <div className="flex items-center space-x-2">
             {showCommentInput ? (
               <div className="flex items-center space-x-2 ml-3">
-                <button className="button-comment" onClick={() => setShowCommentInput(!showCommentInput)}>
+                <button
+                  id="cancel-comment-edit"
+                  className="button-comment"
+                  onClick={() => setShowCommentInput(!showCommentInput)}
+                >
                   {t('ButtonLabel.Cancel')}
                 </button>
-                <button className="button-comment pr-1" onClick={handleSubmitEditedComment}>
+                <button id="submit-comment-edit" className="button-comment pr-1" onClick={handleSubmitEditedComment}>
                   {t('ButtonLabel.Submit')}
                 </button>
               </div>
             ) : (
               <div className="flex items-center space-x-2">
-                <button className="button-comment" onClick={handleSetEditComment}>
+                <button id="edit-comment-button" className="button-comment" onClick={handleSetEditComment}>
                   {t('ButtonLabel.Edit')}
                 </button>
-                <button className="button-comment pr-1" onClick={handleDeleteComment}>
+                <button id="delete-comment-button" className="button-comment pr-1" onClick={handleDeleteComment}>
                   {t('ButtonLabel.Delete')}
                 </button>
               </div>
@@ -192,12 +191,12 @@ const Comment = ({ comment }) => {
           </p>{' '}
         </div>
         <div className="flex items-center space-y-1">
-          <button className="button-comment" onClick={handleShowReplies}>
+          <button id="show-replies-button" className="button-comment" onClick={handleShowReplies}>
             {showReplies ? t('Comment.HideReplies') : t('Comment.ShowReplies')}
           </button>
         </div>
 
-        <button className="button-comment p-1" onClick={handleShowInputReply}>
+        <button id="show-reply-fields-button" className="button-comment p-1" onClick={handleShowInputReply}>
           <div className="flex items-center space-x-1">
             {showReplyInput ? (
               <span className="text-xs">{t('ButtonLabel.Cancel')}</span>
@@ -216,7 +215,7 @@ const Comment = ({ comment }) => {
           </div>
         </button>
         {showReplyInput ? (
-          <button className="button-comment pr-1 " onClick={handleSubmitReply}>
+          <button id="submit-reply-button" className="button-comment pr-1 " onClick={handleSubmitReply}>
             {t('ButtonLabel.Submit')}
           </button>
         ) : null}
@@ -238,7 +237,7 @@ const Comment = ({ comment }) => {
               </label>
             ) : (
               <input
-                id="author-reply"
+                id="author-reply-input"
                 {...author.params}
                 className="editform-input rounded-b-none"
                 placeholder={t('Comment.Author')}
@@ -246,7 +245,7 @@ const Comment = ({ comment }) => {
             )}
 
             <input
-              id="content-reply"
+              id="content-reply-input"
               {...replyContent.params}
               className="text-area rounded-b-md max-h-9"
               placeholder={t('Comment.WriteReply')}
@@ -272,7 +271,7 @@ const Comment = ({ comment }) => {
                   {' - '}
                   <span className="text-xs">{getDate(reply.createdAt)}</span>
                 </p>
-                <p className="text-xs text-right p-1 pl-2 pr-2 rounded-b-md bg-blue-50">{reply.content}</p>
+                <p className="text-xs text-right p-1 pl-2 pr-4 rounded-b-md bg-blue-50">{reply.content}</p>
               </div>
             </div>
           ))

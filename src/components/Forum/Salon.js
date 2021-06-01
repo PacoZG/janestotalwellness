@@ -84,8 +84,6 @@ const Salon = () => {
     }
   }, [setTopicList])
 
-  console.log('FILTER: ', filter)
-
   const handleTopic = topic => {
     setTopic(topic)
     setShowTopicMenu(!showTopicMenu)
@@ -119,7 +117,6 @@ const Salon = () => {
     ) {
       try {
         dispatch(createDiscussion(newDiscussion))
-        setShowDiscussionInput(!showDiscussionInput)
         dispatch(
           setNotification({
             message: 'Your discussion has been succesfully created',
@@ -162,15 +159,19 @@ const Salon = () => {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-300 via-white to-gray-200 pt-20 md:pt-20 ">
-      <h1 className="text-sm text-justify bg-blue-100 p-3 md:pl-5 md:pr-5 border-b-2 border-gray-600">
+      <h1 className="text-xs text-justify bg-blue-100 p-3 md:pl-5 md:pr-5 border-b-2 border-gray-600">
         {t('Salon.Welcome')}
         <Link to="/codeofconduct" target="blank" className="transition duration-300 text-indigo-500 hover:text-red-400">
           {t('Salon.Code')}
         </Link>
-        .
+        .{t('Salon.KeepInMind')}
       </h1>
       <div className="flex items-center bg-gradient-to-br from-gray-400 via-gray-200 to-transparent ">
-        <button className="focus-within:outline-none p-1 pl-3" onClick={() => setShowTopMenu(!showTopMenu)}>
+        <button
+          id="show-menu-button"
+          className="focus-within:outline-none p-1 pl-3"
+          onClick={() => setShowTopMenu(!showTopMenu)}
+        >
           {t('Salon.Menu')}
         </button>
         <div
@@ -206,7 +207,7 @@ const Salon = () => {
           leaveTo="-translate-y-4 opacity-0"
         >
           <div className="flex flex-col md:flex-row md:space-x-2 md:items-start p-3 bg-gradient-to-br from-gray-300 via-white to-gray-300 border-b-2 border-gray-300 mb-2">
-            <div className="md:w-2/3 border-b-2 border-gray-300 pb-1 md:pb-0 md:border-b-0">
+            <div className="md:w-2/3 border-b-2 border-gray-300 mb-1 md:mb-0 pb-1 md:pb-0 md:border-b-0">
               <div>
                 <div className="md:mb-1">
                   <div className="md:flex md:items-center md:space-x-2 mb-1">
@@ -229,7 +230,7 @@ const Salon = () => {
                         <div>
                           <span
                             className="flex items-center border-l pl-1 cursor-pointer"
-                            id="country-menu"
+                            id="topic-menu"
                             onClick={() => setShowTopicMenu(!showTopicMenu)}
                           >
                             <svg
@@ -323,7 +324,7 @@ const Salon = () => {
                   </label>
                 ) : (
                   <input
-                    id="author-discussion"
+                    id="author-discussion-input"
                     {...author.params}
                     className="editform-input rounded-b-none"
                     placeholder={t('Discussion.Author')}
@@ -333,7 +334,7 @@ const Salon = () => {
                   />
                 )}
                 <input
-                  id="title-discussion"
+                  id="title-discussion-input"
                   {...discussionTitle.params}
                   className="editform-input rounded-none h-9"
                   placeholder={t('Discussion.Title')}
@@ -343,7 +344,7 @@ const Salon = () => {
                 />
 
                 <textarea
-                  id="content-discussion"
+                  id="content-discussion-input"
                   {...discussionContent.params}
                   className="text-area rounded-b-md"
                   placeholder={t('Salon.ContentPlaceholder')}
@@ -352,7 +353,7 @@ const Salon = () => {
                   required
                 />
               </div>
-              <div className="flex flex-col space-y-2 items-end md:flex-row md:items-center md:justify-between md:space-y-0 w-full p-1 pl-2 pb-0 space-x-2">
+              <div className="flex flex-col space-y-2 items-end md:flex-row md:items-center md:justify-between md:space-y-0 w-full p-1 pl-2 space-x-2">
                 <div className="flex flex-col items-end md:items-start">
                   <div>
                     {discussionTitle.params.value.length < 10 ? (
@@ -423,7 +424,7 @@ const Salon = () => {
                 </div>
               </div>
             </div>
-            <div className="md:w-1/3 pt-1 md:pt-0 border-gray-400">
+            <div className="md:w-1/3 border-gray-400">
               <div>
                 {loggedUser ? (
                   <div>
@@ -441,7 +442,7 @@ const Salon = () => {
                     <input
                       className="editform-input"
                       {...username.params}
-                      id="forum-username"
+                      id="forum-username-input"
                       name="username"
                       autoComplete="on"
                       pattern="[a-z0-9]{4,}"
@@ -452,14 +453,14 @@ const Salon = () => {
                     <input
                       className="editform-input"
                       {...password.params}
-                      id="forum-password"
+                      id="forum-password-input"
                       name="password"
                       autoComplete="current-password"
                       placeholder={t('Signin.Password')}
                       title="Password is required"
                       required
                     />
-                    <button onClick={handleLogin} className="buttons-web w-full p-1 mt-1">
+                    <button id="salon-login-button" onClick={handleLogin} className="buttons-web w-full p-1 mt-1">
                       {t('Signin.SigninButton')}
                     </button>
                     <p className="text-center text-sm h-7 pt-1 bg-gray-400 rounded-t-md border-t-2 border-gray-500 mt-1 md:mb-0">

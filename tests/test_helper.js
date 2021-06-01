@@ -1,5 +1,7 @@
 const User = require('../models/user')
 const Note = require('../models/note')
+const Discussion = require('../models/discussion')
+const Comment = require('../models/comment')
 
 const date = new Date()
 
@@ -76,6 +78,38 @@ const notes = [
   },
 ]
 
+const discussions = [
+  {
+    userId: '609507e4e56b7b19b0c8f21d',
+    topic: 'Exercise',
+    author: 'Paco',
+    title: 'I want to know more about Lorem',
+    content: 'Lorem Ipsum is simply dummy text of the printing and typesetting indus...',
+    likes: 3,
+    dislikes: 2,
+  },
+]
+
+const newDiscussion = {
+  userId: '609507e4e56b7b19b0c8f21d',
+  topic: 'Exercise',
+  author: 'Paco',
+  title: 'I want to know more about Lorem',
+  content: 'Lorem Ipsum is simply dummy text of the printing and typesetting indus...',
+}
+
+const comment = {
+  userId: '609507e4e56b7b19b0c8f21d',
+  author: 'pacozg',
+  content: 'comment 1',
+}
+
+const reply = {
+  author: 'Samu',
+  content: 'reply 1',
+  createdAt: new Date(),
+}
+
 const usersInDB = async () => {
   const users = await User.find({})
   return users
@@ -86,4 +120,25 @@ const notesInDB = async () => {
   return notes
 }
 
-module.exports = { users, notes, usersInDB, notesInDB }
+const discussionsInDB = async () => {
+  const discussions = await Discussion.find({})
+  return discussions
+}
+
+const commentsInDB = async () => {
+  const comments = await Comment.find({})
+  return comments
+}
+
+module.exports = {
+  users,
+  notes,
+  discussions,
+  newDiscussion,
+  comment,
+  reply,
+  usersInDB,
+  notesInDB,
+  discussionsInDB,
+  commentsInDB,
+}

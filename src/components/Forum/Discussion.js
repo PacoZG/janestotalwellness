@@ -73,7 +73,7 @@ const Discussion = ({ discussion }) => {
   }
 
   const handleDeleteDiscussion = () => {
-    dispatch(deleteDiscussion(discussion))
+    dispatch(deleteDiscussion(discussion.id))
   }
 
   const handleShowComments = () => {
@@ -216,15 +216,10 @@ const Discussion = ({ discussion }) => {
                 <span> {comments.length === 1 ? t('Discussion.Comment') : t('Discussion.Comments')}</span>
               </p>
             </div>
-            <div className="flex flow-row items-center pr-2 md:pr-3 ">
-              <div className="pb-1 pr-1 ">
-                <button
-                  className={
-                    showContent
-                      ? 'transition duration-300 transform -rotate-90 focus-within:outline-none'
-                      : 'transition duration-150 focus-within:outline-none'
-                  }
-                  onClick={handleShowContent}
+            <div className="flex items-center pr-2 md:pr-3 ">
+              <div className="pr-1">
+                <div
+                  className={showContent ? 'transition duration-300 transform -rotate-90 ' : 'transition duration-150'}
                 >
                   <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" viewBox="0 0 20 20" fill="currentColor">
                     <path
@@ -233,11 +228,15 @@ const Discussion = ({ discussion }) => {
                       clipRule="evenodd"
                     />
                   </svg>
-                </button>
+                </div>
               </div>
-              <label className="font-semibold text-sm justify-end">
+              <button
+                id="show-discussion"
+                className="font-semibold text-sm justify-end transition duration-300 hover:text-blue-600 focus-within:outline-none"
+                onClick={handleShowContent}
+              >
                 {showContent ? t('Discussion.Hide') : t('Discussion.Show')}
-              </label>
+              </button>
             </div>
           </div>
         </div>
@@ -256,7 +255,7 @@ const Discussion = ({ discussion }) => {
           {showEditInput ? (
             <textarea
               className="text-area rounded-lg m-1"
-              id="input-edit-discussion"
+              id="discussion-edit-input"
               value={textareaState}
               onChange={handleTextareaChange}
             />
@@ -265,47 +264,49 @@ const Discussion = ({ discussion }) => {
           )}
         </div>
 
-        <div className="flex flex-col items-start md:flex-row md:justify-between border-t-2 pl-2 p-1 border-gray-300 w-full">
+        <div className="flex flex-col md:flex-row md:justify-between border-t-2 pl-2 p-1 border-gray-300 w-full">
           <div className="flex items-center">
             <button
-              className="text-sm md:pl-2 pb-1 transition duration-300 hover:text-blue-600 focus-within:outline-none"
+              id="show-comment-input"
+              className="text-sm md:pl-3 transition duration-300 hover:text-blue-600 focus-within:outline-none"
               onClick={() => setShowCommentInput(!showCommentInput)}
             >
               <span>{showCommentInput ? t('Discussion.Cancel') : t('Discussion.MakeAComment')}</span>
             </button>
-            <div className=" flex items-center space-x-1 pl-2">
-              <label className="text-sm md;pl-2 pt-1 ">
-                {showComments ? t('Discussion.HideComments') : t('Discussion.ShowComments')}
-              </label>
+            <div className=" flex items-center">
               <button
-                className={
-                  showComments
-                    ? 'transition duration-300 transform rotate-90 focus-within:outline-none'
-                    : 'transition duration-150 focus-within:outline-none'
-                }
+                id="show-comments-button"
+                className="text-sm pl-2 transition duration-300 hover:text-blue-600 focus-within:outline-none "
                 onClick={handleShowComments}
               >
-                <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" viewBox="0 0 20 20" fill="currentColor">
-                  <path
-                    fillRule="evenodd"
-                    d="M10.293 15.707a1 1 0 010-1.414L14.586 10l-4.293-4.293a1 1 0 111.414-1.414l5 5a1 1 0 010 1.414l-5 5a1 1 0 01-1.414 0z"
-                    clipRule="evenodd"
-                  />
-                  <path
-                    fillRule="evenodd"
-                    d="M4.293 15.707a1 1 0 010-1.414L8.586 10 4.293 5.707a1 1 0 011.414-1.414l5 5a1 1 0 010 1.414l-5 5a1 1 0 01-1.414 0z"
-                    clipRule="evenodd"
-                  />
-                </svg>
+                {showComments ? t('Discussion.HideComments') : t('Discussion.ShowComments')}
               </button>
+              <div className="pl-1">
+                <div
+                  className={showComments ? 'transition duration-300 transform rotate-90 ' : 'transition duration-150'}
+                >
+                  <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" viewBox="0 0 20 20" fill="currentColor">
+                    <path
+                      fillRule="evenodd"
+                      d="M10.293 15.707a1 1 0 010-1.414L14.586 10l-4.293-4.293a1 1 0 111.414-1.414l5 5a1 1 0 010 1.414l-5 5a1 1 0 01-1.414 0z"
+                      clipRule="evenodd"
+                    />
+                    <path
+                      fillRule="evenodd"
+                      d="M4.293 15.707a1 1 0 010-1.414L8.586 10 4.293 5.707a1 1 0 011.414-1.414l5 5a1 1 0 010 1.414l-5 5a1 1 0 01-1.414 0z"
+                      clipRule="evenodd"
+                    />
+                  </svg>
+                </div>
+              </div>
             </div>
           </div>
           {loggedUser && (discussion.userId === loggedUser.id || loggedUser.userType === 'admin') ? (
             <div className="flex items-center space-x-3 pr-3">
               {!showEditInput ? (
                 <button
+                  id="edit-discussion-button"
                   className="text-sm transition duration-300 hover:text-blue-400 focus-within:outline-none"
-                  id="delete-discussion"
                   onClick={() => setShowEditInput(!showEditInput)}
                 >
                   {t('ButtonLabel.Edit')}
@@ -313,15 +314,15 @@ const Discussion = ({ discussion }) => {
               ) : (
                 <div className="flex space-x-3 ">
                   <button
+                    id="cancel-discussion-edit"
                     className="text-sm transition duration-300 hover:text-blue-400 focus-within:outline-none"
-                    id="delete-discussion"
                     onClick={() => setShowEditInput(!showEditInput)}
                   >
                     {t('ButtonLabel.Cancel')}
                   </button>
                   <button
+                    id="delete-discussion-button"
                     className="text-sm transition duration-300 hover:text-blue-400 focus-within:outline-none"
-                    id="delete-discussion"
                     onClick={handleSubmitEditDiscussion}
                   >
                     {t('ButtonLabel.Submit')}
@@ -331,7 +332,7 @@ const Discussion = ({ discussion }) => {
 
               <button
                 className="text-sm transition duration-300 hover:text-blue-400 focus-within:outline-none"
-                id="edit-discussion"
+                id="edit-discussion-button"
                 onClick={handleDeleteDiscussion}
               >
                 {t('ButtonLabel.Delete')}
@@ -356,7 +357,7 @@ const Discussion = ({ discussion }) => {
               </label>
             ) : (
               <input
-                id="author-comment"
+                id="comment-author-input"
                 {...commentAuthor.params}
                 className="editform-input rounded-b-none"
                 placeholder={t('Discussion.Author')}
@@ -364,21 +365,21 @@ const Discussion = ({ discussion }) => {
             )}
 
             <textarea
-              id="content-comment"
+              id="comment-content-input"
               {...commentContent.params}
               className="text-area rounded-b-md max-h-14"
               placeholder={t('Discussion.CommentPlaceholder')}
             />
             <div className="flex items-center justify-end space-x-2 pr-3">
               <button
-                id="delete-comment"
+                id="delete-comment-button"
                 className="buttons-web text-sm text-black w-auto pl-1 pr-1 bg-gray-200 p-1 m-1"
                 onClick={handleDiscardComment}
               >
                 {t('ButtonLabel.Discard')}
               </button>
               <button
-                id="post-comment"
+                id="post-comment-button"
                 className="buttons-web text-sm text-black w-auto pl-1 pr-1 bg-gray-200 p-1 m-1"
                 onClick={handlePostComment}
               >

@@ -139,7 +139,8 @@
     "Code": "Menettelyohje"
   },
   "Salon":{
-    "Welcome": "Tervetuloa Jane's Salon -foorumiin, jossa voit avata ystävällisiä ja mielenkiintoisia keskusteluja aiheista, jotka saattavat kiinnostaa sinua tai haluat ehkä jakaa, huolestuttaa sinua, haluaa kysyä tai haluat yksinkertaisesti jakaa yhteisömme kanssa, ilmaise itseäsi, mutta noudata käytännesääntöjämme, mutta noudata",
+    "Welcome": "Tervetuloa Jane's Salon -foorumiin, jossa voit avata ystävällisiä ja mielenkiintoisia keskusteluja aiheista, jotka saattavat kiinnostaa sinua tai haluat ehkä jakaa, huolestuttaa sinua, haluat kysyä tai haluat yksinkertaisesti jakaa meidän kanssa ilmaise itseäsi, mutta noudata",
+    "KeepInMind": " Muista, että kuka tahansa voi luoda keskusteluja, kommentoida tai vastata, mutta vain rekisteröidyt käyttäjät voivat muokata/poistaa omia keskustelujaan tai kommenttejaan, vastauksia ei voi muokata eikä poistaa.",
     "Menu": "Näytä vaihtoehtovalikko",
     "Code": "  käytännesääntöjämme",
     "LoggedAs": "Olet kirjautunut sisään ",
