@@ -38,7 +38,7 @@ loginRouter.put('/', async (request, response) => {
   const decodedToken = jwt.verify(request.token, process.env.SECRET)
   const user = await User.findById(decodedToken.id)
   const passwordCorrect = user === null ? false : await bcrypt.compare(request.body.oldPassword, user.passwordHash)
-  if (passwordCorrect) {
+  if (!passwordCorrect) {
     return response.status(401).json({ error: 'Invalid password' })
   }
   const saltRounds = 10

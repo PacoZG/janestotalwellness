@@ -172,7 +172,6 @@ describe('Wellness app', function () {
       cy.contains('Age')
       cy.contains('44 years old')
       cy.contains('Gender')
-      // cy.contains('Male')
       cy.contains('Height')
       cy.contains('180 cm')
       cy.contains('Weight')
