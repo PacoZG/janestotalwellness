@@ -14,7 +14,6 @@ discussionsRouter.post('/', async (request, response) => {
     likes: body.likes || 0,
     dislikes: body.dislikes || 0,
   })
-  console.log('BODY: ', discussion)
   const savedDiscussion = await discussion.save()
   response.status(201).json(savedDiscussion.toJSON())
 })
