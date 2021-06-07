@@ -45,7 +45,6 @@ discussionsRouter.put('/:id', async (request, response) => {
 
 discussionsRouter.delete('/:id', async (request, response) => {
   const discussion = await Discussion.findById(request.params.id)
-  console.log('BODY: ', discussion.id)
   if (discussion.comments.length > 0) {
     discussion.comments.map(async comment => await Comment.findByIdAndDelete(comment._id))
   }

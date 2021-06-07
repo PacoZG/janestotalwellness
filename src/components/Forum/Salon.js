@@ -547,19 +547,28 @@ const Salon = () => {
                       <p>{t('Salon.Show')}</p>
                       <p
                         className="cursor-pointer transition duration-300 border-2 border-gray-400 hover:text-gray-100 hover:bg-gray-500 p-1.5 rounded-md"
-                        onClick={() => setLimit(6)}
+                        onClick={() => {
+                          setLimit(6)
+                          setPage(1)
+                        }}
                       >
                         6
                       </p>
                       <p
                         className="cursor-pointer transition duration-300 border-2 border-gray-400 hover:text-gray-100 hover:bg-gray-500 p-1.5 rounded-md"
-                        onClick={() => setLimit(12)}
+                        onClick={() => {
+                          setLimit(12)
+                          setPage(1)
+                        }}
                       >
                         12
                       </p>
                       <p
                         className="cursor-pointer transition duration-300 border-2 border-gray-400 hover:text-gray-100 hover:bg-gray-500 p-1.5 rounded-md"
-                        onClick={() => setLimit(28)}
+                        onClick={() => {
+                          setLimit(28)
+                          setPage(1)
+                        }}
                       >
                         28
                       </p>
