@@ -164,7 +164,10 @@
     "ContentRequired": "Sisältö on pakollinen ja siinä on vähintään 50 merkkiä",
     "TitleCharac": "Otsikkomerkkien pituus ",
     "ContentCharac": "Sisällön merkkien pituus ",
-    "NoDiscussions": "Keskustelua ei ole vielä luotu"
+    "NoDiscussions": "Keskustelua ei ole vielä luotu",
+    "NoDiscussionsFound": "Kyseisillä kriteereillä ei löytynyt keskusteluja",
+    "Show": "Näytä",
+    "DiscPP": "keskusteluja sivua kohti"
   },
   "Signin": {
     "Welcome": "Tervetuloa takaisin ",
@@ -265,6 +268,7 @@
     "Posted": "Blogisi viesti on julkaistu",
     "Deleted": "Blogikirjoitus on poistettu",
     "WannaTalk": "Haluatko puhua lisää aiheesta? Mene ",
-    "OpenDisc": " ja avaa keskustelu"
+    "OpenDisc": " ja avaa keskustelu",
+    "NoBlogs": "Valitettavasti meillä ei tällä hetkellä ole blogiviestejä, pysy kuulolla."
   }
 }

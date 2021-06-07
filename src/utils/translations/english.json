@@ -164,7 +164,10 @@
     "ContentRequired": "Content is required and minimum 50 characters",
     "TitleCharac": "Title characters length ",
     "ContentCharac": "Content characters length ",
-    "NoDiscussions": "No discussion have been created yet"
+    "NoDiscussions": "No discussion have been created yet",
+    "NoDiscussionsFound": "No discussions found with that criteria",
+    "Show": "Show",
+    "DiscPP": "discussions per page"
   },
   "Signin": {
     "Welcome": "Welcome back ",
@@ -265,6 +268,7 @@
     "Posted": "Your blog post has been published",
     "Deleted": "The blog post has been deleted",
     "WannaTalk": "Wanna to talk more about this subject? Go to ",
-    "OpenDisc": " and open a discussion"
+    "OpenDisc": " and open a discussion",
+    "NoBlogs": "Unfortunately we don't have blog posts to show at the moment, stay tuned."
   }
 }

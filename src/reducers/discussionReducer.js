@@ -1,8 +1,6 @@
 import discussionService from '../services/discussions'
 
 const discussionReducer = (state = [], action) => {
-  console.log('ACTION IN DISCUSSION REDUCER: ', action)
-  console.log('STATE IN DISCUSSION REDUCER: ', state)
   switch (action.type) {
     case 'INIT_DISCUSSIONS':
       return action.data

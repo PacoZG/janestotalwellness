@@ -17,7 +17,6 @@ const SigninForm = () => {
 
   const loginAgain = localdb.loadUserInfo(username.params.value)
   if (loginAgain) {
-    console.log('LOGIN AGAIN: ', loginAgain)
     if (username.params.value === loginAgain.username) {
       password.params.value = loginAgain.password
     }

@@ -61,9 +61,11 @@ const BlogList = () => {
           </div>
         ))
       ) : (
-        <h1 className="text-center text-lg text-red-400 border p-4">
-          Unfortunately we don&lsquo;t have blog posts to show, stay tuned.
-        </h1>
+        <div className="flex flex-row items-center justify-around h-screen">
+          <h1 className="text-center text-xl text-gray-500 shadow-md rounded-3xl bg-opacity-0 p-6">
+            {t('Blog.NoBlogs')}
+          </h1>
+        </div>
       )}
     </div>
   )

@@ -76,11 +76,11 @@ const MainMenu = () => {
               ) : null} */}
               {loggedUser && loggedUser.userType === 'admin' ? (
                 <div className="flex items-stretch">
-                  <Link id="myclients" to={'/myclients'} className="web-link">
-                    {t('MainMenu.ClientsLabel')}
-                  </Link>
                   <Link id="create-blog" to={'/createblog'} className="web-link">
                     {t('MainMenu.CreateBlogLabel')}
+                  </Link>
+                  <Link id="myclients" to={'/myclients'} className="web-link">
+                    {t('MainMenu.ClientsLabel')}
                   </Link>
                 </div>
               ) : null}
@@ -643,11 +643,11 @@ const MainMenu = () => {
               ) : null} */}
               {loggedUser && loggedUser.userType === 'admin' ? (
                 <div className="space-y-3">
-                  <Link to={'/myclients'} className="mobile-link">
-                    {t('MainMenu.ClientsLabel')}
-                  </Link>
                   <Link to={'/createblog'} className="mobile-link">
                     {t('MainMenu.CreateBlogLabel')}
+                  </Link>
+                  <Link to={'/myclients'} className="mobile-link">
+                    {t('MainMenu.ClientsLabel')}
                   </Link>
                 </div>
               ) : null}

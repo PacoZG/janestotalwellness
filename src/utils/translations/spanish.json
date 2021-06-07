@@ -139,8 +139,8 @@
     "Code": "Código de conducta"
   },
   "Salon":{
-    "Welcome": "Bienvenido a Jane's Salon, un foro donde puedes abrir discusiones amigables e interesantes sobre los temas que podrían ser de tu interés o que quieras compartir, que te preocupen, te gustaría preguntar o que simplemente quieres compartir con nuestra comunidad. Siéntete libre de expresarte, pero sigue nuestro código de conducta.",
-    "KeepInMind": " Tenga en cuenta que cualquiera puede crear discusiones, hacer comentarios o responder, pero solo los usuarios registrados pueden editar/eliminar sus propias discusiones o comentarios, las respuestas no se pueden editar ni eliminar.",
+    "Welcome": "Bienvenido/a a Jane's Salon, un foro donde puedes abrir discusiones amigables e interesantes sobre los temas que podrían ser de tu interés o que quieras compartir, que te preocupen, te gustaría preguntar o que simplemente quieres compartir con nuestra comunidad. Siéntete libre de expresarte, pero sigue nuestro código de conducta.",
+    "KeepInMind": " Ten en cuenta que cualquiera puede crear discusiones, hacer comentarios o responder, pero solo los usuarios registrados pueden editar/eliminar sus propias discusiones o comentarios, las respuestas no se pueden editar ni eliminar.",
     "Menu": "Mostrar menú de opciones",
     "Code": " código de conducta",
     "LoggedAs": "Estás conectado como ",
@@ -164,7 +164,10 @@
     "ContentRequired": "El contenido es obligatorio y tiene un mínimo de 50 caracteres.",
     "TitleCharac": "Longitud de los caracteres del título ",
     "ContentCharac": "Longitud de los caracteres del contenido ",
-    "NoDiscussions": "Aún no se ha creado ninguna discusión"
+    "NoDiscussions": "Aún no se ha creado ninguna discusión",
+    "NoDiscussionsFound": "No se encontraron discusiones con ese criterio",
+    "Show": "Mostrar",
+    "DiscPP": "discusiones por página"
   },
   "Signin": {
     "Welcome": "Bienvenido de nuevo ",
@@ -265,6 +268,7 @@
     "Posted": "Se ha publicado la entrada de tu blog.",
     "Deleted": "La publicación del blog ha sido eliminada.",
     "WannaTalk": "¿Quieres hablar más sobre este tema? ve a ",
-    "OpenDisc": " y comienza una discusión"
+    "OpenDisc": " y comienza una discusión",
+    "NoBlogs": "Desafortunadamente no tenemos publicaciones de blog para mostrar en este momento, estad atentos."
   }
 }

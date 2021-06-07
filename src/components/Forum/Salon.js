@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import { Transition } from '@tailwindui/react'
 import { Link } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
@@ -21,7 +21,6 @@ const Salon = () => {
   const [showTopMenu, setShowTopMenu] = useState(false)
   const [showTopicMenu, setShowTopicMenu] = useState(false)
   const [topic, setTopic] = useState(null)
-  const [showTopicOptions, setShowTopicOptions] = useState(false)
   const [topicFilter, setTopicFilter] = useState('')
   const [titleFilter, setTitleFilter] = useState('')
   const [authorFilter, setAuthorFilter] = useState('')
@@ -36,7 +35,6 @@ const Salon = () => {
   const [limit, setLimit] = useState(6)
   const indexStart = (page - 1) * limit
   const indexEnd = page * limit
-  const lastPage = Math.ceil(discussions.length / limit)
   const filteredDiscussions = discussions
     .filter(discussion => discussion.topic.toLowerCase().includes(topicFilter.toLowerCase()))
     .filter(discussion => discussion.author.toLowerCase().includes(authorFilter.toLowerCase()))
@@ -58,16 +56,19 @@ const Salon = () => {
   const handleTopicChange = event => {
     event.preventDefault()
     setTopicFilter(event.target.value)
+    setPage(1)
   }
 
   const handleTitleChange = event => {
     event.preventDefault()
     setTitleFilter(event.target.value)
+    setPage(1)
   }
 
   const handleAuthorChange = event => {
     event.preventDefault()
     setAuthorFilter(event.target.value)
+    setPage(1)
   }
 
   const loginAgain = localdb.loadUserInfo(username.params.value)
@@ -121,11 +122,6 @@ const Salon = () => {
   const handleTopic = topic => {
     setTopic(topic)
     setShowTopicMenu(!showTopicMenu)
-  }
-
-  const handleFilter = topic => {
-    setFilter(topic)
-    setShowTopicOptions(!showTopicOptions)
   }
 
   const handleClearFields = () => {
@@ -547,6 +543,28 @@ const Salon = () => {
                       type="text"
                       placeholder={t('Salon.FindTitlePH')}
                     />
+                    <div className="container flex space-x-3 items-center justify-center text-center text-sm h-10 p-1.5 bg-gray-300  rounded-md border-t-2 border-gray-500 mt-1 md:mb-0 ">
+                      <p>{t('Salon.Show')}</p>
+                      <p
+                        className="cursor-pointer transition duration-300 border-2 border-gray-400 hover:text-gray-100 hover:bg-gray-500 p-1.5 rounded-md"
+                        onClick={() => setLimit(6)}
+                      >
+                        6
+                      </p>
+                      <p
+                        className="cursor-pointer transition duration-300 border-2 border-gray-400 hover:text-gray-100 hover:bg-gray-500 p-1.5 rounded-md"
+                        onClick={() => setLimit(12)}
+                      >
+                        12
+                      </p>
+                      <p
+                        className="cursor-pointer transition duration-300 border-2 border-gray-400 hover:text-gray-100 hover:bg-gray-500 p-1.5 rounded-md"
+                        onClick={() => setLimit(28)}
+                      >
+                        28
+                      </p>
+                      <p>{t('Salon.DiscPP')}</p>
+                    </div>
                   </div>
                 </div>
               </div>

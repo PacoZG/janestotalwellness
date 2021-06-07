@@ -8,8 +8,6 @@ const UserProfile = () => {
   const user = useSelector(state => state.users.find(user => user.id === loggedUser.id))
   const { t } = useTranslation()
 
-  console.log('USER: ', user)
-
   if (!user) {
     return (
       <div className="justify-center items-center flex outline-none bg-gray-100 min-h-screen">
