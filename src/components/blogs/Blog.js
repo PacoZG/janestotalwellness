@@ -154,20 +154,20 @@ const Blog = () => {
         </div>
         <div className="flex flex-col md:flex-row items-center justify-between text-center md:px-4 md:py-3 bg-blue-100 md:text-right rounded-sm md:space-x-2">
           <div className="flex flex-col md:flex-row items-center">
-            <label className="font-bold text-gray-700 pt-2 md:pl-3">
+            <label className="font-bold text-gray-500 pt-2 md:pl-3">
               {t('Blog.PostingDate')}
-              <span className="font-bold text-gray-700 pl-1 pr-1">{getDate(blog.createdAt)}</span>
+              <span className="font-bold text-gray-500 pl-1 pr-1">{getDate(blog.createdAt)}</span>
             </label>
-            <p className="font-bold text-gray-700 pl-1 pr-1">{`by ${blog.author}`}</p>
+            <p className="font-bold text-gray-500 pl-1 pr-1">{`by ${blog.author}`}</p>
           </div>
           <div className="flex flex-row items-center">
             <div className="flex flex-row items-center">
-              <label className="text-xl -mr-3 mt-2 font-semibold text-white">{blog.dislikes}</label>
+              <label className="text-xl -mr-3 mt-2 font-semibold text-gray-500">{blog.dislikes}</label>
               <button
                 type="button"
                 id="mobile-updateNote"
                 onClick={handleDislikes}
-                className="inline-flex justify-center py-1 px-3 font-medium rounded-full bg-transparent text-sm text-black hover:text-gray-300 focus-within:outline-none"
+                className="inline-flex justify-center py-1 px-3 font-medium rounded-full bg-transparent text-sm text-gray-500 hover:text-gray-300 focus-within:outline-none"
               >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -180,12 +180,12 @@ const Blog = () => {
               </button>
             </div>
             <div className="flex flex-row items-center">
-              <label className="text-xl -mr-3 mt-2 font-semibold text-white">{blog.likes}</label>
+              <label className="text-xl -mr-3 mt-2 font-semibold text-gray-500">{blog.likes}</label>
               <button
                 type="button"
                 id="mobile-updateNote"
                 onClick={handleLikes}
-                className="inline-flex justify-center py-1 px-3 font-medium rounded-full bg-transparent text-sm text-black hover:text-gray-300 focus-within:outline-none"
+                className="inline-flex justify-center py-1 px-3 font-medium rounded-full bg-transparent text-sm text-gray-500 hover:text-gray-300 focus-within:outline-none"
               >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -198,7 +198,7 @@ const Blog = () => {
               </button>
             </div>
             <FacebookShareCount url={url}>
-              {shareCount => <span className="text-2xl text-black">{console.log('SHARE COUNT: ', shareCount)}</span>}
+              {shareCount => <span className="text-2xl text-gray-500">{console.log('SHARE COUNT: ', shareCount)}</span>}
             </FacebookShareCount>
             <FacebookShareButton
               url={url}

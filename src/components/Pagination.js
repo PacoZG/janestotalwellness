@@ -8,11 +8,14 @@ const Pagination = ({ limit, numberOfDocuments, handlePages, page, handlePreviou
   return (
     <div className="flex items-center">
       {page === 1 ? null : (
-        <p className="text-sm text-black cursor-pointer border border-gray-200 p-2" onClick={handlePreviousPage}>
+        <p
+          className="transition duration-300 text-sm cursor-pointer text-gray-500 bg-gray-300 p-2 rounded-l-xl "
+          onClick={handlePreviousPage}
+        >
           <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
             <path
               fillRule="evenodd"
-              d="M15.707 15.707a1 1 0 01-1.414 0l-5-5a1 1 0 010-1.414l5-5a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 010 1.414zm-6 0a1 1 0 01-1.414 0l-5-5a1 1 0 010-1.414l5-5a1 1 0 011.414 1.414L5.414 10l4.293 4.293a1 1 0 010 1.414z"
+              d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z"
               clipRule="evenodd"
             />
           </svg>
@@ -22,8 +25,8 @@ const Pagination = ({ limit, numberOfDocuments, handlePages, page, handlePreviou
         <p
           className={
             number === page
-              ? 'text-sm font-medium text-red-500 cursor-pointer border-2 border-red-500 p-2'
-              : 'text-sm text-black cursor-pointer border border-gray-200 p-2'
+              ? 'transition duration-300 text-lg font-medium text-gray-500 cursor-pointer border-1 bg-gray-300 border-2 border-gray-500 p-1.5 z-20 rounded-sm'
+              : 'transition duration-300 text-sm text-gray-500 cursor-pointer bg-gray-300 p-2 '
           }
           key={number}
           onClick={() => handlePages(number)}
@@ -32,16 +35,14 @@ const Pagination = ({ limit, numberOfDocuments, handlePages, page, handlePreviou
         </p>
       ))}
       {page === pageNumbers.length ? null : (
-        <p className="text-sm text-black cursor-pointer border border-gray-200 p-2" onClick={handleNextPage}>
+        <p
+          className="transition duration-300 text-sm cursor-pointer text-gray-500 bg-gray-300 p-2 rounded-r-xl "
+          onClick={handleNextPage}
+        >
           <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
             <path
               fillRule="evenodd"
-              d="M10.293 15.707a1 1 0 010-1.414L14.586 10l-4.293-4.293a1 1 0 111.414-1.414l5 5a1 1 0 010 1.414l-5 5a1 1 0 01-1.414 0z"
-              clipRule="evenodd"
-            />
-            <path
-              fillRule="evenodd"
-              d="M4.293 15.707a1 1 0 010-1.414L8.586 10 4.293 5.707a1 1 0 011.414-1.414l5 5a1 1 0 010 1.414l-5 5a1 1 0 01-1.414 0z"
+              d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
               clipRule="evenodd"
             />
           </svg>

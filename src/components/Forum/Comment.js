@@ -32,8 +32,6 @@ const Comment = ({ comment }) => {
     return creationDate
   }
 
-  console.log('USER ID: ', comment.userId)
-
   const handleTextareaChange = event => {
     event.preventDefault()
     setTextAreaState(event.target.value)
