@@ -440,21 +440,6 @@ describe('Wellness app', function () {
       cy.contains('Yes it is')
       cy.contains('rocky')
     })
-
-    // it('The user can edit the comment and then delete it', function () {
-    //   cy.get('#show-discussion').click()
-    //   cy.get('#show-comments-button').click()
-    //   cy.contains('No comments yet')
-    //   cy.get('#show-comment-input').click()
-    //   cy.get('#comment-content-input').type('It is really scary')
-    //   cy.get('#post-comment-button').click()
-    //   cy.get('#edit-comment-button').click()
-    //   cy.get('#edit-comment-input').type(', really scary')
-    //   cy.get('#submit-comment-edit').click()
-    //   cy.contains('It is really scary, really scary')
-    //   cy.get('#delete-comment-button').click()
-    //   cy.contains('No comments yet')
-    // })
   })
 
   describe('Testing forum functionality as an admin', function () {
@@ -504,7 +489,7 @@ describe('Wellness app', function () {
       cy.get('#show-comments-button').click()
       cy.get('#delete-comment-button').click()
       cy.contains('No comments yet')
-      cy.get('.space-x-3 > :nth-child(2)').click()
+      cy.get('#delete-discussion-button').click()
       cy.get('#salon').click()
       cy.contains('No discussion have been created yet')
     })

@@ -332,7 +332,7 @@ const Discussion = ({ discussion }) => {
 
               <button
                 className="text-sm transition duration-300 hover:text-blue-400 focus-within:outline-none"
-                id="edit-discussion-button"
+                id="delete-discussion-button"
                 onClick={handleDeleteDiscussion}
               >
                 {t('ButtonLabel.Delete')}
