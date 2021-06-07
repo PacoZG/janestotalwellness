@@ -61,4 +61,12 @@ Or also check the [application](https://janestotalwellness.com) at .com or [appl
 |         |        | some of the components and finally added the code of conduct page for the forum          |
 |  1.06   |   8    | Spent the whole day implementing local and E2E testing, plus fixing some bugs that I came|
 |         |        | during testing, and finally fixing some css styling                                      |
-|  Total  |  303   |                                                                                          |
+|  5.06   |   3    | I worked on trying to implement pagination of discussions page by doing requests to the  |
+|         |        | server                                                                                   |
+|  6.06   |   2    | I worked on trying to implement pagination of discussions page on the front end without  |
+|         |        | sending requests to the server, all done only on front end                               |
+|  7.06   |   3    | Decided to implement and did the pagination by handling discussions only on the frontend,|
+|         |        | at the same time add some more features to filter discussions, some styling to the       |
+|         |        | discussions page and fixing some bugs that were caused by this changes and check all the |
+|         |        | other components for extra useless or redundant code                                     |
+|  Total  |  311   |                                                                                          |
