@@ -33,6 +33,12 @@
     "CreateBlogLabel": "Luo blogi",
     "BlogLabel": "Blogi"
   },
+  "About": {
+    "1": "Erinomainen kemian ja biologian opiskelija",
+    "2": "Valmistunut arvosanoin henkilökohtaisena valmentajana Yhdistyneessä kuningaskunnassa",
+    "3": "Les Mills kehon taistelu- ja kehon tasapainon ohjaaja ja joogaopettaja, jolla on yli 10 vuoden kokemus",
+    "Calling": "Lapsuuden unelmani oli tulla lääkäriksi, jotta voin auttaa ihmisiä toipumaan terveydentilastaan, joka voi olla taakka heidän elämäänsä. Ajan myötä ymmärsin, että kutsumukseni ei ollut auttaa parantamaan terveysongelmia, vaan estämään heitä auttamalla sinua tulemaan terveellisemmäksi versioksi itsestäsi, ohjaamalla sinut matkalle, jolla sinulla on hauskaa samalla kun olet aktiivisempi ja ymmärrät, että parempi syöminen ja lepo on yhtä tärkeää kuin liikunta. Työnnän sinua antamaan minulle parhaansa, jotta voit saavuttaa elämäsi niin tärkeän tasapaino- ja onnellisuuspisteen."
+  },
   "Client": {
     "InfoUpdate": "Profiilisi on onnistuneesti päivitetty",
     "SaveNote": "Huomautus on lisätty",

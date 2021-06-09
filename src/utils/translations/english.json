@@ -33,6 +33,12 @@
     "CreateBlogLabel": "Create blog",
     "BlogLabel": "Blogs"
   },
+  "About": {
+    "1": "An outstanding student of chimestry and biology",
+    "2": "Graduated with honors as a Personal Trainer in the United Kingdom",
+    "3": "Les Mills body combat and body balance instructor and yoga instructor with more than 10 years of experience",
+    "Calling": "My childhood dream was to become a doctor, so that I can help people to recover from their health issues that may be a burden on their lives, with time I understood that my calling was not to help to cure your health issues but to prevent them by helping you to become a healthier version of yourself, guiding you through a journey on which you have fun while you get more active and understand that eating better and rest is as important as exercising. I will push you to give me your best so you can reach that so very important point of balance and happiness on your life."
+  },
   "Client": {
     "InfoUpdate": "Your profile has been successfully updated.",
     "SaveNote": "Note has been added",

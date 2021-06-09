@@ -89,9 +89,6 @@ const Footer = () => {
           <Link to="/codeofconduct" target="blank" className="hover:text-gray-400 text-gray-200 text-sm">
             {t('Footer.Code')}
           </Link>
-          <Link to={'/about'} className="hover:text-gray-400 text-gray-200 text-sm">
-            {t('Footer.About')}
-          </Link>
         </div>
         <div className="flex flex-col items-center" id="like-share">
           <li className="flex flex-row">
@@ -130,6 +127,9 @@ const Footer = () => {
               <span className="text-gray-200 text-xs font-semibold pt-1 pl-1">{t('Footer.ShareWebsite')}</span>
             </FacebookShareButton>
           </div>
+          <Link to={'/about'} className="hover:text-gray-400 text-gray-200 text-sm">
+            {t('Footer.About')}
+          </Link>
         </div>
         <div className="absolute inset-x-0 bottom-0">
           <CookiesBanner />
