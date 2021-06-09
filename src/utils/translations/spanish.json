@@ -33,6 +33,12 @@
     "CreateBlogLabel": "Crear blog",
     "BlogLabel": "Blogs"
   },
+  "About": {
+    "1": "Un estudiante destacado de química y biología.",
+    "2": "Graduada con honores como entrenadora personal en el Reino Unido.",
+    "3": "Les Mills instructor de combate corporal y equilibrio corporal e instructor de yoga con más de 10 años de experiencia",
+    "Calling": "Mi sueño de infancia era convertirme en médico, para poder ayudar a las personas a recuperarse de sus problemas de salud que pueden ser una carga para sus vidas, con el tiempo comprendí que mi llamado no era ayudar a curar sus problemas de salud sino prevenirlos ayudándote a convertirte en una versión más saludable de ti mismo, guiándote a través de un viaje en el que te diviertes mientras te vuelves más activo y entiendes que comer mejor y descansar es tan importante como hacer ejercicio. Te presionaré para que me des lo mejor para que puedas alcanzar ese punto tan importante de equilibrio y felicidad en tu vida."
+  },
   "Client": {
     "InfoUpdate": "Tú perfil ha sido actualizado satisfactoriamente.",
     "SaveNote": "La nota ha sido agregada",

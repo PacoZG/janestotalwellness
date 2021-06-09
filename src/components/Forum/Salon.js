@@ -191,7 +191,7 @@ const Salon = () => {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-300 via-white to-gray-200 pt-20 md:pt-20 ">
-      <div className="flex flex-col items-center justify-between min-h-screen">
+      <div className="flex flex-col justify-between min-h-screen">
         <div>
           <h1 className="text-xs text-justify bg-blue-100 p-3 md:pl-5 md:pr-5 border-b-2 border-gray-600">
             {t('Salon.Welcome')}
@@ -593,7 +593,7 @@ const Salon = () => {
             </div>
           </div>
         </div>
-        <div className="m-2">
+        <div className="flex items-center justify-center m-2">
           {topicFilter.length > 0 || titleFilter.length > 0 || authorFilter.length > 0 ? (
             <Pagination
               limit={limit}
