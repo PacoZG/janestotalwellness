@@ -2,7 +2,7 @@ import React from 'react'
 import { useTranslation } from 'react-i18next'
 import { Link } from 'react-router-dom'
 import facebook from '../img/f-icon.jpg'
-import { FacebookShareButton, FacebookShareCount, FacebookIcon } from 'react-share'
+import { FacebookShareButton, FacebookShareCount, FacebookIcon, LinkedinIcon } from 'react-share'
 import CookiesBanner from './CookiesBanner'
 
 const Footer = () => {
@@ -43,7 +43,7 @@ const Footer = () => {
                   clipRule="evenodd"
                 />
               </svg>
-              <p className="text-gray-200 text-sm">Hakaniemi 6370 J 78</p>
+              <p className="text-gray-200 text-sm">Myllärintanhua 6 J 35</p>
             </div>
             <p className="text-gray-200 text-sm md:pl-4">00920, Helsinki</p>
           </div>
@@ -62,7 +62,7 @@ const Footer = () => {
                 d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z"
               />
             </svg>
-            <p className="text-gray-200 text-sm space-y-2 md:space-y-0 ">0449 888032</p>
+            <p className="text-gray-200 text-sm space-y-2 md:space-y-0 ">0449 910910</p>
           </div>
           <div className="flex space-x-1 items-center">
             <svg
@@ -79,7 +79,7 @@ const Footer = () => {
                 d="M16 12a4 4 0 10-8 0 4 4 0 008 0zm0 0v1.5a2.5 2.5 0 005 0V12a9 9 0 10-9 9m4.5-1.206a8.959 8.959 0 01-4.5 1.207"
               />
             </svg>
-            <p className="text-gray-200 text-sm space-y-2 md:space-y-0 ">pako.zavala@gmail.com</p>
+            <p className="text-gray-200 text-sm space-y-2 md:space-y-0 ">jane.pokkinen@gmail.com</p>
           </div>
         </div>
         <div className="flex flex-col items-center md:items-start space-y-1">
@@ -89,6 +89,17 @@ const Footer = () => {
           <Link to="/codeofconduct" target="blank" className="hover:text-gray-400 text-gray-200 text-sm">
             {t('Footer.Code')}
           </Link>
+          <p className="text-sm text-gray-200">Developed by: </p>
+          <a
+            href="www.linkedin.com/in/francisco-zavala"
+            target="blank"
+            className="hover:text-gray-400 text-gray-200 text-sm"
+          >
+            <p className="flex items-center space-x-1">
+              <LinkedinIcon size={28} round={true} />
+              <p>{' Francisco Zavala'}</p>
+            </p>
+          </a>
         </div>
         <div className="flex flex-col items-center" id="like-share">
           <li className="flex flex-row">
