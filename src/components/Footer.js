@@ -91,7 +91,7 @@ const Footer = () => {
           </Link>
           <p className="text-sm text-gray-200">Developed by: </p>
           <a
-            href="www.linkedin.com/in/francisco-zavala"
+            href="https://www.linkedin.com/in/francisco-zavala"
             target="blank"
             className="hover:text-gray-400 text-gray-200 text-sm"
           >
