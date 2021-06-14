@@ -8,7 +8,7 @@ discussionsRouter.get('/', async (request, response) => {
 })
 
 discussionsRouter.post('/', async (request, response) => {
-  const body = request.body
+  const { body } = request
   const discussion = new Discussion({
     ...body,
     likes: body.likes || 0,
@@ -27,7 +27,7 @@ discussionsRouter.get('/:id', async (request, response) => {
 })
 
 discussionsRouter.put('/:id', async (request, response) => {
-  const body = request.body
+  const { body } = request
   const discussion = {
     topic: body.topic,
     author: body.author,

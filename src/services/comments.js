@@ -1,5 +1,15 @@
 import axios from 'axios'
+import localdb from '../utils/localdb'
 const baseUrl = '/api/comments'
+
+const getConfig = () => {
+  if (!localdb.loadUser()) {
+    return null
+  }
+  return {
+    headers: { Authorization: `bearer ${localdb.loadUser().token}` },
+  }
+}
 
 const getAllComments = async () => {
   const response = await axios.get(baseUrl)
@@ -12,17 +22,17 @@ const createComment = async newComment => {
 }
 
 const updateComment = async updatedObject => {
-  const response = await axios.put(`${baseUrl}/${updatedObject.id}`, updatedObject)
+  const response = await axios.put(`${baseUrl}/${updatedObject.id}`, updatedObject, getConfig())
   return response.data
 }
 
 const removeComment = async id => {
-  const response = await axios.delete(`${baseUrl}/${id}`)
+  const response = await axios.delete(`${baseUrl}/${id}`, getConfig())
   return response.data
 }
 
 const replyComment = async repliedComment => {
-  const request = await axios.post(`${baseUrl}/${repliedComment.id}/replies`, repliedComment)
+  const request = await axios.post(`${baseUrl}/${repliedComment.id}/replies`, repliedComment, getConfig())
   return request.data
 }
 

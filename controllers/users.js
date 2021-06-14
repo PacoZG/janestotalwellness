@@ -12,7 +12,7 @@ usersRouter.get('/', async (request, response) => {
 })
 
 usersRouter.post('/', async (request, response) => {
-  const body = request.body
+  const { body } = request
   const saltRounds = 10
   const passwordHash = await bcrypt.hash(body.password, saltRounds)
   const user = new User({
@@ -34,7 +34,7 @@ usersRouter.post('/', async (request, response) => {
 })
 
 usersRouter.put('/:id', async (request, response) => {
-  const body = request.body
+  const { body } = request
   const user = {
     ...body,
     updatedAt: new Date(),

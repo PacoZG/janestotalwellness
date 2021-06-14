@@ -8,7 +8,7 @@ notesRouter.get('/', async (request, response) => {
 })
 
 notesRouter.post('/', async (request, response) => {
-  const body = request.body
+  const { body } = request
   const user = await User.findById(body.user.id)
   const note = new Note({
     user: user._id,
@@ -25,7 +25,7 @@ notesRouter.post('/', async (request, response) => {
 })
 
 notesRouter.put('/:id', async (request, response) => {
-  const body = request.body
+  const { body } = request
   const note = {
     user: body.user.id,
     content: body.content,

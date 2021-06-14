@@ -7,8 +7,8 @@ const DiscussionList = ({ discussions }) => {
   return (
     <div>
       <div>
-        {discussions.map((discussion, i) => (
-          <Discussion key={i} discussion={discussion} />
+        {discussions.map(discussion => (
+          <Discussion key={discussion.id} discussion={discussion} />
         ))}
       </div>
       <div>

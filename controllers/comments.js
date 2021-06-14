@@ -8,7 +8,7 @@ commentsRouter.get('/', async (request, response) => {
 })
 
 commentsRouter.post('/', async (request, response) => {
-  const body = request.body
+  const { body } = request
   const discussion = await Discussion.findById(body.discussion)
   const comment = new Comment({
     ...body,
@@ -23,7 +23,7 @@ commentsRouter.post('/', async (request, response) => {
 })
 
 commentsRouter.put('/:id', async (request, response) => {
-  const body = request.body
+  const { body } = request
   const reply = {
     author: body.author,
     content: body.content,
@@ -44,7 +44,7 @@ commentsRouter.delete('/:id', async (request, response) => {
 })
 
 commentsRouter.post('/:id/replies', async (request, response) => {
-  const body = request.body
+  const { body } = request
   const reply = {
     title: body.title,
     content: body.content,
