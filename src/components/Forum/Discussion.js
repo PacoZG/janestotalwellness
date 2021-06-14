@@ -135,7 +135,6 @@ const Discussion = ({ discussion }) => {
     )
   }
 
-  // console.log('DISCUSSION: ', d)
   return (
     <div className="relative w-full bg-blue-100 ">
       <div>
@@ -342,7 +341,6 @@ const Discussion = ({ discussion }) => {
         </div>
         <Transition
           show={showCommentInput}
-          // show={true}
           enter="transition-opacity duration-500"
           enterFrom="opacity-0"
           enterTo="opacity-100"
@@ -401,7 +399,7 @@ const Discussion = ({ discussion }) => {
       >
         <div className=" border-t-2 border-gray-200 divide-solid divide-y-2 divide-gray-400 bg-blue-100 pl-2 pr-2">
           {comments.length > 0 ? (
-            comments.map((comment, i) => <Comment key={i} comment={comment} />)
+            comments.map(comment => <Comment key={comment.id} comment={comment} />)
           ) : (
             <p className="text-xs pl-4 p-2 bg-gray-200">{t('Discussion.NoComments')}</p>
           )}

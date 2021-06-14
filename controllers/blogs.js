@@ -7,7 +7,7 @@ blogsRouter.get('/', async (request, response) => {
 })
 
 blogsRouter.post('/', async (request, response) => {
-  const body = request.body
+  const { body } = request
   const blog = new Blog({
     ...body,
     likes: body.likes || 0,
@@ -27,7 +27,7 @@ blogsRouter.get('/:id', async (request, response) => {
 })
 
 blogsRouter.put('/:id', async (request, response) => {
-  const body = request.body
+  const { body } = request
   const blog = {
     title: body.title,
     content: body.content,
@@ -49,7 +49,7 @@ blogsRouter.delete('/:id', async (request, response) => {
 })
 
 blogsRouter.post('/:id/comments', async (request, response) => {
-  const body = request.body
+  const { body } = request
   const blog = {
     title: body.title,
     content: body.content,

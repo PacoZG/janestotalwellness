@@ -95,10 +95,10 @@ const Footer = () => {
             target="blank"
             className="hover:text-gray-400 text-gray-200 text-sm"
           >
-            <p className="flex items-center space-x-1">
+            <div className="flex items-center space-x-1">
               <LinkedinIcon size={28} round={true} />
               <p>{' Francisco Zavala'}</p>
-            </p>
+            </div>
           </a>
         </div>
         <div className="flex flex-col items-center" id="like-share">

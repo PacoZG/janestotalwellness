@@ -91,6 +91,8 @@ const Comment = ({ comment }) => {
       const repliedComment = { ...comment, replies: comment.replies.concat(newReply) }
       dispatch(replyComment(repliedComment))
       setShowInputReply(!showReplyInput)
+      author.reset()
+      replyContent.reset()
     }
   }
 
