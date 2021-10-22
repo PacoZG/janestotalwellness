@@ -48,7 +48,6 @@ export const getUser = id => {
 }
 
 export const updateUser = user => {
-  console.log('USER: ', user)
   return async dispatch => {
     const updatedUser = await usersService.updateUser(user)
     dispatch({
