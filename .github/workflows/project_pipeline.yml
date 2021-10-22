@@ -46,6 +46,7 @@ jobs:
           WITH_V: true
           DEFAULT_BUMP: '#patch'
       - name: Deployment to Heroku
+        uses: actions/checkout@v2
         uses: akhileshns/heroku-deploy@v3.12.12 # This is the action
         if: ${{ github.event_name == 'push' && !contains(join(github.event.commits.*.message, ', '), '#skip') }}
         with:
@@ -54,7 +55,5 @@ jobs:
           heroku_email: 'sirpaquillo1@yahoo.com.mx'
           dontuseforce: false
           procfile: 'web: npm run production'
-          healthcheck: 'https://jane-wellness-app.herokuapp.com/health'
-          checkstring: 'ok'
           delay: 5
           rollbackonhealthcheckfailed: true
