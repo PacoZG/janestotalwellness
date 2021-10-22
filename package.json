@@ -4,7 +4,7 @@
   "description": "Project presentation for fullstack 2020 open course",
   "main": "index.js",
   "scripts": {
-    "start": "set PORT=3000 && craco start",
+    "start": "PORT=3000 craco start",
     "build": "craco build",
     "production": "node index.js",
     "dev-server": "nodemon index.js",
