@@ -66,6 +66,7 @@ const MainMenu = () => {
           handleMobileMenu={handleMobileMenu}
           visibleMobileMenu={visibleMobileMenu}
           dropdown={dropdown}
+          setDropdown={setDropdown}
           language={language}
           handleLanguageDropdwon={handleLanguageDropdwon}
           setVisibleMobileMenu={setVisibleMobileMenu}
