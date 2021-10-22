@@ -283,7 +283,7 @@ const SignUpForm = () => {
                       className="signup-input"
                       pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
                       id="password"
-                      title="Must contain at least one  number and one uppercase and lowercase letter, and at least 8 or more characters"
+                      title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters"
                       {...password.params}
                       required
                     />
