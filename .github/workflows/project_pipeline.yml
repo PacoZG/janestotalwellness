@@ -34,7 +34,7 @@ jobs:
           command: npm run test:e2e
           start: npm run start:test, npm start
           wait-on: 'http://localhost:3001'
-        if: ${{ !contains(join(github.event.commits.*.message, ', '), '#skip_test') }}
+        if: ${{ !contains(join(github.event.commits.*.message, ', '), 'skip_test') }}
         env:
           NODE_ENV: 'test'
           TEST_MONGODB_URI: ${{ secrets.TEST_MONGODB_URI }}
