@@ -24,6 +24,7 @@ jobs:
         run: npm run build
       - name: Local tests
         run: npm run test
+        if: ${{ !contains(join(github.event.commits.*.message, ', '), 'skip_test') }}
         env:
           NODE_ENV: 'test'
           TEST_MONGODB_URI: ${{ secrets.TEST_MONGODB_URI }}
