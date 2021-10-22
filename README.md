@@ -1,6 +1,6 @@
 # Wellness-app-workflow
 
-You can login to the [application](https://jane-wellness-app.herokuapp.com/) using username: pacozg, password: fullstack_2021 as en administrator and username: rocky, username: Rocky12345 as a client
+You can login to the [application](https://jane-wellness-app.herokuapp.com/) using username: pacozg, password: Fullstack_2021 as en administrator and username: rocky, username: Rocky12345 as a client
 Or also check the [application](https://janestotalwellness.com) at .com or [application](https://janestotalwellness.fi) at .fi with the same user.
 
 # Working hours count (the time is an approximation )
