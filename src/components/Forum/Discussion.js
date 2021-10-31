@@ -8,7 +8,7 @@ import { useField } from '../../hooks/index'
 import { likeDiscussion, dislikeDiscussion, editDiscussion, deleteDiscussion } from '../../reducers/discussionReducer'
 import { createComment } from '../../reducers/commentReducers'
 import Comment from './Comment'
-import Loading from '../../utils/Loading'
+import LoadingPage from '../../utils/LoadingPage'
 import { ReactComponent as DislikeButton } from '../../assets/dislike.svg'
 import { ReactComponent as LikeButton } from '../../assets/like.svg'
 import { ReactComponent as DoubleLeftArrow } from '../../assets/double-left-arrow.svg'
@@ -119,7 +119,7 @@ const Discussion = ({ discussion }) => {
   }
 
   if (!discussion) {
-    return <Loading />
+    return <LoadingPage />
   }
 
   return (

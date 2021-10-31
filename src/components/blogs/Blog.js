@@ -10,7 +10,7 @@ import { FacebookShareButton, FacebookShareCount, FacebookIcon } from 'react-sha
 import { editBlog, likeBlog, dislikeBlog, deleteBlog, commentBlog } from '../../reducers/blogReducer'
 import { setNotification } from '../../reducers/notificationReducer'
 import imageService from '../../services/images'
-import Loading from '../../utils/Loading'
+import LoadingPage from '../../utils/LoadingPage'
 import { ReactComponent as LikeIcon } from '../../assets/like.svg'
 import { ReactComponent as DisikeIcon } from '../../assets/dislike.svg'
 import { ReactComponent as DoubleUpArrowIcon } from '../../assets/double-up-arrow.svg'
@@ -110,7 +110,7 @@ const Blog = () => {
     history.push('/blogs')
   }
   if (!blog) {
-    return <Loading />
+    return <LoadingPage />
   }
 
   return (
@@ -232,14 +232,16 @@ const Blog = () => {
         <div className="flex flex-col items-center">
           <label className="font-semibold p-2 inline-block border-b-2">{t('Blog.WriteComment')}</label>
           <button
-            className={
-              isOpen
-                ? 'transition duration-150 transform rotate-180 focus-within:outline-none p-1'
-                : 'transition duration-150 focus-within:outline-none p-1'
-            }
+            className="flex items-center justify-center rounded-md text-gray-300 bg-gray-400 w-32 transition duration-150 transform rotate-180 focus-within:outline-none p-1"
             onClick={() => setIsOpen(!isOpen)}
           >
-            <DoubleUpArrowIcon />
+            <DoubleUpArrowIcon
+              className={
+                isOpen
+                  ? ' transition duration-200 focus-within:outline-none p-1 h-8 w-8'
+                  : ' transition duration-200 transform -rotate-180 focus-within:outline-none p-1 h-8 w-8'
+              }
+            />
           </button>
         </div>
 

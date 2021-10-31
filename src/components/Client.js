@@ -10,7 +10,7 @@ import { createNote, updateNote, deleteNote } from '../reducers/noteReducer'
 import { getAge, getBMI } from '../utils/helper'
 import noteService from '../services/notes'
 import Note from './Note'
-import Loading from '../utils/Loading'
+import LoadingPage from '../utils/LoadingPage'
 
 const Client = () => {
   const { t } = useTranslation()
@@ -124,7 +124,7 @@ const Client = () => {
   }
 
   if (!client) {
-    return <Loading />
+    return <LoadingPage />
   }
 
   return (

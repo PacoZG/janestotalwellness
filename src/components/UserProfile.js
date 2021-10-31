@@ -2,7 +2,7 @@ import React from 'react'
 import { useSelector } from 'react-redux'
 import { useTranslation } from 'react-i18next'
 import { getAge, getBMI } from '../utils/helper'
-import Loading from '../utils/Loading'
+import LoadingPage from '../utils/LoadingPage'
 
 const UserProfile = () => {
   const loggedUser = useSelector(state => state.loggedUser)
@@ -10,7 +10,7 @@ const UserProfile = () => {
   const { t } = useTranslation()
 
   if (!user) {
-    return <Loading />
+    return <LoadingPage />
   }
 
   return (

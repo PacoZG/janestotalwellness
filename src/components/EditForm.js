@@ -15,7 +15,7 @@ import { ReactComponent as WarningIcon } from '../assets/warning-icon.svg'
 import { ReactComponent as XIcon } from '../assets/x-icon.svg'
 
 import localdb from '../utils/localdb'
-import Loading from '../utils/Loading'
+import LoadingPage from '../utils/LoadingPage'
 
 const EditForm = () => {
   const { t } = useTranslation()
@@ -271,7 +271,7 @@ const EditForm = () => {
   }
 
   if (!user) {
-    return <Loading />
+    return <LoadingPage />
   }
 
   return (

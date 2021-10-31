@@ -14,7 +14,7 @@ import { createDiscussion } from '../../reducers/discussionReducer'
 import { ReactComponent as DoubleRightArrow } from '../../assets/double-right-arrow.svg'
 import { ReactComponent as SelectorIcon } from '../../assets/selector-icon.svg'
 import { ReactComponent as GreenCheckmarkIcon } from '../../assets/green-checkmark-icon.svg'
-import Loading from '../../utils/Loading'
+import LoadingPage from '../../utils/LoadingPage'
 var _ = require('lodash')
 
 const Salon = () => {
@@ -172,7 +172,7 @@ const Salon = () => {
   }
 
   if (!discussions) {
-    return <Loading />
+    return <LoadingPage />
   }
 
   return (
