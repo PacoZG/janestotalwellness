@@ -4,6 +4,8 @@ import { Transition } from '@headlessui/react'
 import { useTranslation } from 'react-i18next'
 import { Link } from 'react-router-dom'
 
+import { ReactComponent as CoockiesIcon } from '../assets/cookies.svg'
+
 const CookieBanner = () => {
   const { t } = useTranslation()
   const [show, setShow] = useState(false)
@@ -27,18 +29,19 @@ const CookieBanner = () => {
       show={show}
       as={Fragment}
       enter="transform duration-2000 ease-in"
-      enterFrom="-translate-y-2 opacity-0"
-      enterTo="translate-y-0 opacity-100"
+      enterFrom=" opacity-0"
+      enterTo=" opacity-100"
       leave="transform duration-2000 ease-out"
-      leaveFrom="translate-y-0 opacity-100"
-      leaveTo="-translate-y-2 opacity-0"
+      leaveFrom="opacity-100"
+      leaveTo=" opacity-0"
     >
-      <div className="w-full flex flex-col md:flex-row items-center justify-between p-1 pl-3 pr-3 bg-yellow-200">
+      <div className="flex flex-col gap-2 w-44 h-32 rounded-md items-center justify-center text-center p-3 bg-yellow-200 bg-opacity-60">
+        <CoockiesIcon className="h-12 w-12 absolute -top-6" />
         <div>
-          <p className="text-xs">
+          <p className="text-xs font-semibold">
             {t('CookiesBanner.Message')}
             <Link
-              className="transition duration-1000 text-indigo-400 hover:text-red-400"
+              className="transition duration-1000 text-indigo-500 hover:text-red-400"
               to="/cookiespolicy"
               target="blank"
             >
@@ -46,15 +49,15 @@ const CookieBanner = () => {
             </Link>
           </p>
         </div>
-        <div className="flex pt-1 md:pt-0 space-x-2 items-center pr-2">
+        <div className="flex pt-1 md:pt-0 space-x-2 items-center pr-0">
           <button
-            className="border-2 text-xs border-gray-400 transition duration-1000 hover:bg-gray-600 hover:text-gray-200 rounded-sm px-1 h-7 bg-gray-200"
+            className="border-2 text-xs border-gray-400 transition duration-1000 hover:bg-gray-600 hover:text-gray-200 rounded-xl px-2 h-7 bg-red-300"
             onClick={handleDecline}
           >
             {t('CookiesBanner.Decline')}
           </button>
           <button
-            className="border-2 text-xs border-gray-400 transition duration-1000 hover:bg-gray-600 hover:text-gray-200 rounded-sm px-1 h-7 bg-gray-200"
+            className="border-2 text-xs border-gray-400 transition duration-1000 hover:bg-gray-600 hover:text-gray-200 rounded-xl px-2 h-7 bg-green-200"
             onClick={handleAccept}
           >
             {t('CookiesBanner.Accept')}

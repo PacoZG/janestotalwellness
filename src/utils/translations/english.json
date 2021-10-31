@@ -18,6 +18,7 @@
     "Edit": "Edit",
     "Submit": "Submit"
   },
+  "NoClients": "Unfortunately we don't have any clients to show yet.",
   "Countries": "Finland,Sweden,Norway,Estonia,Germany,Spain,Italy,Netherland,Switzerland,Mexico",
   "Months": "Jan,Feb,Mar,Apr,May,Jun,Jul,Aug,Sep,Oct,Nov,Dec",
   "Weekdays": "Mon,Tue,Wed,Thu,Fri,Sat,Sun",
@@ -77,7 +78,7 @@
     "WriteReply": "Write a reply..."
   },
   "CookiesBanner": {
-    "Message": "This website uses cookies, We use cookies to provide social media features, to analyse our traffic and self advertisement. Please read our ",
+    "Message": "Please read our ",
     "Cookies": "cookies policy",
     "Decline": "Decline",
     "Accept": "Accept"

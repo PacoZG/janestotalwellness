@@ -18,6 +18,7 @@
     "Edit": "Editar",
     "Submit": "Enviar"
   },
+  "NoClients": "Desafortunadamente aún no tenemos clientes para mostrar.",
   "Countries": "Finlandia,Suecia,Noruega,Estonia,Alemania,España,Italia,Holanda,Suiza,México",
   "Months": "Ene,Feb,Mar,Abr,May,Jun,Jul,Ago,Sep,Oct,Nov,Dic",
   "Weekdays": "Lun,Mar,Mié,Jue,Vie,Sáb,Dom",
@@ -77,7 +78,7 @@
     "WriteReply": "Escribe una respuesta..."
   },
   "CookiesBanner": {
-    "Message": "Este sitio web utiliza cookies, utilizamos cookies para proporcionar funciones de redes sociales, para analizar nuestro tráfico y auto publicidad. Por favor lea nuestra ",
+    "Message": "Por favor lea nuestra ",
     "Cookies": "política de cookies",
     "Decline": "Rechazar",
     "Accept": "Aceptar"
@@ -275,6 +276,6 @@
     "Deleted": "La publicación del blog ha sido eliminada.",
     "WannaTalk": "¿Quieres hablar más sobre este tema? ve a ",
     "OpenDisc": " y comienza una discusión",
-    "NoBlogs": "Desafortunadamente no tenemos publicaciones de blog para mostrar en este momento, estad atentos."
+    "NoBlogs": "Desafortunadamente no tenemos blogs publicados en este momento, matente atentos."
   }
 }

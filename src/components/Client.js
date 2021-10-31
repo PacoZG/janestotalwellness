@@ -10,6 +10,7 @@ import { createNote, updateNote, deleteNote } from '../reducers/noteReducer'
 import { getAge, getBMI } from '../utils/helper'
 import noteService from '../services/notes'
 import Note from './Note'
+import Loading from '../utils/Loading'
 
 const Client = () => {
   const { t } = useTranslation()
@@ -123,25 +124,7 @@ const Client = () => {
   }
 
   if (!client) {
-    return (
-      <div className="justify-center items-center flex outline-none bg-gray-100 min-h-screen">
-        <div className="flex flex-row space-x-1">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            className="animate-spin h-5 w-5"
-            viewBox="0 0 20 20"
-            fill="currentColor"
-          >
-            <path
-              fillRule="evenodd"
-              d="M4 2a1 1 0 011 1v2.101a7.002 7.002 0 0111.601 2.566 1 1 0 11-1.885.666A5.002 5.002 0 005.999 7H9a1 1 0 010 2H4a1 1 0 01-1-1V3a1 1 0 011-1zm.008 9.057a1 1 0 011.276.61A5.002 5.002 0 0014.001 13H11a1 1 0 110-2h5a1 1 0 011 1v5a1 1 0 11-2 0v-2.101a7.002 7.002 0 01-11.601-2.566 1 1 0 01.61-1.276z"
-              clipRule="evenodd"
-            />
-          </svg>
-          <p className="pr-2">{t('loading')}</p>
-        </div>
-      </div>
-    )
+    return <Loading />
   }
 
   return (
@@ -151,15 +134,11 @@ const Client = () => {
         <div className="shadow overflow-hidden rounded-md bg-gradient-to-br from-gray-300 via-white to-gray-300 p-3">
           <div className="flex flex-col items-center pb-2">
             <label className="tracking-wide border-b pb-2">{`${client.username}`}</label>
-            {client.imageURL ? (
-              <img src={client.imageURL} alt="profile" className="h-40 w-40 md:h-40 md:w-40 border rounded-full" />
-            ) : (
-              <span className="inline-block rounded-full h-28 w-28 md:h-32 md:w-32 md:rounded-full overflow-hidden bg-gray-100">
-                <svg className="h-full w-full text-gray-300" fill="currentColor" viewBox="0 0 24 24">
-                  <path d="M24 20.993V24H0v-2.996A14.977 14.977 0 0112.004 15c4.904 0 9.26 2.354 11.996 5.993zM16.002 8.999a4 4 0 11-8 0 4 4 0 018 0z" />
-                </svg>
-              </span>
-            )}
+            <img
+              src={client.imageURL ? client.imageURL : client.avatarPic}
+              alt="profile"
+              className="h-40 w-40 md:h-40 md:w-40 border rounded-full"
+            />
             <label className="tracking-wide border-b pt-2 pb-1">{`${client.firstName} ${client.lastName}`}</label>
           </div>
           <div className="grid grid-cols-6 gap-4 place-items-center border-b pb-3">
@@ -351,19 +330,11 @@ const Client = () => {
               <div className="flex p-6 border-b">
                 <div className="flex flex-col items-center space-y-3 border-gray-700 p-9 ">
                   <label className="tracking-wide border-b pb-2">{`${client.username}`}</label>
-                  {client.imageURL ? (
-                    <img
-                      src={client.imageURL}
-                      alt="profile"
-                      className="h-40 w-40 md:h-40 md:w-40 border rounded-full"
-                    />
-                  ) : (
-                    <span className="inline-block rounded-full h-28 w-28 md:h-32 md:w-32 md:rounded-full overflow-hidden bg-gray-100">
-                      <svg className="h-full w-full text-gray-300" fill="currentColor" viewBox="0 0 24 24">
-                        <path d="M24 20.993V24H0v-2.996A14.977 14.977 0 0112.004 15c4.904 0 9.26 2.354 11.996 5.993zM16.002 8.999a4 4 0 11-8 0 4 4 0 018 0z" />
-                      </svg>
-                    </span>
-                  )}
+                  <img
+                    src={client.imageURL ? client.imageURL : client.avatarPic}
+                    alt="profile"
+                    className="h-40 w-40 border-2 border-gray-600 rounded-full"
+                  />
                   <label className="tracking-wide border-t pt-2 ">{`${client.firstName} ${client.lastName}`}</label>
                 </div>
                 <div className="flex-grow pl-10 pt-10">

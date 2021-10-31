@@ -10,6 +10,10 @@ import { FacebookShareButton, FacebookShareCount, FacebookIcon } from 'react-sha
 import { editBlog, likeBlog, dislikeBlog, deleteBlog, commentBlog } from '../../reducers/blogReducer'
 import { setNotification } from '../../reducers/notificationReducer'
 import imageService from '../../services/images'
+import Loading from '../../utils/Loading'
+import { ReactComponent as LikeIcon } from '../../assets/like.svg'
+import { ReactComponent as DisikeIcon } from '../../assets/dislike.svg'
+import { ReactComponent as DoubleUpArrowIcon } from '../../assets/double-up-arrow.svg'
 
 const Blog = () => {
   const id = useParams().id
@@ -106,25 +110,7 @@ const Blog = () => {
     history.push('/blogs')
   }
   if (!blog) {
-    return (
-      <div className="justify-center items-center flex outline-none bg-gray-100 min-h-screen">
-        <div className="flex flex-row space-x-1">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            className="animate-spin h-5 w-5"
-            viewBox="0 0 20 20"
-            fill="currentColor"
-          >
-            <path
-              fillRule="evenodd"
-              d="M4 2a1 1 0 011 1v2.101a7.002 7.002 0 0111.601 2.566 1 1 0 11-1.885.666A5.002 5.002 0 005.999 7H9a1 1 0 010 2H4a1 1 0 01-1-1V3a1 1 0 011-1zm.008 9.057a1 1 0 011.276.61A5.002 5.002 0 0014.001 13H11a1 1 0 110-2h5a1 1 0 011 1v5a1 1 0 11-2 0v-2.101a7.002 7.002 0 01-11.601-2.566 1 1 0 01.61-1.276z"
-              clipRule="evenodd"
-            />
-          </svg>
-          <p className="pr-2">{t('loading...')}</p>
-        </div>
-      </div>
-    )
+    return <Loading />
   }
 
   return (
@@ -169,14 +155,7 @@ const Blog = () => {
                 onClick={handleDislikes}
                 className="inline-flex justify-center py-1 px-3 font-medium rounded-full bg-transparent text-sm text-gray-500 hover:text-gray-300 focus-within:outline-none"
               >
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  className="h-5 w-5 md:h-6 md:w-6"
-                  viewBox="0 0 20 20"
-                  fill="currentColor"
-                >
-                  <path d="M18 9.5a1.5 1.5 0 11-3 0v-6a1.5 1.5 0 013 0v6zM14 9.667v-5.43a2 2 0 00-1.105-1.79l-.05-.025A4 4 0 0011.055 2H5.64a2 2 0 00-1.962 1.608l-1.2 6A2 2 0 004.44 12H8v4a2 2 0 002 2 1 1 0 001-1v-.667a4 4 0 01.8-2.4l1.4-1.866a4 4 0 00.8-2.4z" />
-                </svg>
+                <DisikeIcon className="h-5 w-5 md:h-6 md:w-6" />
               </button>
             </div>
             <div className="flex flex-row items-center">
@@ -187,14 +166,7 @@ const Blog = () => {
                 onClick={handleLikes}
                 className="inline-flex justify-center py-1 px-3 font-medium rounded-full bg-transparent text-sm text-gray-500 hover:text-gray-300 focus-within:outline-none"
               >
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  className="h-5 w-5 md:h-6 md:w-6"
-                  viewBox="0 0 20 20"
-                  fill="currentColor"
-                >
-                  <path d="M2 10.5a1.5 1.5 0 113 0v6a1.5 1.5 0 01-3 0v-6zM6 10.333v5.43a2 2 0 001.106 1.79l.05.025A4 4 0 008.943 18h5.416a2 2 0 001.962-1.608l1.2-6A2 2 0 0015.56 8H12V4a2 2 0 00-2-2 1 1 0 00-1 1v.667a4 4 0 01-.8 2.4L6.8 7.933a4 4 0 00-.8 2.4z" />
-                </svg>
+                <LikeIcon className="h-5 w-5 md:h-6 md:w-6" />
               </button>
             </div>
             <FacebookShareCount url={url}>
@@ -267,15 +239,7 @@ const Blog = () => {
             }
             onClick={() => setIsOpen(!isOpen)}
           >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              className="h-5 w-5"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-            >
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 11l7-7 7 7M5 19l7-7 7 7" />
-            </svg>
+            <DoubleUpArrowIcon />
           </button>
         </div>
 

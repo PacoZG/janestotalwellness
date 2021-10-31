@@ -7,6 +7,7 @@ import ReactMarkdown from 'react-markdown'
 import { createBlog } from '../../reducers/blogReducer'
 import { setNotification } from '../../reducers/notificationReducer'
 import imageService from '../../services/images'
+import { ReactComponent as GenericPic } from '../../assets/generic-pic.svg'
 
 const CreateBlog = () => {
   const { t } = useTranslation()
@@ -51,7 +52,6 @@ const CreateBlog = () => {
       } catch (error) {
         console.log('ERROR: ', error.response.data)
       }
-      console.log('IMAGE: ', image)
       const blog = {
         title: title.params.value,
         author: author.params.value,
@@ -59,7 +59,6 @@ const CreateBlog = () => {
         imageURL: image.url,
         imageID: image.cloudinaryId,
       }
-      console.log('BLOG: ', blog)
       dispatch(createBlog(blog))
       dispatch(
         setNotification({
@@ -81,10 +80,7 @@ const CreateBlog = () => {
     content.reset()
   }
   return (
-    <div
-      className="min-h-screen pt-22 shadow md:rounded-md md:overflow-hidden rounded-b-md bg-gradient-to-br
-    from-gray-300 via-white to-gray-200 "
-    >
+    <div className="min-h-screen pt-22 shadow md:rounded-md md:overflow-hidden rounded-b-md bg-gradient-to-br from-gray-300 via-white to-gray-200 ">
       <Transition
         show={true}
         enter="transition transform duration-500 ease-out"
@@ -112,20 +108,7 @@ const CreateBlog = () => {
             ) : (
               <div className="flex flex-col items-center">
                 <label className="text-sm font-medium text-gray-700">{t('EditForm.PhotoLabel')}</label>
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  className="h-32 w-32 text-gray-500"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"
-                  />
-                </svg>
+                <GenericPic className="h-32 w-32 text-gray-500" />
               </div>
             )}
             <div className="">

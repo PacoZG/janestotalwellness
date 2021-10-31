@@ -54,26 +54,26 @@ const MainMenu = () => {
           showLanguageMenu={showLanguageMenu}
           handleLanguageDropdwon={handleLanguageDropdwon}
           language={language}
-          setLanguage={setLanguage}
           dropdown={dropdown}
           setDropdown={setDropdown}
-          handleLogout={handleLogout}
+          setLanguage={setLanguage}
           handleSetLanguage={handleSetLanguage}
+          handleLogout={handleLogout}
         />
 
         {/* Mobile menu, show/hide based on menu state. */}
         <MobileView
-          handleMobileMenu={handleMobileMenu}
-          visibleMobileMenu={visibleMobileMenu}
+          showLanguageMenu={showLanguageMenu}
+          handleLanguageDropdwon={handleLanguageDropdwon}
+          language={language}
           dropdown={dropdown}
           setDropdown={setDropdown}
-          language={language}
-          handleLanguageDropdwon={handleLanguageDropdwon}
-          setVisibleMobileMenu={setVisibleMobileMenu}
-          showLanguageMenu={showLanguageMenu}
-          handleMobileDropdown={handleMobileDropdown}
-          handleLogout={handleLogout}
           handleSetLanguage={handleSetLanguage}
+          handleLogout={handleLogout}
+          handleMobileMenu={handleMobileMenu}
+          visibleMobileMenu={visibleMobileMenu}
+          setVisibleMobileMenu={setVisibleMobileMenu}
+          handleMobileDropdown={handleMobileDropdown}
         />
       </div>
       <Modal />

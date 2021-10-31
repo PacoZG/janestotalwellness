@@ -11,6 +11,10 @@ import localdb from '../../utils/localdb'
 import DiscussionsList from './DiscussionsList'
 import Pagination from '../Pagination'
 import { createDiscussion } from '../../reducers/discussionReducer'
+import { ReactComponent as DoubleRightArrow } from '../../assets/double-right-arrow.svg'
+import { ReactComponent as SelectorIcon } from '../../assets/selector-icon.svg'
+import { ReactComponent as GreenCheckmarkIcon } from '../../assets/green-checkmark-icon.svg'
+import Loading from '../../utils/Loading'
 var _ = require('lodash')
 
 const Salon = () => {
@@ -142,7 +146,7 @@ const Salon = () => {
       }
       if (
         newDiscussion.author.length > 3 &&
-        newDiscussion.topic.length > 4 &&
+        newDiscussion.topic.length >= 4 &&
         discussionTitle.params.value.length > 9 &&
         discussionContent.params.value.length > 49
       ) {
@@ -168,25 +172,7 @@ const Salon = () => {
   }
 
   if (!discussions) {
-    return (
-      <div className="justify-center items-center flex outline-none bg-gray-100 min-h-screen">
-        <div className="flex flex-row space-x-1">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            className="animate-spin h-5 w-5"
-            viewBox="0 0 20 20"
-            fill="currentColor"
-          >
-            <path
-              fillRule="evenodd"
-              d="M4 2a1 1 0 011 1v2.101a7.002 7.002 0 0111.601 2.566 1 1 0 11-1.885.666A5.002 5.002 0 005.999 7H9a1 1 0 010 2H4a1 1 0 01-1-1V3a1 1 0 011-1zm.008 9.057a1 1 0 011.276.61A5.002 5.002 0 0014.001 13H11a1 1 0 110-2h5a1 1 0 011 1v5a1 1 0 11-2 0v-2.101a7.002 7.002 0 01-11.601-2.566 1 1 0 01.61-1.276z"
-              clipRule="evenodd"
-            />
-          </svg>
-          <p className="pr-2">{t('loading')}</p>
-        </div>
-      </div>
-    )
+    return <Loading />
   }
 
   return (
@@ -219,18 +205,7 @@ const Salon = () => {
                   : 'transition duration-75 focus-within:outline-none p-1'
               }
             >
-              <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" viewBox="0 0 20 20" fill="currentColor">
-                <path
-                  fillRule="evenodd"
-                  d="M10.293 15.707a1 1 0 010-1.414L14.586 10l-4.293-4.293a1 1 0 111.414-1.414l5 5a1 1 0 010 1.414l-5 5a1 1 0 01-1.414 0z"
-                  clipRule="evenodd"
-                />
-                <path
-                  fillRule="evenodd"
-                  d="M4.293 15.707a1 1 0 010-1.414L8.586 10 4.293 5.707a1 1 0 011.414-1.414l5 5a1 1 0 010 1.414l-5 5a1 1 0 01-1.414 0z"
-                  clipRule="evenodd"
-                />
-              </svg>
+              <DoubleRightArrow className="h-4 w-4" />
             </div>
           </div>
 
@@ -271,18 +246,7 @@ const Salon = () => {
                                 id="topic-menu"
                                 onClick={() => setShowTopicMenu(!showTopicMenu)}
                               >
-                                <svg
-                                  xmlns="http://www.w3.org/2000/svg"
-                                  className="h-5 w-5"
-                                  viewBox="0 0 20 20"
-                                  fill="currentColor"
-                                >
-                                  <path
-                                    fillRule="evenodd"
-                                    d="M10 3a1 1 0 01.707.293l3 3a1 1 0 01-1.414 1.414L10 5.414 7.707 7.707a1 1 0 01-1.414-1.414l3-3A1 1 0 0110 3zm-3.707 9.293a1 1 0 011.414 0L10 14.586l2.293-2.293a1 1 0 011.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 010-1.414z"
-                                    clipRule="evenodd"
-                                  />
-                                </svg>
+                                <SelectorIcon className="h-5 w-5" />
                               </span>
                             </div>
                           </div>
@@ -291,18 +255,7 @@ const Salon = () => {
                           <p className="flex items-center">
                             <span className="text-sm pl-2 ">{t('Salon.Topic')} </span>
                             <span className="transition duration-1000 text-sm text-green-500 ml-2 p-1 ">
-                              <svg
-                                xmlns="http://www.w3.org/2000/svg"
-                                className="h-3 w-3"
-                                viewBox="0 0 20 20"
-                                fill="currentColor"
-                              >
-                                <path
-                                  fillRule="evenodd"
-                                  d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                                  clipRule="evenodd"
-                                />
-                              </svg>
+                              <GreenCheckmarkIcon className="h-4 w-4" />
                             </span>
                           </p>
                         ) : null}
@@ -322,18 +275,7 @@ const Salon = () => {
                           <p className="flex items-center">
                             <span className="text-sm pl-2 ">{t('Salon.Topic')} </span>
                             <span className="transition duration-1000 text-sm text-green-500 ml-2 p-1 ">
-                              <svg
-                                xmlns="http://www.w3.org/2000/svg"
-                                className="h-3 w-3"
-                                viewBox="0 0 20 20"
-                                fill="currentColor"
-                              >
-                                <path
-                                  fillRule="evenodd"
-                                  d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                                  clipRule="evenodd"
-                                />
-                              </svg>
+                              <GreenCheckmarkIcon className="h-4 w-4" />
                             </span>
                           </p>
                         ) : null}
@@ -413,18 +355,7 @@ const Salon = () => {
                           <p className="flex items-center">
                             <span className="text-sm">{t('Salon.Title')} </span>
                             <span className="transition duration-1000 text-sm text-green-500 ml-2 p-1 ">
-                              <svg
-                                xmlns="http://www.w3.org/2000/svg"
-                                className="h-3 w-3"
-                                viewBox="0 0 20 20"
-                                fill="currentColor"
-                              >
-                                <path
-                                  fillRule="evenodd"
-                                  d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                                  clipRule="evenodd"
-                                />
-                              </svg>
+                              <GreenCheckmarkIcon className="h-4 w-4" />
                             </span>
                           </p>
                         )}
@@ -440,18 +371,7 @@ const Salon = () => {
                           <p className="flex items-center">
                             <span className="text-sm">{t('Salon.Content')} </span>
                             <span className="transition duration-1000 text-sm text-green-500 ml-2 p-1">
-                              <svg
-                                xmlns="http://www.w3.org/2000/svg"
-                                className="h-3 w-3"
-                                viewBox="0 0 20 20"
-                                fill="currentColor"
-                              >
-                                <path
-                                  fillRule="evenodd"
-                                  d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                                  clipRule="evenodd"
-                                />
-                              </svg>
+                              <GreenCheckmarkIcon className="h-4 w-4" />
                             </span>
                           </p>
                         )}
@@ -543,10 +463,10 @@ const Salon = () => {
                       type="text"
                       placeholder={t('Salon.FindTitlePH')}
                     />
-                    <div className="container flex space-x-3 items-center justify-center text-center text-sm h-10 p-1.5 bg-gray-300  rounded-md border-t-2 border-gray-500 mt-1 md:mb-0 ">
+                    <div className="container flex space-x-2 items-center justify-center text-center text-sm h-10 p-2 bg-gray-300  rounded-md border-t-2 border-gray-500 mt-1 md:mb-0 ">
                       <p>{t('Salon.Show')}</p>
                       <p
-                        className="cursor-pointer transition duration-300 border-2 border-gray-400 hover:text-gray-100 hover:bg-gray-500 p-1.5 rounded-md"
+                        className="cursor-pointer transition duration-300 border-2 border-gray-400 hover:text-gray-100 hover:bg-gray-500 p-1 rounded-md"
                         onClick={() => {
                           setLimit(6)
                           setPage(1)
@@ -555,7 +475,7 @@ const Salon = () => {
                         6
                       </p>
                       <p
-                        className="cursor-pointer transition duration-300 border-2 border-gray-400 hover:text-gray-100 hover:bg-gray-500 p-1.5 rounded-md"
+                        className="cursor-pointer transition duration-300 border-2 border-gray-400 hover:text-gray-100 hover:bg-gray-500 p-1 rounded-md"
                         onClick={() => {
                           setLimit(12)
                           setPage(1)
@@ -564,7 +484,7 @@ const Salon = () => {
                         12
                       </p>
                       <p
-                        className="cursor-pointer transition duration-300 border-2 border-gray-400 hover:text-gray-100 hover:bg-gray-500 p-1.5 rounded-md"
+                        className="cursor-pointer transition duration-300 border-2 border-gray-400 hover:text-gray-100 hover:bg-gray-500 p-1 rounded-md"
                         onClick={() => {
                           setLimit(28)
                           setPage(1)
@@ -593,29 +513,31 @@ const Salon = () => {
             </div>
           </div>
         </div>
-        <div className="flex items-center justify-center m-2">
-          {topicFilter.length > 0 || titleFilter.length > 0 || authorFilter.length > 0 ? (
-            <Pagination
-              limit={limit}
-              numberOfDocuments={filteredDiscussions.length}
-              handlePages={handlePages}
-              handlePreviousPage={handlePreviousPage}
-              handleNextPage={handleNextPage}
-              page={page}
-              setPage={setPage}
-            />
-          ) : (
-            <Pagination
-              limit={limit}
-              numberOfDocuments={discussions.length}
-              handlePages={handlePages}
-              handlePreviousPage={handlePreviousPage}
-              handleNextPage={handleNextPage}
-              page={page}
-              setPage={setPage}
-            />
-          )}
-        </div>
+        {discussions.length > 0 && (
+          <div className="flex items-center justify-center m-2">
+            {topicFilter.length > 0 || titleFilter.length > 0 || authorFilter.length > 0 ? (
+              <Pagination
+                limit={limit}
+                numberOfDocuments={filteredDiscussions.length}
+                handlePages={handlePages}
+                handlePreviousPage={handlePreviousPage}
+                handleNextPage={handleNextPage}
+                page={page}
+                setPage={setPage}
+              />
+            ) : (
+              <Pagination
+                limit={limit}
+                numberOfDocuments={discussions.length}
+                handlePages={handlePages}
+                handlePreviousPage={handlePreviousPage}
+                handleNextPage={handleNextPage}
+                page={page}
+                setPage={setPage}
+              />
+            )}
+          </div>
+        )}
       </div>
     </div>
   )

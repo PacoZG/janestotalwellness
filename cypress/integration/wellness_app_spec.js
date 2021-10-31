@@ -179,7 +179,7 @@ describe('Wellness app', function () {
       cy.contains('Approximate BMI (Body Mass Index)')
     })
 
-    it('...edits his/her profile and check changes in the profile page', function () {
+    it('...edits his/her profile and makes changes in the profile page', function () {
       cy.get('#editprofile-button').click()
       cy.get('#health-report').type('The most anthologized poem of the last 25 years for a reason.')
       cy.get('.grid > .cursor-pointer').click()
