@@ -13,5 +13,6 @@ Content-Type: application/json
     "gender": "male",
     "country": "Finland",
     "goals": "Basketball, fitness, karate",
-    "motivation": "I want to be tech PRO"
+    "background": "I want to be tech PRO",
+    "avatarPic": "/static/media/male-avatar.98f36f42.png"
 }

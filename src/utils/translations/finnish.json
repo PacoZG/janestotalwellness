@@ -18,6 +18,7 @@
     "Edit": "Muokata",
     "Submit": "Lähetä"
   },
+  "NoClients": "Valitettavasti meillä ei ole vielä asiakkaita näytettävänä.",
   "Countries": "Suomi,Ruotsi,Norja,Viro,Saksa,Espanja,Italia,Alankomaat,Sveitsi,Meksiko",
   "Months": "Tam,Hel,Maa,Huh,Tou,Kes,Hei,Elo,Syy,Lok,Mar,Jou",
   "Weekdays": "Ma,Ti,Ke,To,Pe,La,Su",
@@ -77,7 +78,7 @@
     "WriteReply": "Kirjoita vastaus..."
   },
   "CookiesBanner": {
-    "Message": "Tämä verkkosivusto käyttää evästeitä. Käytämme evästeitä sosiaalisen median ominaisuuksien tarjoamiseen, liikenteen ja itse mainostamisen analysointiin. Lue ",
+    "Message": "Lue ",
     "Cookies": "evästekäytäntömme",
     "Decline": "Hyväksyä",
     "Accept": "Hylätä"

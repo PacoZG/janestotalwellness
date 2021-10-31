@@ -35,3 +35,7 @@
     @apply text-xs transition duration-300 hover:text-indigo-500 focus-within:outline-none;
   }
 }
+
+body {
+  font-family: 'Inter', sans-serif;
+}

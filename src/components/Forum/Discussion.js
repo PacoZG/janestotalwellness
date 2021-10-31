@@ -8,6 +8,11 @@ import { useField } from '../../hooks/index'
 import { likeDiscussion, dislikeDiscussion, editDiscussion, deleteDiscussion } from '../../reducers/discussionReducer'
 import { createComment } from '../../reducers/commentReducers'
 import Comment from './Comment'
+import LoadingPage from '../../utils/LoadingPage'
+import { ReactComponent as DislikeButton } from '../../assets/dislike.svg'
+import { ReactComponent as LikeButton } from '../../assets/like.svg'
+import { ReactComponent as DoubleLeftArrow } from '../../assets/double-left-arrow.svg'
+import { ReactComponent as DoubleRightArrow } from '../../assets/double-right-arrow.svg'
 
 const Discussion = ({ discussion }) => {
   const { t } = useTranslation()
@@ -114,25 +119,7 @@ const Discussion = ({ discussion }) => {
   }
 
   if (!discussion) {
-    return (
-      <div className="justify-center items-center flex outline-none bg-gray-100 min-h-screen">
-        <div className="flex flex-row space-x-1">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            className="animate-spin h-5 w-5"
-            viewBox="0 0 20 20"
-            fill="currentColor"
-          >
-            <path
-              fillRule="evenodd"
-              d="M4 2a1 1 0 011 1v2.101a7.002 7.002 0 0111.601 2.566 1 1 0 11-1.885.666A5.002 5.002 0 005.999 7H9a1 1 0 010 2H4a1 1 0 01-1-1V3a1 1 0 011-1zm.008 9.057a1 1 0 011.276.61A5.002 5.002 0 0014.001 13H11a1 1 0 110-2h5a1 1 0 011 1v5a1 1 0 11-2 0v-2.101a7.002 7.002 0 01-11.601-2.566 1 1 0 01.61-1.276z"
-              clipRule="evenodd"
-            />
-          </svg>
-          <p className="pr-2">{t('loading')}</p>
-        </div>
-      </div>
-    )
+    return <LoadingPage />
   }
 
   return (
@@ -181,14 +168,7 @@ const Discussion = ({ discussion }) => {
                 className="inline-flex justify-center pr-3 font-medium rounded-full bg-transparent text-sm
                 text-gray-600 hover:text-gray-400 focus-within:outline-none"
               >
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  className="h-3 w-3 md:h-4 md:w-4"
-                  viewBox="0 0 20 20"
-                  fill="currentColor"
-                >
-                  <path d="M18 9.5a1.5 1.5 0 11-3 0v-6a1.5 1.5 0 013 0v6zM14 9.667v-5.43a2 2 0 00-1.105-1.79l-.05-.025A4 4 0 0011.055 2H5.64a2 2 0 00-1.962 1.608l-1.2 6A2 2 0 004.44 12H8v4a2 2 0 002 2 1 1 0 001-1v-.667a4 4 0 01.8-2.4l1.4-1.866a4 4 0 00.8-2.4z" />
-                </svg>
+                <DislikeButton className="h-3 w-3 md:h-4 md:w-4" />
               </button>
 
               <label className="text-sm -mr-3 mt-2 pr-3  font-semibold text-gray-600">{discussion.likes}</label>
@@ -199,14 +179,7 @@ const Discussion = ({ discussion }) => {
                 className="inline-flex justify-center pr-2 font-medium rounded-full bg-transparent text-sm
                 text-gray-600 hover:text-gray-400 hover:bg-gray-300 focus-within:outline-none"
               >
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  className="h-3 w-3 md:h-4 md:w-4"
-                  viewBox="0 0 20 20"
-                  fill="currentColor"
-                >
-                  <path d="M2 10.5a1.5 1.5 0 113 0v6a1.5 1.5 0 01-3 0v-6zM6 10.333v5.43a2 2 0 001.106 1.79l.05.025A4 4 0 008.943 18h5.416a2 2 0 001.962-1.608l1.2-6A2 2 0 0015.56 8H12V4a2 2 0 00-2-2 1 1 0 00-1 1v.667a4 4 0 01-.8 2.4L6.8 7.933a4 4 0 00-.8 2.4z" />
-                </svg>
+                <LikeButton className="h-3 w-3 md:h-4 md:w-4" />
               </button>
             </div>
             <div>
@@ -220,13 +193,7 @@ const Discussion = ({ discussion }) => {
                 <div
                   className={showContent ? 'transition duration-300 transform -rotate-90 ' : 'transition duration-150'}
                 >
-                  <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" viewBox="0 0 20 20" fill="currentColor">
-                    <path
-                      fillRule="evenodd"
-                      d="M15.707 15.707a1 1 0 01-1.414 0l-5-5a1 1 0 010-1.414l5-5a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 010 1.414zm-6 0a1 1 0 01-1.414 0l-5-5a1 1 0 010-1.414l5-5a1 1 0 011.414 1.414L5.414 10l4.293 4.293a1 1 0 010 1.414z"
-                      clipRule="evenodd"
-                    />
-                  </svg>
+                  <DoubleLeftArrow className="h-4 w-4" />
                 </div>
               </div>
               <button
@@ -284,18 +251,7 @@ const Discussion = ({ discussion }) => {
                 <div
                   className={showComments ? 'transition duration-300 transform rotate-90 ' : 'transition duration-150'}
                 >
-                  <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" viewBox="0 0 20 20" fill="currentColor">
-                    <path
-                      fillRule="evenodd"
-                      d="M10.293 15.707a1 1 0 010-1.414L14.586 10l-4.293-4.293a1 1 0 111.414-1.414l5 5a1 1 0 010 1.414l-5 5a1 1 0 01-1.414 0z"
-                      clipRule="evenodd"
-                    />
-                    <path
-                      fillRule="evenodd"
-                      d="M4.293 15.707a1 1 0 010-1.414L8.586 10 4.293 5.707a1 1 0 011.414-1.414l5 5a1 1 0 010 1.414l-5 5a1 1 0 01-1.414 0z"
-                      clipRule="evenodd"
-                    />
-                  </svg>
+                  <DoubleRightArrow className="h-4 w-4" />
                 </div>
               </div>
             </div>

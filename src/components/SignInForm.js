@@ -5,6 +5,7 @@ import { useTranslation } from 'react-i18next'
 import { useField } from '../hooks/index'
 import { setNotification } from '../reducers/notificationReducer'
 import { userLogin } from '../reducers/loginReducer'
+import { ReactComponent as SigninArrowIcon } from '../assets/signin-arrow-icon.svg'
 import loginService from '../services/login'
 import localdb from '../utils/localdb'
 
@@ -137,13 +138,7 @@ const SigninForm = () => {
               className="transition duration-500 mt-1 mb-6 h-12 w-full border bg-gray-500 text-white rounded hover:bg-gray-400 focus:ring focus:ring-offset-0 focus:ring-red-800 transform active:bg-red-800"
             >
               <span className="absolute left-0 inset-y-0 flex items-center pl-3">
-                <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-                  <path
-                    fillRule="evenodd"
-                    d="M3 3a1 1 0 011 1v12a1 1 0 11-2 0V4a1 1 0 011-1zm7.707 3.293a1 1 0 010 1.414L9.414 9H17a1 1 0 110 2H9.414l1.293 1.293a1 1 0 01-1.414 1.414l-3-3a1 1 0 010-1.414l3-3a1 1 0 011.414 0z"
-                    clipRule="evenodd"
-                  />
-                </svg>
+                <SigninArrowIcon />
               </span>
               {t('Signin.SigninButton')}
             </button>

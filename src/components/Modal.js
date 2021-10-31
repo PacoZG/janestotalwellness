@@ -2,6 +2,7 @@ import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { Transition } from '@tailwindui/react'
 import { setNotification } from '../reducers/notificationReducer'
+import { ReactComponent as XIcon } from '../assets/x-icon.svg'
 const Modal = () => {
   const messageData = useSelector(state => state.notification)
   const dispatch = useDispatch()
@@ -29,15 +30,7 @@ const Modal = () => {
                 className="pt-2 pr-2 ml-auto bg-transparent border-0 float-right leading-none font-semibold outline-none focus:outline-none"
                 onClick={hideModal}
               >
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  className="h-4 w-4 opacity-50"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                >
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12" />
-                </svg>
+                <XIcon className="h-5 w-5 opacity-50" />
               </button>
               <div className="flex items-start justify-between p-1 pl-4 border-b border-solid border-blueGray-200 rounded-t">
                 <h3 id="title" className="text-xl font-semibold text-gray-700 w-auto">
