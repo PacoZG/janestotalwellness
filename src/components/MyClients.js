@@ -2,7 +2,7 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import { useSelector } from 'react-redux'
 import { useTranslation } from 'react-i18next'
-import Loading from '../utils/LoadingPage'
+import LoadingPage from '../utils/LoadingPage'
 import user from '../services/user'
 
 const MyClients = () => {
@@ -10,7 +10,7 @@ const MyClients = () => {
   const { t } = useTranslation()
 
   if (!users) {
-    return <Loading />
+    return <LoadingPage />
   }
 
   return (
