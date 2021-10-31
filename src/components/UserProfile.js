@@ -4,6 +4,7 @@ import { useTranslation } from 'react-i18next'
 import { getAge, getBMI } from '../utils/helper'
 import LoadingPage from '../utils/LoadingPage'
 
+
 const UserProfile = () => {
   const loggedUser = useSelector(state => state.loggedUser)
   const user = useSelector(state => state.users.find(user => user.id === loggedUser.id))
