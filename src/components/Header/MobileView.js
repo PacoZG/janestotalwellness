@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
 import { useSelector } from 'react-redux'
 import { Transition } from '@headlessui/react'
@@ -15,7 +15,7 @@ import SignMenuIcon from '../../assets/sign-menu-icon.png'
 
 const MobileView = ({
   handleMobileMenu,
-  visibleMobileMenu,
+  // visibleMobileMenu,
   showLanguageMenu,
   handleMobileDropdown,
   handleLanguageDropdwon,
@@ -27,16 +27,21 @@ const MobileView = ({
 }) => {
   const { t } = useTranslation()
   const loggedUser = useSelector(state => state.loggedUser)
+  const [visibleMobileMenu, setVisibleMobileMenu] = useState(false)
   return (
     <div>
-      <div className="flex flex-row relative mt-0 p-2 pt-3 pb-3 md:hidden " id="mobile-menu">
+      <div className="flex flex-row items-center relative mt-0 p-3 md:hidden " id="mobile-menu">
         <div>
           <div className="flex-shrink-0 ml-3 mt-0 mb-2">
             <button
-              onClick={handleMobileMenu}
+              onClick={() => setVisibleMobileMenu(!visibleMobileMenu)}
               className="relative z-10 max-w-xs bg-gray-800 flex items-center text-sm focus:outline-none focus:border-transparent"
             >
-              {visibleMobileMenu ? <OpenMenuIcon /> : <CloseMenuIcon />}
+              {visibleMobileMenu ? (
+                <OpenMenuIcon className="h-11 w-11 text-gray-300" />
+              ) : (
+                <CloseMenuIcon className="h-11 w-11 text-gray-300" />
+              )}
             </button>
           </div>
         </div>
@@ -93,8 +98,7 @@ const MobileView = ({
               aria-expanded="false"
               aria-haspopup="true"
               onClick={handleMobileDropdown}
-              className="relative z-50 max-w-xs bg-gray-800 rounded-full flex items-center
-                text-sm focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-gray-300"
+              className="relative z-50 max-w-xs bg-gray-800 rounded-full flex items-center text-sm focus:outline-none"
             >
               {loggedUser && (
                 <img
@@ -105,7 +109,7 @@ const MobileView = ({
               )}
               {!loggedUser && (
                 <img
-                  className="h-16 w-16 border-0 bg-gray-600"
+                  className="h-12 w-12 border-0 bg-gray-600"
                   fill="currentColor"
                   viewBox="0 0 24 24"
                   src={SignMenuIcon}
