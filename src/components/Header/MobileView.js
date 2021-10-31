@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { Link } from 'react-router-dom'
 import { useSelector } from 'react-redux'
 import { Transition } from '@headlessui/react'
@@ -15,7 +15,7 @@ import SignMenuIcon from '../../assets/sign-menu-icon.png'
 
 const MobileView = ({
   handleMobileMenu,
-  // visibleMobileMenu,
+  visibleMobileMenu,
   showLanguageMenu,
   handleMobileDropdown,
   handleLanguageDropdwon,
@@ -27,14 +27,13 @@ const MobileView = ({
 }) => {
   const { t } = useTranslation()
   const loggedUser = useSelector(state => state.loggedUser)
-  const [visibleMobileMenu, setVisibleMobileMenu] = useState(false)
   return (
     <div>
       <div className="flex flex-row items-center relative mt-0 p-3 md:hidden " id="mobile-menu">
         <div>
           <div className="flex-shrink-0 ml-3 mt-0 mb-2">
             <button
-              onClick={() => setVisibleMobileMenu(!visibleMobileMenu)}
+              onClick={handleMobileMenu}
               className="relative z-10 max-w-xs bg-gray-800 flex items-center text-sm focus:outline-none focus:border-transparent"
             >
               {visibleMobileMenu ? (
