@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 import { useSelector } from 'react-redux'
 import { Transition } from '@headlessui/react'
 import { useTranslation } from 'react-i18next'
+import { RenderAvatar } from '../../utils/helper'
 import { ReactComponent as LanguageIcon } from '../../assets/language-icon.svg'
 import { ReactComponent as NoPicIcon } from '../../assets/no-pic-icon.svg'
 import { ReactComponent as EditIcon } from '../../assets/edit-icon.svg'
@@ -116,18 +117,24 @@ const DesktopView = ({
             <button
               type="button"
               tabIndex="-1"
-              className="relative rounded-full z-50 bg-gray-800 flex items-center focus:outline-none border-0"
+              className="relative rounded-full z-50 flex items-center focus:outline-none border-0"
               id="user-menu"
               aria-expanded="false"
               aria-haspopup="true"
               onClick={handleDropdown}
             >
-              {loggedUser && (
+              {loggedUser && loggedUser.imageURL ? (
                 <img
-                  className="h-12 w-12 md:h-16 md:w-16 rounded-full p-0.5 bg-gray-400 transform hover:rotate-6 transition"
-                  src={loggedUser.imageURL ? loggedUser.imageURL : loggedUser.avatarPic}
+                  className="h-16 w-16 rounded-full border-2 border-gray-400 transform hover:rotate-6 transition"
+                  src={loggedUser.imageURL}
                   alt="profile"
                 />
+              ) : (
+                loggedUser && (
+                  <span className="h-13 w-13 rounded-full p-1 -transform translate-y-2 bg-gray-400">
+                    {loggedUser && RenderAvatar(loggedUser.gender, 'w-11 h-11')}
+                  </span>
+                )
               )}
               {!loggedUser && (
                 <span className="h-14 w-14 rounded-full border-0">

@@ -9,7 +9,7 @@ import loginService from '../services/login'
 import { userLogin, userLogout } from '../reducers/loginReducer'
 import { useField } from '../hooks/index'
 import { setNotification } from '../reducers/notificationReducer'
-import { getCountries } from '../utils/helper'
+import { getCountries, RenderAvatar } from '../utils/helper'
 import { ReactComponent as SelectorIcon } from '../assets/selector-icon.svg'
 import { ReactComponent as WarningIcon } from '../assets/warning-icon.svg'
 import { ReactComponent as XIcon } from '../assets/x-icon.svg'
@@ -328,8 +328,8 @@ const EditForm = () => {
                           ) : (
                             <div className="flex flex-col items-center">
                               <label className="text-sm font-medium text-gray-700">{t('EditForm.PhotoLabel')}</label>
-                              <span className="inline-block rounded-full h-16 w-16 md:h-32 md:w-32 md:rounded-full overflow-hidden bg-gray-100">
-                                <img src={user.imageURL ? user.imageURL : user.avatarPic} className="h-full w-full" />
+                              <span className="inline-block rounded-full h-16 w-16 md:h-32 md:w-32 md:rounded-full overflow-hidden bg-gray-400">
+                                {RenderAvatar(user.gender)}
                               </span>
                               <p className="text-xs text-center text-gray-500 w-auto pt-2 md:pt-2">
                                 {t('EditForm.ImageRequirement')}

@@ -1,4 +1,8 @@
+import React from 'react'
 import { useTranslation } from 'react-i18next'
+import { ReactComponent as MaleAvatar } from '../assets/male-avatar.svg'
+import { ReactComponent as FemaleAvatar } from '../assets/female-avatar.svg'
+import { ReactComponent as NoGenderAvatar } from '../assets/no-gender-avatar.svg'
 
 export const getAge = dateOfBirth => {
   const birthday = new Date(dateOfBirth)
@@ -34,9 +38,13 @@ export const getBMI = (height, weight, t) => {
   }
 }
 
-export const getDate = objectDate => {
-  const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
-  const weekDays = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
+export const getCountries = () => {
+  const { t } = useTranslation()
+  const countries = t('Countries')
+  return countries.split(',')
+}
+
+export const formatDate = (objectDate, months, weekDays) => {
   const date = new Date(objectDate)
   const day = date.getDate() < 10 ? '0' + date.getDate() : date.getDate()
   const hours = date.getHours() < 10 ? '0' + date.getHours() : date.getHours()
@@ -48,8 +56,15 @@ export const getDate = objectDate => {
   return creationDate
 }
 
-export const getCountries = () => {
-  const { t } = useTranslation()
-  const countries = t('Countries')
-  return countries.split(',')
+export const RenderAvatar = (gender, moreStyle) => {
+  switch (gender) {
+    case 'male':
+      return <MaleAvatar className={`${moreStyle} bg-gray-400 rounded-full`} />
+    case 'female':
+      return <FemaleAvatar className={`${moreStyle} bg-gray-400 rounded-full`} />
+    case 'other':
+      return <NoGenderAvatar className={`${moreStyle} bg-gray-400 rounded-full`} />
+    default:
+      return <NoGenderAvatar className={`${moreStyle} bg-gray-400 rounded-full`} />
+  }
 }

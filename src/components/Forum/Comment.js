@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { useTranslation } from 'react-i18next'
 import { Transition } from '@tailwindui/react'
 import { useField } from '../../hooks/index'
+import { formatDate } from '../../utils/helper'
 import { editComment, likeComment, dislikeComment, deleteComment, replyComment } from '../../reducers/commentReducers'
 
 import { ReactComponent as DislikeButton } from '../../assets/dislike.svg'
@@ -11,8 +12,10 @@ import { ReactComponent as LikeButton } from '../../assets/like.svg'
 import { ReactComponent as ReplyButton } from '../../assets/reply.svg'
 
 const Comment = ({ comment }) => {
-  const { t } = useTranslation()
   const dispatch = useDispatch()
+  const { t } = useTranslation()
+  const months = t('Months').split(',')
+  const weekDays = t('Weekdays').split(',')
   const loggedUser = useSelector(state => state.loggedUser)
   const [showReplies, setShowReplies] = useState(false)
   const [showReplyInput, setShowInputReply] = useState(false)
@@ -21,20 +24,6 @@ const Comment = ({ comment }) => {
 
   const author = useField('text')
   const replyContent = useField('text')
-
-  const getDate = objectDate => {
-    const months = t('Months').split(',')
-    const weekDays = t('Weekdays').split(',')
-    const date = new Date(objectDate)
-    const day = date.getDate() < 10 ? '0' + date.getDate() : date.getDate()
-    const hours = date.getHours() < 10 ? '0' + date.getHours() : date.getHours()
-    const minutes = date.getMinutes() < 10 ? '0' + date.getMinutes() : date.getMinutes()
-    const seconds = date.getSeconds() < 10 ? '0' + date.getSeconds() : date.getSeconds()
-    const time = hours + ':' + minutes + ':' + seconds
-    const creationDate =
-      weekDays[date.getDay()] + ', ' + day + '.' + months[date.getMonth()] + '.' + date.getFullYear() + ' @' + time
-    return creationDate
-  }
 
   const handleTextareaChange = event => {
     event.preventDefault()
@@ -105,7 +94,7 @@ const Comment = ({ comment }) => {
       <div className="flex items-center justify-between border-b rounded-t-md border-gray-300 bg-gray-300">
         <h3 className="   text-black pl-2 md:p-1">
           {comment.author}
-          {' - '} <span className="text-xs"> {getDate(comment.createdAt)}</span>
+          {' - '} <span className="text-xs"> {formatDate(comment.createdAt, months, weekDays)}</span>
         </h3>
         <div className="flex flex-col items-end justify-between">
           <div className="flex flex-row items-center">
@@ -253,7 +242,7 @@ const Comment = ({ comment }) => {
                 <p className="text-xs p-1 pl-2 rounded-t-md bg-gray-300">
                   {reply.author}
                   {' - '}
-                  <span className="text-xs">{getDate(reply.createdAt)}</span>
+                  <span className="text-xs">{formatDate(reply.createdAt, months, weekDays)}</span>
                 </p>
                 <p className="text-xs text-right p-1 pl-2 pr-4 rounded-b-md bg-blue-50">{reply.content}</p>
               </div>
