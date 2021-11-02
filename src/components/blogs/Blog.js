@@ -11,6 +11,7 @@ import { editBlog, likeBlog, dislikeBlog, deleteBlog, commentBlog } from '../../
 import { setNotification } from '../../reducers/notificationReducer'
 import imageService from '../../services/images'
 import LoadingPage from '../../utils/LoadingPage'
+import { formatDate } from '../../utils/helper'
 import { ReactComponent as LikeIcon } from '../../assets/like.svg'
 import { ReactComponent as DisikeIcon } from '../../assets/dislike.svg'
 import { ReactComponent as DoubleUpArrowIcon } from '../../assets/double-up-arrow.svg'
@@ -20,28 +21,16 @@ const Blog = () => {
   const history = useHistory()
   const blog = useSelector(state => state.blogs.find(b => b.id === id))
   const loggedUser = useSelector(state => state.loggedUser)
-  const { t } = useTranslation()
   const dispatch = useDispatch()
+  const { t } = useTranslation()
+  const months = t('Months').split(',')
+  const weekDays = t('Weekdays').split(',')
   const comment = useField('text')
   const author = useField('text')
   const url = String(window.location)
   const [isOpen, setIsOpen] = useState(false)
   const [showEditBlog, setShowEditBlog] = useState(false)
   const [textareaState, setTextAreaState] = useState(null)
-
-  const getDate = objectDate => {
-    const months = t('Months').split(',')
-    const weekDays = t('Weekdays').split(',')
-    const date = new Date(objectDate)
-    const day = date.getDate() < 10 ? '0' + date.getDate() : date.getDate()
-    const hours = date.getHours() < 10 ? '0' + date.getHours() : date.getHours()
-    const minutes = date.getMinutes() < 10 ? '0' + date.getMinutes() : date.getMinutes()
-    const seconds = date.getSeconds() < 10 ? '0' + date.getSeconds() : date.getSeconds()
-    const time = hours + ':' + minutes + ':' + seconds
-    const creationDate =
-      weekDays[date.getDay()] + ', ' + day + '.' + months[date.getMonth()] + '.' + date.getFullYear() + ' @' + time
-    return creationDate
-  }
 
   const handleSubmitComment = () => {
     const newComment = {
@@ -142,7 +131,7 @@ const Blog = () => {
           <div className="flex flex-col md:flex-row items-center">
             <label className="font-bold text-gray-500 pt-2 md:pl-3">
               {t('Blog.PostingDate')}
-              <span className="font-bold text-gray-500 pl-1 pr-1">{getDate(blog.createdAt)}</span>
+              <span className="font-bold text-gray-500 pl-1 pr-1">{formatDate(blog.createdAt, months, weekDays)}</span>
             </label>
             <p className="font-bold text-gray-500 pl-1 pr-1">{`by ${blog.author}`}</p>
           </div>
@@ -220,7 +209,7 @@ const Blog = () => {
               <div className="space-y-2">
                 <div className="md:flex md:space-x-2 border-b-2 border-blue-200 text-xs md:text-sm pb-2 pl-2 md:pl-3">
                   <p className="font-semibold">{`${comment.author}`}</p>
-                  <p className="text-indigo-400">{getDate(comment.date)}</p>
+                  <p className="text-indigo-400">{formatDate(comment.date, months, weekDays)}</p>
                 </div>
                 <p className="text-justify p-2">{comment.content}</p>
               </div>

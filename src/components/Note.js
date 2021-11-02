@@ -1,26 +1,15 @@
 import React, { useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { Transition } from '@tailwindui/react'
+import { formatDate } from '../utils/helper'
 
 const Note = ({ note, handleRemoveNote, handleUpdateNote, view }) => {
   const { t } = useTranslation()
+  const months = t('Months').split(',')
+  const weekDays = t('Weekdays').split(',')
   const [visibleNote, setVisibleNote] = useState(false)
   const [update, setToUpdate] = useState(false)
   const [textareaState, setTextAreaState] = useState(note.content)
-
-  const getDate = objectDate => {
-    const months = t('Months').split(',')
-    const weekDays = t('Weekdays').split(',')
-    const date = new Date(objectDate)
-    const day = date.getDate() < 10 ? '0' + date.getDate() : date.getDate()
-    const hours = date.getHours() < 10 ? '0' + date.getHours() : date.getHours()
-    const minutes = date.getMinutes() < 10 ? '0' + date.getMinutes() : date.getMinutes()
-    const seconds = date.getSeconds() < 10 ? '0' + date.getSeconds() : date.getSeconds()
-    const time = hours + ':' + minutes + ':' + seconds
-    const creationDate =
-      weekDays[date.getDay()] + ', ' + day + '.' + months[date.getMonth()] + '.' + date.getFullYear() + ' @' + time
-    return creationDate
-  }
 
   const handleTextareaChange = event => {
     event.preventDefault()
@@ -37,7 +26,7 @@ const Note = ({ note, handleRemoveNote, handleUpdateNote, view }) => {
       {view === 'web' ? (
         <div className="border rounded-md m-2">
           <div className="flex items-center justify-between bg-gray-200 shadow-md rounded-t-md border-b pl-3 p-2">
-            <p className="text-base text-black">{getDate(note.date)}</p>
+            <p className="text-base text-black">{formatDate(note.date, months, weekDays)}</p>
             <button className="buttons-web" onClick={() => setVisibleNote(!visibleNote)} id="show-note">
               {visibleNote ? t('ButtonLabel.HideNote') : t('ButtonLabel.ShowNote')}
             </button>
@@ -106,7 +95,7 @@ const Note = ({ note, handleRemoveNote, handleUpdateNote, view }) => {
       ) : (
         <div className=" border rounded-sm shadow-sm mt-2">
           <div className="flex items-center justify-between border-b">
-            <p className="text-base text-gray-400 pl-2">{getDate(note.date)}</p>
+            <p className="text-base text-gray-400 pl-2">{formatDate(note.date, months, weekDays)}</p>
             <button className="buttons-mobile" onClick={() => setVisibleNote(!visibleNote)}>
               {visibleNote ? t('ButtonLabel.HideNote') : t('ButtonLabel.ShowNote')}
             </button>

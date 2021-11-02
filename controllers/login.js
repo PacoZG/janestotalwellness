@@ -29,7 +29,7 @@ loginRouter.post('/', async (request, response) => {
     imageURL: user.imageURL,
     imageID: user.imageID,
     userType: user.userType,
-    avatarPic: user.avatarPic,
+    gender: user.gender,
   })
 })
 

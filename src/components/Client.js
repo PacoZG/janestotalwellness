@@ -7,35 +7,23 @@ import { useField } from '../hooks/index'
 import { setNotification } from '../reducers/notificationReducer'
 import { updateUser } from '../reducers/usersReducer'
 import { createNote, updateNote, deleteNote } from '../reducers/noteReducer'
-import { getAge, getBMI } from '../utils/helper'
+import { getAge, getBMI, formatDate, RenderAvatar } from '../utils/helper'
 import noteService from '../services/notes'
 import Note from './Note'
 import LoadingPage from '../utils/LoadingPage'
 
 const Client = () => {
-  const { t } = useTranslation()
   const paramId = useParams().id
   const dispatch = useDispatch()
+  const { t } = useTranslation()
+  const months = t('Months').split(',')
+  const weekDays = t('Weekdays').split(',')
   const client = useSelector(state => state.users.find(u => u.id === paramId))
   const notes = useSelector(state => state.notes)
 
   const height = useField('text')
   const weight = useField('text')
   const content = useField('text')
-
-  const getDate = objectDate => {
-    const months = t('Months').split(',')
-    const weekDays = t('Weekdays').split(',')
-    const date = new Date(objectDate)
-    const day = date.getDate() < 10 ? '0' + date.getDate() : date.getDate()
-    const hours = date.getHours() < 10 ? '0' + date.getHours() : date.getHours()
-    const minutes = date.getMinutes() < 10 ? '0' + date.getMinutes() : date.getMinutes()
-    const seconds = date.getSeconds() < 10 ? '0' + date.getSeconds() : date.getSeconds()
-    const time = hours + ':' + minutes + ':' + seconds
-    const creationDate =
-      weekDays[date.getDay()] + ', ' + day + '.' + months[date.getMonth()] + '.' + date.getFullYear() + ' @' + time
-    return creationDate
-  }
 
   const handleClientsInfo = event => {
     event.preventDefault()
@@ -134,11 +122,7 @@ const Client = () => {
         <div className="shadow overflow-hidden rounded-md bg-gradient-to-br from-gray-300 via-white to-gray-300 p-3">
           <div className="flex flex-col items-center pb-2">
             <label className="tracking-wide border-b pb-2">{`${client.username}`}</label>
-            <img
-              src={client.imageURL ? client.imageURL : client.avatarPic}
-              alt="profile"
-              className="h-40 w-40 md:h-40 md:w-40 border rounded-full"
-            />
+            {RenderAvatar(client.gender, 'w-40 h-40 border-2 border-gray-600 rounded-full')}
             <label className="tracking-wide border-b pt-2 pb-1">{`${client.firstName} ${client.lastName}`}</label>
           </div>
           <div className="grid grid-cols-6 gap-4 place-items-center border-b pb-3">
@@ -205,7 +189,7 @@ const Client = () => {
             <div className="block col-span-6">
               <p className="text-base">
                 <span className="font-semibold">{t('Client.Member')}</span>
-                {getDate(client.createdAt)}
+                {formatDate(client.createdAt, months, weekDays)}
               </p>
             </div>
           </div>
@@ -330,11 +314,7 @@ const Client = () => {
               <div className="flex p-6 border-b">
                 <div className="flex flex-col items-center space-y-3 border-gray-700 p-9 ">
                   <label className="tracking-wide border-b pb-2">{`${client.username}`}</label>
-                  <img
-                    src={client.imageURL ? client.imageURL : client.avatarPic}
-                    alt="profile"
-                    className="h-40 w-40 border-2 border-gray-600 rounded-full"
-                  />
+                  {RenderAvatar(client.gender, 'w-40 h-40 border-2 border-gray-600 rounded-full')}
                   <label className="tracking-wide border-t pt-2 ">{`${client.firstName} ${client.lastName}`}</label>
                 </div>
                 <div className="flex-grow pl-10 pt-10">
@@ -408,7 +388,7 @@ const Client = () => {
                     <div className=" col-span-6">
                       <p className="border-transparent text-left">
                         <span className="text-left font-semibold pr-8">{t('Client.Member')}</span>
-                        {getDate(client.createdAt)}
+                        {formatDate(client.createdAt, months, weekDays)}
                       </p>
                     </div>
                   </div>

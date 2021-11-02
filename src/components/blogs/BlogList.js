@@ -3,12 +3,15 @@ import { useSelector } from 'react-redux'
 import { useTranslation } from 'react-i18next'
 import { Link } from 'react-router-dom'
 import Pagination from '../Pagination'
+import { formatDate } from '../../utils/helper'
 import { ReactComponent as LikeButton } from '../../assets/like.svg'
 import { ReactComponent as DislikeButton } from '../../assets/dislike.svg'
 
 const BlogList = () => {
   const blogs = useSelector(state => state.blogs)
   const { t } = useTranslation()
+  const months = t('Months').split(',')
+  const weekDays = t('Weekdays').split(',')
   const [page, setPage] = useState(1)
   const [limit, setLimit] = useState(12)
   const indexStart = (page - 1) * limit
@@ -27,20 +30,6 @@ const BlogList = () => {
     setPage(page + 1)
   }
 
-  const getDate = objectDate => {
-    const months = t('Months').split(',')
-    const weekDays = t('Weekdays').split(',')
-    const date = new Date(objectDate)
-    const day = date.getDate() < 10 ? '0' + date.getDate() : date.getDate()
-    const hours = date.getHours() < 10 ? '0' + date.getHours() : date.getHours()
-    const minutes = date.getMinutes() < 10 ? '0' + date.getMinutes() : date.getMinutes()
-    const seconds = date.getSeconds() < 10 ? '0' + date.getSeconds() : date.getSeconds()
-    const time = hours + ':' + minutes + ':' + seconds
-    const creationDate =
-      weekDays[date.getDay()] + ', ' + day + '.' + months[date.getMonth()] + '.' + date.getFullYear() + ' @' + time
-    return creationDate
-  }
-
   return (
     <div className="min-h-screen shadow md:rounded-md md:overflow-hidden rounded-b-md bg-gradient-to-br from-gray-300 via-white to-gray-200 pt-22 ">
       <div className="flex flex-col justify-between min-h-screen">
@@ -56,7 +45,9 @@ const BlogList = () => {
                       <p>
                         <span className="text-base">{blog.author}</span>
                       </p>{' '}
-                      <p className="text-sm md:text-sm italic">{t('Blog.PostingDate') + getDate(blog.createdAt)}</p>
+                      <p className="text-sm md:text-sm italic">
+                        {t('Blog.PostingDate') + formatDate(blog.createdAt, months, weekDays)}
+                      </p>
                     </div>
                     <div className="flex items-center space-x-2">
                       <p>

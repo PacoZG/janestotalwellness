@@ -8,8 +8,6 @@ import { createUser, initializeUsers } from '../reducers/usersReducer'
 import { setNotification } from '../reducers/notificationReducer'
 import userService from '../services/user'
 import { getCountries } from '../utils/helper'
-import male_avatar from '../assets/male-avatar.png'
-import female_avatar from '../assets/female-avatar.png'
 import { ReactComponent as SelectorIcon } from '../assets/selector-icon.svg'
 
 const SignUpForm = () => {
@@ -66,7 +64,6 @@ const SignUpForm = () => {
       country: country,
       goals: goals.params.value,
       userType: 'client',
-      avatarPic: selectedGender === 'male' ? male_avatar : female_avatar,
     }
     if (!checkBox.checked) {
       dispatch(

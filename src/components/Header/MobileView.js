@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 import { useSelector } from 'react-redux'
 import { Transition } from '@headlessui/react'
 import { useTranslation } from 'react-i18next'
+import { RenderAvatar } from '../../utils/helper'
 import { ReactComponent as CloseMenuIcon } from '../../assets/close-menu-icon.svg'
 import { ReactComponent as OpenMenuIcon } from '../../assets/open-menu-icon.svg'
 import { ReactComponent as LanguageIcon } from '../../assets/language-icon.svg'
@@ -97,18 +98,24 @@ const MobileView = ({
               aria-expanded="false"
               aria-haspopup="true"
               onClick={handleMobileDropdown}
-              className="relative z-50 max-w-xs bg-gray-800 rounded-full flex items-center text-sm focus:outline-none"
+              className="relative z-50 max-w-xs bg-gray-400 h-13 w-13 rounded-full flex items-center text-sm focus:outline-none"
             >
-              {loggedUser && (
+              {loggedUser && loggedUser.imageURL ? (
                 <img
-                  className="h-14 w-14 rounded-full"
-                  src={loggedUser.imageURL ? loggedUser.imageURL : loggedUser.avatarPic}
+                  className="h-12 w-12 rounded-full p-0.5 transform hover:rotate-6 transition"
+                  src={loggedUser.imageURL}
                   alt="profile"
                 />
+              ) : (
+                loggedUser && (
+                  <span className="h-13 w-13 rounded-full p-1 ">
+                    {loggedUser && RenderAvatar(loggedUser.gender, 'w-11 h-11')}
+                  </span>
+                )
               )}
               {!loggedUser && (
                 <img
-                  className="h-12 w-12 border-0 bg-gray-600"
+                  className="h-13 w-13 border-0 bg-gray-600"
                   fill="currentColor"
                   viewBox="0 0 24 24"
                   src={SignMenuIcon}

@@ -9,14 +9,17 @@ import { likeDiscussion, dislikeDiscussion, editDiscussion, deleteDiscussion } f
 import { createComment } from '../../reducers/commentReducers'
 import Comment from './Comment'
 import LoadingPage from '../../utils/LoadingPage'
+import { formatDate } from '../../utils/helper'
 import { ReactComponent as DislikeButton } from '../../assets/dislike.svg'
 import { ReactComponent as LikeButton } from '../../assets/like.svg'
 import { ReactComponent as DoubleLeftArrow } from '../../assets/double-left-arrow.svg'
 import { ReactComponent as DoubleRightArrow } from '../../assets/double-right-arrow.svg'
 
 const Discussion = ({ discussion }) => {
-  const { t } = useTranslation()
   const dispatch = useDispatch()
+  const { t } = useTranslation()
+  const months = t('Months').split(',')
+  const weekDays = t('Weekdays').split(',')
   const loggedUser = useSelector(state => state.loggedUser)
   const comments = useSelector(state => state.comments.filter(comment => comment.discussion === discussion.id))
   const [showContent, setShowContent] = useState(false)
@@ -26,20 +29,6 @@ const Discussion = ({ discussion }) => {
   const commentAuthor = useField('text')
   const commentContent = useField('text')
   const [textareaState, setTextAreaState] = useState(discussion.content)
-
-  const getDate = objectDate => {
-    const months = t('Months').split(',')
-    const weekDays = t('Weekdays').split(',')
-    const date = new Date(objectDate)
-    const day = date.getDate() < 10 ? '0' + date.getDate() : date.getDate()
-    const hours = date.getHours() < 10 ? '0' + date.getHours() : date.getHours()
-    const minutes = date.getMinutes() < 10 ? '0' + date.getMinutes() : date.getMinutes()
-    const seconds = date.getSeconds() < 10 ? '0' + date.getSeconds() : date.getSeconds()
-    const time = hours + ':' + minutes + ':' + seconds
-    const creationDate =
-      weekDays[date.getDay()] + ', ' + day + '.' + months[date.getMonth()] + '.' + date.getFullYear() + ' @' + time
-    return creationDate
-  }
 
   const handleShowContent = () => {
     setShowContent(!showContent)
@@ -152,7 +141,7 @@ const Discussion = ({ discussion }) => {
                   <td className="text-sm">
                     <b className="text-sm">{t('Discussion.Date')}</b>
                   </td>
-                  <td className="text-sm">{getDate(discussion.createdAt)}</td>
+                  <td className="text-sm">{formatDate(discussion.createdAt, months, weekDays)}</td>
                 </tr>
               </tbody>
             </table>
@@ -168,7 +157,7 @@ const Discussion = ({ discussion }) => {
                 className="inline-flex justify-center pr-3 font-medium rounded-full bg-transparent text-sm
                 text-gray-600 hover:text-gray-400 focus-within:outline-none"
               >
-                <DislikeButton className="h-3 w-3 md:h-4 md:w-4" />
+                <DislikeButton className="h-4 w-4 md:h-4 md:w-4" />
               </button>
 
               <label className="text-sm -mr-3 mt-2 pr-3  font-semibold text-gray-600">{discussion.likes}</label>
@@ -179,7 +168,7 @@ const Discussion = ({ discussion }) => {
                 className="inline-flex justify-center pr-2 font-medium rounded-full bg-transparent text-sm
                 text-gray-600 hover:text-gray-400 hover:bg-gray-300 focus-within:outline-none"
               >
-                <LikeButton className="h-3 w-3 md:h-4 md:w-4" />
+                <LikeButton className="h-4 w-4 md:h-4 md:w-4" />
               </button>
             </div>
             <div>
