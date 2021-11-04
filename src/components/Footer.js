@@ -3,10 +3,7 @@ import { useTranslation } from 'react-i18next'
 import { Link } from 'react-router-dom'
 import { FacebookShareButton, FacebookShareCount, FacebookIcon, LinkedinIcon } from 'react-share'
 import CookiesBanner from './CookiesBanner'
-import { ReactComponent as LocationIcon } from '../assets/location-icon.svg'
-import { ReactComponent as MobileIcon } from '../assets/mobile-icon.svg'
-import { ReactComponent as AtIcon } from '../assets/at-icon.svg'
-import { ReactComponent as LikeIcon } from '../assets/like.svg'
+import { AtSymbolIcon, DeviceMobileIcon, LocationMarkerIcon, ThumbUpIcon } from '@heroicons/react/solid'
 
 const Footer = () => {
   const { t } = useTranslation()
@@ -34,17 +31,17 @@ const Footer = () => {
           </h1>
           <div className="flex flex-col items-center md:items-start space-y-2 md:space-y-0 ">
             <div className="flex items-center space-x-1">
-              <LocationIcon className="h-3 w-3 text-gray-200" />
-              <p className="text-gray-200 text-sm">Myllärintanhua 6 J 35</p>
+              <LocationMarkerIcon className="h-3 w-3 text-gray-200" />
+              <p className="text-gray-200 text-sm">Myllärintanhua 6</p>
             </div>
             <p className="text-gray-200 text-sm md:pl-4">00920, Helsinki</p>
           </div>
           <div className="flex space-x-1 items-center">
-            <MobileIcon className="h-4 w-4 text-gray-200" />
+            <DeviceMobileIcon className="h-4 w-4 text-gray-200" />
             <p className="text-gray-200 text-sm space-y-2 md:space-y-0 ">0449 910910</p>
           </div>
           <div className="flex space-x-1 items-center">
-            <AtIcon className="h-4 w-4 text-gray-200" />
+            <AtSymbolIcon className="h-4 w-4 text-gray-200" />
             <p className="text-gray-200 text-sm space-y-2 md:space-y-0 ">jane.pokkinen@gmail.com</p>
           </div>
         </div>
@@ -74,7 +71,7 @@ const Footer = () => {
               target="blank"
               href="https://www.facebook.com/janestotalwellness/"
             >
-              <LikeIcon className="h-5 w-5" />
+              <ThumbUpIcon className="h-5 w-5" />
               <span className="ml-2 text-xs font-semibold">LIKE</span>
             </a>
             <p className="pr-2 py-2 flex items-center text-xs uppercase font-bold leading-snug text-gray-200 ">

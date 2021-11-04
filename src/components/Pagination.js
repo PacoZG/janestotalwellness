@@ -1,6 +1,5 @@
 import React from 'react'
-import { ReactComponent as ArrowLeftIcon } from '../assets/arrow-left.svg'
-import { ReactComponent as ArrowRightIcon } from '../assets/arrow-right.svg'
+import { ChevronLeftIcon, ChevronRightIcon } from '@heroicons/react/outline'
 
 const Pagination = ({ limit, numberOfDocuments, handlePages, page, handlePreviousPage, handleNextPage }) => {
   let pageNumbers = []
@@ -11,10 +10,10 @@ const Pagination = ({ limit, numberOfDocuments, handlePages, page, handlePreviou
     <div className="flex items-center">
       {page === 1 ? null : (
         <p
-          className="transition duration-300 text-sm cursor-pointer text-gray-500 bg-gray-300 p-1.5 rounded-l-xl "
+          className="transition duration-300 text-sm cursor-pointer text-gray-500 bg-gray-300 p-2 rounded-l-xl "
           onClick={handlePreviousPage}
         >
-          <ArrowLeftIcon className="h-6 w-6" />
+          <ChevronLeftIcon className="h-5 w-5" />
         </p>
       )}
       {pageNumbers.map(number => (
@@ -32,10 +31,10 @@ const Pagination = ({ limit, numberOfDocuments, handlePages, page, handlePreviou
       ))}
       {page === pageNumbers.length ? null : (
         <p
-          className="transition duration-300 text-sm cursor-pointer text-gray-500 bg-gray-300 p-1.5 rounded-r-xl "
+          className="transition duration-300 text-sm cursor-pointer text-gray-500 bg-gray-300 p-2 rounded-r-xl "
           onClick={handleNextPage}
         >
-          <ArrowRightIcon className="h-6 w-6" />
+          <ChevronRightIcon className="h-5 w-5" />
         </p>
       )}
     </div>

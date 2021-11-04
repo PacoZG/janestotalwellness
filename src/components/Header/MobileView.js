@@ -4,14 +4,16 @@ import { useSelector } from 'react-redux'
 import { Transition } from '@headlessui/react'
 import { useTranslation } from 'react-i18next'
 import { RenderAvatar } from '../../utils/helper'
-import { ReactComponent as CloseMenuIcon } from '../../assets/close-menu-icon.svg'
-import { ReactComponent as OpenMenuIcon } from '../../assets/open-menu-icon.svg'
-import { ReactComponent as LanguageIcon } from '../../assets/language-icon.svg'
-import { ReactComponent as NoPicIcon } from '../../assets/no-pic-icon.svg'
-import { ReactComponent as EditIcon } from '../../assets/edit-icon.svg'
-import { ReactComponent as LogoutIcon } from '../../assets/logout-icon.svg'
-import { ReactComponent as LoginIcon } from '../../assets/login-icon.svg'
-import { ReactComponent as SignupIcon } from '../../assets/signup-icon.svg'
+import {
+  LoginIcon,
+  LogoutIcon,
+  UserAddIcon,
+  GlobeAltIcon,
+  PencilAltIcon,
+  UserCircleIcon,
+  MenuIcon,
+  MenuAlt1Icon,
+} from '@heroicons/react/outline'
 import SignMenuIcon from '../../assets/sign-menu-icon.png'
 
 const MobileView = ({
@@ -38,9 +40,9 @@ const MobileView = ({
               className="relative z-10 max-w-xs bg-gray-800 flex items-center text-sm focus:outline-none focus:border-transparent"
             >
               {visibleMobileMenu ? (
-                <OpenMenuIcon className="h-11 w-11 text-gray-300" />
+                <MenuAlt1Icon className="h-11 w-11 text-gray-300" />
               ) : (
-                <CloseMenuIcon className="h-11 w-11 text-gray-300" />
+                <MenuIcon className="h-11 w-11 text-gray-300" />
               )}
             </button>
           </div>
@@ -88,7 +90,7 @@ const MobileView = ({
               type="button"
               onClick={handleLanguageDropdwon}
             >
-              <LanguageIcon className="h-7 w-7" />
+              <GlobeAltIcon className="h-7 w-7" />
             </button>
 
             <button
@@ -102,7 +104,7 @@ const MobileView = ({
             >
               {loggedUser && loggedUser.imageURL ? (
                 <img
-                  className="h-12 w-12 rounded-full p-0.5 transform hover:rotate-6 transition"
+                  className="h-13 w-13 rounded-full p-0.5 transform hover:rotate-6 transition"
                   src={loggedUser.imageURL}
                   alt="profile"
                 />
@@ -149,7 +151,7 @@ const MobileView = ({
                     onClick={() => setDropdown(!dropdown)}
                   >
                     <div id="profile" className="flex items-center pl-1 pb-1">
-                      <NoPicIcon />
+                      <UserCircleIcon className="h-5 w-5" />
                       <span id="profile" className="pl-2 text-sm">
                         {t('MainMenu.ProfileLabel')}
                       </span>
@@ -163,7 +165,7 @@ const MobileView = ({
                     onClick={() => setDropdown(!dropdown)}
                   >
                     <div id="edit-profile" className="flex items-center pl-1 p-1">
-                      <EditIcon />
+                      <PencilAltIcon className="h-5 w-5" />
                       <span className="pl-2 text-sm">{t('MainMenu.EditProfileLabel')}</span>
                     </div>
                   </Link>
@@ -174,7 +176,7 @@ const MobileView = ({
                     role="menuitem"
                   >
                     <div className="flex items-center pl-1 pt-1">
-                      <LogoutIcon />
+                      <LogoutIcon className="h-5 w-5" />
                       <span className="pl-2 text-sm">{t('MainMenu.SignoutLabel')}</span>
                     </div>
                   </div>
@@ -189,7 +191,7 @@ const MobileView = ({
                     onClick={() => setDropdown(!dropdown)}
                   >
                     <div className="flex items-center pl-1 pb-1 ">
-                      <LoginIcon />
+                      <LoginIcon className="h-5 w-5" />
                       <span className="pl-2 text-sm">{t('MainMenu.SigninLabel')}</span>
                     </div>
                   </Link>
@@ -201,7 +203,7 @@ const MobileView = ({
                     onClick={() => setDropdown(!dropdown)}
                   >
                     <div className="flex items-center pl-1 pt-1 ">
-                      <SignupIcon />
+                      <UserAddIcon className="h-5 w-5" />
                       <span className="pl-2 text-sm">{t('MainMenu.SignupLabel')}</span>
                     </div>
                   </Link>

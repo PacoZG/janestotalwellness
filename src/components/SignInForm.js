@@ -5,7 +5,7 @@ import { useTranslation } from 'react-i18next'
 import { useField } from '../hooks/index'
 import { setNotification } from '../reducers/notificationReducer'
 import { userLogin } from '../reducers/loginReducer'
-import { ReactComponent as SigninArrowIcon } from '../assets/signin-arrow-icon.svg'
+import { LoginIcon } from '@heroicons/react/solid'
 import loginService from '../services/login'
 import localdb from '../utils/localdb'
 
@@ -138,7 +138,7 @@ const SigninForm = () => {
               className="transition duration-500 mt-1 mb-6 h-12 w-full border bg-gray-500 text-white rounded hover:bg-gray-400 focus:ring focus:ring-offset-0 focus:ring-red-800 transform active:bg-red-800"
             >
               <span className="absolute left-0 inset-y-0 flex items-center pl-3">
-                <SigninArrowIcon />
+                <LoginIcon className="h-5 w-5" />
               </span>
               {t('Signin.SigninButton')}
             </button>

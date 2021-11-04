@@ -10,9 +10,8 @@ import { userLogin, userLogout } from '../reducers/loginReducer'
 import { useField } from '../hooks/index'
 import { setNotification } from '../reducers/notificationReducer'
 import { getCountries, RenderAvatar } from '../utils/helper'
-import { ReactComponent as SelectorIcon } from '../assets/selector-icon.svg'
-import { ReactComponent as WarningIcon } from '../assets/warning-icon.svg'
-import { ReactComponent as XIcon } from '../assets/x-icon.svg'
+import { SelectorIcon, ExclamationIcon, XIcon } from '@heroicons/react/outline'
+// import { xIcon } from '@heroicons/react/solid'
 
 import localdb from '../utils/localdb'
 import LoadingPage from '../utils/LoadingPage'
@@ -678,7 +677,7 @@ const EditForm = () => {
                 </div>
                 <div className="relative pl-4 pr-4 pt-4 flex-auto">
                   <div className="mx-auto flex-shrink-0 flex items-center justify-center h-12 w-12 rounded-full bg-red-100 md:mx-0 md:h-10 md:w-10">
-                    <WarningIcon />
+                    <ExclamationIcon className="h-6 w-6 text-gray-600" />
                   </div>
                   <p className="text-center text-gray-500 text-base p-2 leading-relaxed">
                     {t('EditForm.RemovingConfirmation')}

@@ -2,7 +2,7 @@ import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { Transition } from '@tailwindui/react'
 import { setNotification } from '../reducers/notificationReducer'
-import { ReactComponent as XIcon } from '../assets/x-icon.svg'
+import { XIcon } from '@heroicons/react/outline'
 const Modal = () => {
   const messageData = useSelector(state => state.notification)
   const dispatch = useDispatch()

@@ -11,9 +11,7 @@ import localdb from '../../utils/localdb'
 import DiscussionsList from './DiscussionsList'
 import Pagination from '../Pagination'
 import { createDiscussion } from '../../reducers/discussionReducer'
-import { ReactComponent as DoubleRightArrow } from '../../assets/double-right-arrow.svg'
-import { ReactComponent as SelectorIcon } from '../../assets/selector-icon.svg'
-import { ReactComponent as GreenCheckmarkIcon } from '../../assets/green-checkmark-icon.svg'
+import { SelectorIcon, CheckIcon, ChevronDoubleRightIcon } from '@heroicons/react/outline'
 import LoadingPage from '../../utils/LoadingPage'
 var _ = require('lodash')
 
@@ -179,7 +177,7 @@ const Salon = () => {
     <div className="min-h-screen bg-gradient-to-br from-gray-300 via-white to-gray-200 pt-20 md:pt-20 ">
       <div className="flex flex-col justify-between min-h-screen">
         <div>
-          <h1 className="text-xs text-justify bg-blue-100 p-3 md:pl-5 md:pr-5 border-b-2 border-gray-600">
+          <h1 className="text-sm text-justify bg-blue-100 p-3 md:pl-5 md:pr-5 border-b-2 border-gray-600">
             {t('Salon.Welcome')}
             <Link
               to="/codeofconduct"
@@ -205,7 +203,7 @@ const Salon = () => {
                   : 'transition duration-75 focus-within:outline-none p-1'
               }
             >
-              <DoubleRightArrow className="h-4 w-4" />
+              <ChevronDoubleRightIcon className="h-4 w-4" />
             </div>
           </div>
 
@@ -255,7 +253,7 @@ const Salon = () => {
                           <p className="flex items-center">
                             <span className="text-sm pl-2 ">{t('Salon.Topic')} </span>
                             <span className="transition duration-1000 text-sm text-green-500 ml-2 p-1 ">
-                              <GreenCheckmarkIcon className="h-4 w-4" />
+                              <CheckIcon className="h-4 w-4" />
                             </span>
                           </p>
                         ) : null}
@@ -275,7 +273,7 @@ const Salon = () => {
                           <p className="flex items-center">
                             <span className="text-sm pl-2 ">{t('Salon.Topic')} </span>
                             <span className="transition duration-1000 text-sm text-green-500 ml-2 p-1 ">
-                              <GreenCheckmarkIcon className="h-4 w-4" />
+                              <CheckIcon className="h-4 w-4" />
                             </span>
                           </p>
                         ) : null}
@@ -355,7 +353,7 @@ const Salon = () => {
                           <p className="flex items-center">
                             <span className="text-sm">{t('Salon.Title')} </span>
                             <span className="transition duration-1000 text-sm text-green-500 ml-2 p-1 ">
-                              <GreenCheckmarkIcon className="h-4 w-4" />
+                              <CheckIcon className="h-4 w-4" />
                             </span>
                           </p>
                         )}
@@ -371,7 +369,7 @@ const Salon = () => {
                           <p className="flex items-center">
                             <span className="text-sm">{t('Salon.Content')} </span>
                             <span className="transition duration-1000 text-sm text-green-500 ml-2 p-1">
-                              <GreenCheckmarkIcon className="h-4 w-4" />
+                              <CheckIcon className="h-4 w-4" />
                             </span>
                           </p>
                         )}

@@ -8,7 +8,7 @@ import { createUser, initializeUsers } from '../reducers/usersReducer'
 import { setNotification } from '../reducers/notificationReducer'
 import userService from '../services/user'
 import { getCountries } from '../utils/helper'
-import { ReactComponent as SelectorIcon } from '../assets/selector-icon.svg'
+import { QuestionMarkCircleIcon, SelectorIcon } from '@heroicons/react/outline'
 
 const SignUpForm = () => {
   const { t } = useTranslation()
@@ -146,7 +146,7 @@ const SignUpForm = () => {
     }
   }
   return (
-    <div className="flex flex-col min-h-screen py-3 px-2 bg-gray-800 md:flex">
+    <div className="flex flex-col min-h-screen pt-5 pb-3 px-2 bg-gray-800 md:flex">
       <div className="shadow overflow-hidden md:rounded-md">
         <form onSubmit={handleSignUp}>
           <div>
@@ -268,7 +268,18 @@ const SignUpForm = () => {
                     />
                   </div>
                   <div className="col-span-6 md:col-span-3">
-                    <label className="signup-label ">{t('Signup.Password')}</label>
+                    <div className="flex flex-row items-center gap-2">
+                      <label className="signup-label ">{t('Signup.Password')}</label>
+                      <div className="tool-tip">
+                        <QuestionMarkCircleIcon className="w-6 h-6 mb-1 text-gray-500 cursor-pointer" />
+                        <p className="tooltip-text transform translate-x-6 -translate-y-9">
+                          {
+                            'Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters'
+                          }
+                        </p>
+                      </div>
+                    </div>
+
                     <input
                       className="signup-input"
                       pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"

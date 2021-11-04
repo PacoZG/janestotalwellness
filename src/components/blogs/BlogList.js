@@ -4,8 +4,7 @@ import { useTranslation } from 'react-i18next'
 import { Link } from 'react-router-dom'
 import Pagination from '../Pagination'
 import { formatDate } from '../../utils/helper'
-import { ReactComponent as LikeButton } from '../../assets/like.svg'
-import { ReactComponent as DislikeButton } from '../../assets/dislike.svg'
+import { ThumbUpIcon, ThumbDownIcon } from '@heroicons/react/solid'
 
 const BlogList = () => {
   const blogs = useSelector(state => state.blogs)
@@ -53,13 +52,13 @@ const BlogList = () => {
                       <p>
                         <span className="flex items-center ">
                           {blog.dislikes}
-                          <LikeButton className="h-7 w-7 pl-1" />
+                          <ThumbUpIcon className="h-7 w-7 pl-1" />
                         </span>
                       </p>
                       <p>
                         <span className="flex items-center">
                           {blog.likes}
-                          <DislikeButton className="h-7 w-7 pl-1" />
+                          <ThumbDownIcon className="h-7 w-7 pl-1" />
                         </span>
                       </p>
                     </div>

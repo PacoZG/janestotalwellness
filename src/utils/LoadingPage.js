@@ -1,7 +1,7 @@
 import React from 'react'
 import { useTranslation } from 'react-i18next'
 
-const Loading = () => {
+const LoadingPage = () => {
   const { t } = useTranslation()
   return (
     <div className="justify-center items-center flex outline-none bg-gray-400 min-h-screen">
@@ -25,4 +25,4 @@ const Loading = () => {
   )
 }
 
-export default Loading
+export default LoadingPage

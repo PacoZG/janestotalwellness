@@ -4,13 +4,15 @@ import { useSelector } from 'react-redux'
 import { Transition } from '@headlessui/react'
 import { useTranslation } from 'react-i18next'
 import { RenderAvatar } from '../../utils/helper'
-import { ReactComponent as LanguageIcon } from '../../assets/language-icon.svg'
-import { ReactComponent as NoPicIcon } from '../../assets/no-pic-icon.svg'
-import { ReactComponent as EditIcon } from '../../assets/edit-icon.svg'
-import { ReactComponent as LogoutIcon } from '../../assets/logout-icon.svg'
-import { ReactComponent as LoginIcon } from '../../assets/login-icon.svg'
-import { ReactComponent as SignupIcon } from '../../assets/signup-icon.svg'
 import SignMenuIcon from '../../assets/sign-menu-icon.png'
+import {
+  LoginIcon,
+  LogoutIcon,
+  UserAddIcon,
+  GlobeAltIcon,
+  PencilAltIcon,
+  UserCircleIcon,
+} from '@heroicons/react/outline'
 
 const DesktopView = ({
   showLanguageMenu,
@@ -109,7 +111,7 @@ const DesktopView = ({
             onClick={handleLanguageDropdwon}
           >
             <div className="flex items-center space-x-1">
-              <LanguageIcon className="h-7 w-7" />
+              <GlobeAltIcon className="h-7 w-7" />
             </div>
           </button>
 
@@ -174,7 +176,7 @@ const DesktopView = ({
                       onClick={() => setDropdown(!dropdown)}
                     >
                       <div className="flex items-center pl-1">
-                        <NoPicIcon />
+                        <UserCircleIcon className="h-5 w-5" />
                         <span className="pl-2 text-sm">{t('MainMenu.ProfileLabel')}</span>
                       </div>
                     </Link>
@@ -186,7 +188,7 @@ const DesktopView = ({
                       onClick={() => setDropdown(!dropdown)}
                     >
                       <div className="flex items-center pl-1">
-                        <EditIcon />
+                        <PencilAltIcon className="h-5 w-5" />
                         <span className="pl-2 text-sm">{t('MainMenu.EditProfileLabel')}</span>
                       </div>
                     </Link>
@@ -197,7 +199,7 @@ const DesktopView = ({
                       role="menuitem"
                     >
                       <div className="flex items-center pl-1">
-                        <LogoutIcon />
+                        <LogoutIcon className="h-5 w-5" />
                         <span className="pl-2 text-sm">{t('MainMenu.SignoutLabel')}</span>
                       </div>
                     </div>
@@ -212,7 +214,7 @@ const DesktopView = ({
                       onClick={() => setDropdown(!dropdown)}
                     >
                       <div className="flex items-center pl-1">
-                        <LoginIcon />
+                        <LoginIcon className="h-5 w-5" />
                         <span className="pl-2 text-sm">{t('MainMenu.SigninLabel')}</span>
                       </div>
                     </Link>
@@ -224,7 +226,7 @@ const DesktopView = ({
                       onClick={() => setDropdown(!dropdown)}
                     >
                       <div className="flex items-center pl-1 ">
-                        <SignupIcon />
+                        <UserAddIcon className="h-5 w-5" />
                         <span className="pl-2 text-sm">{t('MainMenu.SignupLabel')}</span>
                       </div>
                     </Link>

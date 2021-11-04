@@ -10,10 +10,7 @@ import { createComment } from '../../reducers/commentReducers'
 import Comment from './Comment'
 import LoadingPage from '../../utils/LoadingPage'
 import { formatDate } from '../../utils/helper'
-import { ReactComponent as DislikeButton } from '../../assets/dislike.svg'
-import { ReactComponent as LikeButton } from '../../assets/like.svg'
-import { ReactComponent as DoubleLeftArrow } from '../../assets/double-left-arrow.svg'
-import { ReactComponent as DoubleRightArrow } from '../../assets/double-right-arrow.svg'
+import { ThumbUpIcon, ThumbDownIcon, ChevronDoubleLeftIcon, ChevronDoubleRightIcon } from '@heroicons/react/solid'
 
 const Discussion = ({ discussion }) => {
   const dispatch = useDispatch()
@@ -157,7 +154,7 @@ const Discussion = ({ discussion }) => {
                 className="inline-flex justify-center pr-3 font-medium rounded-full bg-transparent text-sm
                 text-gray-600 hover:text-gray-400 focus-within:outline-none"
               >
-                <DislikeButton className="h-4 w-4 md:h-4 md:w-4" />
+                <ThumbDownIcon className="h-4 w-4 md:h-4 md:w-4" />
               </button>
 
               <label className="text-sm -mr-3 mt-2 pr-3  font-semibold text-gray-600">{discussion.likes}</label>
@@ -168,7 +165,7 @@ const Discussion = ({ discussion }) => {
                 className="inline-flex justify-center pr-2 font-medium rounded-full bg-transparent text-sm
                 text-gray-600 hover:text-gray-400 hover:bg-gray-300 focus-within:outline-none"
               >
-                <LikeButton className="h-4 w-4 md:h-4 md:w-4" />
+                <ThumbUpIcon className="h-4 w-4 md:h-4 md:w-4" />
               </button>
             </div>
             <div>
@@ -182,7 +179,7 @@ const Discussion = ({ discussion }) => {
                 <div
                   className={showContent ? 'transition duration-300 transform -rotate-90 ' : 'transition duration-150'}
                 >
-                  <DoubleLeftArrow className="h-4 w-4" />
+                  <ChevronDoubleLeftIcon className="h-4 w-4" />
                 </div>
               </div>
               <button
@@ -240,7 +237,7 @@ const Discussion = ({ discussion }) => {
                 <div
                   className={showComments ? 'transition duration-300 transform rotate-90 ' : 'transition duration-150'}
                 >
-                  <DoubleRightArrow className="h-4 w-4" />
+                  <ChevronDoubleRightIcon className="h-4 w-4" />
                 </div>
               </div>
             </div>

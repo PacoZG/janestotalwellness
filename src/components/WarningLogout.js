@@ -3,7 +3,7 @@ import { useHistory } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux'
 import { useTranslation } from 'react-i18next'
 import { userLogout } from '../reducers/loginReducer'
-import { ReactComponent as WarningIcon } from '../assets/warning-icon.svg'
+import { ExclamationIcon } from '@heroicons/react/outline'
 
 const WarningLogout = () => {
   const { t } = useTranslation()
@@ -46,7 +46,7 @@ const WarningLogout = () => {
             </div>
             <div className="relative pl-4 pr-4 pt-4 flex-auto">
               <div className="mx-auto flex-shrink-0 flex items-center justify-center h-12 w-12 rounded-full bg-red-100 md:mx-0 md:h-10 md:w-10">
-                <WarningIcon className="h-6 w-6 text-gray-600" />
+                <ExclamationIcon className="h-6 w-6 text-gray-600" />
               </div>
               <p className="my-4 text-blueGray-500 text-lg leading-relaxed">{t('WarningModal.Message')}</p>
             </div>

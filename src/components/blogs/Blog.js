@@ -12,9 +12,7 @@ import { setNotification } from '../../reducers/notificationReducer'
 import imageService from '../../services/images'
 import LoadingPage from '../../utils/LoadingPage'
 import { formatDate } from '../../utils/helper'
-import { ReactComponent as LikeIcon } from '../../assets/like.svg'
-import { ReactComponent as DisikeIcon } from '../../assets/dislike.svg'
-import { ReactComponent as DoubleUpArrowIcon } from '../../assets/double-up-arrow.svg'
+import { ThumbUpIcon, ThumbDownIcon, ChevronDoubleUpIcon } from '@heroicons/react/solid'
 
 const Blog = () => {
   const id = useParams().id
@@ -144,7 +142,7 @@ const Blog = () => {
                 onClick={handleDislikes}
                 className="inline-flex justify-center py-1 px-3 font-medium rounded-full bg-transparent text-sm text-gray-500 hover:text-gray-300 focus-within:outline-none"
               >
-                <DisikeIcon className="h-5 w-5 md:h-6 md:w-6" />
+                <ThumbDownIcon className="h-5 w-5 md:h-6 md:w-6" />
               </button>
             </div>
             <div className="flex flex-row items-center">
@@ -155,7 +153,7 @@ const Blog = () => {
                 onClick={handleLikes}
                 className="inline-flex justify-center py-1 px-3 font-medium rounded-full bg-transparent text-sm text-gray-500 hover:text-gray-300 focus-within:outline-none"
               >
-                <LikeIcon className="h-5 w-5 md:h-6 md:w-6" />
+                <ThumbUpIcon className="h-5 w-5 md:h-6 md:w-6" />
               </button>
             </div>
             <FacebookShareCount url={url}>
@@ -224,7 +222,7 @@ const Blog = () => {
             className="flex items-center justify-center rounded-md text-gray-300 bg-gray-400 w-32 transition duration-150 transform rotate-180 focus-within:outline-none p-1"
             onClick={() => setIsOpen(!isOpen)}
           >
-            <DoubleUpArrowIcon
+            <ChevronDoubleUpIcon
               className={
                 isOpen
                   ? ' transition duration-200 focus-within:outline-none p-1 h-8 w-8'

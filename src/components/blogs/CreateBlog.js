@@ -7,7 +7,7 @@ import ReactMarkdown from 'react-markdown'
 import { createBlog } from '../../reducers/blogReducer'
 import { setNotification } from '../../reducers/notificationReducer'
 import imageService from '../../services/images'
-import { ReactComponent as GenericPic } from '../../assets/generic-pic.svg'
+import { PhotographIcon } from '@heroicons/react/outline'
 
 const CreateBlog = () => {
   const { t } = useTranslation()
@@ -108,7 +108,7 @@ const CreateBlog = () => {
             ) : (
               <div className="flex flex-col items-center">
                 <label className="text-sm font-medium text-gray-700">{t('EditForm.PhotoLabel')}</label>
-                <GenericPic className="h-32 w-32 text-gray-500" />
+                <PhotographIcon className="h-32 w-32 text-gray-500" />
               </div>
             )}
             <div className="">

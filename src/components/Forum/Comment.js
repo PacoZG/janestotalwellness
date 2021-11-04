@@ -6,10 +6,7 @@ import { Transition } from '@tailwindui/react'
 import { useField } from '../../hooks/index'
 import { formatDate } from '../../utils/helper'
 import { editComment, likeComment, dislikeComment, deleteComment, replyComment } from '../../reducers/commentReducers'
-
-import { ReactComponent as DislikeButton } from '../../assets/dislike.svg'
-import { ReactComponent as LikeButton } from '../../assets/like.svg'
-import { ReactComponent as ReplyButton } from '../../assets/reply.svg'
+import { ThumbUpIcon, ThumbDownIcon, ReplyIcon } from '@heroicons/react/solid'
 
 const Comment = ({ comment }) => {
   const dispatch = useDispatch()
@@ -105,7 +102,7 @@ const Comment = ({ comment }) => {
               onClick={handleDislikes}
               className="inline-flex justify-center pr-3 font-medium rounded-full bg-transparent text-sm text-gray-600 hover:text-gray-400 focus-within:outline-none"
             >
-              <DislikeButton className="h-4 w-4 md:h-4 md:w-4" />
+              <ThumbDownIcon className="h-4 w-4 md:h-4 md:w-4" />
             </button>
 
             <label className="text-sm -mr-3 mt-2 pr-3  font-semibold text-gray-600">{comment.likes}</label>
@@ -115,7 +112,7 @@ const Comment = ({ comment }) => {
               onClick={handleLikes}
               className="inline-flex justify-center pr-3 font-medium rounded-full bg-transparent text-sm text-gray-600 hover:text-gray-400 focus-within:outline-none"
             >
-              <LikeButton className="h-4 w-4 md:h-4 md:w-4" />
+              <ThumbUpIcon className="h-4 w-4 md:h-4 md:w-4" />
             </button>
           </div>
         </div>
@@ -182,7 +179,7 @@ const Comment = ({ comment }) => {
             ) : (
               <div className="flex items-center space-x-1">
                 <span className="text-xs">{t('Comment.ToReply')}</span>
-                <ReplyButton />
+                <ReplyIcon className="h-3 w-3" />
               </div>
             )}
           </div>
