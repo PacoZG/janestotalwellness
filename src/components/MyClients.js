@@ -37,7 +37,6 @@ const MyClients = () => {
                       />
                     ) : (
                       <span className="transform hover:rotate-6 transition duration-500 inline-block rounded-full h-28 w-28 md:h-32 md:w-32  md:rounded-full overflow-hidden bg-gray-100">
-                        {/* <img src={user.imageURL ? user.imageURL : user.avatarPic} className="h-full w-full" /> */}
                         {RenderAvatar(user.gender)}
                       </span>
                     )}

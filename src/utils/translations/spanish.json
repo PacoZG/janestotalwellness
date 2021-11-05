@@ -137,13 +137,14 @@
     "RemovingConfirmation": "¿Estás seguro de que deseas eliminar tu cuenta? Todos sus datos se eliminarán de forma permanente. Esta acción no se puede deshacer."
   },
   "Footer": {
-    "UnderConst": "Página web en construcción",
     "About": "Acerca de mí",
-    "Terms": "Términos & condiciones",
-    "ShareFB": "COMPARTE MI PÁGINA DE FACEBOOK",
+    "Code": "Código de conducta",
+    "Contact": "Contacto",
+    "ShareFB": "MI",
     "SharePage": "COMPARTE ESTA PÁGINA",
-    "ShareWebsite": "COMPARTE NUESTRO SITIO WEB",
-    "Code": "Código de conducta"
+    "ShareWebsite": "COMPARTE MI SITIO WEB EN",
+    "Terms": "Términos & condiciones",
+    "UnderConst": "Página web en construcción"
   },
   "Salon":{
     "Welcome": "Bienvenido/a a Jane's Salon, un foro donde puedes abrir discusiones amigables e interesantes sobre los temas que podrían ser de tu interés o que quieras compartir, que te preocupen, te gustaría preguntar o que simplemente quieres compartir con nuestra comunidad. Siéntete libre de expresarte, pero sigue nuestro código de conducta.",

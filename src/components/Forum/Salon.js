@@ -13,7 +13,6 @@ import Pagination from '../Pagination'
 import { createDiscussion } from '../../reducers/discussionReducer'
 import { SelectorIcon, CheckIcon, ChevronDoubleRightIcon } from '@heroicons/react/outline'
 import LoadingPage from '../../utils/LoadingPage'
-var _ = require('lodash')
 
 const Salon = () => {
   const { t } = useTranslation()

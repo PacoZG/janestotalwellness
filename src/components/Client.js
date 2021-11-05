@@ -1,13 +1,14 @@
 import React from 'react'
 import localdb from '../utils/localdb'
 import { useDispatch, useSelector } from 'react-redux'
-import { useParams } from 'react-router-dom'
+import { Link, useParams } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 import { useField } from '../hooks/index'
 import { setNotification } from '../reducers/notificationReducer'
 import { updateUser } from '../reducers/usersReducer'
 import { createNote, updateNote, deleteNote } from '../reducers/noteReducer'
 import { getAge, getBMI, formatDate, RenderAvatar } from '../utils/helper'
+import { RewindIcon } from '@heroicons/react/outline'
 import noteService from '../services/notes'
 import Note from './Note'
 import LoadingPage from '../utils/LoadingPage'
@@ -103,7 +104,6 @@ const Client = () => {
         dispatch(updateNote(updatedNote))
         client.notes = client.notes.map(note => (note.id !== updatedNote.id ? note : updatedNote))
         dispatch(setNotification({ message: t('Client.UpdateNote'), title: 'Sucess', show: true }))
-        // title.reset()
         content.reset()
       } catch (error) {
         console.log(error.message)
@@ -116,9 +116,13 @@ const Client = () => {
   }
 
   return (
-    <div className="bg-gray-200 pt-20 min-h-screen">
+    <div className=" bg-gray-200 pt-20 min-h-screen">
       {/* MOBILE VIEW */}
-      <div className="md:hidden flex flex-col">
+      <div className="md:hidden relative flex flex-col">
+        <Link className="fixed left-2 top-24 flex items-center buttons-mobile bg-opacity-70" to="/myclients">
+          <RewindIcon className="h-5 w-5 font-extralight" />
+          <p className="">back</p>
+        </Link>
         <div className="shadow overflow-hidden rounded-md bg-gradient-to-br from-gray-300 via-white to-gray-300 p-3">
           <div className="flex flex-col items-center pb-2">
             <label className="tracking-wide border-b pb-2">{`${client.username}`}</label>
@@ -239,12 +243,7 @@ const Client = () => {
               </div>
             </div>
             <div className="px-3 py-2 bg-gray-400 text-right rounded-b-md">
-              <button
-                type="button"
-                id="mobile-saveInfo"
-                onClick={handleClientsInfo}
-                className="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm font-medium rounded-md bg-gray-500 text-sm text-white hover:bg-gray-300 focus-within:outline-none focus-within:ring-1"
-              >
+              <button type="button" id="mobile-saveInfo" onClick={handleClientsInfo} className="buttons-mobile">
                 {t('ButtonLabel.Save')}
               </button>
             </div>
@@ -276,12 +275,7 @@ const Client = () => {
               </div>
             </div>
             <div className="px-3 py-2 bg-gray-400 text-right rounded-b-md">
-              <button
-                type="button"
-                id="mobile-saveNote"
-                onClick={handleSaveNote}
-                className="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm font-medium rounded-md bg-gray-500 text-sm text-white hover:bg-gray-300 focus-within:outline-none focus-within:ring-1"
-              >
+              <button type="button" id="mobile-saveNote" onClick={handleSaveNote} className="buttons-mobile">
                 {t('ButtonLabel.Save')}
               </button>
             </div>
@@ -309,6 +303,13 @@ const Client = () => {
           className="hidden md:flex min-h-screen shadow overflow-hidden rounded-md bg-gradient-to-br
         from-gray-300 via-white to-gray-300 p-3 "
         >
+          <Link
+            className="fixed left-12 top-32 flex items-center buttons-web hover:text-gray-700 bg-opacity-70"
+            to="/myclients"
+          >
+            <RewindIcon className="h-5 w-5 font-extralight" />
+            <p className="">back</p>
+          </Link>
           <div className="w-screen">
             <div className="flex flex-col p-4 m-4 shadow-2xl bg-gradient-to-brfrom-gray-300 via-white to-gray-300 border-double border rounded-md">
               <div className="flex p-6 border-b">

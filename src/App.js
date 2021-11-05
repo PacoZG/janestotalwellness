@@ -74,7 +74,7 @@ const App = () => {
           <Route path="/home">
             <Home />
           </Route>
-          <Route path="/myclients/">
+          <Route path="/myclients">
             <MyClients />
           </Route>
           {/* <Route path="/myprogram">

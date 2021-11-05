@@ -137,13 +137,14 @@
     "RemovingConfirmation": "Are you sure you want to remove your account? All of your data will be permanently removed. This action cannot be undone."
   },
   "Footer": {
-    "UnderConst": "Website under construction",
     "About": "About me",
-    "Terms": "Terms & conditions",
-    "ShareFB": "SHARE MY FACEBOOK PAGE",
+    "Code": "Code of conduct",
+    "Contact": "Contact",
+    "ShareFB": "MY",
     "SharePage": "SHARE THIS PAGE",
-    "ShareWebsite": "SHARE OUR WEBSITE",
-    "Code": "Code of conduct"
+    "ShareWebsite": "SHARE MY WEBSITE ON",
+    "Terms": "Terms & Conditions",
+    "UnderConst": "Website under construction"
   },
   "Salon":{
     "Welcome": "Welcome to Jane‘s Salon, a forum where you can open friendly and interesting discussions about the topics that might be of your interest or you might want to share, concern you, would like to ask about or that you simply want to share with our community, feel free to express yourself but please follow our ",
