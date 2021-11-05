@@ -137,13 +137,14 @@
     "RemovingConfirmation": "Haluatko varmasti poistaa tilisi? Kaikki tietosi poistetaan pysyvästi. Tätä toimintoa ei voi kumota."
   },
   "Footer": {
-    "UnderConst": "Verkkosivusto rakenteilla",
     "About": "Minusta",
-    "Terms": "käyttöehdot",
-    "ShareFB": "JAA FACEBOOK-SIVUNI",
+    "Code": "Menettelyohje",
+    "Contact": "Ottaa yhteyttä",
+    "ShareFB": "MINUN",
     "SharePage": "JAA TÄMÄ SIVU",
-    "ShareWebsite": "JAA SIVUSTOMME",
-    "Code": "Menettelyohje"
+    "ShareWebsite": "JAA VERKKOSIVUSTONI",
+    "Terms": "Käyttöehdot",
+    "UnderConst": "Verkkosivusto rakenteilla"
   },
   "Salon":{
     "Welcome": "Tervetuloa Jane's Salon -foorumiin, jossa voit avata ystävällisiä ja mielenkiintoisia keskusteluja aiheista, jotka saattavat kiinnostaa sinua tai haluat ehkä jakaa, huolestuttaa sinua, haluat kysyä tai haluat yksinkertaisesti jakaa meidän kanssa ilmaise itseäsi, mutta noudata",
