@@ -71,6 +71,8 @@
   },
   "proxy": "http://localhost:3001",
   "devDependencies": {
+    "@babel/plugin-syntax-jsx": "^7.16.0",
+    "@babel/preset-react": "^7.16.0",
     "@tailwindcss/postcss7-compat": "^2.2.17",
     "autoprefixer": "^9.8.8",
     "cross-env": "^7.0.3",
@@ -101,6 +103,9 @@
     ]
   },
   "jest": {
-    "testEnvironment": "node"
+    "testEnvironment": "node",
+    "transform": {
+      "\\.svg$": "svg-jest"
+    }
   }
 }
