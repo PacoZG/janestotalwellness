@@ -38,9 +38,9 @@ describe('Wellness app', function () {
     cy.visit('http://localhost:3000/home')
   })
 
-  // it('front page can be opened', function () {
-  //   cy.contains('Welcome to Jane Total Wellness app') // temporary test
-  // })
+  it('front page can be opened', function () {
+    cy.contains('Welcome to Jane Total Wellness app') // temporary test
+  })
 
   describe('First our visibility and basic functionality', function () {
     it('Test app in different languages', function () {
