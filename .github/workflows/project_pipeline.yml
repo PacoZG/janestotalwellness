@@ -11,6 +11,7 @@ on:
 jobs:
   simple_deployment_pipeline:
     runs-on: ubuntu-18.04
+    container: cypress/browsers:node12.18.3-chrome87-ff82
     steps:
       - uses: actions/checkout@v2
       - uses: actions/setup-node@v1
@@ -31,7 +32,7 @@ jobs:
           SECRET: ${{ secrets.SECRET }}
 
 
-      - name: Runing E2E tests
+      - name: Runing Cypress tests
         uses: cypress-io/github-action@v2
         with:
           command: npm run test:e2e
