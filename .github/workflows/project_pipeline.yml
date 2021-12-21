@@ -11,7 +11,6 @@ on:
 jobs:
   Janes_Total_Wellness_Deployment:
     runs-on: ubuntu-18.04
-    container: cypress/browsers:node12.18.3-chrome87-ff82
     steps:
       - uses: actions/checkout@v2
       - uses: actions/setup-node@v1
@@ -33,11 +32,8 @@ jobs:
       - name: Cypress run
         uses: cypress-io/github-action@v2
         with:
-          browser: chrome
           command: npm run test:e2e
-          start:
-            npm run start:test
-            npm start
+          start: npm run start:test, npm start
           wait-on: 'http://localhost:3001'
         if: ${{ !contains(join(github.event.commits.*.message, ', '), 'skip_test') }}
         env:
