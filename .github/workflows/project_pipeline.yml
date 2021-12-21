@@ -31,7 +31,6 @@ jobs:
           TEST_MONGODB_URI: ${{ secrets.TEST_MONGODB_URI }}
           SECRET: ${{ secrets.SECRET }}
 
-
       - name: Runing Cypress tests
         uses: cypress-io/github-action@v2
         with:
@@ -43,6 +42,21 @@ jobs:
           NODE_ENV: "test"
           TEST_MONGODB_URI: ${{ secrets.TEST_MONGODB_URI }}
           SECRET: ${{ secrets.SECRET }}
+      # Alternative: create and commit an empty cypress/screenshots folder
+      # to always have something to upload
+      - name: Recording screenshots of failed tests
+        uses: actions/upload-artifact@v2
+        if: failure()
+        with:
+          name: cypress-screenshots
+          path: cypress/screenshots
+      # Test run video was always captured, so this action uses "always()" condition
+      - name: Recording videos of failed tests
+        uses: actions/upload-artifact@v2
+        if: always()
+        with:
+          name: cypress-videos
+          path: cypress/videos
       - name: Bump version and push tag
         # run: git tag ${{ github.event.inputs.version }}
         uses: anothrNick/github-tag-action@1.33.0
