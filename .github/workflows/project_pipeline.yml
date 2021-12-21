@@ -9,20 +9,20 @@ on:
     types: [opened, synchronize]
 
 jobs:
-  simple_deployment_pipeline:
-    runs-on: ubuntu-20.04
+  Janes_Total_Wellness_Deployment:
+    runs-on: ubuntu-18.04
     steps:
       - uses: actions/checkout@v2
-      - uses: actions/setup-node@v2
+      - uses: actions/setup-node@v1
         with:
           node-version: '12.x'
-      - name: npm install
+      - name: Installing dependencies
         run: npm install
-      - name: lint
+      - name: Formatting code
         run: npm run eslint
       - name: Building for production
         run: npm run build
-      - name: Unit tests
+      - name: Running Unit tests
         run: npm run test
         if: ${{ !contains(join(github.event.commits.*.message, ', '), 'skip_test') }}
         env:
