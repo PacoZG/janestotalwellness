@@ -16,7 +16,7 @@ jobs:
       - uses: actions/setup-node@v1
         with: 
           node-version: "12.x"
-      - name: npm install
+      - name: Installing dependencies
         run: npm install
       - name: Checking code format
         run: npm run eslint
@@ -50,7 +50,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           WITH_V: true
           DEFAULT_BUMP: "#patch"
-      - name: Deployment to Heroku
+      - name: Deployment to Heroku Apps
         uses: akhileshns/heroku-deploy@v3.12.12 # This is the action
         if: ${{ github.event_name == 'push' && !contains(join(github.event.commits.*.message, ', '), '#skip') }}
         with:
