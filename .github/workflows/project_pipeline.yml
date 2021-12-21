@@ -1,6 +1,6 @@
-name: Wellness project pipeline
+name: Janes Total Wellness workflow
 
-on:
+on: 
   push:
     branches:
       - master
@@ -14,49 +14,52 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - uses: actions/setup-node@v1
-        with:
-          node-version: '12.x'
+        with: 
+          node-version: "12.x"
       - name: npm install
         run: npm install
-      - name: lint
+      - name: Checking code format
         run: npm run eslint
       - name: Building for production
         run: npm run build
-      - name: Local tests
+      - name: Running local unit tests
         run: npm run test
         if: ${{ !contains(join(github.event.commits.*.message, ', '), 'skip_test') }}
         env:
-          NODE_ENV: 'test'
+          NODE_ENV: "test"
           TEST_MONGODB_URI: ${{ secrets.TEST_MONGODB_URI }}
           SECRET: ${{ secrets.SECRET }}
-      - name: E2E tests
+
+
+      - name: Runing E2E tests
         uses: cypress-io/github-action@v2
         with:
           command: npm run test:e2e
           start: npm run start:test, npm start
-          wait-on: 'http://localhost:3001'
+          wait-on: "http://localhost:3001"
         if: ${{ !contains(join(github.event.commits.*.message, ', '), 'skip_test') }}
         env:
-          NODE_ENV: 'test'
+          NODE_ENV: "test"
           TEST_MONGODB_URI: ${{ secrets.TEST_MONGODB_URI }}
           SECRET: ${{ secrets.SECRET }}
       - name: Bump version and push tag
+        # run: git tag ${{ github.event.inputs.version }}
         uses: anothrNick/github-tag-action@1.33.0
         if: ${{ github.event_name == 'push' && !contains(join(github.event.commits.*.message, ', '), '#skip') }}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           WITH_V: true
-          DEFAULT_BUMP: '#patch'
+          DEFAULT_BUMP: "#patch"
       - name: Deployment to Heroku
         uses: akhileshns/heroku-deploy@v3.12.12 # This is the action
         if: ${{ github.event_name == 'push' && !contains(join(github.event.commits.*.message, ', '), '#skip') }}
         with:
           heroku_api_key: ${{secrets.HEROKU_API_KEY}}
-          heroku_app_name: 'jane-wellness-app' # Must be unique in Heroku
-          heroku_email: 'sirpaquillo1@yahoo.com.mx'
+          heroku_app_name: "jane-wellness-app" # Must be unique in Heroku
+          heroku_email: "sirpaquillo1@yahoo.com.mx"
           dontuseforce: false
-          procfile: 'web: npm run production'
-          healthcheck: 'https://jane-wellness-app.herokuapp.com/health'
-          checkstring: 'ok'
+          procfile: "web: npm run production"
+          healthcheck: "https://jane-wellness-app.herokuapp.com/health"
+          checkstring: "ok"
           delay: 5
           rollbackonhealthcheckfailed: true
