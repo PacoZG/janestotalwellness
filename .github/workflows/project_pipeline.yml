@@ -1,4 +1,4 @@
-name: Wellness project pipeline
+name: Janes Total Wellness Workflow
 
 on:
   push:
@@ -9,29 +9,31 @@ on:
     types: [opened, synchronize]
 
 jobs:
-  simple_deployment_pipeline:
-    runs-on: ubuntu-18.04
+  Janes_Total_Wellness_Deployment:
+    runs-on: ubuntu-20.04
+    container: cypress/browsers:node12.18.3-chrome87-ff82
     steps:
       - uses: actions/checkout@v2
-      - uses: actions/setup-node@v1
+      - uses: actions/setup-node@v2
         with:
           node-version: '12.x'
-      - name: npm install
+      - name: Installing dependencies
         run: npm install
-      - name: lint
+      - name: Formatting code
         run: npm run eslint
       - name: Building for production
         run: npm run build
-      - name: Local tests
+      - name: Running Unit tests
         run: npm run test
         if: ${{ !contains(join(github.event.commits.*.message, ', '), 'skip_test') }}
         env:
           NODE_ENV: 'test'
           TEST_MONGODB_URI: ${{ secrets.TEST_MONGODB_URI }}
           SECRET: ${{ secrets.SECRET }}
-      - name: E2E tests
+      - name: Cypress run
         uses: cypress-io/github-action@v2
         with:
+          browser: chrome
           command: npm run test:e2e
           start: npm run start:test, npm start
           wait-on: 'http://localhost:3001'
