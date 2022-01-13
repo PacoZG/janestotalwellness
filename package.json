@@ -4,6 +4,33 @@
   "private": true,
   "description": "Project presentation for fullstack 2020 open course",
   "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/PacoZG/janestotalwellness"
+  },
+  "keywords": [
+    "fullstack-open-project"
+  ],
+  "author": "Francisco Zavala",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/PacoZG/janestotalwellness/issues"
+  },
+  "homepage": "https://jane-wellness-app.herokuapp.com",
+  "proxy": "http://localhost:3001",
+  "scripts": {
+    "start": "set PORT=3000 && react-scripts start",
+    "build": "react-scripts build",
+    "production": "node index.js",
+    "dev-server": "nodemon index.js",
+    "prettier": "npx prettier --write .",
+    "eslint": "eslint .",
+    "test": "cross-env NODE_ENV=test jest --verbose --runInBand --detectOpenHandles --silent  ",
+    "start:test": "cross-env NODE_ENV=test node index.js",
+    "cypress:open": "cypress open",
+    "test:e2e": "cypress run",
+    "eject": "react-scripts eject"
+  },
   "dependencies": {
     "@headlessui/react": "^1.4.2",
     "@heroicons/react": "^1.0.5",
@@ -26,7 +53,9 @@
     "dotenv": "^10.0.0",
     "ejs": "^3.1.6",
     "eslint-plugin-cypress": "^2.12.1",
+    "eslint-plugin-jest": "^25.3.4",
     "eslint-plugin-prettier": "^4.0.0",
+    "eslint-plugin-react": "^7.28.0",
     "express": "^4.17.2",
     "express-async-errors": "^3.1.1",
     "i18next": "^21.6.5",
@@ -36,6 +65,7 @@
     "mongoose-unique-validator": "^2.0.3",
     "multer": "^1.4.4",
     "nodemon": "^2.0.15",
+    "prettier": "^2.5.1",
     "prop-types": "^15.8.1",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
@@ -49,34 +79,13 @@
     "redux-devtools-extension": "^2.13.9",
     "redux-thunk": "^2.4.1",
     "supertest": "^6.1.6",
+    "thunk": "^0.0.1",
     "web-vitals": "^2.1.3"
   },
-  "scripts": {
-    "start": "PORT=3000 react-scripts start",
-    "build": "react-scripts build",
-    "production": "node index.js",
-    "dev-server": "nodemon index.js",
-    "prettier": "npx prettier --write .",
-    "eslint": "eslint .",
-    "test": "cross-env NODE_ENV=test jest --verbose --runInBand --detectOpenHandles --silent  ",
-    "start:test": "cross-env NODE_ENV=test node index.js",
-    "cypress:open": "cypress open",
-    "test:e2e": "cypress run",
-    "eject": "react-scripts eject"
+  "devDependencies": {
+    "eslint-config-prettier": "^8.3.0",
+    "tailwindcss": "^3.0.12"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/PacoZG/janestotalwellness"
-  },
-  "keywords": [
-    "fullstack-open-project"
-  ],
-  "author": "Francisco Zavala",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/PacoZG/janestotalwellness/issues"
-  },
-  "homepage": "https://jane-wellness-app.herokuapp.com",
   "eslintConfig": {
     "extends": [
       "react-app",
@@ -94,10 +103,5 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
-  },
-  "proxy": "http://localhost:3001",
-  "devDependencies": {
-    "eslint-config-prettier": "^8.3.0",
-    "tailwindcss": "^3.0.12"
   }
 }
