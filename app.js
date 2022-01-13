@@ -28,7 +28,11 @@ mongoose
     useCreateIndex: true,
   })
   .then(() => {
-    logger.info('Connected to MongoDB')
+    if (process.env.NODE_ENV === 'test') {
+      logger.info('Connected to MongoDB Test_DB')
+    } else {
+      logger.info('Connected to MongoDB')
+    }
   })
   .catch(error => {
     logger.error('error connecting to MongoDB: ', error.message)

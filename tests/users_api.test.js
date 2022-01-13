@@ -119,6 +119,6 @@ describe('Now let us save some users and test it', () => {
   })
 })
 
-afterAll(() => {
-  mongoose.connection.close()
+afterAll(async () => {
+  await mongoose.connection.close()
 })

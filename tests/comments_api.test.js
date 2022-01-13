@@ -130,6 +130,6 @@ describe('Now, let us test comments logic', () => {
   })
 })
 
-afterAll(() => {
-  mongoose.connection.close()
+afterAll(async () => {
+  await mongoose.connection.close()
 })

@@ -1,11 +1,59 @@
 {
-  "name": "my-project",
-  "version": "1.0.0",
+  "name": "janestotalwellness",
+  "version": "0.2.0",
+  "private": true,
   "description": "Project presentation for fullstack 2020 open course",
   "main": "index.js",
+  "dependencies": {
+    "@headlessui/react": "^1.4.2",
+    "@heroicons/react": "^1.0.5",
+    "@tailwindcss/forms": "^0.4.0",
+    "@tailwindcss/typography": "^0.5.0",
+    "@tailwindui/react": "^0.1.1",
+    "@testing-library/jest-dom": "^5.16.1",
+    "@testing-library/react": "^12.1.2",
+    "@testing-library/user-event": "^13.5.0",
+    "axios": "^0.24.0",
+    "bcrypt": "^5.0.1",
+    "body-parser": "^1.19.1",
+    "cloudinary": "^1.28.1",
+    "cloudinary-core": "^2.12.3",
+    "cloudinary-react": "^1.7.0",
+    "cors": "^2.8.5",
+    "cross-env": "^7.0.3",
+    "cypress": "^7.2.0",
+    "datauri": "^4.1.0",
+    "dotenv": "^10.0.0",
+    "ejs": "^3.1.6",
+    "eslint-plugin-cypress": "^2.12.1",
+    "eslint-plugin-prettier": "^4.0.0",
+    "express": "^4.17.2",
+    "express-async-errors": "^3.1.1",
+    "i18next": "^21.6.5",
+    "i18next-browser-languagedetector": "^6.1.2",
+    "jsonwebtoken": "^8.5.1",
+    "mongoose": "^5.13.14",
+    "mongoose-unique-validator": "^2.0.3",
+    "multer": "^1.4.4",
+    "nodemon": "^2.0.15",
+    "prop-types": "^15.8.1",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
+    "react-i18next": "^11.15.3",
+    "react-markdown": "^7.1.2",
+    "react-redux": "^7.2.6",
+    "react-router-dom": "^5.3.0",
+    "react-scripts": "5.0.0",
+    "react-share": "^4.4.0",
+    "redux": "^4.1.2",
+    "redux-devtools-extension": "^2.13.9",
+    "redux-thunk": "^2.4.1",
+    "supertest": "^6.1.6",
+    "web-vitals": "^2.1.3"
+  },
   "scripts": {
-    "start": "PORT=3000 craco start",
-    "build": "craco build",
+    "start": "PORT=3000 react-scripts start",
+    "build": "react-scripts build",
     "production": "node index.js",
     "dev-server": "nodemon index.js",
     "prettier": "npx prettier --write .",
@@ -18,7 +66,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/PacoZG/My-project"
+    "url": "git+https://github.com/PacoZG/janestotalwellness"
   },
   "keywords": [
     "fullstack-open-project"
@@ -26,67 +74,14 @@
   "author": "Francisco Zavala",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/PacoZG/My-project/issues"
+    "url": "https://github.com/PacoZG/janestotalwellness/issues"
   },
   "homepage": "https://jane-wellness-app.herokuapp.com",
-  "dependencies": {
-    "@craco/craco": "^6.3.0",
-    "@headlessui/react": "^1.4.1",
-    "@heroicons/react": "^1.0.4",
-    "@tailwindcss/forms": "^0.2.1",
-    "@tailwindcss/typography": "^0.4.1",
-    "@tailwindui/react": "^0.1.1",
-    "axios": "^0.21.4",
-    "bcrypt": "^5.0.1",
-    "body-parser": "^1.19.0",
-    "cloudinary": "^1.27.1",
-    "cloudinary-core": "^2.12.0",
-    "cloudinary-react": "^1.7.0",
-    "cors": "^2.8.5",
-    "datauri": "^3.0.0",
-    "dotenv": "^8.6.0",
-    "ejs": "^2.7.4",
-    "express": "^4.17.1",
-    "express-async-errors": "^3.1.1",
-    "i18next": "^20.6.1",
-    "i18next-browser-languagedetector": "^6.1.2",
-    "jsonwebtoken": "^8.5.1",
-    "lodash": "^4.17.21",
-    "mongoose": "^5.13.12",
-    "mongoose-unique-validator": "^2.0.3",
-    "multer": "^1.4.3",
-    "prop-types": "^15.7.2",
-    "react": "^17.0.1",
-    "react-dom": "^17.0.1",
-    "react-i18next": "^11.12.0",
-    "react-markdown": "^6.0.3",
-    "react-redux": "^7.2.5",
-    "react-router-dom": "^5.3.0",
-    "react-scripts": "^4.0.3",
-    "react-share": "^4.4.0",
-    "redux": "^4.1.1",
-    "redux-devtools-extension": "^2.13.9",
-    "redux-thunk": "^2.3.0",
-    "thunk": "0.0.1"
-  },
-  "proxy": "http://localhost:3001",
-  "devDependencies": {
-    "@tailwindcss/postcss7-compat": "^2.2.17",
-    "autoprefixer": "^9.8.8",
-    "cross-env": "^7.0.3",
-    "cypress": "^7.2.0",
-    "eslint": "^7.32.0",
-    "eslint-config-prettier": "^8.3.0",
-    "eslint-plugin-cypress": "^2.12.1",
-    "eslint-plugin-jest": "^24.7.0",
-    "eslint-plugin-prettier": "^3.4.1",
-    "eslint-plugin-react": "^7.26.1",
-    "json-server": "^0.16.3",
-    "nodemon": "^2.0.14",
-    "postcss": "^7.0.39",
-    "prettier": "2.3.0",
-    "supertest": "^6.1.6",
-    "tailwindcss": "npm:@tailwindcss/postcss7-compat@^2.2.17"
+  "eslintConfig": {
+    "extends": [
+      "react-app",
+      "react-app/jest"
+    ]
   },
   "browserslist": {
     "production": [
@@ -100,7 +95,9 @@
       "last 1 safari version"
     ]
   },
-  "jest": {
-    "testEnvironment": "node"
+  "proxy": "http://localhost:3001",
+  "devDependencies": {
+    "eslint-config-prettier": "^8.3.0",
+    "tailwindcss": "^3.0.12"
   }
 }

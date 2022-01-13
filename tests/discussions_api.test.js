@@ -86,6 +86,6 @@ describe('Now, let us test discussions logic', () => {
   })
 })
 
-afterAll(() => {
-  mongoose.connection.close()
+afterAll(async () => {
+  await mongoose.connection.close()
 })
