@@ -3,19 +3,6 @@
   "version": "1.0.0",
   "description": "Project presentation for fullstack 2020 open course",
   "main": "index.js",
-  "scripts": {
-    "start": "PORT=3000 craco start",
-    "build": "craco build",
-    "production": "node index.js",
-    "dev-server": "nodemon index.js",
-    "prettier": "npx prettier --write .",
-    "eslint": "eslint .",
-    "test": "cross-env NODE_ENV=test jest --verbose --runInBand --detectOpenHandles --silent  ",
-    "start:test": "cross-env NODE_ENV=test node index.js",
-    "cypress:open": "cypress open",
-    "test:e2e": "cypress run",
-    "eject": "react-scripts eject"
-  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/PacoZG/My-project"
@@ -29,6 +16,20 @@
     "url": "https://github.com/PacoZG/My-project/issues"
   },
   "homepage": "https://jane-wellness-app.herokuapp.com",
+  "proxy": "http://localhost:3001",
+  "scripts": {
+    "start": "set PORT=3000 && craco start",
+    "build": "craco build",
+    "production": "node index.js",
+    "dev-server": "nodemon index.js",
+    "prettier": "npx prettier --write .",
+    "eslint": "eslint .",
+    "test": "cross-env NODE_ENV=test jest --verbose --runInBand --detectOpenHandles --silent  ",
+    "start:test": "cross-env NODE_ENV=test node index.js",
+    "cypress:open": "cypress open",
+    "test:e2e": "cypress run",
+    "eject": "react-scripts eject"
+  },
   "dependencies": {
     "@craco/craco": "^6.3.0",
     "@headlessui/react": "^1.4.1",
@@ -69,7 +70,6 @@
     "redux-thunk": "^2.3.0",
     "thunk": "0.0.1"
   },
-  "proxy": "http://localhost:3001",
   "devDependencies": {
     "@tailwindcss/postcss7-compat": "^2.2.17",
     "autoprefixer": "^9.8.8",
