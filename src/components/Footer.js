@@ -19,7 +19,13 @@ const Footer = () => {
           </h1>
           <div className="flex space-x-1 items-center">
             <AtSymbolIcon className="h-4 w-4 text-gray-200" />
-            <p className="text-gray-200 text-sm space-y-2 md:space-y-0 ">janestotalwellness@gmail.com</p>
+            <a
+              className="text-gray-200 text-sm space-y-2 md:space-y-0 "
+              href="mailto:contact@janestotalwellness.com"
+              target="blank"
+            >
+              contact@janestotalwellness.com
+            </a>
           </div>
           <div className="flex space-x-1 items-center">
             <QuestionMarkCircleIcon className="h-4 w-4 text-gray-200" />
