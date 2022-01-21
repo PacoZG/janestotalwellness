@@ -20,7 +20,7 @@ const Footer = () => {
           <div className="flex space-x-1 items-center">
             <AtSymbolIcon className="h-4 w-4 text-gray-200" />
             <a
-              className="text-gray-200 text-sm space-y-2 md:space-y-0 "
+              className="hover:text-gray-400 text-gray-200 text-sm space-y-2 md:space-y-0 "
               href="mailto:contact@janestotalwellness.com"
               target="blank"
             >
