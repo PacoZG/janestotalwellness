@@ -14,5 +14,5 @@ Content-Type: application/json
     "country": "Finland",
     "goals": "Basketball, fitness, karate",
     "background": "I want to be tech PRO",
-    "avatarPic": "/static/media/male-avatar.98f36f42.png"
+    "avatarPic": ""
 }
