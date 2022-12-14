@@ -22,7 +22,7 @@
     "install-dep": "./npm-scripts/install-dependencies.sh",
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "production": "node index.js & react-scripts start",
+    "production": "node index.js",
     "dev-server": "nodemon index.js",
     "dev-start": "react-scripts start",
     "prettier": "npx prettier --write .",
